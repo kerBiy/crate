@@ -15,6 +15,7 @@ Read docs/SPEC.md before any task. Current phase: **Phase 0**.
   Never call real external APIs in tests.
 - A service never touches another service's DB. Only libs/event-contracts is shared.
 - No secrets in git. Conventional commits.
+- Never add Co-Authored-By trailers or "Generated with Claude Code" lines to commit messages.
 
 ## Commands
 - make infra-up / make infra-down

@@ -1,0 +1,74 @@
+# Local infrastructure: Postgres + Kafka. Services run on the host (Gradle/IDE).
+# Usage: make infra-up / infra-down / infra-reset / logs / ps
+name: crate
+
+services:
+  postgres:
+    image: postgres:17.11-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in infra/compose/.env}
+      # Read by postgres-init/01-create-databases.sh on first start
+      USERS_DB_PASSWORD: ${USERS_DB_PASSWORD:?set in infra/compose/.env}
+      CATALOG_DB_PASSWORD: ${CATALOG_DB_PASSWORD:?set in infra/compose/.env}
+      REVIEWS_DB_PASSWORD: ${REVIEWS_DB_PASSWORD:?set in infra/compose/.env}
+      # The image's default pg_hba trusts 127.0.0.1 without a password; require one for all TCP
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+    command: postgres -c shared_buffers=64MB -c max_connections=50
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      # TCP check: the temporary server used during init scripts only listens on the socket,
+      # so the container stays unhealthy until initialization has finished.
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    mem_limit: 256m
+
+  kafka:
+    image: apache/kafka:4.3.1
+    hostname: kafka
+    environment:
+      # Single node in KRaft combined mode: broker and controller in one process
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      CLUSTER_ID: XSc2MlHmSF6GU1augryXgQ
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      # INTERNAL: other containers (kafka:9092). EXTERNAL: apps on the Mac (localhost:29092).
+      # CONTROLLER: KRaft quorum traffic, never advertised.
+      KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      # Topics are created explicitly (SPEC section 6.2)
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_NUM_PARTITIONS: 3
+      # One broker: internal topics can't have the default replication factor of 3
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_SHARE_COORDINATOR_STATE_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_SHARE_COORDINATOR_STATE_TOPIC_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_HEAP_OPTS: -Xms384m -Xmx384m
+    ports:
+      - "127.0.0.1:29092:29092"
+    volumes:
+      - kafkadata:/var/lib/kafka/data
+    healthcheck:
+      # Small heap so the probe JVM doesn't inherit the broker's 384m
+      test: ["CMD-SHELL", "KAFKA_HEAP_OPTS=-Xmx64m /opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 > /dev/null 2>&1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    mem_limit: 768m
+
+volumes:
+  pgdata:
+  kafkadata:

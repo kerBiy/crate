@@ -12,8 +12,19 @@ spring-boot-starter-webmvc = { module = "org.springframework.boot:spring-boot-st
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-cloud-starter-gateway-server-webflux = { module = "org.springframework.cloud:spring-cloud-starter-gateway-server-webflux" }
 
+# Boot 4 modular starter: brings spring-boot-starter-jdbc (HikariCP) + flyway-core.
+spring-boot-starter-flyway = { module = "org.springframework.boot:spring-boot-starter-flyway" }
+# Flyway's Postgres support lives in its own module since Flyway 10.
+flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql" }
+postgresql = { module = "org.postgresql:postgresql" }
+
 spring-boot-starter-webmvc-test = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
 spring-boot-starter-webflux-test = { module = "org.springframework.boot:spring-boot-starter-webflux-test" }
+# @ServiceConnection: Boot reads connection details straight from a Testcontainers container.
+spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-testcontainers" }
+# Testcontainers 2.x artifact names (versions from the Boot BOM).
+testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
 # Used by build-logic to apply the Spring Boot plugin from a convention plugin.

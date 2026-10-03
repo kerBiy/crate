@@ -1,0 +1,1 @@
+-- Baseline for users_db. Tables arrive in Phase 1 (docs/SPEC.md section 5).

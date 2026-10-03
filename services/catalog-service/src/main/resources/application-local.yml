@@ -1,0 +1,11 @@
+# Local development: services on the Mac, Postgres from `make infra-up`.
+spring:
+  config:
+    # .env is KEY=value, i.e. valid .properties; the [.properties] hint picks that loader.
+    # Path is relative to the working directory (the module dir under ./gradlew bootRun).
+    # Not optional: a missing .env should fail startup loudly.
+    import: file:../../infra/compose/.env[.properties]
+  datasource:
+    url: jdbc:postgresql://localhost:5432/catalog_db
+    username: catalog_service
+    password: ${CATALOG_DB_PASSWORD}

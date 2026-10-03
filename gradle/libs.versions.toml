@@ -1,0 +1,20 @@
+[versions]
+spring-boot = "4.1.1"
+# Boot 4.1 requires Spring Cloud 2025.1.2 or newer.
+spring-cloud = "2025.1.3"
+
+[libraries]
+# BOMs: they pin the versions of every Spring artifact below, so those have no version here.
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+
+spring-boot-starter-webmvc = { module = "org.springframework.boot:spring-boot-starter-webmvc" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-cloud-starter-gateway-server-webflux = { module = "org.springframework.cloud:spring-cloud-starter-gateway-server-webflux" }
+
+spring-boot-starter-webmvc-test = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
+spring-boot-starter-webflux-test = { module = "org.springframework.boot:spring-boot-starter-webflux-test" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+# Used by build-logic to apply the Spring Boot plugin from a convention plugin.
+spring-boot-gradle-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring-boot" }

@@ -17,6 +17,13 @@ Read docs/SPEC.md before any task. Current phase: **Phase 0**.
 - No secrets in git. Conventional commits.
 - Never add Co-Authored-By trailers or "Generated with Claude Code" lines to commit messages.
 
+## Frontend rules
+- Follow docs/DESIGN.md. Use the frontend-design skill for any UI work.
+- Only design tokens: no arbitrary Tailwind values, no one-off colors or sizes.
+- Every data view has loading, empty and error states.
+- Before saying a UI task is done: screenshot it with Playwright at 390px and 1440px,
+  check it against DESIGN.md (especially the Banned list), fix what's off, then show me.
+
 ## Commands
 - make infra-up / make infra-down
 - ./gradlew build

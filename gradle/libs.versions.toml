@@ -2,6 +2,8 @@
 spring-boot = "4.1.1"
 # Boot 4.1 requires Spring Cloud 2025.1.2 or newer.
 spring-cloud = "2025.1.3"
+# Not in the Boot BOM. 3.x is the stable line (4.0 is still beta).
+wiremock = "3.13.2"
 
 [libraries]
 # BOMs: they pin the versions of every Spring artifact below, so those have no version here.
@@ -25,6 +27,8 @@ spring-boot-starter-validation = { module = "org.springframework.boot:spring-boo
 # Versions come from spring-security-bom, which the Boot BOM imports.
 spring-security-crypto = { module = "org.springframework.security:spring-security-crypto" }
 spring-security-oauth2-jose = { module = "org.springframework.security:spring-security-oauth2-jose" }
+# Gateway: validates JWTs against a JWKS. Boot 4 name (spring-boot-starter-oauth2-resource-server is the deprecated alias).
+spring-boot-starter-security-oauth2-resource-server = { module = "org.springframework.boot:spring-boot-starter-security-oauth2-resource-server" }
 
 spring-boot-starter-webmvc-test = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
 spring-boot-starter-webflux-test = { module = "org.springframework.boot:spring-boot-starter-webflux-test" }
@@ -33,6 +37,8 @@ spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-te
 # Testcontainers 2.x artifact names (versions from the Boot BOM).
 testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
 testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
+# In-process HTTP stub for tests. The standalone jar shades Jetty and Jackson 2, so nothing clashes.
+wiremock-standalone = { module = "org.wiremock:wiremock-standalone", version.ref = "wiremock" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
 # Used by build-logic to apply the Spring Boot plugin from a convention plugin.

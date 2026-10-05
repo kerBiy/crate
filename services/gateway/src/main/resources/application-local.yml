@@ -1,0 +1,6 @@
+# Local development: every service runs on the Mac (make dev / bootRun).
+crate:
+  services:
+    user-service: http://localhost:8081
+    catalog-service: http://localhost:8082
+    review-service: http://localhost:8083

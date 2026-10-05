@@ -104,10 +104,11 @@ One set only, **Phosphor**: regular weight at rest, fill weight for the active s
 This is *the* memorable element. Nothing else competes with it.
 
 - A stylized **SVG record**: dark disc, a few subtle grooves, a center label tinted with the album's color.
-- **Desktop (pointer: fine):** on hover over a cover in a grid, the record **slides out to the right by ~30% of the cover width** (≈280 ms, smooth ease-out) and slides back on leave.
+- **Desktop (pointer: fine):** on hover or keyboard focus over a cover in a grid, the sleeve **slides ~30% to the left while the record emerges on the right** (≈480 ms, `vinyl` token, `standard` ease-out) and both slide back on leave. Everything is clipped to the cover's own square: the record never overlaps neighbouring covers or the title text.
+- **Album page:** the record rests **~⅓ out** of the 280 px sleeve, clearly visible as an object.
 - **Mobile (no hover):** no hover effect in grids. On the album page, the record slides out **once** when the page opens.
 - Only on covers ≥ ~96 px. Never on small thumbnails (feed rows, lists).
-- `prefers-reduced-motion`: no sliding. The record is not shown in grids, and on the album page it is static and half out.
+- `prefers-reduced-motion`: no sliding. The record is not shown in grids, and on the album page it is static at its resting position.
 
 ---
 
@@ -123,8 +124,9 @@ This is *the* memorable element. Nothing else competes with it.
 ## 7. Motion: calm, then pop
 
 Tokens:
-- Durations: `fast 120ms` · `base 200ms` · `slow 360ms`
-- Easing: `standard cubic-bezier(.2,.8,.2,1)`. Pop/spring: `cubic-bezier(.34,1.56,.64,1)`
+- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars).
+- Easing: `standard cubic-bezier(.22,1,.36,1)`, a smooth ease-out with a long soft landing. Pop: `cubic-bezier(.34,1.2,.64,1)`, an ease-out with only a slight overshoot, for action feedback.
+- Slow and smooth over snappy: motion should feel like handling a record, not a UI flicking.
 
 At rest: nothing moves. **No fade-in on every section, and no hover effects on everything** (only covers get the vinyl).
 
@@ -132,7 +134,7 @@ At rest: nothing moves. **No fade-in on every section, and no hover effects on e
 
 | Action | Reaction |
 |---|---|
-| Rate an album | Stars fill one by one with a small spring scale (1 → 1.15 → 1). On the album page, the record does one quick spin. |
+| Rate an album | Stars fill one by one with a soft pop (1 → 1.08 → 1). On the album page, the record does one slow spin. |
 | Add to listen later | The cover gives a small "drop into the crate" nudge (down 4 px and back). Toast: "Added to listen later". |
 | Follow someone | Button morphs into "Following" with a check. |
 | Send to a friend | The record slides out of the sleeve toward the right, then a toast: "Sent to Ana". |

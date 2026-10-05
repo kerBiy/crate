@@ -2,6 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
+import '@fontsource-variable/bricolage-grotesque/standard.css'
+import '@fontsource-variable/instrument-sans/standard.css'
 import './index.css'
 import { router } from './router.tsx'
 

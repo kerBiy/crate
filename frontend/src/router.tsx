@@ -1,22 +1,35 @@
-import { createBrowserRouter, Navigate } from 'react-router'
-import { LabAlbumPage } from './lab/LabAlbumPage.tsx'
-import { LabGridPage } from './lab/LabGridPage.tsx'
-import { LabLayout } from './lab/LabLayout.tsx'
-import { LabPlaceholderPage } from './lab/LabPlaceholderPage.tsx'
-import { HomePage } from './pages/HomePage.tsx'
+import { createBrowserRouter, Navigate, type RouteObject } from 'react-router'
+import { AppShellLayout } from './components/ui/AppShell.tsx'
+import { FeedPage, NotFoundPage, ProfilePage, SearchPage } from './pages/PlaceholderPages.tsx'
+
+// Design lab and component catalog, development only. Vite turns import.meta.env.DEV into
+// `false` for the production build, so this branch and its dynamic imports are dropped and
+// none of that code ends up in dist/. HydrateFallback renders nothing while the chunk loads.
+const devRoutes: RouteObject[] = import.meta.env.DEV
+  ? [
+      {
+        path: '/lab/*',
+        lazy: () => import('./lab/LabRoutes.tsx').then((m) => ({ Component: m.LabRoutes })),
+        HydrateFallback: () => null,
+      },
+      {
+        path: '/dev/*',
+        lazy: () => import('./dev/DevRoutes.tsx').then((m) => ({ Component: m.DevRoutes })),
+        HydrateFallback: () => null,
+      },
+    ]
+  : []
 
 export const router = createBrowserRouter([
-  { path: '/', element: <HomePage /> },
+  ...devRoutes,
   {
-    // Design lab: static album page and cover grid, no backend.
-    path: '/lab',
-    element: <LabLayout />,
+    element: <AppShellLayout />,
     children: [
-      { index: true, element: <Navigate to="/lab/album/b1392450-e666-3926-a536-22c65f834433" replace /> },
-      { path: 'grid', element: <LabGridPage /> },
-      { path: 'feed', element: <LabPlaceholderPage page="feed" /> },
-      { path: 'profile', element: <LabPlaceholderPage page="profile" /> },
-      { path: 'album/:mbid', element: <LabAlbumPage /> },
+      { index: true, element: <Navigate to="/feed" replace /> },
+      { path: 'feed', element: <FeedPage /> },
+      { path: 'search', element: <SearchPage /> },
+      { path: 'profile', element: <ProfilePage /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ])

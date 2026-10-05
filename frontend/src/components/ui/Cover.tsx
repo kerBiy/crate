@@ -1,29 +1,33 @@
 import { useState } from 'react'
-import { coverUrl, type Album } from '../../lab/albums.ts'
 
-type CoverProps = { album: Album; size: 250 | 500 }
+type CoverProps = {
+  /** Image URL. Missing or broken: a neutral sleeve with the title's initials. */
+  src?: string
+  title: string
+  artist: string
+}
 
-export function Cover({ album, size }: CoverProps) {
-  const [failed, setFailed] = useState(false)
-  const alt = `Cover of ${album.title} by ${album.artist}`
+export function Cover({ src, title, artist }: CoverProps) {
+  const [failedSrc, setFailedSrc] = useState<string | null>(null)
+  const alt = `Cover of ${title} by ${artist}`
 
-  if (failed) {
+  if (!src || failedSrc === src) {
     return (
       <div
         role="img"
         aria-label={alt}
         className="flex aspect-square w-full items-center justify-center rounded-cover border border-border bg-surface font-display text-h2 text-muted"
       >
-        {initials(album.title)}
+        {initials(title)}
       </div>
     )
   }
 
   return (
     <img
-      src={coverUrl(album.mbid, size)}
+      src={src}
       alt={alt}
-      onError={() => setFailed(true)}
+      onError={() => setFailedSrc(src)}
       className="block aspect-square w-full rounded-cover bg-surface object-cover"
     />
   )

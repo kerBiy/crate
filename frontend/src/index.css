@@ -89,6 +89,8 @@
   /* Spacing: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64, plus named sizes. */
   --spacing-*: initial;
   --spacing-0: 0px;
+  /* Hairline gaps: between stars, between histogram bars. */
+  --spacing-hairline: 1px;
   --spacing-1: 4px;
   --spacing-2: 8px;
   --spacing-3: 12px;
@@ -132,6 +134,8 @@
   --duration-reveal: 900ms;
   --duration-spin: 1000ms;
   --stagger: 70ms;
+  /* How long a toast stays up. Mirrored by toastDuration in components/ui/Toast.tsx. */
+  --duration-toast: 2400ms;
   --wash-reach: 400px;
 }
 
@@ -291,8 +295,14 @@
   );
 }
 
-.skeleton {
-  background: var(--surface);
+/* Button loading state. Removed by the reduced-motion rule below, leaving a still icon. */
+.spinner {
+  animation: spinner var(--duration-spin) linear infinite;
+}
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

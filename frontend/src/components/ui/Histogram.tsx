@@ -1,22 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
-import type { Album } from '../../lab/albums.ts'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 
 /** 0.5 → "½ star", 1 → "1 star", 4.5 → "4½ stars". */
 export function formatStars(value: number) {
   const whole = Math.floor(value)
   const half = value % 1 !== 0 ? '½' : ''
-  return `${whole || ''}${half} star${value === 1 ? '' : 's'}`
+  return `${whole || ''}${half} star${value > 1 ? 's' : ''}`
 }
 
 /**
  * Ratings spread in half-star buckets. Each bar is a button: hover (mouse), focus (keyboard)
- * or tap (touch) shows how many people gave that rating.
+ * or tap (touch) shows how many people gave that rating. The chart is one Tab stop; arrow keys,
+ * Home and End move between bars.
+ * counts: ratings per half-star bucket, 10 entries for 0.5, 1, 1.5 … 5.
  */
-export function Histogram({ album }: { album: Album }) {
+export function Histogram({ counts }: { counts: number[] }) {
   const [active, setActive] = useState<number | null>(null)
   const root = useRef<HTMLDivElement>(null)
-  const total = album.histogram.reduce((sum, count) => sum + count, 0)
-  const max = Math.max(...album.histogram)
+  const total = counts.reduce((sum, count) => sum + count, 0)
+  const max = Math.max(1, ...counts)
+  // The bar that takes Tab focus: the last one visited, else the tallest.
+  const [stop, setStop] = useState(() => counts.indexOf(Math.max(...counts)))
 
   // A tap outside the chart closes the readout on touch screens.
   useEffect(() => {
@@ -29,27 +32,45 @@ export function Histogram({ album }: { album: Album }) {
   }, [active])
 
   function describe(index: number) {
-    const count = album.histogram[index]
+    const count = counts[index]
     const percent = total ? Math.round((count / total) * 100) : 0
     return `${formatStars((index + 1) / 2)}, ${count} rating${count === 1 ? '' : 's'} (${percent}%)`
   }
 
+  function onKeyDown(event: KeyboardEvent, index: number) {
+    const last = counts.length - 1
+    const moves: Record<string, number> = {
+      ArrowLeft: Math.max(0, index - 1),
+      ArrowRight: Math.min(last, index + 1),
+      Home: 0,
+      End: last,
+    }
+    if (event.key === 'Escape') setActive(null)
+    if (!(event.key in moves)) return
+    event.preventDefault()
+    root.current?.querySelectorAll('button')[moves[event.key]]?.focus()
+  }
+
   return (
-    <div ref={root} role="group" aria-label={`Ratings spread, ${total} ratings`} className="relative">
+    <div ref={root} role="group" aria-label={`Ratings spread, ${total} rating${total === 1 ? '' : 's'}`} className="relative">
       {active !== null && <Readout index={active} text={describe(active)} />}
       <div className="flex h-12 items-end">
-        {album.histogram.map((count, i) => (
+        {counts.map((count, i) => (
           <button
             key={i}
             type="button"
             aria-label={describe(i)}
+            tabIndex={i === stop ? 0 : -1}
             onPointerEnter={(event) => event.pointerType === 'mouse' && setActive(i)}
             onPointerLeave={(event) => event.pointerType === 'mouse' && setActive(null)}
-            onFocus={() => setActive(i)}
+            onFocus={() => {
+              setActive(i)
+              setStop(i)
+            }}
             onBlur={() => setActive(null)}
             onClick={() => setActive(i)}
-            onKeyDown={(event) => event.key === 'Escape' && setActive(null)}
-            className="flex h-full flex-1 cursor-default items-end rounded-cover px-px"
+            onKeyDown={(event) => onKeyDown(event, i)}
+            className="flex h-full flex-1 cursor-default items-end rounded-cover px-hairline"
           >
             <span
               className={`w-full rounded-t-cover ${

@@ -1,10 +1,11 @@
 import type { CSSProperties } from 'react'
-import { ListenLaterButton, RateControl, SendButton, Toast } from '../components/album/actions.tsx'
+import { ListenLaterButton, RateControl, SendButton } from '../components/album/actions.tsx'
 import { FriendRatings } from '../components/album/bits.tsx'
-import { Histogram } from '../components/album/Histogram.tsx'
 import { Reviews, SectionTitle, type DataState } from '../components/album/Reviews.tsx'
 import { Sleeve } from '../components/album/Sleeve.tsx'
 import { useAlbumPage } from '../components/album/useAlbumPage.ts'
+import { Histogram } from '../components/ui/Histogram.tsx'
+import { ToastRegion } from '../components/ui/Toast.tsx'
 import type { Album } from './albums.ts'
 
 type AlbumViewProps = {
@@ -67,7 +68,7 @@ export function AlbumView({ album, state, onRetry }: AlbumViewProps) {
               <span className="font-narrow font-display text-h3 font-semibold text-text">{album.average.toFixed(1)}</span>
               <span className="text-meta text-muted">average from {album.ratingCount}</span>
             </p>
-            <Histogram album={album} />
+            <Histogram counts={album.histogram} />
           </section>
           <section>
             <SectionTitle>Friends who listened</SectionTitle>
@@ -75,7 +76,7 @@ export function AlbumView({ album, state, onRetry }: AlbumViewProps) {
           </section>
         </aside>
       </main>
-      <Toast message={page.toast} />
+      <ToastRegion message={page.toast} />
     </>
   )
 }

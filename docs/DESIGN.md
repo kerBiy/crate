@@ -84,7 +84,7 @@ Type scale (px): `13 · 15 · 17 · 20 · 24 · 32 · 44`
 
 ### 4.4 Shape and spacing
 
-- Spacing scale on a 4 px base: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`.
+- Spacing scale on a 4 px base: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`, plus a `1px` hairline (gaps between stars and histogram bars).
 - Radius **follows hierarchy**, not one value for everything:
     - covers `4px` (sleeves are nearly square),
     - buttons and inputs `10px`,
@@ -124,7 +124,7 @@ This is *the* memorable element. Nothing else competes with it.
 ## 7. Motion: calm, then pop
 
 Tokens:
-- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars).
+- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars). `toast 2400ms` (how long a toast stays up).
 - Easing: `standard cubic-bezier(.22,1,.36,1)`, a smooth ease-out with a long soft landing. Pop: `cubic-bezier(.34,1.2,.64,1)`, an ease-out with only a slight overshoot, for action feedback.
 - Slow and smooth over snappy: motion should feel like handling a record, not a UI flicking.
 
@@ -242,3 +242,26 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
 3. Checked against this file, especially section 12 (Banned).
 4. Loading, empty and error states exist and have been looked at.
 5. Works with the keyboard alone.
+---
+
+## 15. Components
+
+Base components live in `frontend/src/components/ui/`. Every state of each one is on `/dev/components` (development only).
+
+- **Button**: any action. `primary` for the one main action in a view, `secondary` for the rest, `ghost` for low-key actions inside rows. `loading` while the action runs; `disabled` when it can't run yet. A link that acts as the main action uses `buttonStyles()`.
+- **Input**: every text field, always with a visible label. `hint` for short help, `error` for what's wrong and how to fix it.
+- **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
+- **RatingInput**: giving a rating. Half-star steps with the arrow keys, Enter confirms.
+- **Cover**: album art at any size. Falls back to a neutral sleeve with initials when the image is missing.
+- **Vinyl**: the record, label tinted with the album color. Only with covers of 96 px or more.
+- **AlbumTile**: one album in a cover grid; the record slides out on hover or focus.
+- **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar.
+- **Avatar**: a person next to their name. `sm` in dense rows.
+- **AvatarStack**: a group of people in one line, such as friends who listened, with "+N" for the rest.
+- **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content.
+- **EmptyState**: a list with nothing in it. One line and at most one action.
+- **ErrorState**: something failed to load. Plain message and "Try again".
+- **Toast**: confirming an action that changed something. One at a time, via `useToast` and a single `ToastRegion` per page.
+- **AppShell**: the frame of every page: top bar on desktop, bottom tabs on mobile.
+
+Inline `style` is only for data: a bar's height, the album's color, a star's stagger index. ESLint rejects arbitrary Tailwind values, `dark:` variants and raw hex in components.

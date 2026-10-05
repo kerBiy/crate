@@ -1,21 +1,23 @@
 import { Outlet, useLocation } from 'react-router'
-import { AppNav, type Section } from '../components/AppNav.tsx'
+import { AppShell, type NavLinks, type Section } from '../components/ui/AppShell.tsx'
 import { DevPanel } from './DevPanel.tsx'
 
-/** Design lab: the real app navigation around the pages, lab controls tucked in a corner. */
+const labLinks: NavLinks = { search: '/lab/grid', feed: '/lab/feed', profile: '/lab/profile' }
+
+/** Design lab: the real app shell around the pages, lab controls tucked in a corner. */
 export function LabLayout() {
   const { pathname } = useLocation()
-  const section: Section = pathname.startsWith('/lab/feed')
+  // Album pages are reached from search, so they keep Search active.
+  const section: Section = pathname.startsWith(labLinks.feed)
     ? 'feed'
-    : pathname.startsWith('/lab/profile')
+    : pathname.startsWith(labLinks.profile)
       ? 'profile'
       : 'search'
 
   return (
-    <div className="min-h-screen overflow-x-clip pb-tabbar lg:pb-0">
-      <AppNav current={section} />
+    <AppShell links={labLinks} current={section}>
       <Outlet />
       <DevPanel />
-    </div>
+    </AppShell>
   )
 }

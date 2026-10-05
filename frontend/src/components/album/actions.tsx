@@ -1,8 +1,9 @@
 import { BookmarkSimple, PaperPlaneTilt } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { everyone, type Album } from '../../lab/albums.ts'
-import { Avatar, Button } from './bits.tsx'
-import { RatingInput } from './RatingInput.tsx'
+import { Avatar } from '../ui/Avatar.tsx'
+import { Button } from '../ui/Button.tsx'
+import { RatingInput } from '../ui/RatingInput.tsx'
 import type { AlbumPageState } from './useAlbumPage.ts'
 
 type ActionProps = { album: Album; page: AlbumPageState }
@@ -78,23 +79,11 @@ export function SendButton({ page, className = '' }: { page: AlbumPageState; cla
               }}
               className="flex h-tap items-center gap-3 rounded-control px-3 text-left text-body text-text focus-visible:bg-surface"
             >
-              <Avatar name={name} small />
+              <Avatar name={name} size="sm" />
               {name}
             </button>
           ))}
         </div>
-      )}
-    </div>
-  )
-}
-
-export function Toast({ message }: { message: string | null }) {
-  return (
-    <div aria-live="polite" className="pointer-events-none fixed inset-x-4 bottom-tabbar z-30 flex justify-center pb-4 lg:bottom-0 lg:pb-6">
-      {message && (
-        <p className="rounded-control border border-border bg-surface-raised px-4 py-3 text-body text-text shadow-float">
-          {message}
-        </p>
       )}
     </div>
   )

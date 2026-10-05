@@ -1,8 +1,8 @@
 import { useState, type AnimationEvent } from 'react'
-import type { Album } from '../../lab/albums.ts'
-import { Cover } from './Cover.tsx'
+import { coverUrl, type Album } from '../../lab/albums.ts'
+import { Cover } from '../ui/Cover.tsx'
 import type { AlbumPageState } from './useAlbumPage.ts'
-import { Vinyl } from './Vinyl.tsx'
+import { Vinyl } from '../ui/Vinyl.tsx'
 
 type SleeveProps = {
   album: Album
@@ -36,7 +36,7 @@ export function Sleeve({ album, page }: SleeveProps) {
         </div>
       </div>
       <div className="sleeve-cover" data-nudging={page.nudge.on ? '' : undefined} onAnimationEnd={page.nudge.done}>
-        <Cover album={album} size={500} />
+        <Cover src={coverUrl(album.mbid, 500)} title={album.title} artist={album.artist} />
       </div>
     </div>
   )

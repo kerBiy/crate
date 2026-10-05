@@ -1,7 +1,7 @@
 import { SlidersHorizontal, X } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router'
-import { useTheme } from '../theme.ts'
+import { ThemeToggle } from '../dev/ThemeToggle.tsx'
 import { albums } from './albums.ts'
 
 const segment = 'flex h-tap flex-1 items-center justify-center rounded-control px-2 text-body'
@@ -15,7 +15,6 @@ export function DevPanel() {
   const { mbid } = useParams()
   const { search } = useLocation()
   const navigate = useNavigate()
-  const { theme, toggle } = useTheme()
   const onGrid = !mbid
   const album = mbid ?? albums[0].mbid
 
@@ -68,14 +67,7 @@ export function DevPanel() {
             </label>
           )}
 
-          <div className="flex rounded-control border border-border p-1" role="group" aria-label="Theme">
-            <button type="button" onClick={theme === 'light' ? toggle : undefined} aria-pressed={theme === 'dark'} className={theme === 'dark' ? on : off}>
-              Dark
-            </button>
-            <button type="button" onClick={theme === 'dark' ? toggle : undefined} aria-pressed={theme === 'light'} className={theme === 'light' ? on : off}>
-              Light
-            </button>
-          </div>
+          <ThemeToggle />
         </section>
       )}
       <button

@@ -1,27 +1,62 @@
 import { House, MagnifyingGlass, User, type Icon } from '@phosphor-icons/react'
-import { Link } from 'react-router'
-import { Avatar } from './album/bits.tsx'
+import type { ReactNode } from 'react'
+import { Link, Outlet, useLocation } from 'react-router'
+import { Avatar } from './Avatar.tsx'
 
 export type Section = 'search' | 'feed' | 'profile'
 
-type Tab = { id: Section; label: string; to: string; icon: Icon }
+export type NavLinks = Record<Section, string>
+
+/** The app's real sections. The design lab passes its own paths. */
+export const appLinks: NavLinks = { search: '/search', feed: '/feed', profile: '/profile' }
+
+type Tab = { id: Section; label: string; icon: Icon }
 
 const desktopOrder: Tab[] = [
-  { id: 'search', label: 'Search', to: '/lab/grid', icon: MagnifyingGlass },
-  { id: 'feed', label: 'Feed', to: '/lab/feed', icon: House },
-  { id: 'profile', label: 'Profile', to: '/lab/profile', icon: User },
+  { id: 'search', label: 'Search', icon: MagnifyingGlass },
+  { id: 'feed', label: 'Feed', icon: House },
+  { id: 'profile', label: 'Profile', icon: User },
 ]
 
 // DESIGN.md section 8: mobile tabs are Feed, Search, Profile.
 const mobileOrder = [desktopOrder[1], desktopOrder[0], desktopOrder[2]]
 
+type AppShellProps = {
+  children: ReactNode
+  links?: NavLinks
+  /** Active section. By default it comes from the URL. */
+  current?: Section
+}
+
+/** Page frame: navigation around the content, room kept for the mobile tab bar. */
+export function AppShell({ children, links = appLinks, current }: AppShellProps) {
+  const { pathname } = useLocation()
+  const active = current ?? desktopOrder.find((tab) => pathname.startsWith(links[tab.id]))?.id
+
+  return (
+    <div className="min-h-screen overflow-x-clip pb-tabbar lg:pb-0">
+      <AppNav links={links} current={active} />
+      {children}
+    </div>
+  )
+}
+
+/** AppShell as a layout route. */
+export function AppShellLayout() {
+  return (
+    <AppShell>
+      <Outlet />
+    </AppShell>
+  )
+}
+
 /** Desktop: top bar with wordmark, sections and avatar. Mobile: wordmark on top, tabs at the bottom. */
-export function AppNav({ current }: { current: Section }) {
+function AppNav({ links, current }: { links: NavLinks; current?: Section }) {
   return (
     <>
       <header className="sticky top-0 z-10 border-b border-border bg-bg">
         <div className="mx-auto flex h-12 max-w-content items-center gap-8 px-4 lg:h-16 lg:px-6">
-          <Link to="/lab/grid" className="font-display text-h3 font-bold text-text">
+          <Link to={links.feed} className="font-display text-h3 font-bold text-text">
             crate
           </Link>
           <nav aria-label="Main" className="hidden lg:block">
@@ -29,7 +64,7 @@ export function AppNav({ current }: { current: Section }) {
               {desktopOrder.map((tab) => (
                 <li key={tab.id}>
                   <Link
-                    to={tab.to}
+                    to={links[tab.id]}
                     aria-current={tab.id === current ? 'page' : undefined}
                     className={`flex h-tap items-center rounded-control px-3 text-body ${
                       tab.id === current ? 'bg-surface font-medium text-text' : 'text-muted'
@@ -41,7 +76,7 @@ export function AppNav({ current }: { current: Section }) {
               ))}
             </ul>
           </nav>
-          <Link to="/lab/profile" aria-label="Your profile" className="ml-auto hidden rounded-full lg:block">
+          <Link to={links.profile} aria-label="Your profile" className="ml-auto hidden rounded-full lg:block">
             <Avatar name="You" />
           </Link>
         </div>
@@ -55,7 +90,7 @@ export function AppNav({ current }: { current: Section }) {
             return (
               <li key={tab.id}>
                 <Link
-                  to={tab.to}
+                  to={links[tab.id]}
                   aria-current={active ? 'page' : undefined}
                   className={`flex h-full flex-col items-center justify-center gap-1 text-meta ${
                     active ? 'font-medium text-text' : 'text-muted'

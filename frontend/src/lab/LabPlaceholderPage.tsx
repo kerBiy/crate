@@ -1,4 +1,6 @@
 import { Link } from 'react-router'
+import { buttonStyles } from '../components/ui/Button.tsx'
+import { EmptyState } from '../components/ui/States.tsx'
 
 const copy = {
   feed: {
@@ -19,13 +21,14 @@ export function LabPlaceholderPage({ page }: { page: keyof typeof copy }) {
   return (
     <main className="mx-auto flex max-w-content flex-col items-start gap-4 px-4 py-12 lg:px-6">
       <h1 className="font-display text-h3 font-semibold text-text">{title}</h1>
-      <p className="text-muted">{line}</p>
-      <Link
-        to="/lab/grid"
-        className="inline-flex h-tap items-center rounded-control bg-accent px-4 text-body font-medium text-on-accent"
-      >
-        {action}
-      </Link>
+      <EmptyState
+        message={line}
+        action={
+          <Link to="/lab/grid" className={buttonStyles('primary')}>
+            {action}
+          </Link>
+        }
+      />
     </main>
   )
 }

@@ -1,17 +1,18 @@
-import { useState, type KeyboardEvent, type MouseEvent } from 'react'
-import { StarGlyph, starFill } from './Stars.tsx'
+import { useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from 'react'
+import { StarGlyph, starFill } from './RatingStars.tsx'
 
 type RatingInputProps = {
   label: string
   value: number
   onRate: (value: number) => void
+  disabled?: boolean
 }
 
 /**
  * Star rating as a slider: arrow keys move in half stars, Enter confirms.
  * Pointer: the left half of a star gives a half star, the right half a full one.
  */
-export function RatingInput({ label, value, onRate }: RatingInputProps) {
+export function RatingInput({ label, value, onRate, disabled = false }: RatingInputProps) {
   const [pending, setPending] = useState<number | null>(null)
   const [popCount, setPopCount] = useState(0)
   const shown = pending ?? value
@@ -48,15 +49,16 @@ export function RatingInput({ label, value, onRate }: RatingInputProps) {
   return (
     <div
       role="slider"
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0}
       aria-label={label}
+      aria-disabled={disabled || undefined}
       aria-valuemin={0}
       aria-valuemax={5}
       aria-valuenow={shown}
       aria-valuetext={shown === 0 ? 'Not rated' : `${shown} out of 5 stars`}
-      onKeyDown={onKeyDown}
+      onKeyDown={disabled ? undefined : onKeyDown}
       onBlur={() => setPending(null)}
-      className="-mx-2 inline-flex cursor-pointer rounded-control text-h3"
+      className={`-mx-2 inline-flex rounded-control text-h3 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
     >
       {[0, 1, 2, 3, 4].map((i) => {
         const fill = starFill(shown, i)
@@ -64,11 +66,11 @@ export function RatingInput({ label, value, onRate }: RatingInputProps) {
         return (
           <span
             key={`${i}-${popCount}`}
-            onClick={(event) => onStarClick(event, i)}
+            onClick={disabled ? undefined : (event) => onStarClick(event, i)}
             className="flex size-tap items-center justify-center"
           >
-            <span className={pop ? 'star-pop inline-flex' : 'inline-flex'} style={{ '--i': i } as React.CSSProperties}>
-              <StarGlyph fill={fill} />
+            <span className={pop ? 'star-pop inline-flex' : 'inline-flex'} style={{ '--i': i } as CSSProperties}>
+              <StarGlyph fill={fill} muted={disabled} />
             </span>
           </span>
         )

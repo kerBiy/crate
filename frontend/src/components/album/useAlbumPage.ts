@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
+import { useToast } from '../ui/Toast.tsx'
 
 /** A flag that turns on for one CSS animation and off when it ends. */
 function useOneShot() {
@@ -12,19 +13,10 @@ function useOneShot() {
 export function useAlbumPage() {
   const [rating, setRating] = useState(0)
   const [listenLater, setListenLater] = useState(false)
-  const [toast, setToast] = useState<string | null>(null)
-  const timer = useRef<number | undefined>(undefined)
+  const toast = useToast()
   const spin = useOneShot()
   const send = useOneShot()
   const nudge = useOneShot()
-
-  const showToast = useCallback((message: string) => {
-    setToast(message)
-    window.clearTimeout(timer.current)
-    timer.current = window.setTimeout(() => setToast(null), 2400)
-  }, [])
-
-  useEffect(() => () => window.clearTimeout(timer.current), [])
 
   return {
     rating,
@@ -37,13 +29,13 @@ export function useAlbumPage() {
       const next = !listenLater
       setListenLater(next)
       if (next) nudge.play()
-      showToast(next ? 'Added to listen later' : 'Removed from listen later')
+      toast.show(next ? 'Added to listen later' : 'Removed from listen later')
     },
     sendTo(name: string) {
       send.play()
-      showToast(`Sent to ${name}`)
+      toast.show(`Sent to ${name}`)
     },
-    toast,
+    toast: toast.message,
     spin,
     send,
     nudge,

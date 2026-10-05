@@ -9,3 +9,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/users_db
     username: user_service
     password: ${USERS_DB_PASSWORD}
+crate:
+  auth:
+    jwt:
+      # Created by `make jwt-keys` (git-ignored). Relative to the module dir, like the .env import.
+      private-key-location: file:../../infra/compose/secrets/jwt-private.pem

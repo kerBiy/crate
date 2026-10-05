@@ -1,6 +1,12 @@
 spring:
   application:
     name: user-service
+  jpa:
+    # Flyway owns the schema; Hibernate only checks that the entities match it.
+    hibernate:
+      ddl-auto: validate
+    # Don't keep a DB session open while the HTTP response is being written.
+    open-in-view: false
 
 server:
   port: 8081
@@ -10,3 +16,14 @@ management:
     web:
       exposure:
         include: health
+
+crate:
+  auth:
+    # Comma-separated. Empty means registration is closed.
+    invite-codes: ${INVITE_CODES:}
+    jwt:
+      issuer: crate-user-service
+      ttl: 12h
+      # PKCS#8 PEM file holding the RSA private key (the public key is derived from it).
+      # Required: startup fails without it. Local dev: `make jwt-keys`.
+      private-key-location: ${JWT_PRIVATE_KEY_LOCATION:}

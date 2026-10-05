@@ -1,7 +1,9 @@
 ENV_FILE := infra/compose/.env
 COMPOSE  := docker compose -f infra/compose/docker-compose.yml --env-file $(ENV_FILE)
 
-.PHONY: infra-up infra-down infra-reset logs ps check-env
+.PHONY: infra-up infra-down infra-reset logs ps check-env jwt-keys
+
+JWT_KEY := infra/compose/secrets/jwt-private.pem
 
 check-env:
 	@test -f $(ENV_FILE) || { echo "Missing $(ENV_FILE). Run: cp infra/compose/.env.example $(ENV_FILE)"; exit 1; }
@@ -24,6 +26,17 @@ logs: check-env
 
 ps: check-env
 	$(COMPOSE) ps
+
+## Create the RSA private key user-service signs JWTs with (local dev only, git-ignored)
+# One shell block: an `exit` on its own recipe line would only end that line's shell.
+jwt-keys:
+	@if [ -f $(JWT_KEY) ]; then \
+	  echo "$(JWT_KEY) already exists, not overwriting"; \
+	else \
+	  mkdir -p $(dir $(JWT_KEY)) && \
+	  (umask 077 && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out $(JWT_KEY) 2>/dev/null) && \
+	  echo "created $(JWT_KEY)"; \
+	fi
 
 # ---------------------------------------------------------------------------
 # Local dev: infra + all services + frontend, in the background.

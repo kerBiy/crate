@@ -1,0 +1,1049 @@
+{
+    "created": "2026-10-06T10:51:39.933Z",
+    "count": 540,
+    "offset": 0,
+    "release-groups": [
+        {
+            "id": "a96597aa-93b4-4e14-9e6e-03892ab24979",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "score": 100,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "0e50142c-c299-3756-bfba-a27131c3521c",
+            "count": 19,
+            "title": "Watch the Throne",
+            "first-release-date": "2011-08-08",
+            "primary-type": "Album",
+            "artist-credit": [
+                {
+                    "joinphrase": " & ",
+                    "name": "Jay‐Z",
+                    "artist": {
+                        "id": "f82bcf78-5b69-4622-a5ef-73800768d9ac",
+                        "name": "JAŸ-Z",
+                        "sort-name": "JAŸ-Z",
+                        "disambiguation": "US rapper",
+                        "aliases": [
+                            {
+                                "sort-name": "JAŸ‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAŸ‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2026-03",
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "JAY‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2017",
+                                "end-date": "2026-03"
+                            },
+                            {
+                                "sort-name": "Carter, Shawn",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "jay z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jay‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "1997",
+                                "end-date": "2013"
+                            },
+                            {
+                                "sort-name": "Jaÿ‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jaÿ‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "1996",
+                                "end-date": "1996"
+                            },
+                            {
+                                "sort-name": "JAY:Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY:Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2017",
+                                "end-date": "2017"
+                            },
+                            {
+                                "sort-name": "JAY Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2013",
+                                "end-date": "2017"
+                            },
+                            {
+                                "sort-name": "Carter, Shawn C",
+                                "name": "Shawn C Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, Shawn",
+                                "name": "Shawn Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, S.",
+                                "name": "S. Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, Shawn Corey",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Shawn Corey Carter",
+                                "locale": "en",
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jayz",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jayz",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Hova",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Hova",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay-Hova",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jay-Hova",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jigga",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jigga",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay Z",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Jay Z",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay - Z",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Jay - Z",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Hova da God",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Hova da God",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Kanye West",
+                    "artist": {
+                        "id": "164f0d73-1234-4e2c-8743-d77bf2191051",
+                        "name": "Ye",
+                        "sort-name": "Ye",
+                        "disambiguation": "formerly Kanye West",
+                        "aliases": [
+                            {
+                                "sort-name": "Ye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Ye",
+                                "locale": "en",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "KanYeWest",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "KanYeWest",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Donda",
+                                "name": "Donda",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Kanye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Kanye",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "K. West",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "K. West",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Kayne West",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Kayne West",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "West, Kanye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Kanye West",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": "2024"
+                            },
+                            {
+                                "sort-name": "Ye",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Ye",
+                                "locale": null,
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": "2021-10-18",
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Yeezy",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Yeezy",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "West, Kanye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Kanye West",
+                                "locale": "zh",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "West, Kanye Omari",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Kanye Omari West",
+                                "locale": "en",
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": "1977-06-08",
+                                "end-date": "2021-10-18"
+                            },
+                            {
+                                "sort-name": "カニエ・ウェスト",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "カニエ・ウェスト",
+                                "locale": "ja",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "56eedc5a-4739-45c0-a95e-b34193d270b8",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "e08a3b6c-22ff-423a-8706-adbd45203698",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "aee2b971-81cc-4cef-b898-1b1ee6f1816d",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "d31a0150-f2f2-4bbe-be29-d05abb436d73",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "abb01a2f-96cc-436d-9609-1d0ac67f1905",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "7fc36901-b1ce-4f87-bce8-ff55e63ae1a7",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "aa556521-50ee-451e-b01a-18cc470cd491",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "6148b8f5-384d-44ae-9a43-e2b0c1110211",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "90cc3f69-3b7e-437b-bc33-099369d8dcaf",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "b45f29bd-e4a0-44d1-a3d6-46a1a7b8d921",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "aa8a6b1e-c8fb-4db9-9166-6f34c7d708d2",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "ad5e7413-7c90-4ed7-85e9-c12e8955fe2e",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "ec78a8b0-6a81-42a4-adde-75445bd87b02",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "ff9333b2-afe7-47e4-8257-902ae66f5dd5",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "1e7ce886-cc15-4ae7-8a56-c09022c0abd2",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "70dc104d-6136-4dcd-bd8c-2b7035c43feb",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "2dfab7a7-7cdf-4ab8-bd35-785e5cded0be",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "f0d155f1-4769-4e1f-bb7a-2b7be9c8a8a0",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                },
+                {
+                    "id": "196bb188-d579-4f00-ac29-9a83a7dc1b9c",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Watch the Throne",
+                    "status": "Official"
+                }
+            ],
+            "tags": [
+                {
+                    "count": 0,
+                    "name": "rap"
+                },
+                {
+                    "count": 8,
+                    "name": "hip hop"
+                },
+                {
+                    "count": 7,
+                    "name": "pop rap"
+                },
+                {
+                    "count": 2,
+                    "name": "conscious"
+                },
+                {
+                    "count": 1,
+                    "name": "alternative hip hop"
+                },
+                {
+                    "count": 0,
+                    "name": "east coast rap"
+                },
+                {
+                    "count": 0,
+                    "name": "midwest rap"
+                },
+                {
+                    "count": 1,
+                    "name": "chipmunk soul"
+                }
+            ]
+        },
+        {
+            "id": "457ae5f8-a35d-40e4-b67c-e02c7826c257",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "score": 81,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "f2345dcd-adac-40c0-ac99-9f3ec5d22cd8",
+            "count": 1,
+            "title": "The Throne",
+            "first-release-date": "2011",
+            "primary-type": "Album",
+            "secondary-types": [
+                "Mixtape/Street"
+            ],
+            "secondary-type-ids": [
+                "15c1b1f5-d893-3375-a1db-e180c5ae15ed"
+            ],
+            "artist-credit": [
+                {
+                    "joinphrase": " & ",
+                    "name": "JAY‐Z",
+                    "artist": {
+                        "id": "f82bcf78-5b69-4622-a5ef-73800768d9ac",
+                        "name": "JAŸ-Z",
+                        "sort-name": "JAŸ-Z",
+                        "disambiguation": "US rapper",
+                        "aliases": [
+                            {
+                                "sort-name": "JAŸ‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAŸ‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2026-03",
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "JAY‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2017",
+                                "end-date": "2026-03"
+                            },
+                            {
+                                "sort-name": "Carter, Shawn",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "jay z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jay‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "1997",
+                                "end-date": "2013"
+                            },
+                            {
+                                "sort-name": "Jaÿ‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jaÿ‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "1996",
+                                "end-date": "1996"
+                            },
+                            {
+                                "sort-name": "JAY:Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY:Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2017",
+                                "end-date": "2017"
+                            },
+                            {
+                                "sort-name": "JAY Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2013",
+                                "end-date": "2017"
+                            },
+                            {
+                                "sort-name": "Carter, Shawn C",
+                                "name": "Shawn C Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, Shawn",
+                                "name": "Shawn Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, S.",
+                                "name": "S. Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, Shawn Corey",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Shawn Corey Carter",
+                                "locale": "en",
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jayz",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jayz",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Hova",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Hova",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay-Hova",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jay-Hova",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jigga",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jigga",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay Z",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Jay Z",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay - Z",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Jay - Z",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Hova da God",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Hova da God",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Ye",
+                    "artist": {
+                        "id": "164f0d73-1234-4e2c-8743-d77bf2191051",
+                        "name": "Ye",
+                        "sort-name": "Ye",
+                        "disambiguation": "formerly Kanye West",
+                        "aliases": [
+                            {
+                                "sort-name": "Ye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Ye",
+                                "locale": "en",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "KanYeWest",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "KanYeWest",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Donda",
+                                "name": "Donda",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Kanye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Kanye",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "K. West",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "K. West",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Kayne West",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Kayne West",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "West, Kanye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Kanye West",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": "2024"
+                            },
+                            {
+                                "sort-name": "Ye",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Ye",
+                                "locale": null,
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": "2021-10-18",
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Yeezy",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Yeezy",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "West, Kanye",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Kanye West",
+                                "locale": "zh",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "West, Kanye Omari",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Kanye Omari West",
+                                "locale": "en",
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": "1977-06-08",
+                                "end-date": "2021-10-18"
+                            },
+                            {
+                                "sort-name": "カニエ・ウェスト",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "カニエ・ウェスト",
+                                "locale": "ja",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "84815382-8a12-41b5-aa3b-e9583d305ef8",
+                    "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+                    "title": "The Throne",
+                    "status": "Bootleg"
+                }
+            ]
+        },
+        {
+            "id": "ef9c3e7c-d731-4e87-9b0a-5994dc56c02a",
+            "type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "score": 64,
+            "primary-type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "artist-credit-id": "c453a8b1-630c-393f-bc15-e12dfff9ef1b",
+            "count": 1,
+            "title": "The Blueprint 3",
+            "primary-type": "EP",
+            "secondary-types": [
+                "Mixtape/Street"
+            ],
+            "secondary-type-ids": [
+                "15c1b1f5-d893-3375-a1db-e180c5ae15ed"
+            ],
+            "artist-credit": [
+                {
+                    "name": "JAY Z",
+                    "artist": {
+                        "id": "f82bcf78-5b69-4622-a5ef-73800768d9ac",
+                        "name": "JAŸ-Z",
+                        "sort-name": "JAŸ-Z",
+                        "disambiguation": "US rapper",
+                        "aliases": [
+                            {
+                                "sort-name": "JAŸ‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAŸ‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2026-03",
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "JAY‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2017",
+                                "end-date": "2026-03"
+                            },
+                            {
+                                "sort-name": "Carter, Shawn",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "jay z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jay‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "1997",
+                                "end-date": "2013"
+                            },
+                            {
+                                "sort-name": "Jaÿ‐Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jaÿ‐Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "1996",
+                                "end-date": "1996"
+                            },
+                            {
+                                "sort-name": "JAY:Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY:Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2017",
+                                "end-date": "2017"
+                            },
+                            {
+                                "sort-name": "JAY Z",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "JAY Z",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": "2013",
+                                "end-date": "2017"
+                            },
+                            {
+                                "sort-name": "Carter, Shawn C",
+                                "name": "Shawn C Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, Shawn",
+                                "name": "Shawn Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, S.",
+                                "name": "S. Carter",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Carter, Shawn Corey",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Shawn Corey Carter",
+                                "locale": "en",
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jayz",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jayz",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Hova",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Hova",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay-Hova",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jay-Hova",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jigga",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Jigga",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay Z",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Jay Z",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Jay - Z",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Jay - Z",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Hova da God",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Hova da God",
+                                "locale": null,
+                                "type": "Artist name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "95ff991b-7af3-42bb-9979-470ec2bd3741",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "The Blueprint 3 (Soul Assassin special edition)",
+                    "status": "Official"
+                }
+            ]
+        }
+    ]
+}

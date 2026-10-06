@@ -1,0 +1,25 @@
+{
+    "disambiguation": "",
+    "secondary-types": [],
+    "artist-credit": [
+        {
+            "joinphrase": "",
+            "artist": {
+                "sort-name": "Radiohead",
+                "id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+                "type": "Group",
+                "name": "Radiohead",
+                "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+                "country": "GB",
+                "disambiguation": ""
+            },
+            "name": "Radiohead"
+        }
+    ],
+    "primary-type": "Single",
+    "first-release-date": "1992-09-21",
+    "title": "Creep",
+    "primary-type-id": "d6038452-8ee0-3f68-affc-2de9a1ede0b9",
+    "id": "c5bc370b-95c2-3634-bb89-51bb2dce97c3",
+    "secondary-type-ids": []
+}

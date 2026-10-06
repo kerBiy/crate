@@ -1,0 +1,25 @@
+{
+    "secondary-types": [],
+    "title": "OK Computer",
+    "secondary-type-ids": [],
+    "id": "b1392450-e666-3926-a536-22c65f834433",
+    "disambiguation": "",
+    "artist-credit": [
+        {
+            "joinphrase": "",
+            "name": "Radiohead",
+            "artist": {
+                "disambiguation": "",
+                "id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+                "name": "Radiohead",
+                "type-id": "e431f5f6-b5d2-343d-8b36-72607fffb74b",
+                "country": "GB",
+                "sort-name": "Radiohead",
+                "type": "Group"
+            }
+        }
+    ],
+    "first-release-date": "1997-05-21",
+    "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+    "primary-type": "Album"
+}

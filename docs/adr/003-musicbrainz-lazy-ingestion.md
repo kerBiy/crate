@@ -20,6 +20,7 @@ Constraints:
   2. If there are too few good results, and the same search wasn't made recently, catalog-service asks MusicBrainz, saves the albums it gets back, and searches again.
   3. Opening an album that isn't stored yet fetches it once and saves it.
 - Respect MusicBrainz's rules: a meaningful User-Agent, and **about one request per second**, enforced in catalog-service with a token bucket. On HTTP 503, back off and retry a limited number of times.
+  The token bucket is hand-written (capacity 1, no dependency) so it can be explained and tested with a fake clock. Retries: 3 attempts in total, exponential backoff with jitter, only on 503; every attempt waits for the bucket.
 - If MusicBrainz fails, search returns local results marked as partial. **A search never fails just because MusicBrainz is down.**
 - An optional seed job loads a list of a few hundred albums at startup, so the catalog isn't empty on day one.
 

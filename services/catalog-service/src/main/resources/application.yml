@@ -10,3 +10,22 @@ management:
     web:
       exposure:
         include: health
+
+crate:
+  musicbrainz:
+    base-url: https://musicbrainz.org/ws/2
+    # MusicBrainz blocks clients without a meaningful User-Agent. The contact email lives in .env.
+    # Required: startup fails without it.
+    user-agent: Crate/0.1 ( ${MUSICBRAINZ_CONTACT} )
+    connect-timeout: 2s
+    # Searches can be slow on MusicBrainz's side; the user is waiting, so don't go higher.
+    read-timeout: 5s
+    rate-limit:
+      # About one request per second from our IP, shared by every caller in this process.
+      interval: 1s
+      # A caller that would queue longer than this gives up (search then returns local results).
+      max-wait: 10s
+    retry:
+      # Total attempts per request, first try included. Only 503 is retried.
+      max-attempts: 3
+      initial-backoff: 1s

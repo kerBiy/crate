@@ -79,6 +79,9 @@ export function ComponentsPage() {
           <Cell label="Disabled">
             <Input label="Email" defaultValue="ana@example.com" disabled />
           </Cell>
+          <Cell label="Large (search)">
+            <Input label="Search" type="search" size="lg" hint="Album or artist" />
+          </Cell>
         </Block>
 
         <Block name="RatingStars" use="Showing a rating someone gave. Sized by the text around it.">

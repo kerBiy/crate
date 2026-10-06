@@ -1,18 +1,23 @@
 import { BookmarkSimple, PaperPlaneTilt } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
-import { everyone, type Album } from '../../lab/albums.ts'
 import { Avatar } from '../ui/Avatar.tsx'
 import { Button } from '../ui/Button.tsx'
 import { RatingInput } from '../ui/RatingInput.tsx'
 import type { AlbumPageState } from './useAlbumPage.ts'
 
-type ActionProps = { album: Album; page: AlbumPageState }
+type RateControlProps = {
+  title: string
+  value: number
+  /** Omit while rating isn't available: the stars show, disabled. */
+  onRate?: (value: number) => void
+}
 
-export function RateControl({ album, page }: ActionProps) {
+export function RateControl({ title, value, onRate }: RateControlProps) {
+  const note = !onRate ? 'Rating opens soon' : value ? 'Rated' : 'Rate'
   return (
     <div className="flex items-center gap-3">
-      <RatingInput label={`Rate ${album.title}`} value={page.rating} onRate={page.rate} />
-      <span className="text-meta text-muted">{page.rating ? 'Rated' : 'Rate'}</span>
+      <RatingInput label={`Rate ${title}`} value={value} onRate={onRate ?? (() => {})} disabled={!onRate} />
+      <span className="text-meta text-muted">{note}</span>
     </div>
   )
 }
@@ -30,7 +35,9 @@ export function ListenLaterButton({ page, className = '' }: { page: AlbumPageSta
   )
 }
 
-export function SendButton({ page, className = '' }: { page: AlbumPageState; className?: string }) {
+type SendButtonProps = { page: AlbumPageState; friends: string[]; className?: string }
+
+export function SendButton({ page, friends, className = '' }: SendButtonProps) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
@@ -68,7 +75,7 @@ export function SendButton({ page, className = '' }: { page: AlbumPageState; cla
           aria-label="Send to"
           className="absolute right-0 z-20 mt-2 flex w-full min-w-max flex-col rounded-control border border-border bg-surface-raised p-1 shadow-float sm:left-0 sm:right-auto"
         >
-          {everyone.slice(0, 5).map((name) => (
+          {friends.map((name) => (
             <button
               key={name}
               type="button"

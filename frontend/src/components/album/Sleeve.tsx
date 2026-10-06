@@ -1,22 +1,26 @@
 import { useState, type AnimationEvent } from 'react'
-import { coverUrl, type Album } from '../../lab/albums.ts'
 import { Cover } from '../ui/Cover.tsx'
-import type { AlbumPageState } from './useAlbumPage.ts'
 import { Vinyl } from '../ui/Vinyl.tsx'
+import type { AlbumPageState } from './useAlbumPage.ts'
 
 type SleeveProps = {
-  album: Album
-  page: AlbumPageState
+  title: string
+  artist: string
+  src?: string
+  /** Album's dominant color for the record label. */
+  color?: string
+  /** Action animations (spin on rate, travel on send, nudge on listen later). Omit for none. */
+  motion?: Pick<AlbumPageState, 'spin' | 'send' | 'nudge'>
 }
 
-/** Album page cover with the record: slides out once on open, spins on rate, travels on send. */
-export function Sleeve({ album, page }: SleeveProps) {
+/** Album page cover with the record: slides out once on open, and reacts to actions if given. */
+export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
   const [revealed, setRevealed] = useState(false)
 
   function onRecordEnd(event: AnimationEvent) {
     if (event.target !== event.currentTarget) return
     if (event.animationName === 'record-reveal') setRevealed(true)
-    if (event.animationName === 'record-send') page.send.done()
+    if (event.animationName === 'record-send') motion?.send.done()
   }
 
   return (
@@ -24,19 +28,19 @@ export function Sleeve({ album, page }: SleeveProps) {
       <div
         className="sleeve-record"
         data-reveal={revealed ? undefined : ''}
-        data-sending={page.send.on ? '' : undefined}
+        data-sending={motion?.send.on ? '' : undefined}
         onAnimationEnd={onRecordEnd}
       >
         <div
           className="record-spin size-full"
-          data-spinning={page.spin.on ? '' : undefined}
-          onAnimationEnd={page.spin.done}
+          data-spinning={motion?.spin.on ? '' : undefined}
+          onAnimationEnd={motion?.spin.done}
         >
-          <Vinyl color={album.dominantColor} />
+          <Vinyl color={color} />
         </div>
       </div>
-      <div className="sleeve-cover" data-nudging={page.nudge.on ? '' : undefined} onAnimationEnd={page.nudge.done}>
-        <Cover src={coverUrl(album.mbid, 500)} title={album.title} artist={album.artist} />
+      <div className="sleeve-cover" data-nudging={motion?.nudge.on ? '' : undefined} onAnimationEnd={motion?.nudge.done}>
+        <Cover src={src} title={title} artist={artist} />
       </div>
     </div>
   )

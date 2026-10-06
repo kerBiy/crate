@@ -109,6 +109,8 @@
   --container-*: initial;
   --container-content: 1200px;
   --container-prose: 65ch;
+  /* Login and Register. */
+  --container-form: 360px;
 
   --radius-*: initial;
   --radius-cover: 4px;
@@ -154,6 +156,10 @@
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+  }
+  /* The browser's own clear button ignores the theme (blue in light). Escape still clears. */
+  input[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
   }
 }
 

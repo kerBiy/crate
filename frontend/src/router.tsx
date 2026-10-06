@@ -1,6 +1,10 @@
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router'
+import { RedirectIfSignedIn, RequireAuth } from './auth/RequireAuth.tsx'
 import { AppShellLayout } from './components/ui/AppShell.tsx'
-import { FeedPage, NotFoundPage, ProfilePage, SearchPage } from './pages/PlaceholderPages.tsx'
+import { AlbumPage } from './pages/AlbumPage.tsx'
+import { LoginPage, RegisterPage } from './pages/AuthPages.tsx'
+import { FeedPage, NotFoundPage, ProfilePage } from './pages/PlaceholderPages.tsx'
+import { SearchPage } from './pages/SearchPage.tsx'
 
 // Design lab and component catalog, development only. Vite turns import.meta.env.DEV into
 // `false` for the production build, so this branch and its dynamic imports are dropped and
@@ -23,13 +27,27 @@ const devRoutes: RouteObject[] = import.meta.env.DEV
 export const router = createBrowserRouter([
   ...devRoutes,
   {
-    element: <AppShellLayout />,
+    element: <RedirectIfSignedIn />,
     children: [
-      { index: true, element: <Navigate to="/feed" replace /> },
-      { path: 'feed', element: <FeedPage /> },
-      { path: 'search', element: <SearchPage /> },
-      { path: 'profile', element: <ProfilePage /> },
-      { path: '*', element: <NotFoundPage /> },
+      { path: 'login', element: <LoginPage /> },
+      { path: 'register', element: <RegisterPage /> },
+    ],
+  },
+  {
+    // Everything else needs a session; without one, RequireAuth sends the user to Login.
+    element: <RequireAuth />,
+    children: [
+      {
+        element: <AppShellLayout />,
+        children: [
+          { index: true, element: <Navigate to="/feed" replace /> },
+          { path: 'feed', element: <FeedPage /> },
+          { path: 'search', element: <SearchPage /> },
+          { path: 'albums/:id', element: <AlbumPage /> },
+          { path: 'profile', element: <ProfilePage /> },
+          { path: '*', element: <NotFoundPage /> },
+        ],
+      },
     ],
   },
 ])

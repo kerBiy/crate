@@ -1,6 +1,8 @@
-import type { Friend } from '../../lab/albums.ts'
 import { Avatar } from '../ui/Avatar.tsx'
 import { RatingStars } from '../ui/RatingStars.tsx'
+
+/** A friend's rating of this album. */
+export type Friend = { name: string; rating: number }
 
 export function FriendRatings({ friends }: { friends: Friend[] }) {
   if (friends.length === 0) {

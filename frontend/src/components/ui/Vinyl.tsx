@@ -1,11 +1,14 @@
-type VinylProps = { color: string }
+type VinylProps = {
+  /** Album's dominant color for the label. Until catalog stores one, the accent stands in. */
+  color?: string
+}
 
 const grooves = [45, 41, 37.5, 33, 28.5]
 // Radius of the tinted center label, in a 100-unit disc.
 const label = 16
 
 /** The record that lives in the sleeve. Decorative, so hidden from assistive tech. */
-export function Vinyl({ color }: VinylProps) {
+export function Vinyl({ color = 'var(--accent)' }: VinylProps) {
   return (
     <svg viewBox="0 0 100 100" className="block size-full" aria-hidden="true">
       <circle cx="50" cy="50" r="49" fill="var(--vinyl-disc)" stroke="var(--vinyl-rim)" strokeWidth="0.6" />

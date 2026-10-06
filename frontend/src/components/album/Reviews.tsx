@@ -1,8 +1,9 @@
-import type { Review } from '../../lab/albums.ts'
 import { Avatar } from '../ui/Avatar.tsx'
 import { RatingStars } from '../ui/RatingStars.tsx'
 import { Skeleton } from '../ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../ui/States.tsx'
+
+export type Review = { name: string; rating: number; text: string; when: string }
 
 export type DataState = 'ready' | 'loading' | 'empty' | 'error'
 
@@ -10,13 +11,19 @@ type ReviewsProps = {
   reviews: Review[]
   state: DataState
   onRetry: () => void
+  emptyMessage?: string
 }
 
-export function Reviews({ reviews, state, onRetry }: ReviewsProps) {
+export function Reviews({
+  reviews,
+  state,
+  onRetry,
+  emptyMessage = 'No reviews yet. Rate it and be the first to say why.',
+}: ReviewsProps) {
   if (state === 'loading') return <ReviewsSkeleton />
   if (state === 'error') return <ErrorState message="Couldn't load reviews." onRetry={onRetry} />
   if (state === 'empty' || reviews.length === 0) {
-    return <EmptyState message="No reviews yet. Rate it and be the first to say why." />
+    return <EmptyState message={emptyMessage} />
   }
 
   return (

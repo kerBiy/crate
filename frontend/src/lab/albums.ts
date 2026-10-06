@@ -2,9 +2,8 @@
 // from the Cover Art Archive. dominantColor was sampled once from each cover, standing in for
 // the dominant_color field catalog-service will store later.
 
-export type Friend = { name: string; rating: number }
-
-export type Review = { name: string; rating: number; text: string; when: string }
+import type { Friend } from '../components/album/bits.tsx'
+import type { Review } from '../components/album/Reviews.tsx'
 
 export type Album = {
   mbid: string

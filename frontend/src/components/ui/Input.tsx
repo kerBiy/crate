@@ -1,14 +1,16 @@
 import { useId, type ComponentProps } from 'react'
 
-type InputProps = ComponentProps<'input'> & {
+type InputProps = Omit<ComponentProps<'input'>, 'size'> & {
   label: string
+  /** lg: the one main field of a page, such as search. */
+  size?: 'md' | 'lg'
   /** Short help under the field. Hidden while there is an error. */
   hint?: string
   error?: string
 }
 
 /** Labelled text field. The error replaces the hint and is announced with the field. */
-export function Input({ label, hint, error, id, className = '', ...rest }: InputProps) {
+export function Input({ label, hint, error, size = 'md', id, className = '', ...rest }: InputProps) {
   const fallbackId = useId()
   const inputId = id ?? fallbackId
   const noteId = `${inputId}-note`
@@ -23,7 +25,9 @@ export function Input({ label, hint, error, id, className = '', ...rest }: Input
         id={inputId}
         aria-invalid={error ? true : undefined}
         aria-describedby={note ? noteId : undefined}
-        className={`h-tap rounded-control border bg-surface px-3 text-body text-text placeholder:text-muted disabled:cursor-not-allowed disabled:bg-bg disabled:text-muted ${
+        className={`rounded-control border bg-surface text-text ${
+          size === 'lg' ? 'h-16 px-4 text-h4' : 'h-tap px-3 text-body'
+        } placeholder:text-muted disabled:cursor-not-allowed disabled:bg-bg disabled:text-muted ${
           error ? 'border-danger' : 'border-border'
         }`}
         {...rest}

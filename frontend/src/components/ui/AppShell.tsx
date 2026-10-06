@@ -1,6 +1,7 @@
 import { House, MagnifyingGlass, User, type Icon } from '@phosphor-icons/react'
 import type { ReactNode } from 'react'
 import { Link, Outlet, useLocation } from 'react-router'
+import { useMe } from '../../api/queries.ts'
 import { Avatar } from './Avatar.tsx'
 
 export type Section = 'search' | 'feed' | 'profile'
@@ -26,32 +27,36 @@ type AppShellProps = {
   links?: NavLinks
   /** Active section. By default it comes from the URL. */
   current?: Section
+  /** Signed-in user's name, for the avatar. */
+  userName?: string
 }
 
 /** Page frame: navigation around the content, room kept for the mobile tab bar. */
-export function AppShell({ children, links = appLinks, current }: AppShellProps) {
+export function AppShell({ children, links = appLinks, current, userName }: AppShellProps) {
   const { pathname } = useLocation()
   const active = current ?? desktopOrder.find((tab) => pathname.startsWith(links[tab.id]))?.id
 
   return (
     <div className="min-h-screen overflow-x-clip pb-tabbar lg:pb-0">
-      <AppNav links={links} current={active} />
+      <AppNav links={links} current={active} userName={userName} />
       {children}
     </div>
   )
 }
 
-/** AppShell as a layout route. */
+/** AppShell as a layout route, for signed-in pages. Album pages are reached from search. */
 export function AppShellLayout() {
+  const { pathname } = useLocation()
+  const me = useMe()
   return (
-    <AppShell>
+    <AppShell current={pathname.startsWith('/albums/') ? 'search' : undefined} userName={me.data?.username}>
       <Outlet />
     </AppShell>
   )
 }
 
 /** Desktop: top bar with wordmark, sections and avatar. Mobile: wordmark on top, tabs at the bottom. */
-function AppNav({ links, current }: { links: NavLinks; current?: Section }) {
+function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current?: Section; userName?: string }) {
   return (
     <>
       <header className="sticky top-0 z-10 border-b border-border bg-bg">
@@ -77,7 +82,7 @@ function AppNav({ links, current }: { links: NavLinks; current?: Section }) {
             </ul>
           </nav>
           <Link to={links.profile} aria-label="Your profile" className="ml-auto hidden rounded-full lg:block">
-            <Avatar name="You" />
+            <Avatar name={userName.toUpperCase()} />
           </Link>
         </div>
       </header>

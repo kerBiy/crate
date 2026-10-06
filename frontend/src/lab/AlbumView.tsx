@@ -6,7 +6,7 @@ import { Sleeve } from '../components/album/Sleeve.tsx'
 import { useAlbumPage } from '../components/album/useAlbumPage.ts'
 import { Histogram } from '../components/ui/Histogram.tsx'
 import { ToastRegion } from '../components/ui/Toast.tsx'
-import type { Album } from './albums.ts'
+import { coverUrl, everyone, type Album } from './albums.ts'
 
 type AlbumViewProps = {
   album: Album
@@ -31,7 +31,13 @@ export function AlbumView({ album, state, onRetry }: AlbumViewProps) {
     <>
       <header className="wash-band border-b border-border" style={{ '--album': album.dominantColor } as CSSProperties}>
         <div className="mx-auto flex max-w-content flex-col gap-6 px-4 py-8 lg:flex-row lg:gap-8 lg:px-6">
-          <Sleeve album={album} page={page} />
+          <Sleeve
+            title={album.title}
+            artist={album.artist}
+            src={coverUrl(album.mbid, 500)}
+            color={album.dominantColor}
+            motion={page}
+          />
           <div className="flex min-w-0 flex-1 flex-col gap-6">
             <div>
               <h1 className="font-narrow font-display text-h2 font-semibold text-text">{album.title}</h1>
@@ -46,10 +52,10 @@ export function AlbumView({ album, state, onRetry }: AlbumViewProps) {
               ))}
             </dl>
             <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
-              <RateControl album={album} page={page} />
+              <RateControl title={album.title} value={page.rating} onRate={page.rate} />
               <div className="grid grid-cols-2 gap-3 sm:flex">
                 <ListenLaterButton page={page} />
-                <SendButton page={page} />
+                <SendButton page={page} friends={everyone.slice(0, 5)} />
               </div>
             </div>
           </div>

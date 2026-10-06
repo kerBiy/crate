@@ -8,7 +8,7 @@ type AlbumTileProps = {
   artist: string
   src?: string
   /** Album's dominant color, tints the record's label. */
-  color: string
+  color?: string
 }
 
 /** Grid cover: on hover or keyboard focus the sleeve slides left and the record emerges (pointer devices). */

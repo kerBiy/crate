@@ -301,20 +301,20 @@ create table processed_events (
 **Search algorithm (read-through cache)**
 
 1. Normalize the query: lowercase, strip diacritics (`java.text.Normalizer`), collapse whitespace.
-2. Search locally with trigram similarity on `search_text`, ordered by similarity, limit 20.
-3. If there are at least 5 good matches (similarity above about 0.3), **or** the normalized query is in `search_cache` and is younger than 7 days → return the local results.
-4. Otherwise call MusicBrainz (rate-limited), upsert albums and artists, record the query in `search_cache`, repeat step 2 and return.
+2. Search locally with trigram **word similarity** on `search_text` (`query <% search_text`, served by the GIN index), ordered by similarity, limit 20. Word similarity scores the query against the best-matching part of `search_text`; plain `similarity()` compares whole strings and penalizes long titles, so a one-letter typo ("radiohed") scores below 0.3.
+3. If there are at least 5 good matches (word similarity ≥ 0.5, `crate.catalog.search.match-threshold`), **or** the normalized query is in `search_cache` and is younger than 7 days → return the local results.
+4. Otherwise call MusicBrainz (rate-limited, outside any DB transaction), upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock), record the query in `search_cache` (even when MusicBrainz found nothing), repeat step 2 and return.
 5. If MusicBrainz fails or times out → return local results with `partial: true`. **Never fail a search because MusicBrainz is down.**
 
-**Album details:** local hit → return it. Miss → look it up on MusicBrainz, upsert, return. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
+**Album details:** local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
 
 **Endpoints**
 
 | Method & path | Result |
 |---|---|
-| `GET /albums/search?q=&limit=20` | `[{id, title, artistCredit, year, coverUrl, avgRating, ratingCount}]`, plus `partial` flag |
+| `GET /albums/search?q=&limit=20` | `{items: [{id, title, artistCredit, year, coverUrl, avgRating, ratingCount}], partial}`; `q` 1–100 chars, `limit` 1–50 |
 | `GET /albums/{id}` | album details + stats |
-| `GET /albums?ids=a,b,c` | batch, max 100 (used to render feeds) |
+| `GET /albums?ids=a,b,c` | `{items: [...]}`, max 100, stored albums only, request order (used to render feeds) |
 | `GET /albums/top?limit=50` | ranked by Bayesian average (nice-to-have) |
 
 **Ranking (Bayesian average):** `score = (v / (v + m)) * R + (m / (v + m)) * C`, where `v` = number of ratings, `R` = album average, `C` = global average, `m` = 3. This stops a single 5-star rating from topping the chart.

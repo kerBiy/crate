@@ -19,6 +19,8 @@ spring-boot-starter-flyway = { module = "org.springframework.boot:spring-boot-st
 # Flyway's Postgres support lives in its own module since Flyway 10.
 flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql" }
 postgresql = { module = "org.postgresql:postgresql" }
+# JdbcClient + HikariCP + transactions. The Flyway starter already brings it; declared where code uses it.
+spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
 # JPA (Hibernate 7) for entities and repositories.
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 # Jakarta Bean Validation for request records.

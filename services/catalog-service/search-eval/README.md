@@ -25,7 +25,10 @@ from the DB/cache). `eval.py mb` shows what MusicBrainz itself returns for the q
 original diagnosis, not as a score.
 
 `results/` holds the reports behind docs/adr/010-search-ranking.md: the baseline, the result after
-ADR-010, and the raw MusicBrainz diagnosis. Compare a new run with
+ADR-010, the run with cover checks, and the raw MusicBrainz diagnosis.
+
+Search hides albums without a cover. When an expected album is missing, `endpoint` asks the Cover
+Art Archive about it and prints "no cover: …" in that row and in the summary. Compare a new run with
 `eval.py compare results/2026-10-07-adr-010.json after.json`.
 
 The popularity weight (`crate.catalog.search.popularity-weight`) was tuned on this same set, so

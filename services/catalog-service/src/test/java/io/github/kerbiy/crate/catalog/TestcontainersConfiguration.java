@@ -24,7 +24,8 @@ public class TestcontainersConfiguration {
         return new PostgreSQLContainer("postgres:17.11-alpine");
     }
 
-    // Stands in for musicbrainz.org; serves the recorded fixtures under src/test/resources/__files.
+    // Stands in for musicbrainz.org (under /ws/2) and coverartarchive.org (under /caa);
+    // serves the recorded fixtures under src/test/resources/__files.
     @Bean(destroyMethod = "stop")
     WireMockServer musicBrainz() {
         WireMockServer server = new WireMockServer(wireMockConfig().dynamicPort());
@@ -40,6 +41,8 @@ public class TestcontainersConfiguration {
             // The real limiter and retry code, without the real waiting.
             registry.add("crate.musicbrainz.rate-limit.interval", () -> "1ms");
             registry.add("crate.musicbrainz.retry.initial-backoff", () -> "1ms");
+            registry.add("crate.catalog.cover-art.base-url", () -> musicBrainz.baseUrl() + "/caa");
+            registry.add("crate.catalog.cover-art.timeout", () -> "500ms");
         };
     }
 }

@@ -13,8 +13,12 @@ type SleeveProps = {
   motion?: Pick<AlbumPageState, 'spin' | 'send' | 'nudge'>
 }
 
-/** Album page cover with the record: slides out once on open, and reacts to actions if given. */
+/**
+ * Album page cover with the record: slides out once the cover has loaded, and reacts to actions
+ * if given. The cover is above the fold, so it loads eagerly.
+ */
 export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
+  const [coverReady, setCoverReady] = useState(false)
   const [revealed, setRevealed] = useState(false)
 
   function onRecordEnd(event: AnimationEvent) {
@@ -27,7 +31,8 @@ export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
     <div className="sleeve shrink-0">
       <div
         className="sleeve-record"
-        data-reveal={revealed ? undefined : ''}
+        // The record stays in the sleeve until the cover is in, then slides out once.
+        data-reveal={revealed ? undefined : coverReady ? 'run' : 'wait'}
         data-sending={motion?.send.on ? '' : undefined}
         onAnimationEnd={onRecordEnd}
       >
@@ -40,7 +45,7 @@ export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
         </div>
       </div>
       <div className="sleeve-cover" data-nudging={motion?.nudge.on ? '' : undefined} onAnimationEnd={motion?.nudge.done}>
-        <Cover src={src} title={title} artist={artist} />
+        <Cover src={src} title={title} artist={artist} eager onSettled={() => setCoverReady(true)} />
       </div>
     </div>
   )

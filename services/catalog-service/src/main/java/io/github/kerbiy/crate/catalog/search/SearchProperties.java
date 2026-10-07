@@ -12,7 +12,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param musicBrainzLimit how many release groups to request per MusicBrainz search (max 100)
  * @param popularityWeight how much the number of releases counts next to MusicBrainz's score
  *                         (see {@link SearchRanking#merge})
+ * @param coverCheckCount  how many of the top-ranked albums get a cover check on a cold search:
+ *                         the largest page a client can ask for
  */
 @ConfigurationProperties("crate.catalog.search")
-record SearchProperties(double matchThreshold, Duration cacheTtl, int musicBrainzLimit, double popularityWeight) {
+record SearchProperties(double matchThreshold, Duration cacheTtl, int musicBrainzLimit, double popularityWeight,
+        int coverCheckCount) {
 }

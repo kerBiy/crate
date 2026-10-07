@@ -85,6 +85,32 @@ groups are called Blue or Red, and the expected albums aren't in MusicBrainz's t
 alone; the band named Blue/Red also comes first through the artist path. Typing "blue joni mitchell"
 works.
 
+## Covers (added 2026-10-07)
+
+Many results had no cover art (7 of 20 Radiohead results in a probe: tributes, covers EPs). Search now
+leaves out albums the Cover Art Archive confirms have none (SPEC 5.3, *Cover check*).
+
+- **Cheapest reliable check:** `HEAD /release-group/{id}/front-250`. It answers 307 (has a cover) or
+  404 (none) in about 0.2 s, with no body, and the redirect isn't followed. Fetching the image itself
+  takes about 2 s.
+- **Once per album:** `albums.has_cover` plus `cover_checked_at`. "No cover" is rechecked after 30 days.
+- **Scope and concurrency:** only the top 50 ranked albums (the largest page), only on a cold search,
+  at most 8 checks at once, with a 3 s batch deadline. Unanswered albums stay unknown and are shown.
+
+Measured on the same 30 queries, empty database (`results/2026-10-07-covers.json`):
+
+| | Without cover check | With cover check |
+|---|---|---|
+| hit@3 (cold = warm) | 28/30 | 28/30 |
+| MRR | 0.844 | 0.867 |
+| Cover check per cold search | — | median 0.37 s, p90 0.65 s, max 0.88 s |
+| Warm search | median 12 ms | median 12 ms (no check) |
+| Checked albums without a cover | — | 152 of 750 (20%), now hidden |
+
+No expected album disappeared for lack of a cover. MRR rose because coverless tributes and bootlegs
+no longer sit above the expected album. Daft Punk's rank moves between 2 and 3 across runs: Discovery
+and Human After All both have 24 releases, so their order follows MusicBrainz's, which isn't fixed.
+
 ## Alternatives considered
 
 - **Keep trigram ranking, add a popularity column.** Doesn't fix cause 1: the right albums were never

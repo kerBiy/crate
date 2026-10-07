@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { minSearchLength, useAlbumSearch } from '../api/queries.ts'
-import { AlbumTile } from '../components/ui/AlbumTile.tsx'
+import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
 import { Input } from '../components/ui/Input.tsx'
-import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 
 const grid = 'grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6'
+// The first row at the widest grid (two rows on mobile) is on screen at once: load those covers eagerly.
+const eagerTiles = 6
 
 /** Waits until the value has stopped changing for `delay` ms. */
 function useDebounced<T>(value: T, delay: number) {
@@ -68,9 +69,10 @@ function Results({ query }: { query: string }) {
         <EmptyState message="No records in this crate. Try another name." />
       ) : (
         <ul className={grid}>
-          {items.map((album) => (
+          {items.map((album, index) => (
             <li key={album.id}>
               <AlbumTile
+                eager={index < eagerTiles}
                 to={`/albums/${album.id}`}
                 title={album.title}
                 artist={album.artistCredit}
@@ -88,10 +90,8 @@ function ResultsSkeleton() {
   return (
     <ul aria-busy="true" aria-label="Searching" className={grid}>
       {Array.from({ length: 12 }, (_, i) => (
-        <li key={i} className="flex flex-col gap-2">
-          <Skeleton shape="block" className="aspect-square w-full" />
-          <Skeleton className="h-3 w-3/4" />
-          <Skeleton className="h-3 w-1/2" />
+        <li key={i}>
+          <AlbumTileSkeleton />
         </li>
       ))}
     </ul>

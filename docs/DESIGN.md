@@ -63,12 +63,15 @@ Warm neutrals plus one accent: a **soft, warm, low-saturation orange** (apricot,
 | `accent-text` | `#E5935A` | `#A85A26` | Accent used *as text* (needs AA contrast) |
 | `on-accent` | `#1A1410` | `#FFFFFF` | Text on accent backgrounds |
 | `danger` | `#D45D4C` | `#B8432F` | Errors, destructive actions |
+| `skeleton` | `#221E1A` | `#EBE8E4` | Loading placeholders, dim end of the pulse |
+| `skeleton-highlight` | `#2C2722` | `#E2DED8` | Bright end of the pulse |
 
 Rules:
 - **One accent only.** No secondary brand color.
 - Never put text directly on raw cover colors.
 - Every text/background pair must pass **WCAG AA**. Verify the values above and adjust them if they don't.
 - The light background must stay neutral, **not cream**.
+- The skeleton pair is its own token in light mode: `surface` and `surface-raised` are both white there and would vanish on `bg`.
 
 ### 4.3 Typography: modern-technical, with character
 
@@ -124,11 +127,13 @@ This is *the* memorable element. Nothing else competes with it.
 ## 7. Motion: calm, then pop
 
 Tokens:
-- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars). `toast 2400ms` (how long a toast stays up).
-- Easing: `standard cubic-bezier(.22,1,.36,1)`, a smooth ease-out with a long soft landing. Pop: `cubic-bezier(.34,1.2,.64,1)`, an ease-out with only a slight overshoot, for action feedback.
+- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars). `toast 2400ms` (how long a toast stays up). `pulse 1600ms` (one loading pulse, dim to bright).
+- Easing: `standard cubic-bezier(.22,1,.36,1)`, a smooth ease-out with a long soft landing. Pop: `cubic-bezier(.34,1.2,.64,1)`, an ease-out with only a slight overshoot, for action feedback. Pulse: `cubic-bezier(.45,0,.55,1)`, symmetric, for the loading breathe.
 - Slow and smooth over snappy: motion should feel like handling a record, not a UI flicking.
 
 At rest: nothing moves. **No fade-in on every section, and no hover effects on everything** (only covers get the vinyl).
+
+**Loading is the one exception** (section 10): skeletons pulse in place between `skeleton` and `skeleton-highlight`, all in step. A pulse changes color only: no gradient sweep, nothing slides. Each cover fades in over `base` once its own image has loaded; that's the only fade-in in the app.
 
 **The pop moments (only these):**
 
@@ -191,10 +196,16 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
 
 ## 10. States (required for every data view)
 
-- **Loading:** skeletons shaped like the real content (square cover blocks, text lines). No spinners in the middle of the page.
+- **Loading:** skeletons shaped like the real content (square cover blocks, text lines), pulsing slowly. No spinners in the middle of the page. With `prefers-reduced-motion` the pulse is static.
+- **Covers load one by one** (Pinterest-style):
+    - While the list itself loads, the whole grid is skeleton tiles (`AlbumTileSkeleton`): same square, same two caption lines.
+    - Once results arrive, every tile keeps its exact square and pulses until *its* cover has loaded, then the image fades in (`base`, `standard`). No layout shift, no tile waits for another.
+    - The vinyl hover/focus effect only works once the tile's cover is in (or has fallen back to initials). On the album page the record waits in the sleeve and slides out once the cover is in.
+    - `front-250` in grids, `front-500` on the album page. Images are `loading="lazy"` and `decoding="async"`, except the first visible row (the first 6 tiles) and the album page cover, which load eagerly at high priority.
+    - With `prefers-reduced-motion`: static placeholder, the image appears without a fade.
 - **Empty:** one short line + one action.
 - **Error:** what happened + a "Try again" button.
-- **Missing cover:** a neutral sleeve with the album's initials in the display face.
+- **Missing cover:** a neutral sleeve with the album's initials in the display face. Search leaves out albums the Cover Art Archive confirmed have no cover; the album page still shows them with this sleeve.
 
 ---
 
@@ -252,13 +263,13 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **Input**: every text field, always with a visible label. `hint` for short help, `error` for what's wrong and how to fix it.
 - **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
 - **RatingInput**: giving a rating. Half-star steps with the arrow keys, Enter confirms.
-- **Cover**: album art at any size. Falls back to a neutral sleeve with initials when the image is missing.
+- **Cover**: album art at any size, in a square that never changes size. Pulses until its image loads, then fades in; falls back to a neutral sleeve with initials when the image is missing. `eager` for covers visible on arrival.
 - **Vinyl**: the record, label tinted with the album color. Only with covers of 96 px or more.
-- **AlbumTile**: one album in a cover grid; the record slides out on hover or focus.
+- **AlbumTile**: one album in a cover grid; the record slides out on hover or focus, once the cover is in. **AlbumTileSkeleton**: the same tile while the list loads.
 - **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar.
 - **Avatar**: a person next to their name. `sm` in dense rows.
 - **AvatarStack**: a group of people in one line, such as friends who listened, with "+N" for the rest.
-- **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content.
+- **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content; `text` sits inside a line of text so the line keeps its height. Pulses in place.
 - **EmptyState**: a list with nothing in it. One line and at most one action.
 - **ErrorState**: something failed to load. Plain message and "Try again".
 - **Toast**: confirming an action that changed something. One at a time, via `useToast` and a single `ToastRegion` per page.

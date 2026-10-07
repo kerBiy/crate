@@ -1,6 +1,8 @@
 package io.github.kerbiy.crate.catalog.search;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.any;
+import static com.github.tomakehurst.wiremock.client.WireMock.anyRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.containing;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -9,11 +11,13 @@ import static com.github.tomakehurst.wiremock.client.WireMock.notContaining;
 import static com.github.tomakehurst.wiremock.client.WireMock.serverError;
 import static com.github.tomakehurst.wiremock.client.WireMock.serviceUnavailable;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.github.tomakehurst.wiremock.http.Fault;
 import io.github.kerbiy.crate.catalog.CatalogIntegrationTest;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzQueryBuilder;
+import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -140,6 +144,7 @@ class SearchIntegrationTests extends CatalogIntegrationTest {
         search("radiohead").expectStatus().isOk();
         jdbc.sql("update search_cache set fetched_at = now() - interval '8 days'").update();
         musicBrainz.resetAll();
+        stubCoversExist();
         musicBrainz.stubFor(get(urlPathEqualTo(MB_SEARCH)).willReturn(emptySearch()));
 
         search("radiohead").expectStatus().isOk().expectBody().jsonPath("$.items.length()").isEqualTo(0);
@@ -165,6 +170,90 @@ class SearchIntegrationTests extends CatalogIntegrationTest {
         stubArtistQuery();
 
         search("radiohead", "2").expectStatus().isOk().expectBody().jsonPath("$.items.length()").isEqualTo(2);
+    }
+
+    // --- covers (Cover Art Archive) ---
+
+    @Test
+    void albumWithoutACoverIsLeftOutOfSearchButStillHasItsPage() {
+        stubArtistQuery();
+        stubNoCover(UUID.fromString(OK_COMPUTER));
+
+        search("radiohead")
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.items[0].title").isEqualTo("Pablo Honey")
+                .jsonPath("$.items[*].id").value(List.class, ids -> assertThat(ids).doesNotContain(OK_COMPUTER));
+
+        client.get().uri("/albums/" + OK_COMPUTER).exchange()
+                .expectStatus().isOk()
+                .expectBody().jsonPath("$.title").isEqualTo("OK Computer");
+        assertThat(jdbc.sql("select has_cover from albums where id = cast(:id as uuid)").param("id", OK_COMPUTER)
+                .query(Boolean.class).single()).isFalse();
+    }
+
+    @Test
+    void coldSearchAsksTheArchiveOnceForEachAlbumAndWarmSearchNever() {
+        stubArtistQuery();
+        search("radiohead").expectStatus().isOk();
+        int ranked = count("search_results");
+        musicBrainz.verify(ranked, anyRequestedFor(urlPathMatching(CAA + "/.*")));
+        musicBrainz.resetRequests();
+
+        search("radiohead").expectStatus().isOk();
+
+        musicBrainz.verify(0, anyRequestedFor(urlPathMatching(CAA + "/.*")));
+    }
+
+    @Test
+    void knownCoverIsNeverRecheckedButOldNoCoverIs() {
+        stubArtistQuery();
+        search("radiohead").expectStatus().isOk();
+        // OK Computer: "no cover" a month ago. Kid A: "no cover" yesterday.
+        jdbc.sql("""
+                update albums set has_cover = false, cover_checked_at = now() - interval '31 days'
+                where title = 'OK Computer'
+                """).update();
+        jdbc.sql("""
+                update albums set has_cover = false, cover_checked_at = now() - interval '1 day'
+                where title = 'Kid A'
+                """).update();
+        jdbc.sql("update search_cache set fetched_at = now() - interval '8 days'").update();
+        musicBrainz.resetRequests();
+
+        search("radiohead")
+                .expectStatus().isOk()
+                .expectBody()
+                // Rechecked, and it has a cover now; Kid A stays hidden until its month is up.
+                .jsonPath("$.items[0].id").isEqualTo(OK_COMPUTER)
+                .jsonPath("$.items[*].title").value(List.class, titles -> assertThat(titles).doesNotContain("Kid A"));
+
+        musicBrainz.verify(1, anyRequestedFor(urlPathMatching(CAA + "/.*")));
+        musicBrainz.verify(1, anyRequestedFor(urlPathEqualTo(CAA + "/" + OK_COMPUTER + "/front-250")));
+    }
+
+    @Test
+    void archiveDownMeansAlbumsAreShownAndAskedAgainNextTime() {
+        stubArtistQuery();
+        musicBrainz.stubFor(any(urlPathMatching(CAA + "/.*")).atPriority(1).willReturn(serviceUnavailable()));
+
+        search("radiohead").expectStatus().isOk().expectBody()
+                .jsonPath("$.partial").isEqualTo(false)
+                .jsonPath("$.items[0].id").isEqualTo(OK_COMPUTER);
+
+        assertThat(jdbc.sql("select count(*) from albums where has_cover is not null").query(Integer.class).single())
+                .isZero();
+    }
+
+    @Test
+    void fallbackLeavesOutAlbumsWithoutACover() {
+        ReleaseGroup withCover = seed("OK Computer", "Radiohead");
+        ReleaseGroup without = seed("Kid A", "Radiohead");
+        albums.recordCovers(Map.of(withCover.id(), true, without.id(), false));
+        musicBrainz.stubFor(get(urlPathEqualTo(MB_SEARCH)).willReturn(serverError()));
+
+        search("radiohead").expectStatus().isOk().expectBody()
+                .jsonPath("$.items[*].title").isEqualTo(List.of("OK Computer"));
     }
 
     // --- MusicBrainz unavailable: local fallback ---

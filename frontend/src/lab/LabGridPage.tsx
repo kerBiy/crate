@@ -13,6 +13,7 @@ export function LabGridPage() {
         {tiles.map((album, i) => (
           <li key={i}>
             <AlbumTile
+              eager={i < 6}
               to={`/lab/album/${album.mbid}`}
               title={album.title}
               artist={album.artist}

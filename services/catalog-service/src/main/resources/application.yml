@@ -22,6 +22,16 @@ crate:
       musicbrainz-limit: 100
       # Tuned with search-eval (ADR 010): 15 is the smallest weight that reached the best hit@3.
       popularity-weight: 15
+      # Cover checks per cold search: the top of the ranking, as many as the largest page (limit=50).
+      cover-check-count: 50
+    cover-art:
+      base-url: https://coverartarchive.org
+      # HEAD requests in flight at once. 8 checks 50 albums in about 1.5 s.
+      concurrency: 8
+      timeout: 2s
+      # A whole batch gives up after this; unanswered albums stay "unknown" and are shown.
+      deadline: 3s
+      recheck-after: 30d
   musicbrainz:
     base-url: https://musicbrainz.org/ws/2
     # MusicBrainz blocks clients without a meaningful User-Agent. The contact email lives in .env.

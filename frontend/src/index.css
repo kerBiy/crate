@@ -23,6 +23,10 @@
   --vinyl-groove: #2b2621;
   --vinyl-rim: #4d453d;
 
+  /* Loading: skeletons and covers that haven't arrived pulse between these two. */
+  --skeleton: #221e1a;
+  --skeleton-highlight: #2c2722;
+
   /* Strength of the cover-color wash on the album page header. */
   --wash-strength: 18%;
 }
@@ -44,6 +48,10 @@
   --vinyl-disc: #1c1915;
   --vinyl-groove: #3a332c;
   --vinyl-rim: #1c1915;
+
+  /* surface and surface-raised are both white here, so loading gets its own neutral pair. */
+  --skeleton: #ebe8e4;
+  --skeleton-highlight: #e2ded8;
 
   --wash-strength: 12%;
 }
@@ -125,6 +133,8 @@
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   /* Ease-out with a slight overshoot: a hint of pop on actions. */
   --ease-pop: cubic-bezier(0.34, 1.2, 0.64, 1);
+  /* Symmetric, for the loading pulse that breathes in and out. */
+  --ease-pulse: cubic-bezier(0.45, 0, 0.55, 1);
 }
 
 /* Motion tokens. */
@@ -138,6 +148,8 @@
   --stagger: 70ms;
   /* How long a toast stays up. Mirrored by toastDuration in components/ui/Toast.tsx. */
   --duration-toast: 2400ms;
+  /* One loading pulse, dim to bright. Slow: loading should feel calm, not urgent. */
+  --duration-pulse: 1600ms;
   --wash-reach: 400px;
 }
 
@@ -194,8 +206,11 @@
   transform: translateX(calc(var(--sleeve-peek) * 100%));
 }
 
-/* Album page: the record slides out once when the page opens. */
-.sleeve-record[data-reveal] {
+/* Album page: the record waits inside the sleeve until the cover is in, then slides out once. */
+.sleeve-record[data-reveal="wait"] {
+  transform: translateX(0);
+}
+.sleeve-record[data-reveal="run"] {
   animation: record-reveal var(--duration-reveal) var(--ease-standard) var(--duration-base) both;
 }
 @keyframes record-reveal {
@@ -278,12 +293,13 @@
   .tile-record {
     transition: transform var(--duration-vinyl) var(--ease-standard);
   }
-  .tile:hover .tile-cover,
-  .tile:focus-within .tile-cover {
+  /* data-ready: the cover has loaded (or fallen back to initials); no record behind a pulse. */
+  .tile[data-ready]:hover .tile-cover,
+  .tile[data-ready]:focus-within .tile-cover {
     transform: translateX(calc(var(--tile-sleeve-shift) * -100%));
   }
-  .tile:hover .tile-record,
-  .tile:focus-within .tile-record {
+  .tile[data-ready]:hover .tile-record,
+  .tile[data-ready]:focus-within .tile-record {
     transform: translateX(calc(var(--tile-record-shift) * 100%));
   }
 }
@@ -299,6 +315,29 @@
     color-mix(in oklab, var(--album) var(--wash-strength), transparent) var(--wash-start),
     transparent calc(var(--wash-start) + var(--spacing-cover) * 1.33 + var(--wash-reach))
   );
+}
+
+/* ---------------------------------------------------------------------------
+ * Loading (DESIGN.md section 10). A pulse in place, no gradient, nothing slides.
+ * Every skeleton and every cover that hasn't arrived pulses in step.
+ * ------------------------------------------------------------------------- */
+.skeleton {
+  background-color: var(--skeleton);
+  animation: skeleton-pulse var(--duration-pulse) var(--ease-pulse) infinite alternate;
+}
+@keyframes skeleton-pulse {
+  to {
+    background-color: var(--skeleton-highlight);
+  }
+}
+
+/* A cover fades in once its own image has loaded. */
+.cover-img {
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+.cover-img[data-loaded] {
+  opacity: 1;
 }
 
 /* Button loading state. Removed by the reduced-motion rule below, leaving a still icon. */

@@ -22,6 +22,6 @@ class CatalogServiceApplicationTests extends CatalogIntegrationTest {
 
     @Test
     void flywayAppliedAllMigrations() {
-        assertThat(flyway.info().current().getVersion().getVersion()).isEqualTo("3");
+        assertThat(flyway.info().current().getVersion().getVersion()).isEqualTo("4");
     }
 }

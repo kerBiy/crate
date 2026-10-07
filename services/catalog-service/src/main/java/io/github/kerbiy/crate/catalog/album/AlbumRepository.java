@@ -6,6 +6,7 @@ import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
 import io.github.kerbiy.crate.catalog.search.SearchText;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -94,11 +95,15 @@ public class AlbumRepository {
         }
     }
 
-    /** The albums MusicBrainz ranked for this query (see SearchCacheRepository#store), best first. */
+    /**
+     * The albums MusicBrainz ranked for this query (see SearchCacheRepository#store), best first.
+     * Albums confirmed to have no cover are left out; unchecked ones stay.
+     */
     public List<AlbumRow> findRanked(String normalizedQuery, int limit) {
         return jdbc.sql(SELECT_ALBUMS + """
                         join search_results r on r.album_id = a.id
                         where r.normalized_query = :q
+                          and a.has_cover is not false
                         order by r.rank
                         limit :limit
                         """)
@@ -127,6 +132,7 @@ public class AlbumRepository {
                 .single();
         return jdbc.sql(SELECT_ALBUMS + """
                         where :q <% a.search_text
+                          and a.has_cover is not false
                           and (not (coalesce(a.secondary_types, '{}') && cast(:excluded as text[]))
                                or lower(a.title) = :q)
                         order by word_similarity(:q, a.search_text) desc,
@@ -140,6 +146,37 @@ public class AlbumRepository {
                 .param("limit", limit)
                 .query(AlbumRepository::mapRow)
                 .list();
+    }
+
+    /**
+     * Which of these albums need asking the Cover Art Archive: never checked, or "no cover" older
+     * than {@code recheckAfter} (people upload covers later). A known cover is never rechecked.
+     */
+    public List<UUID> needingCoverCheck(Collection<UUID> ids, Duration recheckAfter) {
+        if (ids.isEmpty()) {
+            return List.of();
+        }
+        return jdbc.sql("""
+                        select id from albums
+                        where id in (:ids)
+                          and (has_cover is null
+                               or (not has_cover and cover_checked_at < now() - make_interval(secs => :seconds)))
+                        """)
+                .param("ids", ids)
+                .param("seconds", recheckAfter.toSeconds())
+                .query(UUID.class)
+                .list();
+    }
+
+    /** Stores what the Cover Art Archive said. Rows are updated in id order, like {@link #upsertAll}. */
+    @Transactional
+    public void recordCovers(Map<UUID, Boolean> hasCover) {
+        hasCover.keySet().stream().sorted().forEach(id -> jdbc.sql("""
+                        update albums set has_cover = :hasCover, cover_checked_at = now() where id = :id
+                        """)
+                .param("hasCover", hasCover.get(id))
+                .param("id", id)
+                .update());
     }
 
     public Optional<AlbumRow> findById(UUID id) {

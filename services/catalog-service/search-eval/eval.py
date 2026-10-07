@@ -73,6 +73,20 @@ def mb_get(path, params):
     sys.exit(f"MusicBrainz kept failing for {url}")
 
 
+_cover_cache = {}
+
+
+def has_cover(mbid):
+    """The check catalog-service does: HEAD front-250 on the Cover Art Archive, 307 = yes, 404 = no."""
+    if mbid not in _cover_cache:
+        p = subprocess.run(["curl", "-sS", "-o", "/dev/null", "-I", "--max-time", "10", "-w", "%{http_code}",
+                            f"https://coverartarchive.org/release-group/{mbid}/front-250"],
+                           capture_output=True, text=True)
+        status = p.stdout.strip()
+        _cover_cache[mbid] = False if status == "404" else True if status.startswith(("2", "3")) else None
+    return _cover_cache[mbid]
+
+
 # ---------------------------------------------------------------- the pre-ADR-010 query builder (mirror)
 
 SEPARATOR = " - "
@@ -161,16 +175,26 @@ def run_endpoint(args):
                 sys.exit(f"{url} failed: {status}")
             items = body["items"]
             rank = best_rank([i["id"] for i in items], c["expected"])
+            # Search hides albums without a cover: say so when that's why an expected one is missing.
+            returned = {i["id"] for i in items}
+            no_cover = [] if rank and rank <= TOP else [
+                f"{e['title']} — {e['artist']}" for e in c["expected"]
+                if e["mbid"] not in returned and has_cover(e["mbid"]) is False]
+            notes = (["partial"] if body.get("partial") else []) + [f"no cover: {t}" for t in no_cover]
             results.append({
                 "query": c["query"], "category": c["category"], "rank": rank, "ms": ms,
                 "partial": body.get("partial", False),
                 "top": [f"{i['title']} — {i['artistCredit']}" for i in items[:10]],
-                "note": "partial" if body.get("partial") else "",
+                "no_cover": no_cover,
+                "note": "; ".join(notes),
             })
         label = "cold" if p == 1 else "warm" if p == 2 else f"pass {p}"
         summary = print_results(f"endpoint {args.base}, pass {p} ({label})", results)
         ms = sorted(r["ms"] for r in results)
         print(f"  latency ms: median {ms[len(ms) // 2]}, max {ms[-1]}")
+        dropped = [(r["query"], t) for r in results for t in r["no_cover"]]
+        print("  expected albums missing because they have no cover: "
+              + (", ".join(f"{t} ('{q}')" for q, t in dropped) if dropped else "none"))
         passes.append({"label": label, "results": results, "summary": summary})
     write(args.out, {"mode": "endpoint", "base": args.base, "passes": passes})
 

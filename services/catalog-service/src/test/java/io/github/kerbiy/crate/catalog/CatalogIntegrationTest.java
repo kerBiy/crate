@@ -1,6 +1,9 @@
 package io.github.kerbiy.crate.catalog;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.any;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
@@ -24,6 +27,7 @@ import org.springframework.test.web.servlet.client.RestTestClient;
 public abstract class CatalogIntegrationTest {
 
     protected static final String MB_SEARCH = "/ws/2/release-group";
+    protected static final String CAA = "/caa/release-group";
 
     @Autowired
     protected RestTestClient client;
@@ -41,6 +45,18 @@ public abstract class CatalogIntegrationTest {
     void resetState() {
         jdbc.sql("truncate albums, artists, album_stats, search_cache, search_results").update();
         musicBrainz.resetAll();
+        stubCoversExist();
+    }
+
+    /** Default answer of the Cover Art Archive: every album has a cover (a redirect to the image). */
+    protected void stubCoversExist() {
+        musicBrainz.stubFor(any(urlPathMatching(CAA + "/.*")).atPriority(10)
+                .willReturn(aResponse().withStatus(307).withHeader("Location", "https://archive.org/image.jpg")));
+    }
+
+    protected void stubNoCover(UUID albumId) {
+        musicBrainz.stubFor(any(urlPathEqualTo(CAA + "/" + albumId + "/front-250")).atPriority(1)
+                .willReturn(aResponse().withStatus(404)));
     }
 
     protected static ResponseDefinitionBuilder fixture(String name) {

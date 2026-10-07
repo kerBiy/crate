@@ -265,6 +265,8 @@ create table albums (
   secondary_types    text[],            -- e.g. {Live} or {Compilation}; null = unknown (stored before V3)
   first_release_date varchar(10),       -- MB dates can be partial: "1997" or "1997-05"
   release_count      integer,           -- releases in the group (popularity); only search results report it
+  has_cover          boolean,           -- Cover Art Archive has a front cover; null = not checked yet
+  cover_checked_at   timestamptz,       -- when has_cover was set; "no cover" is rechecked after 30 days
   search_text        text not null,     -- normalized in Java: lowercase, no diacritics, title + artist
   fetched_at         timestamptz not null
 );
@@ -296,7 +298,9 @@ create table processed_events (
 );
 ```
 
-**Cover images** are not stored. Build the URL from the MBID: `https://coverartarchive.org/release-group/{id}/front-250` (or `front-500` on the album page). The frontend shows a placeholder when the image doesn't exist.
+**Cover images** are not stored. Build the URL from the MBID: `https://coverartarchive.org/release-group/{id}/front-250` in grids, `front-500` on the album page. The frontend shows a placeholder when the image doesn't exist.
+
+**Cover check.** MusicBrainz search doesn't say whether a cover exists, so catalog-service asks the Cover Art Archive: `HEAD /release-group/{id}/front-250` → 307 (redirect to the image: has a cover) or 404 (none). The redirect is not followed. Anything else (5xx, 429, timeout) means "don't know" and nothing is stored. Each album is checked once; a "no cover" answer is rechecked after 30 days (`crate.catalog.cover-art.recheck-after`), because people upload covers later. Checks run in parallel on virtual threads, at most 8 at once (`concurrency`), with the MusicBrainz User-Agent, a 2 s timeout per check and a 3 s deadline per batch.
 
 **MusicBrainz integration rules**
 
@@ -311,17 +315,17 @@ create table processed_events (
 **Search algorithm (read-through cache of MusicBrainz's ranking, ADR-010)**
 
 1. Normalize the query: lowercase, strip diacritics (`java.text.Normalizer`), collapse whitespace.
-2. If the normalized query is in `search_cache` and younger than 7 days → return its stored `search_results` in rank order.
+2. If the normalized query is in `search_cache` and younger than 7 days → return its stored `search_results` in rank order. **Search never returns albums with `has_cover = false`** (here, after a cold search, and in the fallback); unchecked albums are shown.
 3. Otherwise ask MusicBrainz (rate-limited, outside any DB transaction), 1–3 requests:
    1. The query, 100 results: every word required in title or artist; compilations, live albums, remixes, DJ-mixes, mixtapes, demos etc. excluded unless the title is exactly the query (soundtracks stay).
    2. Only if that found nothing: the same query allowing misspellings (`word~` for words of 4+ letters).
    3. If the whole query is the name of an artist credited in the results ("radiohead", "beatles", "bjork"): that artist's albums.
-4. Rank: the artist's albums first, most releases first; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock), then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing) and replace its `search_results`. Return them.
+4. Rank: the artist's albums first, most releases first; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock). Check covers for the top 50 ranked albums not checked yet (see *Cover check*; about +0.4 s median on a cold search, nothing on a warm one). Then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing) and replace its `search_results`. Return them.
 5. If MusicBrainz fails or times out → local fallback with `partial: true`: trigram **word similarity** on `search_text` (`query <% search_text`, ≥ 0.5, served by the GIN index), excluded secondary types left out, most releases first among equal matches. **Never fail a search because MusicBrainz is down.**
 
 Search quality is measured with `services/catalog-service/search-eval` (30 queries, hit@3); rerun it when changing anything above.
 
-**Album details:** local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
+**Album details:** works for every album, with or without a cover (the frontend shows the missing-cover sleeve). Local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
 
 **Endpoints**
 

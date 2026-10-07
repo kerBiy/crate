@@ -1,6 +1,6 @@
 import { BookmarkSimple, PaperPlaneTilt } from '@phosphor-icons/react'
 import { useState, type ReactNode } from 'react'
-import { AlbumTile } from '../components/ui/AlbumTile.tsx'
+import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
 import { AppShell, type Section as NavSection } from '../components/ui/AppShell.tsx'
 import { Avatar, AvatarStack } from '../components/ui/Avatar.tsx'
 import { Button, type ButtonVariant } from '../components/ui/Button.tsx'
@@ -109,10 +109,13 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
-        <Block name="Cover" use="Album art at any size. Falls back to initials when missing.">
-          <Cell label="Image">
+        <Block
+          name="Cover"
+          use="Album art at any size. Pulses until its image loads, then fades in. Falls back to initials when missing."
+        >
+          <Cell label="Image (throttle the network to see the pulse)">
             <div className="w-cover max-w-full">
-              <Cover src={coverUrl(ok.mbid, 250)} title={ok.title} artist={ok.artist} />
+              <Cover src={coverUrl(ok.mbid, 500)} title={ok.title} artist={ok.artist} eager />
             </div>
           </Cell>
           <Cell label="Missing cover">
@@ -132,12 +135,19 @@ export function ComponentsPage() {
           ))}
         </Block>
 
-        <Block name="AlbumTile" use="Cover grids. Hover or focus a tile to see the record.">
+        <Block
+          name="AlbumTile"
+          use="Cover grids. Hover or focus a tile to see the record, once its cover is in. First row eager, the rest lazy."
+        >
           <div className="col-span-full">
             <ul className="grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6">
-              {albums.map((album) => (
+              <li>
+                <AlbumTileSkeleton />
+              </li>
+              {albums.map((album, index) => (
                 <li key={album.mbid}>
                   <AlbumTile
+                    eager={index < 6}
                     to={`/lab/album/${album.mbid}`}
                     title={album.title}
                     artist={album.artist}
@@ -189,13 +199,18 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
-        <Block name="Skeleton" use="Loading. Shaped like the content it stands in for.">
+        <Block name="Skeleton" use="Loading. Shaped like the content it stands in for; pulses in place.">
           <Cell label="Line, block, circle">
             <div className="flex items-center gap-4">
               <Skeleton className="h-3 w-16" />
               <Skeleton shape="block" className="size-12" />
               <Skeleton shape="circle" className="size-avatar" />
             </div>
+          </Cell>
+          <Cell label="Text: inside a line, keeps its height">
+            <p className="text-body text-muted">
+              <Skeleton shape="text" className="w-24" /> rated <Skeleton shape="text" className="w-32" />
+            </p>
           </Cell>
           <Cell label="Review row">
             <div className="flex w-full gap-3">
@@ -207,10 +222,10 @@ export function ComponentsPage() {
               </div>
             </div>
           </Cell>
-          <Cell label="Cover grid">
+          <Cell label="Cover grid (AlbumTileSkeleton)">
             <div className="grid w-full grid-cols-3 gap-3">
               {[0, 1, 2].map((i) => (
-                <Skeleton key={i} shape="block" className="aspect-square w-full" />
+                <AlbumTileSkeleton key={i} />
               ))}
             </div>
           </Cell>

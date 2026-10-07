@@ -1,0 +1,1144 @@
+{
+ "mode": "endpoint",
+ "base": "http://localhost:8092",
+ "passes": [
+  {
+   "label": "cold",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": 1,
+     "ms": 1266,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "Pablo Honey — Radiohead",
+      "The Bends — Radiohead",
+      "Kid A — Radiohead",
+      "Hail to the Thief — Radiohead",
+      "Amnesiac — Radiohead",
+      "In Rainbows — Radiohead",
+      "A Moon Shaped Pool — Radiohead",
+      "The King of Limbs — Radiohead",
+      "Radiotick Tracks 2 — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": 1,
+     "ms": 2009,
+     "partial": false,
+     "top": [
+      "good kid, m.A.A.d city — Kendrick Lamar",
+      "DAMN. — Kendrick Lamar",
+      "Mr. Morale & the Big Steppers — Kendrick Lamar",
+      "GNX — Kendrick Lamar",
+      "Black Panther: The Album (Music From and Inspired By) — Kendrick Lamar",
+      "To Pimp a Butterfly — Kendrick Lamar",
+      "Section.80 — Kendrick Lamar",
+      "THE OVERGROUND HELL ROAD — Kanye Omari & Kendrick Lamar",
+      "Compton Cowboys — Kendrick Lamar",
+      "Dedicated — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 1,
+     "ms": 1937,
+     "partial": false,
+     "top": [
+      "Debut — Björk",
+      "Post — Björk",
+      "Homogenic — Björk",
+      "Vespertine — Björk",
+      "Medúlla — Björk",
+      "Biophilia — Björk",
+      "Björk — Björk Guðmundsdóttir",
+      "Selmasongs — Björk",
+      "Volta — Björk",
+      "Utopia — Björk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": 2,
+     "ms": 1988,
+     "partial": false,
+     "top": [
+      "TRON: Legacy — Daft Punk",
+      "Discovery — Daft Punk",
+      "Human After All — Daft Punk",
+      "Random Access Memories — Daft Punk",
+      "Homework — Daft Punk",
+      "Interstella 5555 — Daft Punk",
+      "Discovery (Beta Version) — Daft Punk",
+      "Leftovers — Daft Punk",
+      "Extra Credit — Daft Punk",
+      "New Daft Punk — Grimelda"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 2182,
+     "partial": false,
+     "top": [
+      "Rubber Soul — The Beatles",
+      "Help! — The Beatles",
+      "A Hard Day’s Night — The Beatles",
+      "Sgt. Pepper’s Lonely Hearts Club Band — The Beatles",
+      "Please Please Me — The Beatles",
+      "Abbey Road — The Beatles",
+      "Revolver — The Beatles",
+      "The Beatles — The Beatles",
+      "Let It Be — The Beatles",
+      "Beatles for Sale — The Beatles"
+     ],
+     "note": ""
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 1932,
+     "partial": false,
+     "top": [
+      "Kind of Blue — Miles Davis",
+      "Sketches of Spain — Miles Davis",
+      "Bitches Brew — Miles Davis",
+      "Ascenseur pour l’échafaud — Miles Davis",
+      "Milestones — Miles Davis",
+      "In a Silent Way — Miles Davis",
+      "’Round About Midnight — Miles Davis",
+      "Miles Ahead — Miles Davis",
+      "Porgy and Bess — Miles Davis",
+      "Nefertiti — Miles Davis"
+     ],
+     "note": ""
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 1890,
+     "partial": false,
+     "top": [
+      "Workingman’s Dead — Grateful Dead",
+      "Aoxomoxoa — Grateful Dead",
+      "Anthem of the Sun — Grateful Dead",
+      "The Grateful Dead — Grateful Dead",
+      "American Beauty — Grateful Dead",
+      "Built to Last — Grateful Dead",
+      "Blues for Allah — Grateful Dead",
+      "From the Mars Hotel — Grateful Dead",
+      "Terrapin Station — Grateful Dead",
+      "Wake of the Flood — Grateful Dead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 2110,
+     "partial": false,
+     "top": [
+      "Blonde on Blonde — Bob Dylan",
+      "Bringing It All Back Home — Bob Dylan",
+      "Highway 61 Revisited — Bob Dylan",
+      "The Freewheelin’ Bob Dylan — Bob Dylan",
+      "Blood on the Tracks — Bob Dylan",
+      "Another Side of Bob Dylan — Bob Dylan",
+      "Nashville Skyline — Bob Dylan",
+      "John Wesley Harding — Bob Dylan",
+      "The Times They Are A‐Changin’ — Bob Dylan",
+      "Oh Mercy — Bob Dylan"
+     ],
+     "note": ""
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 1,
+     "ms": 921,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "Ok Computer Però Trap — Pippo Sowlo",
+      "OK Computer Part 2 — ShitLips",
+      "OK Computer Turns 10 — Various Artists",
+      "OK Computer but Everything is My Voice — shonkywonkydonkey",
+      "Stereogum Presents… OKX: A Tribute to OK Computer — Various Artists",
+      "Strung Out on OK Computer: The String Quartet Tribute to Radiohead — Vitamin String Quartet feat. The Section",
+      "Outside Computer — OK Vancouver OK"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": 1,
+     "ms": 1002,
+     "partial": false,
+     "top": [
+      "Kind of Blue — Miles Davis",
+      "The Quiet Kind of Blue — Enlly Blue",
+      "Sweet Kind of Blue — Emily Barker",
+      "Kind of Blue — Swiss Blues Authority",
+      "Kind of Blue — TQ",
+      "KIND OF BLUE — 大山百合香",
+      "Some Kind of Blue — Noire",
+      "Reggae Interpretation of Kind of Blue — Jeremy Taylor",
+      "The Kind of Blue EP — Vladislav Delay",
+      "Another Kind of Blue — Peter Keane"
+     ],
+     "note": ""
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 1,
+     "ms": 1077,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone",
+      "Abbey Road — Various Artists",
+      "The Abbey Road EP — Spiritualized",
+      "The Abbey Road E.P. — The Red Hot Chili Peppers",
+      "The Abbey Road Sessions — Kylie",
+      "Off Abbey Road — Mike Westbrook Band",
+      "Bach on Abbey Road — John Bayless",
+      "The Other Side of Abbey Road — George Benson",
+      "Plays Abbey Road — Devil's Rubato Band feat. Gustav Peter Wöhler"
+     ],
+     "note": ""
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 1,
+     "ms": 831,
+     "partial": false,
+     "top": [
+      "To Pimp a Butterfly — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 1,
+     "ms": 2110,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Rumours — Rumours",
+      "The Rumours — The Rumours",
+      "Spreading Rumours — Grouplove",
+      "Rumours — Ambush",
+      "Rumours — Freddie McGregor",
+      "Rumours — Weekend Recovery",
+      "Rumours — House Hustler",
+      "Rumours — A Real Dope Thing Ft. Cora E",
+      "Rumours — PJD"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": 2,
+     "ms": 2011,
+     "partial": false,
+     "top": [
+      "Metamorphosis — The Dark Side of the Moon",
+      "The Dark Side of the Moon — Pink Floyd",
+      "The Dark Side of the Moon — The Flaming Lips & Stardeath and White Dwarfs with Henry Rollins & Peaches",
+      "The Dark Side of the Moon Redux — Roger Waters",
+      "The Dark Side of the Moon — Sektor",
+      "The Dark Side of the Moon — Ricsárdgír",
+      "The Dark Side of the Moon — Ø+yn & Madrugapha",
+      "From the Dark Side of the Moon — Mary Fahl",
+      "Celebrating the Dark Side of the Moon — Nguyên Lê with Michael Gibbs & NDR Bigband",
+      "Return to the Dark Side of the Moon — Various Artists"
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": 2,
+     "ms": 905,
+     "partial": false,
+     "top": [
+      "Radiohead’s Kid A: Re‐imagined — Alex Schaaf",
+      "Kid A — Radiohead",
+      "Landscapes, Knives & Glue – Radiohead's Kid a Recycled — Wooden Elephant",
+      "Strung Out on Kid A: The String Quartet Tribute to Radiohead — Vitamin String Quartet feat. Tallywood Strings"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 1063,
+     "partial": false,
+     "top": [
+      "Revolver — The Beatles",
+      "The Beatles Revolver But With Super Mario 64 Soundfonts — Durag Gohan",
+      "Revolver — The Pokémon Beatles"
+     ],
+     "note": ""
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 973,
+     "partial": false,
+     "top": [
+      "The Wall — Pink Floyd",
+      "Solo Cello: Trevor Exter Performs Pink Floyd’s The Wall — Trevor Exter",
+      "Tear Down the Walls: A Riveting Tribute to Pink Floyd’s The Wall — Various Artists",
+      "More Bricks: The String Quartet Tribute to Pink Floyd’s The Wall — Vitamin String Quartet feat. Tallywood Strings",
+      "The Wall: The Film Soundtrack — Pink Floyd",
+      "The Wall — Pink Floyd",
+      "Off the Wall — Pink Floyd"
+     ],
+     "note": ""
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 1170,
+     "partial": false,
+     "top": [
+      "Watch the Throne — Jay‐Z & Kanye West"
+     ],
+     "note": ""
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": null,
+     "ms": 1920,
+     "partial": false,
+     "top": [
+      "Another Night Time Flight — Blue",
+      "Life in the Navy — Blue",
+      "Blue — Blue",
+      "Fools’ Party — Blue",
+      "Blue — Jonas Blue",
+      "Blue Unit — Blue Unit",
+      "Blue Murder — Blue Murder",
+      "Blue — Helicon Blue",
+      "Blue — Blue",
+      "Blue — Blue"
+     ],
+     "note": ""
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": null,
+     "ms": 1947,
+     "partial": false,
+     "top": [
+      "Red — Red",
+      "Red Red Meat — Red Red Meat",
+      "The Red — Red Velvet",
+      "Red Cross — Red Cross",
+      "Red Red Krovvy — Red Red Krovvy",
+      "The Red Summer — Red Velvet",
+      "Condition Red — Red Rockers",
+      "Red Dirt — Red Dirt",
+      "Red — Red Ankh",
+      "RED 1 — Priori presents RED"
+     ],
+     "note": ""
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 1093,
+     "partial": false,
+     "top": [
+      "1989 — Taylor Swift",
+      "1989 (Taylor’s Version) — Taylor Swift",
+      "1989 — Ryan Adams",
+      "1989 — To Avoid",
+      "1989 — 盧冠廷",
+      "1989 — Cleeve Morris",
+      "1989 — Marc Suun",
+      "1989 — Die Schwarzen Schafe",
+      "1989 — Amotinados do Teffé",
+      "1989 — SHORTCUT MIFFY!"
+     ],
+     "note": ""
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 977,
+     "partial": false,
+     "top": [
+      "Creme 21 — Creme 21",
+      "21 — Adele",
+      "Piso 21 — Piso 21",
+      "21. Peron — 21. Peron",
+      "21 Grams — 21 Grams",
+      "21 BOuTONS — 21 BOuTONS",
+      "21 Guns — 21 Guns",
+      "Aurora 21 — Aurora 21",
+      "Empire 21 — Empire 21",
+      "21 Union Square — 21 Union Square"
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": 3,
+     "ms": 2016,
+     "partial": false,
+     "top": [
+      "Radiohead — Radiohead",
+      "Radiohead TV Covers — Radiohead",
+      "OK Computer — Radiohead",
+      "Pablo Honey — Radiohead",
+      "The Bends — Radiohead",
+      "Kid A — Radiohead",
+      "Hail to the Thief — Radiohead",
+      "My Iron Lung — Radiohead",
+      "Amnesiac — Radiohead",
+      "In Rainbows — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 1,
+     "ms": 1965,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Enjoy The Beatles! — Abbey Road",
+      "The Alternate Abbey Road — The Beatles",
+      "Abbey Road Working Version — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Volume 1 — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Vol. 3 — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Vol. 4 — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Vol. 2 — The Beatles",
+      "Lucinda Williams Sings the Beatles From Abbey Road — Lucinda Williams",
+      "At Abbey Road - Beatles Strictly Instrumental — Chantal"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": 1,
+     "ms": 1869,
+     "partial": false,
+     "top": [
+      "DAMN. — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 1,
+     "ms": 1982,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Fleetwood Mac Rumours: Solo Cello — Trevor Exter",
+      "Rumors: The String Quartet Tribute To Fleetwood Mac — Vitamin String Quartet"
+     ],
+     "note": ""
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 1036,
+     "partial": false,
+     "top": [
+      "Homogenic — Björk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 979,
+     "partial": false,
+     "top": [
+      "Ágætis byrjun — Sigur Rós"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 1024,
+     "partial": false,
+     "top": [
+      "Lemonade — Beyoncé"
+     ],
+     "note": ""
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 987,
+     "partial": false,
+     "top": [
+      "Ace of Spades — Motörhead"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 28,
+     "hit@10": 28,
+     "mrr": 0.844
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.875
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 6,
+      "hit@10": 6,
+      "mrr": 0.917
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.875
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 2,
+      "hit@10": 2,
+      "mrr": 0.375
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.833
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     }
+    }
+   }
+  },
+  {
+   "label": "warm",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": 1,
+     "ms": 22,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "Pablo Honey — Radiohead",
+      "The Bends — Radiohead",
+      "Kid A — Radiohead",
+      "Hail to the Thief — Radiohead",
+      "Amnesiac — Radiohead",
+      "In Rainbows — Radiohead",
+      "A Moon Shaped Pool — Radiohead",
+      "The King of Limbs — Radiohead",
+      "Radiotick Tracks 2 — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": 1,
+     "ms": 18,
+     "partial": false,
+     "top": [
+      "good kid, m.A.A.d city — Kendrick Lamar",
+      "DAMN. — Kendrick Lamar",
+      "Mr. Morale & the Big Steppers — Kendrick Lamar",
+      "GNX — Kendrick Lamar",
+      "Black Panther: The Album (Music From and Inspired By) — Kendrick Lamar",
+      "To Pimp a Butterfly — Kendrick Lamar",
+      "Section.80 — Kendrick Lamar",
+      "THE OVERGROUND HELL ROAD — Kanye Omari & Kendrick Lamar",
+      "Compton Cowboys — Kendrick Lamar",
+      "Dedicated — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 1,
+     "ms": 15,
+     "partial": false,
+     "top": [
+      "Debut — Björk",
+      "Post — Björk",
+      "Homogenic — Björk",
+      "Vespertine — Björk",
+      "Medúlla — Björk",
+      "Biophilia — Björk",
+      "Björk — Björk Guðmundsdóttir",
+      "Selmasongs — Björk",
+      "Volta — Björk",
+      "Utopia — Björk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": 2,
+     "ms": 13,
+     "partial": false,
+     "top": [
+      "TRON: Legacy — Daft Punk",
+      "Discovery — Daft Punk",
+      "Human After All — Daft Punk",
+      "Random Access Memories — Daft Punk",
+      "Homework — Daft Punk",
+      "Interstella 5555 — Daft Punk",
+      "Discovery (Beta Version) — Daft Punk",
+      "Leftovers — Daft Punk",
+      "Extra Credit — Daft Punk",
+      "New Daft Punk — Grimelda"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Rubber Soul — The Beatles",
+      "Help! — The Beatles",
+      "A Hard Day’s Night — The Beatles",
+      "Sgt. Pepper’s Lonely Hearts Club Band — The Beatles",
+      "Please Please Me — The Beatles",
+      "Abbey Road — The Beatles",
+      "Revolver — The Beatles",
+      "The Beatles — The Beatles",
+      "Let It Be — The Beatles",
+      "Beatles for Sale — The Beatles"
+     ],
+     "note": ""
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Kind of Blue — Miles Davis",
+      "Sketches of Spain — Miles Davis",
+      "Bitches Brew — Miles Davis",
+      "Ascenseur pour l’échafaud — Miles Davis",
+      "Milestones — Miles Davis",
+      "In a Silent Way — Miles Davis",
+      "’Round About Midnight — Miles Davis",
+      "Miles Ahead — Miles Davis",
+      "Porgy and Bess — Miles Davis",
+      "Nefertiti — Miles Davis"
+     ],
+     "note": ""
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Workingman’s Dead — Grateful Dead",
+      "Aoxomoxoa — Grateful Dead",
+      "Anthem of the Sun — Grateful Dead",
+      "The Grateful Dead — Grateful Dead",
+      "American Beauty — Grateful Dead",
+      "Built to Last — Grateful Dead",
+      "Blues for Allah — Grateful Dead",
+      "From the Mars Hotel — Grateful Dead",
+      "Terrapin Station — Grateful Dead",
+      "Wake of the Flood — Grateful Dead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Blonde on Blonde — Bob Dylan",
+      "Bringing It All Back Home — Bob Dylan",
+      "Highway 61 Revisited — Bob Dylan",
+      "The Freewheelin’ Bob Dylan — Bob Dylan",
+      "Blood on the Tracks — Bob Dylan",
+      "Another Side of Bob Dylan — Bob Dylan",
+      "Nashville Skyline — Bob Dylan",
+      "John Wesley Harding — Bob Dylan",
+      "The Times They Are A‐Changin’ — Bob Dylan",
+      "Oh Mercy — Bob Dylan"
+     ],
+     "note": ""
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "Ok Computer Però Trap — Pippo Sowlo",
+      "OK Computer Part 2 — ShitLips",
+      "OK Computer Turns 10 — Various Artists",
+      "OK Computer but Everything is My Voice — shonkywonkydonkey",
+      "Stereogum Presents… OKX: A Tribute to OK Computer — Various Artists",
+      "Strung Out on OK Computer: The String Quartet Tribute to Radiohead — Vitamin String Quartet feat. The Section",
+      "Outside Computer — OK Vancouver OK"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Kind of Blue — Miles Davis",
+      "The Quiet Kind of Blue — Enlly Blue",
+      "Sweet Kind of Blue — Emily Barker",
+      "Kind of Blue — Swiss Blues Authority",
+      "Kind of Blue — TQ",
+      "KIND OF BLUE — 大山百合香",
+      "Some Kind of Blue — Noire",
+      "Reggae Interpretation of Kind of Blue — Jeremy Taylor",
+      "The Kind of Blue EP — Vladislav Delay",
+      "Another Kind of Blue — Peter Keane"
+     ],
+     "note": ""
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 1,
+     "ms": 13,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone",
+      "Abbey Road — Various Artists",
+      "The Abbey Road EP — Spiritualized",
+      "The Abbey Road E.P. — The Red Hot Chili Peppers",
+      "The Abbey Road Sessions — Kylie",
+      "Off Abbey Road — Mike Westbrook Band",
+      "Bach on Abbey Road — John Bayless",
+      "The Other Side of Abbey Road — George Benson",
+      "Plays Abbey Road — Devil's Rubato Band feat. Gustav Peter Wöhler"
+     ],
+     "note": ""
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "To Pimp a Butterfly — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Rumours — Rumours",
+      "The Rumours — The Rumours",
+      "Spreading Rumours — Grouplove",
+      "Rumours — Ambush",
+      "Rumours — Freddie McGregor",
+      "Rumours — Weekend Recovery",
+      "Rumours — House Hustler",
+      "Rumours — A Real Dope Thing Ft. Cora E",
+      "Rumours — PJD"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": 2,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Metamorphosis — The Dark Side of the Moon",
+      "The Dark Side of the Moon — Pink Floyd",
+      "The Dark Side of the Moon — The Flaming Lips & Stardeath and White Dwarfs with Henry Rollins & Peaches",
+      "The Dark Side of the Moon Redux — Roger Waters",
+      "The Dark Side of the Moon — Sektor",
+      "The Dark Side of the Moon — Ricsárdgír",
+      "The Dark Side of the Moon — Ø+yn & Madrugapha",
+      "From the Dark Side of the Moon — Mary Fahl",
+      "Celebrating the Dark Side of the Moon — Nguyên Lê with Michael Gibbs & NDR Bigband",
+      "Return to the Dark Side of the Moon — Various Artists"
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": 2,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Radiohead’s Kid A: Re‐imagined — Alex Schaaf",
+      "Kid A — Radiohead",
+      "Landscapes, Knives & Glue – Radiohead's Kid a Recycled — Wooden Elephant",
+      "Strung Out on Kid A: The String Quartet Tribute to Radiohead — Vitamin String Quartet feat. Tallywood Strings"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Revolver — The Beatles",
+      "The Beatles Revolver But With Super Mario 64 Soundfonts — Durag Gohan",
+      "Revolver — The Pokémon Beatles"
+     ],
+     "note": ""
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "The Wall — Pink Floyd",
+      "Solo Cello: Trevor Exter Performs Pink Floyd’s The Wall — Trevor Exter",
+      "Tear Down the Walls: A Riveting Tribute to Pink Floyd’s The Wall — Various Artists",
+      "More Bricks: The String Quartet Tribute to Pink Floyd’s The Wall — Vitamin String Quartet feat. Tallywood Strings",
+      "The Wall: The Film Soundtrack — Pink Floyd",
+      "The Wall — Pink Floyd",
+      "Off the Wall — Pink Floyd"
+     ],
+     "note": ""
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Watch the Throne — Jay‐Z & Kanye West"
+     ],
+     "note": ""
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": null,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Another Night Time Flight — Blue",
+      "Life in the Navy — Blue",
+      "Blue — Blue",
+      "Fools’ Party — Blue",
+      "Blue — Jonas Blue",
+      "Blue Unit — Blue Unit",
+      "Blue Murder — Blue Murder",
+      "Blue — Helicon Blue",
+      "Blue — Blue",
+      "Blue — Blue"
+     ],
+     "note": ""
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": null,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Red — Red",
+      "Red Red Meat — Red Red Meat",
+      "The Red — Red Velvet",
+      "Red Cross — Red Cross",
+      "Red Red Krovvy — Red Red Krovvy",
+      "The Red Summer — Red Velvet",
+      "Condition Red — Red Rockers",
+      "Red Dirt — Red Dirt",
+      "Red — Red Ankh",
+      "RED 1 — Priori presents RED"
+     ],
+     "note": ""
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "1989 — Taylor Swift",
+      "1989 (Taylor’s Version) — Taylor Swift",
+      "1989 — Ryan Adams",
+      "1989 — To Avoid",
+      "1989 — 盧冠廷",
+      "1989 — Cleeve Morris",
+      "1989 — Marc Suun",
+      "1989 — Die Schwarzen Schafe",
+      "1989 — Amotinados do Teffé",
+      "1989 — SHORTCUT MIFFY!"
+     ],
+     "note": ""
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Creme 21 — Creme 21",
+      "21 — Adele",
+      "Piso 21 — Piso 21",
+      "21. Peron — 21. Peron",
+      "21 Grams — 21 Grams",
+      "21 BOuTONS — 21 BOuTONS",
+      "21 Guns — 21 Guns",
+      "Aurora 21 — Aurora 21",
+      "Empire 21 — Empire 21",
+      "21 Union Square — 21 Union Square"
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": 3,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Radiohead — Radiohead",
+      "Radiohead TV Covers — Radiohead",
+      "OK Computer — Radiohead",
+      "Pablo Honey — Radiohead",
+      "The Bends — Radiohead",
+      "Kid A — Radiohead",
+      "Hail to the Thief — Radiohead",
+      "My Iron Lung — Radiohead",
+      "Amnesiac — Radiohead",
+      "In Rainbows — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Enjoy The Beatles! — Abbey Road",
+      "The Alternate Abbey Road — The Beatles",
+      "Abbey Road Working Version — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Volume 1 — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Vol. 3 — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Vol. 4 — The Beatles",
+      "Studio 2 Sessions at Abbey Road, Vol. 2 — The Beatles",
+      "Lucinda Williams Sings the Beatles From Abbey Road — Lucinda Williams",
+      "At Abbey Road - Beatles Strictly Instrumental — Chantal"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "DAMN. — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 1,
+     "ms": 13,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Fleetwood Mac Rumours: Solo Cello — Trevor Exter",
+      "Rumors: The String Quartet Tribute To Fleetwood Mac — Vitamin String Quartet"
+     ],
+     "note": ""
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Homogenic — Björk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Ágætis byrjun — Sigur Rós"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 12,
+     "partial": false,
+     "top": [
+      "Lemonade — Beyoncé"
+     ],
+     "note": ""
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 11,
+     "partial": false,
+     "top": [
+      "Ace of Spades — Motörhead"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 28,
+     "hit@10": 28,
+     "mrr": 0.844
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.875
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 6,
+      "hit@10": 6,
+      "mrr": 0.917
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.875
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 2,
+      "hit@10": 2,
+      "mrr": 0.375
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.833
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     }
+    }
+   }
+  }
+ ]
+}

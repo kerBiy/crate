@@ -14,12 +14,14 @@ management:
 crate:
   catalog:
     search:
-      # Minimum pg_trgm word similarity (0-1). 0.5 still matches a one-letter typo ("radiohed").
+      # Fallback when MusicBrainz is down: minimum pg_trgm word similarity (0-1).
+      # 0.5 still matches a one-letter typo ("radiohed").
       match-threshold: 0.5
-      # At least this many local matches and MusicBrainz isn't asked.
-      good-matches: 5
       cache-ttl: 7d
-      musicbrainz-limit: 25
+      # MusicBrainz's maximum. One request either way; more candidates for the popularity ranking.
+      musicbrainz-limit: 100
+      # Tuned with search-eval (ADR 010): 15 is the smallest weight that reached the best hit@3.
+      popularity-weight: 15
   musicbrainz:
     base-url: https://musicbrainz.org/ws/2
     # MusicBrainz blocks clients without a meaningful User-Agent. The contact email lives in .env.

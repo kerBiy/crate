@@ -4,6 +4,8 @@ import { api } from './client.ts'
 import type { AlbumDetails, Me, SearchResponse, Token } from './types.ts'
 
 export const searchLimit = 24
+/** Shorter queries match too much to be useful, and each new query can cost several MusicBrainz calls. */
+export const minSearchLength = 2
 
 export function useMe() {
   return useQuery({ queryKey: ['me'], queryFn: () => api<Me>('/users/me'), staleTime: Infinity })
@@ -15,7 +17,7 @@ export function useAlbumSearch(query: string) {
     queryKey: ['albums', 'search', q],
     queryFn: ({ signal }) =>
       api<SearchResponse>(`/albums/search?${new URLSearchParams({ q, limit: String(searchLimit) })}`, { signal }),
-    enabled: q.length > 0,
+    enabled: q.length >= minSearchLength,
     staleTime: 5 * 60_000,
   })
 }

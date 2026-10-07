@@ -39,7 +39,7 @@ public abstract class CatalogIntegrationTest {
 
     @BeforeEach
     void resetState() {
-        jdbc.sql("truncate albums, artists, album_stats, search_cache").update();
+        jdbc.sql("truncate albums, artists, album_stats, search_cache, search_results").update();
         musicBrainz.resetAll();
     }
 
@@ -59,8 +59,12 @@ public abstract class CatalogIntegrationTest {
 
     /** Stores an album through the real write path, as if MusicBrainz had returned it. */
     protected ReleaseGroup seed(String title, String artist) {
-        ReleaseGroup album = new ReleaseGroup(UUID.randomUUID(), title, artist, "Album", "1997-05-21",
-                List.of(new ArtistCredit(UUID.randomUUID(), artist, artist)));
+        return seed(title, artist, 1, List.of());
+    }
+
+    protected ReleaseGroup seed(String title, String artist, int releaseCount, List<String> secondaryTypes) {
+        ReleaseGroup album = new ReleaseGroup(UUID.randomUUID(), title, artist, "Album", secondaryTypes, "1997-05-21",
+                releaseCount, List.of(new ArtistCredit(UUID.randomUUID(), artist, artist)));
         albums.upsertAll(List.of(album));
         return album;
     }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
-import { useAlbumSearch } from '../api/queries.ts'
+import { minSearchLength, useAlbumSearch } from '../api/queries.ts'
 import { AlbumTile } from '../components/ui/AlbumTile.tsx'
 import { Input } from '../components/ui/Input.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
@@ -22,7 +22,8 @@ function useDebounced<T>(value: T, delay: number) {
 export function SearchPage() {
   const [params, setParams] = useSearchParams()
   const [text, setText] = useState(params.get('q') ?? '')
-  const query = useDebounced(text.trim(), 300)
+  // Long enough that a pause mid-word doesn't fire a search: every new query may reach MusicBrainz.
+  const query = useDebounced(text.trim(), 350)
 
   // Keep ?q= in step with what is being searched, without piling up history entries.
   useEffect(() => {
@@ -46,7 +47,7 @@ export function SearchPage() {
         onChange={(event) => setText(event.target.value)}
         className="max-w-prose"
       />
-      {query && <Results query={query} />}
+      {query.length >= minSearchLength && <Results query={query} />}
     </main>
   )
 }

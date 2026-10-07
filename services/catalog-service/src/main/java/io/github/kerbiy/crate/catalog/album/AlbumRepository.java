@@ -1,6 +1,7 @@
 package io.github.kerbiy.crate.catalog.album;
 
 import io.github.kerbiy.crate.catalog.musicbrainz.ArtistCredit;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzQueryBuilder;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
 import io.github.kerbiy.crate.catalog.search.SearchText;
 import java.sql.ResultSet;
@@ -64,15 +65,19 @@ public class AlbumRepository {
             UUID primaryArtistId = album.artists().isEmpty() ? null : album.artists().getFirst().id();
             jdbc.sql("""
                             insert into albums (id, title, artist_credit, primary_artist_id, primary_type,
-                                                first_release_date, search_text, fetched_at)
+                                                secondary_types, first_release_date, release_count,
+                                                search_text, fetched_at)
                             values (:id, :title, :artistCredit, :primaryArtistId, :primaryType,
-                                    :firstReleaseDate, :searchText, now())
+                                    :secondaryTypes, :firstReleaseDate, :releaseCount, :searchText, now())
                             on conflict (id) do update set
                                 title = excluded.title,
                                 artist_credit = excluded.artist_credit,
                                 primary_artist_id = excluded.primary_artist_id,
                                 primary_type = excluded.primary_type,
+                                secondary_types = excluded.secondary_types,
                                 first_release_date = excluded.first_release_date,
+                                -- A lookup by id doesn't report the count: keep the last known one.
+                                release_count = coalesce(excluded.release_count, albums.release_count),
                                 search_text = excluded.search_text,
                                 fetched_at = excluded.fetched_at
                             """)
@@ -81,18 +86,38 @@ public class AlbumRepository {
                     .param("artistCredit", album.artistCredit())
                     .param("primaryArtistId", primaryArtistId)
                     .param("primaryType", album.primaryType())
+                    .param("secondaryTypes", album.secondaryTypes().toArray(String[]::new))
+                    .param("releaseCount", album.releaseCount())
                     .param("firstReleaseDate", album.firstReleaseDate())
                     .param("searchText", SearchText.forAlbum(album.title(), album.artistCredit()))
                     .update();
         }
     }
 
+    /** The albums MusicBrainz ranked for this query (see SearchCacheRepository#store), best first. */
+    public List<AlbumRow> findRanked(String normalizedQuery, int limit) {
+        return jdbc.sql(SELECT_ALBUMS + """
+                        join search_results r on r.album_id = a.id
+                        where r.normalized_query = :q
+                        order by r.rank
+                        limit :limit
+                        """)
+                .param("q", normalizedQuery)
+                .param("limit", limit)
+                .query(AlbumRepository::mapRow)
+                .list();
+    }
+
     /**
-     * Albums whose {@code search_text} contains something close to {@code normalizedQuery}, best first.
+     * Fallback for when MusicBrainz can't be reached: stored albums whose {@code search_text} contains
+     * something close to {@code normalizedQuery}, best first, most released first among equals.
      *
      * <p>{@code <%} is pg_trgm's word-similarity operator: true when some stretch of search_text shares
      * enough trigrams with the query (at least {@code threshold}, 0–1). It's the form the GIN index
      * can answer. The threshold is a session setting, so it is set for this transaction only.
+     *
+     * <p>Excluded secondary types are left out unless the title is the query. {@code lower(title)}
+     * keeps accents, so "bjork" won't count as Björk's exact title here; good enough for a fallback.
      */
     @Transactional(readOnly = true)
     public List<AlbumRow> search(String normalizedQuery, double threshold, int limit) {
@@ -102,12 +127,16 @@ public class AlbumRepository {
                 .single();
         return jdbc.sql(SELECT_ALBUMS + """
                         where :q <% a.search_text
+                          and (not (coalesce(a.secondary_types, '{}') && cast(:excluded as text[]))
+                               or lower(a.title) = :q)
                         order by word_similarity(:q, a.search_text) desc,
+                                 a.release_count desc nulls last,
                                  similarity(:q, a.search_text) desc,
                                  a.title, a.id
                         limit :limit
                         """)
                 .param("q", normalizedQuery)
+                .param("excluded", MusicBrainzQueryBuilder.EXCLUDED_SECONDARY_TYPES.toArray(String[]::new))
                 .param("limit", limit)
                 .query(AlbumRepository::mapRow)
                 .list();

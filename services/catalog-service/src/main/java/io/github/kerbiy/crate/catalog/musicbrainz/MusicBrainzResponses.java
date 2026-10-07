@@ -16,12 +16,16 @@ final class MusicBrainzResponses {
     record SearchResponse(@JsonProperty("release-groups") List<ReleaseGroupJson> releaseGroups) {
     }
 
+    /** {@code score} (relevance) and {@code count} (number of releases) are only in search results. */
     record ReleaseGroupJson(
             UUID id,
             String title,
             @JsonProperty("primary-type") String primaryType,
+            @JsonProperty("secondary-types") List<String> secondaryTypes,
             @JsonProperty("first-release-date") String firstReleaseDate,
-            @JsonProperty("artist-credit") List<CreditJson> artistCredit) {
+            @JsonProperty("artist-credit") List<CreditJson> artistCredit,
+            Integer score,
+            Integer count) {
     }
 
     /** {@code name} is the name as credited, which can differ from the artist's own name. */

@@ -3,6 +3,7 @@ package io.github.kerbiy.crate.catalog.musicbrainz;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.CreditJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseGroupJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.SearchResponse;
+import io.github.kerbiy.crate.catalog.search.SearchText;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.time.Duration;
@@ -23,7 +24,8 @@ import org.springframework.web.util.UriBuilder;
 
 /**
  * Rate-limited, retrying client for the MusicBrainz web service. Hands out only release groups
- * whose primary type is Album or EP, mapped to our own {@link ReleaseGroup}.
+ * whose primary type is Album or EP, mapped to our own {@link ReleaseGroup}. Lookups by id return
+ * any secondary type (someone may rate a live album); searches leave the excluded ones out.
  *
  * <p>Blocking by design (callers run on the request thread). Never call it inside a DB transaction:
  * with the rate limiter and retries one call can take several seconds.
@@ -73,24 +75,42 @@ public class MusicBrainzClient {
         return new MusicBrainzClient(restClient, rateLimiter, properties.retry(), sleeper, random);
     }
 
-    /** Searches release groups for what the user typed, e.g. "Radiohead - OK Computer". */
-    public List<ReleaseGroup> searchReleaseGroups(String userInput, int limit) {
-        String query = MusicBrainzQueryBuilder.build(userInput);
+    /**
+     * Searches release groups for what the user typed, e.g. "Radiohead - OK Computer", in
+     * MusicBrainz's order (best score first). Albums and EPs only; compilations, live albums etc.
+     * only when their title is exactly what was typed.
+     *
+     * @param fuzzy allow small misspellings (see {@link MusicBrainzQueryBuilder#build})
+     */
+    public List<SearchHit> searchReleaseGroups(String userInput, boolean fuzzy, int limit) {
+        MusicBrainzQueryBuilder.Query query = MusicBrainzQueryBuilder.build(userInput, fuzzy);
+        String exactTitle = SearchText.normalize(query.title());
+        return search(query.lucene(), limit).stream()
+                .filter(MusicBrainzClient::isAlbum)
+                .filter(json -> !isExcluded(json) || SearchText.normalize(json.title()).equals(exactTitle))
+                .map(json -> new SearchHit(toReleaseGroup(json), json.score() == null ? 0 : json.score()))
+                .toList();
+    }
+
+    /** One artist's albums, excluded secondary types left out, in no useful order. */
+    public List<ReleaseGroup> artistAlbums(UUID artistId, int limit) {
+        return search(MusicBrainzQueryBuilder.artistAlbums(artistId), limit).stream()
+                .filter(MusicBrainzClient::isAlbum)
+                .filter(json -> !isExcluded(json))
+                .map(MusicBrainzClient::toReleaseGroup)
+                .toList();
+    }
+
+    private List<ReleaseGroupJson> search(String luceneQuery, int limit) {
         // The query is a URI variable, so it's fully percent-encoded: Lucene's &, + and \ arrive intact.
         SearchResponse response = get(uri -> uri.path("/release-group")
                         .queryParam("query", "{query}")
                         .queryParam("limit", limit)
                         .queryParam("fmt", "json")
-                        .build(Map.of("query", query)),
+                        .build(Map.of("query", luceneQuery)),
                 SearchResponse.class)
                 .orElseThrow(() -> new MusicBrainzException("MusicBrainz search answered 404"));
-        if (response.releaseGroups() == null) {
-            return List.of();
-        }
-        return response.releaseGroups().stream()
-                .filter(MusicBrainzClient::isAlbum)
-                .map(MusicBrainzClient::toReleaseGroup)
-                .toList();
+        return response.releaseGroups() == null ? List.of() : response.releaseGroups();
     }
 
     /** Looks up one release group. Empty when MusicBrainz doesn't know it or it isn't an Album/EP. */
@@ -164,6 +184,11 @@ public class MusicBrainzClient {
         return ALBUM_TYPES.contains(json.primaryType());
     }
 
+    private static boolean isExcluded(ReleaseGroupJson json) {
+        return json.secondaryTypes() != null
+                && json.secondaryTypes().stream().anyMatch(MusicBrainzQueryBuilder.EXCLUDED_SECONDARY_TYPES::contains);
+    }
+
     private static ReleaseGroup toReleaseGroup(ReleaseGroupJson json) {
         List<CreditJson> credits = json.artistCredit() == null ? List.of() : json.artistCredit();
         // "JAY-Z" + " & " + "Kanye West" + "": names as credited, glued by MusicBrainz's join phrases.
@@ -176,7 +201,9 @@ public class MusicBrainzClient {
                 .toList();
         String date = json.firstReleaseDate() == null || json.firstReleaseDate().isBlank()
                 ? null : json.firstReleaseDate();
-        return new ReleaseGroup(json.id(), json.title(), artistCredit, json.primaryType(), date, artists);
+        List<String> secondaryTypes = json.secondaryTypes() == null ? List.of() : json.secondaryTypes();
+        return new ReleaseGroup(json.id(), json.title(), artistCredit, json.primaryType(), secondaryTypes, date,
+                json.count(), artists);
     }
 
     /** What one HTTP attempt produced: the status, and the body when it was 2xx. */

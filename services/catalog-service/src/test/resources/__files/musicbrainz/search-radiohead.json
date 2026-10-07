@@ -1,0 +1,575 @@
+{
+    "created": "2026-10-07T09:40:42.291Z",
+    "count": 81,
+    "offset": 0,
+    "release-groups": [
+        {
+            "id": "59f25ce9-ae14-43c7-a09e-3a911060043a",
+            "type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "score": 100,
+            "primary-type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "artist-credit-id": "021661c1-84c5-30d7-9bb2-f0766affb734",
+            "count": 1,
+            "title": "Radiohead",
+            "first-release-date": "1992",
+            "primary-type": "EP",
+            "artist-credit": [
+                {
+                    "name": "Radiohead",
+                    "artist": {
+                        "id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+                        "name": "Radiohead",
+                        "sort-name": "Radiohead",
+                        "aliases": [
+                            {
+                                "sort-name": "Radiohead",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Radiohead",
+                                "locale": "en",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "r/head",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "r/head",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "电台司令",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "电台司令",
+                                "locale": "zh",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "れでぃおへっど",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "レディオヘッド",
+                                "locale": "ja",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Radiohead & Thom Yorke",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Radiohead & Thom Yorke",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Radio Head",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Radio Head",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "37539a5b-7788-4542-a29c-03eb64f63d93",
+                    "status-id": "518ffc83-5cde-34df-8627-81bff5093d92",
+                    "title": "Radiohead",
+                    "status": "Promotion"
+                }
+            ]
+        },
+        {
+            "id": "3ab9fbe7-b809-3db8-96cf-4de6e56bb180",
+            "type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "score": 84,
+            "primary-type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "artist-credit-id": "021661c1-84c5-30d7-9bb2-f0766affb734",
+            "count": 1,
+            "title": "Radiohead TV Covers",
+            "primary-type": "EP",
+            "artist-credit": [
+                {
+                    "name": "Radiohead",
+                    "artist": {
+                        "id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+                        "name": "Radiohead",
+                        "sort-name": "Radiohead",
+                        "aliases": [
+                            {
+                                "sort-name": "Radiohead",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Radiohead",
+                                "locale": "en",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "r/head",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "r/head",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "电台司令",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "电台司令",
+                                "locale": "zh",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "れでぃおへっど",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "レディオヘッド",
+                                "locale": "ja",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Radiohead & Thom Yorke",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Radiohead & Thom Yorke",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Radio Head",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Radio Head",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "e8ec6327-bd41-4bd7-b2d0-cffd712cd4f8",
+                    "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+                    "title": "Radiohead TV Covers",
+                    "status": "Bootleg"
+                }
+            ]
+        },
+        {
+            "id": "d5eb0376-6f0f-4b28-b5d1-4584b9be8d75",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "score": 64,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "c27fe223-f586-3b56-a603-98f116a85a1f",
+            "count": 1,
+            "title": "Radiohead",
+            "first-release-date": "2007-10-22",
+            "primary-type": "Album",
+            "artist-credit": [
+                {
+                    "name": "In Rainbows",
+                    "artist": {
+                        "id": "a6606aaa-6027-4d6d-8bea-0e8ee816b8f1",
+                        "name": "In Rainbows",
+                        "sort-name": "In Rainbows",
+                        "disambiguation": "reggaeton remixes of Radiohead"
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "195d3aff-1e57-4612-891f-2950be2bd98c",
+                    "status-id": "1156806e-d06a-38bd-83f0-cf2284a808b9",
+                    "title": "Radiohead",
+                    "status": "Bootleg"
+                }
+            ],
+            "tags": [
+                {
+                    "count": 1,
+                    "name": "rock"
+                },
+                {
+                    "count": 1,
+                    "name": "electronic"
+                },
+                {
+                    "count": 1,
+                    "name": "alternative rock"
+                },
+                {
+                    "count": 1,
+                    "name": "noise"
+                },
+                {
+                    "count": 1,
+                    "name": "experimental"
+                },
+                {
+                    "count": 1,
+                    "name": "reggaeton"
+                }
+            ]
+        },
+        {
+            "id": "89bbac22-8be9-40ca-a85f-bbf81d4a131d",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "score": 64,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "83f73e62-bcae-32c2-b9a0-c034ba01f32d",
+            "count": 1,
+            "title": "Radiohead",
+            "first-release-date": "1994",
+            "primary-type": "Album",
+            "artist-credit": [
+                {
+                    "name": "Wesley Willis",
+                    "artist": {
+                        "id": "b0a16d0c-3d99-487d-be88-902131ad03d3",
+                        "name": "Wesley Willis",
+                        "sort-name": "Willis, Wesley",
+                        "aliases": [
+                            {
+                                "sort-name": "Wesley Willis & the Dragnews",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Wesley Willis & the Dragnews",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "b9cb5436-41d5-4dad-8482-654574def198",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Radiohead",
+                    "status": "Official"
+                }
+            ],
+            "tags": [
+                {
+                    "count": 1,
+                    "name": "electronic"
+                },
+                {
+                    "count": 1,
+                    "name": "pop"
+                },
+                {
+                    "count": 1,
+                    "name": "synth-pop"
+                }
+            ]
+        },
+        {
+            "id": "9a3cf300-2678-4171-b654-2a9989df9f0f",
+            "type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "score": 60,
+            "primary-type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "artist-credit-id": "3390f5b6-2907-3ce5-82fd-9cf6719ae8df",
+            "count": 1,
+            "title": "Obsessed: Radiohead",
+            "first-release-date": "2018-06-01",
+            "primary-type": "EP",
+            "artist-credit": [
+                {
+                    "name": "Lena Hall",
+                    "artist": {
+                        "id": "6698e133-bc90-4a0a-a1a6-45fc5e6cd441",
+                        "name": "Lena Hall",
+                        "sort-name": "Hall, Lena",
+                        "aliases": [
+                            {
+                                "sort-name": "Carvajal, Celina",
+                                "type-id": "d4dcd0c0-b341-3612-a332-c0ce797b25cf",
+                                "name": "Celina Carvajal",
+                                "locale": null,
+                                "type": "Legal name",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "28651c89-23ab-4d22-809f-8f0b4b055b87",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Obsessed: Radiohead",
+                    "status": "Official"
+                }
+            ]
+        },
+        {
+            "id": "ccb43df8-6c32-45f4-8f7b-c1ddc81e7d51",
+            "type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "score": 60,
+            "primary-type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "artist-credit-id": "44a263a6-c3e4-4337-95c6-92cab4b78cdb",
+            "count": 1,
+            "title": "Radiohead 2",
+            "first-release-date": "2021-11-10",
+            "primary-type": "EP",
+            "artist-credit": [
+                {
+                    "name": "DJ Real Madrid",
+                    "artist": {
+                        "id": "b4845600-bbaa-439c-9153-be61b0d066c1",
+                        "name": "DJ Real Madrid",
+                        "sort-name": "DJ Real Madrid"
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "409e647b-ea8b-4695-a927-164dc2016f02",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Radiohead 2",
+                    "status": "Official"
+                }
+            ],
+            "tags": [
+                {
+                    "count": 1,
+                    "name": "electronic"
+                }
+            ]
+        },
+        {
+            "id": "9402e2e4-448d-4ad6-a572-7d363613a123",
+            "type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "score": 53,
+            "primary-type-id": "6d0c5bf6-7a33-3420-a519-44fc63eedebf",
+            "artist-credit-id": "bdc1b5bb-fe24-3ac6-9484-633d2555457b",
+            "count": 1,
+            "title": "The Radiohead EP",
+            "first-release-date": "2003",
+            "primary-type": "EP",
+            "artist-credit": [
+                {
+                    "name": "Aftermath",
+                    "artist": {
+                        "id": "1a01179a-35d2-4190-9201-20213a3d86d5",
+                        "name": "Aftermath",
+                        "sort-name": "Aftermath",
+                        "disambiguation": "electronic artist Mampi Swift"
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "c8e8d164-6dfc-4b53-9424-97a705b4b731",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "The Radiohead EP",
+                    "status": "Official"
+                }
+            ],
+            "tags": [
+                {
+                    "count": 1,
+                    "name": "electronic"
+                }
+            ]
+        },
+        {
+            "id": "d8dd81ab-d840-4663-8da3-d8c27c2eaf91",
+            "type-id": "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1",
+            "score": 52,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "021661c1-84c5-30d7-9bb2-f0766affb734",
+            "count": 1,
+            "title": "Radiohead Box",
+            "first-release-date": "2008-01-01",
+            "primary-type": "Album",
+            "secondary-types": [
+                "Compilation"
+            ],
+            "secondary-type-ids": [
+                "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+            ],
+            "artist-credit": [
+                {
+                    "name": "Radiohead",
+                    "artist": {
+                        "id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+                        "name": "Radiohead",
+                        "sort-name": "Radiohead",
+                        "aliases": [
+                            {
+                                "sort-name": "Radiohead",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "Radiohead",
+                                "locale": "en",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "r/head",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "r/head",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "电台司令",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "电台司令",
+                                "locale": "zh",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "れでぃおへっど",
+                                "type-id": "894afba6-2816-3c24-8072-eadb66bd04bc",
+                                "name": "レディオヘッド",
+                                "locale": "ja",
+                                "type": "Artist name",
+                                "primary": true,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Radiohead & Thom Yorke",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Radiohead & Thom Yorke",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            },
+                            {
+                                "sort-name": "Radio Head",
+                                "type-id": "1937e404-b981-3cb7-8151-4c86ebfc8d8e",
+                                "name": "Radio Head",
+                                "locale": null,
+                                "type": "Search hint",
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "84b9d51c-c6de-3529-8be0-b28ebe2ed157",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "Radiohead Box",
+                    "status": "Official"
+                }
+            ]
+        },
+        {
+            "id": "8eae6679-86c9-43dd-9ede-99b2bf99466a",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "score": 49,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "38cd292c-dbc0-3843-ba3b-fe14f155abd9",
+            "count": 1,
+            "title": "Babies Go Radiohead",
+            "first-release-date": "2011",
+            "primary-type": "Album",
+            "artist-credit": [
+                {
+                    "name": "Sweet Little Band",
+                    "artist": {
+                        "id": "f18ed420-f81a-43f6-83ff-9c021d5ef1c9",
+                        "name": "Sweet Little Band",
+                        "sort-name": "Sweet Little Band"
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "3270fa09-e935-4528-a1b5-d8cb617b662f",
+                    "title": "Babies Go Radiohead"
+                }
+            ]
+        },
+        {
+            "id": "45b739e4-42b0-4054-88df-e39c9883fe8e",
+            "type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "score": 49,
+            "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+            "artist-credit-id": "592b52b6-fd7e-3513-b638-e3585db78427",
+            "count": 1,
+            "title": "MSQ Performs Radiohead",
+            "first-release-date": "2016-07-22",
+            "primary-type": "Album",
+            "artist-credit": [
+                {
+                    "name": "Midnite String Quartet",
+                    "artist": {
+                        "id": "ad3c468d-a403-40bc-93c2-f99b74a81b9e",
+                        "name": "Midnite String Quartet",
+                        "sort-name": "Midnite String Quartet",
+                        "aliases": [
+                            {
+                                "sort-name": "MSQ",
+                                "name": "MSQ",
+                                "locale": null,
+                                "type": null,
+                                "primary": null,
+                                "begin-date": null,
+                                "end-date": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "releases": [
+                {
+                    "id": "0645175b-f30f-4e6f-94ee-a72aa29d2bec",
+                    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+                    "title": "MSQ Performs Radiohead",
+                    "status": "Official"
+                }
+            ]
+        }
+    ]
+}

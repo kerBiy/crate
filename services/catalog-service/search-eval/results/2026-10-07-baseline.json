@@ -1,0 +1,1265 @@
+{
+ "mode": "endpoint",
+ "base": "http://localhost:8092",
+ "passes": [
+  {
+   "label": "cold",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": null,
+     "ms": 559,
+     "partial": false,
+     "top": [
+      "Radiohead — Radiohead",
+      "Radiohead Box — Radiohead",
+      "Creep — Radiohead",
+      "Drill — Radiohead",
+      "Radiohead — In Rainbows",
+      "Radiohead TV Covers — Radiohead",
+      "The Best of Radiohead — Radiohead",
+      "Radiohead — Wesley Willis",
+      "Live au Forum — Radiohead",
+      "Radiohead: Side A — Blatti"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": null,
+     "ms": 677,
+     "partial": false,
+     "top": [
+      "Kendrick Lamar — Kendrick Lamar",
+      "Kendrication — Kendrick Lamar",
+      "The Takeover — Kendrick Lamar",
+      "Good Kid Done Good — Kendrick Lamar",
+      "The Kendrick Archives — Kendrick Lamar",
+      "The New West 2 — Kendrick Lamar",
+      "Bad Kid Chill City — Kendrick Lamar",
+      "Overly Dedicated — Kendrick Lamar",
+      "Revolution Music — Kendrick Lamar",
+      "untitled unmastered. — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 9,
+     "ms": 1071,
+     "partial": false,
+     "top": [
+      "Björk — Björk",
+      "Björk — Björk",
+      "Björk — Björk",
+      "Brant Bjork — Brant Bjork",
+      "Three — Björk",
+      "Björk in Stein — Björk",
+      "Biophilia — Björk",
+      "Björk in Paris — Björk",
+      "Homogenic — Björk",
+      "Vespertine — Björk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": null,
+     "ms": 990,
+     "partial": false,
+     "top": [
+      "Daft Club — Daft Punk",
+      "DJ Mix — Daft Punk",
+      "Deep Cuts — Daft Punk",
+      "Daft Punk Live in NYC — Daft Punk",
+      "Digital Decks — Daft Punk",
+      "Re-Discovery — Daft Punk",
+      "TRON: Legacy — Daft Punk",
+      "New Daft Punk — Grimelda",
+      "Complete Reboot — Daft Punk",
+      "Homework / Discovery — Daft Punk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 2,
+     "ms": 1138,
+     "partial": false,
+     "top": [
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles"
+     ],
+     "note": ""
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": null,
+     "ms": 940,
+     "partial": false,
+     "top": [
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis"
+     ],
+     "note": ""
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": null,
+     "ms": 916,
+     "partial": false,
+     "top": [
+      "Grateful Dead — Grateful Dead",
+      "Grateful Dead — Grateful Dead",
+      "The Grateful Dead — Grateful Dead",
+      "Grateful Live — Grateful Dead",
+      "Grateful Dead Origins — Grateful Dead",
+      "Eternally Grateful — Grateful Dead",
+      "Merry and Grateful — Grateful Dead",
+      "Thankfully Grateful — Grateful Dead",
+      "Grateful Dead Documentary — Grateful Dead",
+      "The Best of the Grateful Dead — Grateful Dead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": null,
+     "ms": 958,
+     "partial": false,
+     "top": [
+      "Bob Dylan — Bob Dylan",
+      "Bob Dylan — Bob Dylan",
+      "Bob Dylan — Bob Dylan",
+      "Bob Dylan 1961-1962 — Bob Dylan",
+      "Bob Dylan's Dream — Bob Dylan",
+      "The Real Bob Dylan — Bob Dylan",
+      "Bob Dylan at Seventy — Bob Dylan",
+      "Bob Dylan – In Concert — Bob Dylan",
+      "The Best of Bob Dylan — Bob Dylan",
+      "The Bob Dylan Sampler — Bob Dylan"
+     ],
+     "note": ""
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 1,
+     "ms": 1089,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "Outside Computer — OK Vancouver OK",
+      "Computer — Computer",
+      "P.R. Computer — P.R. Computer",
+      "Computer Kill — Computer Kill",
+      "Computer Soup — Computer Soup",
+      "Viva Computer — Viva Computer",
+      "Computer Dance — Computer",
+      "Computer Magic — Computer Magic",
+      "Zombie Computer — Zombie Computer"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": null,
+     "ms": 1033,
+     "partial": false,
+     "top": [
+      "The Quiet Kind of Blue — Enlly Blue",
+      "Fear of Blue — Fear of Blue",
+      "Kind Of Mosh — Kind Of Mosh",
+      "Field of Blue — Field of Blue",
+      "Some Kind of Hate — Some Kind of Hate",
+      "Some Kind of Animal — Some Kind Of Animal",
+      "Kind Of Like Spitting — Kind of Like Spitting",
+      "Kind of Like Spitting — Kind of Like Spitting",
+      "This Kind of Punishment — This Kind of Punishment",
+      "The Good Kind of Mushroom EP — The Good Kind of Mushroom"
+     ],
+     "note": ""
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 1,
+     "ms": 963,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Abbey Road — Various Artists",
+      "Enjoy The Beatles! — Abbey Road",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone",
+      "Road to Abbey — J-Rocks",
+      "Aces Road — Aces Road",
+      "Bedlam Abbey — Bedlam Abbey",
+      "Carfax Abbey — Carfax Abbey",
+      "Abbey Sings Abbey — Abbey Lincoln",
+      "Abbey Is Blue — Abbey Lincoln"
+     ],
+     "note": ""
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 1,
+     "ms": 994,
+     "partial": false,
+     "top": [
+      "To Pimp a Butterfly — Kendrick Lamar",
+      "To Pimp a Butterfly (Screwed) — Lost Screwed It!",
+      "giving a butterfly a skeleton — giving a butterfly a skeleton",
+      "Princess Goes to the Butterfly Museum — Princess Goes to the Butterfly Museum",
+      "Acoustic Butterfly — Acoustic Butterfly",
+      "Butterfly Trajectory — Butterfly Trajectory",
+      "Butterfly Odyssey — Butterfly Tea",
+      "Butterfly 9 — Butterfly 9",
+      "Butterfly Joe — Butterfly Joe",
+      "Butterfly Boucher — Butterfly Boucher"
+     ],
+     "note": ""
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 15,
+     "ms": 916,
+     "partial": false,
+     "top": [
+      "Rumours — Rumours",
+      "Rumours — PJD",
+      "The Rumours — The Rumours",
+      "Rumours — Ambush",
+      "Rumours EP — 3WA",
+      "Shapes — Rumours",
+      "Megamix — Rumours",
+      "Rumours EP — Edward",
+      "Infant EP — Rumours",
+      "Basin View — Rumours"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": null,
+     "ms": 1434,
+     "partial": false,
+     "top": [
+      "Dark Side of the Moon — Moon Byul",
+      "Mountains of the Moon — Dark Side Blues",
+      "Doom Side of the Moon — Doom Side of the Moon",
+      "Dark Side of the Cop — Dark Side of the Cop",
+      "The Dark Side of the Force — The Dark Side of the Force",
+      "The Charque Side Of The Moon — The Charque Side of the Moon",
+      "The Dark Side Of The Shroom EP — Dark Side Of The Shroom",
+      "The White Side of the Moon — Moon Man",
+      "Dark Side Of The Shroom Part 2 - The Remixes — Dark Side Of The Shroom",
+      "\"The Dark Side Project of the Moon\" — The Company ltd."
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": null,
+     "ms": 21,
+     "partial": false,
+     "top": [
+      "2003‐09‐29: Breakfast With Radiohead, KROQ, Capitol Records, Hollywood, CA, USA — Radiohead",
+      "Radiohead — Radiohead",
+      "Radiohead Box — Radiohead",
+      "Creep — Radiohead",
+      "Drill — Radiohead",
+      "Radiohead: Side A — Blatti",
+      "Radiohead — In Rainbows",
+      "Radiohead TV Covers — Radiohead",
+      "Live au Forum — Radiohead",
+      "OK Computer — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 557,
+     "partial": false,
+     "top": [
+      "Revolver — The Beatles",
+      "The Alternate Revolver — The Beatles",
+      "The Silver Beatles — The Beatles",
+      "Basement Revolver — Basement Revolver",
+      "Revolver — The Pokémon Beatles",
+      "The Beatles Collection, Volume 4: Revolver / Let It Be — The Beatles",
+      "The Revolver Sessions — The Beatles",
+      "Revolver — Revolver",
+      "Revolver — Revólver",
+      "Revolver EP — Revolver"
+     ],
+     "note": ""
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 2,
+     "ms": 1168,
+     "partial": false,
+     "top": [
+      "The Wall — Pink Floyd",
+      "The Wall — Pink Floyd",
+      "Off the Wall — Pink Floyd",
+      "Behind The Wall — Pink Floyd",
+      "Defacing the Wall — Pink Floyd",
+      "Every Brick in the Wall — Pink Floyd",
+      "The Best of The Pink Floyd — The Pink Floyd",
+      "The Best of the Pink Floyd — Pink Floyd",
+      "The Pink Floyd Collection — Pink Floyd",
+      "Backs to the Wall 1978-82 — Pink Floyd"
+     ],
+     "note": ""
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 1055,
+     "partial": false,
+     "top": [
+      "Watch the Throne — Jay‐Z & Kanye West",
+      "The Throne — JAY‐Z & Ye",
+      "Watch the Throne — Dean Blunt Meets James Ferraro"
+     ],
+     "note": ""
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": null,
+     "ms": 28,
+     "partial": false,
+     "top": [
+      "Fear of Blue — Fear of Blue",
+      "Field of Blue — Field of Blue",
+      "Abbey Is Blue — Abbey Lincoln",
+      "The Quiet Kind of Blue — Enlly Blue",
+      "Blues Beatles — Blues Beatles",
+      "Mountains of the Moon — Dark Side Blues",
+      "Jay-Z Sings the Blues “The Forgotten Stories” — JAY Z",
+      "Watch the Throne — Dean Blunt Meets James Ferraro"
+     ],
+     "note": ""
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": null,
+     "ms": 25,
+     "partial": false,
+     "top": [
+      "Pearl Handled Revolver — Pearl Handled Revolver",
+      "Revolver — Revolver",
+      "Revolver — Revólver",
+      "Rumours — Dougal Reed",
+      "Revolver EP — Revolver",
+      "Restless Road — Restless Road",
+      "Basement Revolver — Basement Revolver",
+      "Revólver Plateado — Revólver Plateado",
+      "This Is a Revolver — This Is a Revolver",
+      "The Real Bob Dylan — Bob Dylan"
+     ],
+     "note": ""
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": null,
+     "ms": 730,
+     "partial": false,
+     "top": [
+      "1989 — 盧冠廷",
+      "1989 — Rim.X",
+      "1989 — review",
+      "1989 — To Avoid",
+      "1989 — Gran Kino",
+      "1989 — Narrateur",
+      "1989 — Marc Suun",
+      "1989 — The Resort",
+      "1989 — Ryan Adams",
+      "1989 — Kalle Ahola"
+     ],
+     "note": ""
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": null,
+     "ms": 1110,
+     "partial": false,
+     "top": [
+      "21 Guns — 21 Guns",
+      "Piso 21 — Piso 21",
+      "21 Grams — 21 Grams",
+      "21. Peron — 21. Peron",
+      "Creme 21 — Creme 21",
+      "Aurora 21 — Aurora 21",
+      "Empire 21 — Empire 21",
+      "Limi-T 21 — Limi-T 21",
+      "21 BOuTONS — 21 BOuTONS",
+      "GREETING — 21"
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": 8,
+     "ms": 22,
+     "partial": false,
+     "top": [
+      "Obsessed: Radiohead — Lena Hall",
+      "Radiohead — Radiohead",
+      "Radiohead Box — Radiohead",
+      "Creep — Radiohead",
+      "Drill — Radiohead",
+      "Radiohead — In Rainbows",
+      "Radiohead TV Covers — Radiohead",
+      "OK Computer — Radiohead",
+      "The Best of Radiohead — Radiohead",
+      "Radiohead — Wesley Willis"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 1,
+     "ms": 20,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Enjoy The Beatles! — Abbey Road",
+      "Abbey Road — Various Artists",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone",
+      "Road to Abbey — J-Rocks"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": null,
+     "ms": 21,
+     "partial": false,
+     "top": [
+      "Kendrick Lamar — Kendrick Lamar",
+      "Kendrication — Kendrick Lamar",
+      "Good Kid Done Good — Kendrick Lamar",
+      "The Takeover — Kendrick Lamar",
+      "The Kendrick Archives — Kendrick Lamar",
+      "Overly Dedicated — Kendrick Lamar",
+      "The New West 2 — Kendrick Lamar",
+      "Bad Kid Chill City — Kendrick Lamar",
+      "Revolution Music — Kendrick Lamar",
+      "untitled unmastered. — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 2,
+     "ms": 822,
+     "partial": false,
+     "top": [
+      "Fleetwood Mac / Rumours — Fleetwood Mac",
+      "Rumours — Fleetwood Mac",
+      "Rumours Live — Fleetwood Mac",
+      "Rumours Outtakes — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Vintage Mac — Fleetwood Mac"
+     ],
+     "note": ""
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 977,
+     "partial": false,
+     "top": [
+      "Homogenic — Björk",
+      "Homogenic Live — Björk",
+      "Epic Symphony — Homogenic",
+      "Echoes of the Universe — Homogenic",
+      "Let a Thousand Flowers Bloom — Homogenic",
+      "Let's Talk: Music from the Original Motion Picture Soundtrack \"Demi Ucok\" — Homogenic"
+     ],
+     "note": ""
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 1025,
+     "partial": false,
+     "top": [
+      "Ágætis byrjun — Sigur Rós"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 1050,
+     "partial": false,
+     "top": [
+      "Lemonade — Beyoncé",
+      "Lemonade Influence — Lemonade Influence",
+      "Lemonade — Lemonade",
+      "Demo — Lemonade",
+      "EP1 — Lemonade",
+      "Lemonade — 椅子樂團",
+      "Pink — Lemonade",
+      "Lemonade — Xinon",
+      "Lemonade — SMILE",
+      "Lemonade — Cavalier"
+     ],
+     "note": ""
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 2,
+     "ms": 1079,
+     "partial": false,
+     "top": [
+      "Ace of Spades — Motörhead",
+      "Ace of Spades — Motörhead",
+      "Ace of Spades — Motörhead",
+      "Ace of Spades — Motörhead",
+      "Bomber / Ace of Spades — Motörhead",
+      "Ace of Spades — OMAS",
+      "Ace of Spades — Ace B47",
+      "Ace of Spades — Link Wray",
+      "Ace of Spades — Union Avenue",
+      "Ace of Spades — Cringe Prince"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 13,
+     "hit@10": 15,
+     "mrr": 0.377
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 1,
+      "mrr": 0.028
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 1,
+      "hit@10": 1,
+      "mrr": 0.125
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.511
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.625
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 0,
+      "mrr": 0.0
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 2,
+      "hit@10": 3,
+      "mrr": 0.406
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.875
+     }
+    }
+   }
+  },
+  {
+   "label": "warm",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": 7,
+     "ms": 31,
+     "partial": false,
+     "top": [
+      "Radiohead — Radiohead",
+      "Radiohead Box — Radiohead",
+      "Creep — Radiohead",
+      "Drill — Radiohead",
+      "Radiohead — In Rainbows",
+      "Radiohead TV Covers — Radiohead",
+      "OK Computer — Radiohead",
+      "The Best of Radiohead — Radiohead",
+      "Radiohead — Wesley Willis",
+      "Live au Forum — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": 14,
+     "ms": 25,
+     "partial": false,
+     "top": [
+      "Kendrick Lamar — Kendrick Lamar",
+      "Kendrication — Kendrick Lamar",
+      "The Takeover — Kendrick Lamar",
+      "Good Kid Done Good — Kendrick Lamar",
+      "The Kendrick Archives — Kendrick Lamar",
+      "The New West 2 — Kendrick Lamar",
+      "Bad Kid Chill City — Kendrick Lamar",
+      "Overly Dedicated — Kendrick Lamar",
+      "Revolution Music — Kendrick Lamar",
+      "untitled unmastered. — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 9,
+     "ms": 22,
+     "partial": false,
+     "top": [
+      "Björk — Björk",
+      "Björk — Björk",
+      "Björk — Björk",
+      "Brant Bjork — Brant Bjork",
+      "Three — Björk",
+      "Björk in Stein — Björk",
+      "Biophilia — Björk",
+      "Björk in Paris — Björk",
+      "Homogenic — Björk",
+      "Vespertine — Björk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": null,
+     "ms": 22,
+     "partial": false,
+     "top": [
+      "Daft Club — Daft Punk",
+      "DJ Mix — Daft Punk",
+      "Deep Cuts — Daft Punk",
+      "Daft Punk Live in NYC — Daft Punk",
+      "Digital Decks — Daft Punk",
+      "Re-Discovery — Daft Punk",
+      "TRON: Legacy — Daft Punk",
+      "New Daft Punk — Grimelda",
+      "Complete Reboot — Daft Punk",
+      "Homework / Discovery — Daft Punk"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 2,
+     "ms": 21,
+     "partial": false,
+     "top": [
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles",
+      "The Beatles — The Beatles"
+     ],
+     "note": ""
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": null,
+     "ms": 19,
+     "partial": false,
+     "top": [
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis",
+      "Miles Davis — Miles Davis"
+     ],
+     "note": ""
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": null,
+     "ms": 18,
+     "partial": false,
+     "top": [
+      "Grateful Dead — Grateful Dead",
+      "Grateful Dead — Grateful Dead",
+      "The Grateful Dead — Grateful Dead",
+      "Grateful Live — Grateful Dead",
+      "Grateful Dead Origins — Grateful Dead",
+      "Eternally Grateful — Grateful Dead",
+      "Merry and Grateful — Grateful Dead",
+      "Thankfully Grateful — Grateful Dead",
+      "Grateful Dead Documentary — Grateful Dead",
+      "The Best of the Grateful Dead — Grateful Dead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": null,
+     "ms": 19,
+     "partial": false,
+     "top": [
+      "Bob Dylan — Bob Dylan",
+      "Bob Dylan — Bob Dylan",
+      "Bob Dylan — Bob Dylan",
+      "Bob Dylan 1961-1962 — Bob Dylan",
+      "Bob Dylan's Dream — Bob Dylan",
+      "The Real Bob Dylan — Bob Dylan",
+      "Bob Dylan at Seventy — Bob Dylan",
+      "Bob Dylan – In Concert — Bob Dylan",
+      "The Best of Bob Dylan — Bob Dylan",
+      "The Bob Dylan Sampler — Bob Dylan"
+     ],
+     "note": ""
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 1,
+     "ms": 19,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "Outside Computer — OK Vancouver OK",
+      "Computer — Computer",
+      "P.R. Computer — P.R. Computer",
+      "Computer Kill — Computer Kill",
+      "Computer Soup — Computer Soup",
+      "Viva Computer — Viva Computer",
+      "Computer Dance — Computer",
+      "Computer Magic — Computer Magic",
+      "Zombie Computer — Zombie Computer"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": null,
+     "ms": 19,
+     "partial": false,
+     "top": [
+      "The Quiet Kind of Blue — Enlly Blue",
+      "Fear of Blue — Fear of Blue",
+      "Kind Of Mosh — Kind Of Mosh",
+      "Field of Blue — Field of Blue",
+      "Some Kind of Hate — Some Kind of Hate",
+      "Some Kind of Animal — Some Kind Of Animal",
+      "Kind Of Like Spitting — Kind of Like Spitting",
+      "Kind of Like Spitting — Kind of Like Spitting",
+      "This Kind of Punishment — This Kind of Punishment",
+      "The Good Kind of Mushroom EP — The Good Kind of Mushroom"
+     ],
+     "note": ""
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 1,
+     "ms": 18,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Abbey Road — Various Artists",
+      "Enjoy The Beatles! — Abbey Road",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone",
+      "Road to Abbey — J-Rocks",
+      "Aces Road — Aces Road",
+      "Bedlam Abbey — Bedlam Abbey",
+      "Carfax Abbey — Carfax Abbey",
+      "Abbey Sings Abbey — Abbey Lincoln",
+      "Abbey Is Blue — Abbey Lincoln"
+     ],
+     "note": ""
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 1,
+     "ms": 18,
+     "partial": false,
+     "top": [
+      "To Pimp a Butterfly — Kendrick Lamar",
+      "To Pimp a Butterfly (Screwed) — Lost Screwed It!",
+      "giving a butterfly a skeleton — giving a butterfly a skeleton",
+      "Princess Goes to the Butterfly Museum — Princess Goes to the Butterfly Museum",
+      "Acoustic Butterfly — Acoustic Butterfly",
+      "Butterfly Trajectory — Butterfly Trajectory",
+      "Butterfly Odyssey — Butterfly Tea",
+      "Butterfly 9 — Butterfly 9",
+      "Butterfly Joe — Butterfly Joe",
+      "Butterfly Boucher — Butterfly Boucher"
+     ],
+     "note": ""
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 16,
+     "ms": 15,
+     "partial": false,
+     "top": [
+      "Rumours — Rumours",
+      "Rumours — PJD",
+      "The Rumours — The Rumours",
+      "Rumours — Ambush",
+      "Rumours EP — 3WA",
+      "Shapes — Rumours",
+      "Megamix — Rumours",
+      "Rumours EP — Edward",
+      "Infant EP — Rumours",
+      "Basin View — Rumours"
+     ],
+     "note": ""
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": null,
+     "ms": 17,
+     "partial": false,
+     "top": [
+      "Dark Side of the Moon — Moon Byul",
+      "Mountains of the Moon — Dark Side Blues",
+      "Doom Side of the Moon — Doom Side of the Moon",
+      "Dark Side of the Cop — Dark Side of the Cop",
+      "The Dark Side of the Force — The Dark Side of the Force",
+      "The Charque Side Of The Moon — The Charque Side of the Moon",
+      "The Dark Side Of The Shroom EP — Dark Side Of The Shroom",
+      "The White Side of the Moon — Moon Man",
+      "Dark Side Of The Shroom Part 2 - The Remixes — Dark Side Of The Shroom",
+      "\"The Dark Side Project of the Moon\" — The Company ltd."
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": null,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "2003‐09‐29: Breakfast With Radiohead, KROQ, Capitol Records, Hollywood, CA, USA — Radiohead",
+      "Radiohead — Radiohead",
+      "Radiohead Box — Radiohead",
+      "Creep — Radiohead",
+      "Drill — Radiohead",
+      "Radiohead: Side A — Blatti",
+      "Radiohead — In Rainbows",
+      "Radiohead TV Covers — Radiohead",
+      "Live au Forum — Radiohead",
+      "OK Computer — Radiohead"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "Revolver — The Beatles",
+      "The Alternate Revolver — The Beatles",
+      "The Silver Beatles — The Beatles",
+      "Basement Revolver — Basement Revolver",
+      "Revolver — The Pokémon Beatles",
+      "The Beatles Collection, Volume 4: Revolver / Let It Be — The Beatles",
+      "The Revolver Sessions — The Beatles",
+      "Revolver — Revolver",
+      "Revolver — Revólver",
+      "Revolver EP — Revolver"
+     ],
+     "note": ""
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 2,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "The Wall — Pink Floyd",
+      "The Wall — Pink Floyd",
+      "Off the Wall — Pink Floyd",
+      "Behind The Wall — Pink Floyd",
+      "Defacing the Wall — Pink Floyd",
+      "Every Brick in the Wall — Pink Floyd",
+      "The Best of The Pink Floyd — The Pink Floyd",
+      "The Best of the Pink Floyd — Pink Floyd",
+      "The Pink Floyd Collection — Pink Floyd",
+      "Backs to the Wall 1978-82 — Pink Floyd"
+     ],
+     "note": ""
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 17,
+     "partial": false,
+     "top": [
+      "Watch the Throne — Jay‐Z & Kanye West",
+      "The Throne — JAY‐Z & Ye",
+      "Watch the Throne — Dean Blunt Meets James Ferraro"
+     ],
+     "note": ""
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": null,
+     "ms": 15,
+     "partial": false,
+     "top": [
+      "Fear of Blue — Fear of Blue",
+      "Field of Blue — Field of Blue",
+      "Blue Coast Inn — 21",
+      "Abbey Is Blue — Abbey Lincoln",
+      "The Quiet Kind of Blue — Enlly Blue",
+      "Blues Beatles — Blues Beatles",
+      "Mountains of the Moon — Dark Side Blues",
+      "Jay-Z Sings the Blues “The Forgotten Stories” — JAY Z",
+      "Watch the Throne — Dean Blunt Meets James Ferraro"
+     ],
+     "note": ""
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": null,
+     "ms": 15,
+     "partial": false,
+     "top": [
+      "Pearl Handled Revolver — Pearl Handled Revolver",
+      "Revolver — Revolver",
+      "Revolver — Revólver",
+      "Rumours — Dougal Reed",
+      "1989 — review",
+      "Revolver EP — Revolver",
+      "Restless Road — Restless Road",
+      "1989 — The Resort",
+      "Basement Revolver — Basement Revolver",
+      "Revólver Plateado — Revólver Plateado"
+     ],
+     "note": ""
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": null,
+     "ms": 15,
+     "partial": false,
+     "top": [
+      "1989 — 盧冠廷",
+      "1989 — Rim.X",
+      "1989 — review",
+      "1989 — To Avoid",
+      "1989 — Gran Kino",
+      "1989 — Narrateur",
+      "1989 — Marc Suun",
+      "1989 — The Resort",
+      "1989 — Ryan Adams",
+      "1989 — Kalle Ahola"
+     ],
+     "note": ""
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": null,
+     "ms": 17,
+     "partial": false,
+     "top": [
+      "21 Guns — 21 Guns",
+      "Piso 21 — Piso 21",
+      "21 Grams — 21 Grams",
+      "21. Peron — 21. Peron",
+      "Creme 21 — Creme 21",
+      "Aurora 21 — Aurora 21",
+      "Empire 21 — Empire 21",
+      "Limi-T 21 — Limi-T 21",
+      "21 BOuTONS — 21 BOuTONS",
+      "GREETING — 21"
+     ],
+     "note": ""
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": 8,
+     "ms": 19,
+     "partial": false,
+     "top": [
+      "Obsessed: Radiohead — Lena Hall",
+      "Radiohead — Radiohead",
+      "Radiohead Box — Radiohead",
+      "Creep — Radiohead",
+      "Drill — Radiohead",
+      "Radiohead — In Rainbows",
+      "Radiohead TV Covers — Radiohead",
+      "OK Computer — Radiohead",
+      "The Best of Radiohead — Radiohead",
+      "Radiohead — Wesley Willis"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 1,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Enjoy The Beatles! — Abbey Road",
+      "Abbey Road — Various Artists",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone",
+      "Road to Abbey — J-Rocks"
+     ],
+     "note": ""
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": null,
+     "ms": 15,
+     "partial": false,
+     "top": [
+      "Kendrick Lamar — Kendrick Lamar",
+      "Kendrication — Kendrick Lamar",
+      "Good Kid Done Good — Kendrick Lamar",
+      "The Takeover — Kendrick Lamar",
+      "The Kendrick Archives — Kendrick Lamar",
+      "Overly Dedicated — Kendrick Lamar",
+      "The New West 2 — Kendrick Lamar",
+      "Bad Kid Chill City — Kendrick Lamar",
+      "Revolution Music — Kendrick Lamar",
+      "untitled unmastered. — Kendrick Lamar"
+     ],
+     "note": ""
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 2,
+     "ms": 17,
+     "partial": false,
+     "top": [
+      "Fleetwood Mac / Rumours — Fleetwood Mac",
+      "Rumours — Fleetwood Mac",
+      "Rumours Live — Fleetwood Mac",
+      "Rumours Outtakes — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Fleetwood Mac — Fleetwood Mac",
+      "Vintage Mac — Fleetwood Mac"
+     ],
+     "note": ""
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "Homogenic — Björk",
+      "Homogenic Live — Björk",
+      "Epic Symphony — Homogenic",
+      "Echoes of the Universe — Homogenic",
+      "Let a Thousand Flowers Bloom — Homogenic",
+      "Let's Talk: Music from the Original Motion Picture Soundtrack \"Demi Ucok\" — Homogenic"
+     ],
+     "note": ""
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "Ágætis byrjun — Sigur Rós"
+     ],
+     "note": ""
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 16,
+     "partial": false,
+     "top": [
+      "Lemonade — Beyoncé",
+      "Lemonade Influence — Lemonade Influence",
+      "Lemonade — Lemonade",
+      "Demo — Lemonade",
+      "EP1 — Lemonade",
+      "Lemonade — 椅子樂團",
+      "Pink — Lemonade",
+      "Lemonade — Xinon",
+      "Lemonade — SMILE",
+      "Lemonade — Cavalier"
+     ],
+     "note": ""
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 2,
+     "ms": 17,
+     "partial": false,
+     "top": [
+      "Ace of Spades — Motörhead",
+      "Ace of Spades — Motörhead",
+      "Ace of Spades — Motörhead",
+      "Ace of Spades — Motörhead",
+      "Bomber / Ace of Spades — Motörhead",
+      "Ace of Spades — OMAS",
+      "Ace of Spades — Ace B47",
+      "Ace of Spades — Link Wray",
+      "Ace of Spades — Union Avenue",
+      "Ace of Spades — Cringe Prince"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 13,
+     "hit@10": 16,
+     "mrr": 0.384
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 2,
+      "mrr": 0.081
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 1,
+      "hit@10": 1,
+      "mrr": 0.125
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.51
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.625
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 0,
+      "mrr": 0.0
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 2,
+      "hit@10": 3,
+      "mrr": 0.406
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.875
+     }
+    }
+   }
+  }
+ ]
+}

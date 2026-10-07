@@ -72,16 +72,24 @@ class MusicBrainzClientTest {
     // --- search ---
 
     @Test
-    void searchMapsMusicBrainzJsonToReleaseGroups() {
+    void searchMapsMusicBrainzJsonToScoredReleaseGroups() {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead-ok-computer.json")));
 
-        List<ReleaseGroup> results = client.searchReleaseGroups("Radiohead - OK Computer", 5);
+        List<SearchHit> results = client.searchReleaseGroups("Radiohead - OK Computer", false, 5);
 
-        assertThat(results).hasSize(5);
-        assertThat(results.getFirst()).isEqualTo(new ReleaseGroup(OK_COMPUTER, "OK Computer", "Radiohead",
-                "Album", "1997-05-21", List.of(new ArtistCredit(RADIOHEAD, "Radiohead", "Radiohead"))));
-        // "Idiot Computer" has no first-release-date in MusicBrainz.
-        assertThat(results).filteredOn(r -> r.title().equals("Idiot Computer"))
+        assertThat(results.getFirst()).isEqualTo(new SearchHit(new ReleaseGroup(OK_COMPUTER, "OK Computer",
+                "Radiohead", "Album", List.of(), "1997-05-21", 39,
+                List.of(new ArtistCredit(RADIOHEAD, "Radiohead", "Radiohead"))), 100));
+    }
+
+    @Test
+    void searchMapsMissingDateToNull() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead.json")));
+
+        // "Radiohead TV Covers" has no first-release-date in MusicBrainz.
+        assertThat(client.searchReleaseGroups("radiohead", false, 10))
+                .extracting(SearchHit::releaseGroup)
+                .filteredOn(r -> r.title().equals("Radiohead TV Covers"))
                 .singleElement().extracting(ReleaseGroup::firstReleaseDate).isNull();
     }
 
@@ -89,20 +97,45 @@ class MusicBrainzClientTest {
     void searchKeepsOnlyAlbumsAndEps() {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead-all-types.json")));
 
-        List<ReleaseGroup> results = client.searchReleaseGroups("Radiohead", 10);
+        List<SearchHit> results = client.searchReleaseGroups("Radiohead", false, 10);
 
         // The fixture has 6 release groups; the 3 Singles are dropped.
-        assertThat(results).extracting(ReleaseGroup::title, ReleaseGroup::primaryType).containsExactly(
-                tuple("OK Computer", "Album"),
-                tuple("Creep", "EP"),
-                tuple("Airbag / How Am I Driving?", "EP"));
+        assertThat(results).extracting(SearchHit::releaseGroup)
+                .extracting(ReleaseGroup::title, ReleaseGroup::primaryType).containsExactly(
+                        tuple("OK Computer", "Album"),
+                        tuple("Creep", "EP"),
+                        tuple("Airbag / How Am I Driving?", "EP"));
+    }
+
+    @Test
+    void searchDropsCompilationsLiveAlbumsAndOtherExcludedTypes() {
+        // Recorded with an older query, so MusicBrainz sent 2 live albums and 2 compilations along.
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead-ok-computer.json")));
+
+        assertThat(client.searchReleaseGroups("Radiohead - OK Computer", false, 5))
+                .extracting(hit -> hit.releaseGroup().title())
+                .containsExactly("OK Computer");
+    }
+
+    @Test
+    void excludedTypeIsKeptWhenItsTitleIsExactlyTheQuery() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-at-folsom-prison.json")));
+
+        List<SearchHit> results = client.searchReleaseGroups("At  Folsom PRISON", false, 5);
+
+        // The live album stays; "At Folsom Prison and San Quentin" (Compilation, Live) only contains the phrase.
+        assertThat(results).extracting(SearchHit::releaseGroup)
+                .extracting(ReleaseGroup::title, ReleaseGroup::artistCredit, ReleaseGroup::secondaryTypes)
+                .containsExactly(
+                        tuple("At Folsom Prison", "Los Tigres del Norte", List.of("Soundtrack")),
+                        tuple("At Folsom Prison", "Johnny Cash", List.of("Live")));
     }
 
     @Test
     void artistCreditJoinsCreditedNamesWithJoinPhrases() {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-jay-z-watch-the-throne.json")));
 
-        ReleaseGroup throne = client.searchReleaseGroups("JAY-Z - Watch the Throne", 3).getFirst();
+        ReleaseGroup throne = client.searchReleaseGroups("JAY-Z - Watch the Throne", false, 3).getFirst().releaseGroup();
 
         // Credited as "Kanye West" on this album, though the artist is called "Ye" today:
         // the credit string keeps the names as printed on the album, the artist list the real artists.
@@ -116,7 +149,7 @@ class MusicBrainzClientTest {
     void searchSendsUserAgentJsonFormatAndTheBuiltQuery() {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead-ok-computer.json")));
 
-        client.searchReleaseGroups("AC/DC - Back in Black", 7);
+        client.searchReleaseGroups("AC/DC - Back in Black", false, 7);
 
         // WireMock decodes the query string, so this also proves \, /, ( and : survived URL encoding.
         musicBrainz.verify(1, getRequestedFor(urlPathEqualTo(SEARCH))
@@ -124,18 +157,44 @@ class MusicBrainzClientTest {
                 .withHeader("Accept", equalTo("application/json"))
                 .withQueryParam("fmt", equalTo("json"))
                 .withQueryParam("limit", equalTo("7"))
-                .withQueryParam("query", equalTo(MusicBrainzQueryBuilder.build("AC/DC - Back in Black"))));
+                .withQueryParam("query", equalTo(MusicBrainzQueryBuilder.build("AC/DC - Back in Black", false).lucene())));
+    }
+
+    @Test
+    void fuzzySearchSendsTheFuzzyQuery() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead.json")));
+
+        client.searchReleaseGroups("radiohed", true, 10);
+
+        musicBrainz.verify(getRequestedFor(urlPathEqualTo(SEARCH))
+                .withQueryParam("query", equalTo(MusicBrainzQueryBuilder.build("radiohed", true).lucene())));
     }
 
     @Test
     void queryWithAmpersandIsOneParameter() {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead-ok-computer.json")));
 
-        client.searchReleaseGroups("Simon & Garfunkel - Bookends", 5);
+        client.searchReleaseGroups("Simon & Garfunkel - Bookends", false, 5);
 
         // An unencoded & would end the parameter at "Simon ".
         musicBrainz.verify(getRequestedFor(urlPathEqualTo(SEARCH))
-                .withQueryParam("query", equalTo(MusicBrainzQueryBuilder.build("Simon & Garfunkel - Bookends"))));
+                .withQueryParam("query", equalTo(MusicBrainzQueryBuilder.build("Simon & Garfunkel - Bookends", false).lucene())));
+    }
+
+    // --- an artist's albums ---
+
+    @Test
+    void artistAlbumsQueriesByArtistIdAndMapsReleaseCounts() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("artist-albums-radiohead.json")));
+
+        List<ReleaseGroup> albums = client.artistAlbums(RADIOHEAD, 10);
+
+        assertThat(albums).hasSize(10).allSatisfy(album -> assertThat(album.artistCredit()).isEqualTo("Radiohead"));
+        assertThat(albums).filteredOn(album -> album.id().equals(OK_COMPUTER))
+                .singleElement().extracting(ReleaseGroup::releaseCount).isEqualTo(39);
+        musicBrainz.verify(getRequestedFor(urlPathEqualTo(SEARCH))
+                .withQueryParam("limit", equalTo("10"))
+                .withQueryParam("query", equalTo(MusicBrainzQueryBuilder.artistAlbums(RADIOHEAD))));
     }
 
     // --- lookup ---
@@ -148,8 +207,10 @@ class MusicBrainzClientTest {
                 .withHeader("User-Agent", equalTo(USER_AGENT))
                 .willReturn(fixture("lookup-ok-computer.json")));
 
+        // A lookup has no release count: MusicBrainz reports it only in search results.
         assertThat(client.lookupReleaseGroup(OK_COMPUTER)).contains(new ReleaseGroup(OK_COMPUTER, "OK Computer",
-                "Radiohead", "Album", "1997-05-21", List.of(new ArtistCredit(RADIOHEAD, "Radiohead", "Radiohead"))));
+                "Radiohead", "Album", List.of(), "1997-05-21", null,
+                List.of(new ArtistCredit(RADIOHEAD, "Radiohead", "Radiohead"))));
     }
 
     @Test
@@ -197,7 +258,7 @@ class MusicBrainzClientTest {
         stubSequence(serviceUnavailable(), fixture("lookup-ok-computer.json"));
 
         client.lookupReleaseGroup(OK_COMPUTER);
-        client.searchReleaseGroups("Radiohead", 5);
+        client.searchReleaseGroups("Radiohead", false, 5);
 
         // 2 attempts for the lookup + 1 for the search: retries count against MusicBrainz's limit too.
         assertThat(permits).hasValue(3);
@@ -228,7 +289,7 @@ class MusicBrainzClientTest {
                 },
                 d -> { }, () -> 0.5);
 
-        assertThatThrownBy(() -> refused.searchReleaseGroups("Radiohead", 5)).isInstanceOf(MusicBrainzException.class);
+        assertThatThrownBy(() -> refused.searchReleaseGroups("Radiohead", false, 5)).isInstanceOf(MusicBrainzException.class);
         assertThat(musicBrainz.getAllServeEvents()).isEmpty();
     }
 
@@ -239,7 +300,7 @@ class MusicBrainzClientTest {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(fixture("search-radiohead-ok-computer.json")
                 .withFixedDelay((int) READ_TIMEOUT.multipliedBy(3).toMillis())));
 
-        assertThatThrownBy(() -> client.searchReleaseGroups("Radiohead", 5))
+        assertThatThrownBy(() -> client.searchReleaseGroups("Radiohead", false, 5))
                 .isInstanceOf(MusicBrainzException.class);
         assertThat(backoffs).isEmpty(); // timeouts aren't retried: the user is waiting
     }
@@ -248,7 +309,7 @@ class MusicBrainzClientTest {
     void unexpectedStatusIsAnError() {
         musicBrainz.stubFor(get(urlPathEqualTo(SEARCH)).willReturn(aResponse().withStatus(400)));
 
-        assertThatThrownBy(() -> client.searchReleaseGroups("Radiohead", 5))
+        assertThatThrownBy(() -> client.searchReleaseGroups("Radiohead", false, 5))
                 .isInstanceOf(MusicBrainzException.class)
                 .hasMessageContaining("400");
     }

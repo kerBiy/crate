@@ -1,0 +1,6384 @@
+{
+ "mode": "mb",
+ "passes": [
+  {
+   "label": "mb",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": null,
+     "mb_query": "(releasegroup:(radiohead) OR artist:(radiohead)) AND primarytype:(album OR ep)",
+     "mb_total": 463,
+     "top": [
+      "Radiohead — Radiohead (EP, n=1)",
+      "Radiohead Box — Radiohead (Album/Compilation, n=1)",
+      "Radiohead TV Covers — Radiohead (EP, n=1)",
+      "The Best of Radiohead — Radiohead (Album/Compilation, n=1)",
+      "2003‐09‐29: Breakfast With Radiohead, KROQ, Capitol Records, Hollywood, CA, USA — Radiohead (Album/Live, n=1)",
+      "1995-06-01: PASTE.COM Presents: Radiohead Live at Tramps: New York, NY, USA — Radiohead (Album/Live, n=2)",
+      "Greenhouse Effect vs. Radiohead — Greenhouse Effect vs. Radiohead (Album/Remix, n=1)",
+      "Radiohead — In Rainbows (Album, n=1)",
+      "Radiohead — Wesley Willis (Album, n=1)",
+      "RADIOHEAD — Various Artists (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "59f25ce9-ae14-43c7-a09e-3a911060043a",
+       "title": "Radiohead",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d8dd81ab-d840-4663-8da3-d8c27c2eaf91",
+       "title": "Radiohead Box",
+       "score": 87,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "3ab9fbe7-b809-3db8-96cf-4de6e56bb180",
+       "title": "Radiohead TV Covers",
+       "score": 86,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "af44dc42-1bf4-4cdc-ad98-cdfdc2312b09",
+       "title": "The Best of Radiohead",
+       "score": 77,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "3e19d5e9-4ac5-33a9-a1f8-5c8796c80363",
+       "title": "2003‐09‐29: Breakfast With Radiohead, KROQ, Capitol Records, Hollywood, CA, USA",
+       "score": 62,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "6ac50c71-cfbf-4f6d-acb0-84af1462aae3",
+       "title": "1995-06-01: PASTE.COM Presents: Radiohead Live at Tramps: New York, NY, USA",
+       "score": 61,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "11f16b31-da2e-48b8-90a1-f65014bc8262",
+       "title": "Greenhouse Effect vs. Radiohead",
+       "score": 61,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "d5eb0376-6f0f-4b28-b5d1-4584b9be8d75",
+       "title": "Radiohead",
+       "score": 55,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "89bbac22-8be9-40ca-a85f-bbf81d4a131d",
+       "title": "Radiohead",
+       "score": 55,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "cab01d41-0bce-4138-b7e5-68b75e3407ab",
+       "title": "RADIOHEAD",
+       "score": 55,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "9a3cf300-2678-4171-b654-2a9989df9f0f",
+       "title": "Obsessed: Radiohead",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ccb43df8-6c32-45f4-8f7b-c1ddc81e7d51",
+       "title": "Radiohead 2",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "9402e2e4-448d-4ad6-a572-7d363613a123",
+       "title": "The Radiohead EP",
+       "score": 47,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d95559ae-37eb-4c95-9f85-37b9305104e8",
+       "title": "Radiohead: Side A",
+       "score": 47,
+       "count": 0,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "62db99f0-2629-305c-8c2d-b860b5b99744",
+       "title": "Com Lag: 2plus2isfive",
+       "score": 46,
+       "count": 5,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a20ef15b-50d7-457a-90ab-12c06038d2ca",
+       "title": "B‐Sides",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "471b4ff5-004f-4a7b-b0ba-a0837c41da14",
+       "title": "Creep",
+       "score": 46,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "104ac1a8-2412-33a7-9b9b-179a3c939e20",
+       "title": "Talk Show Host",
+       "score": 46,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1626bbb8-05bd-3621-a0c7-9278e3b79dca",
+       "title": "No Surprises / Running From Demons",
+       "score": 46,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "99445a2b-578a-321e-851e-c6539bfbbd7f",
+       "title": "My Iron Lung",
+       "score": 46,
+       "count": 16,
+       "secondary": []
+      },
+      {
+       "id": "b84e504e-1da0-3ca3-b94c-b047afc82488",
+       "title": "1994-12-13: Beacon Theatre, New York City, NY, USA",
+       "score": 46,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "7b39ccb5-b49c-37e1-80ec-5ac0b2a89fe4",
+       "title": "Airbag / How Am I Driving?",
+       "score": 46,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "b3979f8d-573e-3a77-8b8f-6b5c47e15be7",
+       "title": "Live au Forum",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "b2246643-115e-3b53-9a96-6d2df930f970",
+       "title": "Drill",
+       "score": 46,
+       "count": 5,
+       "secondary": []
+      },
+      {
+       "id": "54bfd4d8-2bd3-4241-9eac-b8dc778b8b3f",
+       "title": "For Your Consideration – The Live EP Work Tapes",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      }
+     ],
+     "note": "total 463, 6/10 of top have secondary types"
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": null,
+     "mb_query": "(releasegroup:(kendrick lamar) OR artist:(kendrick lamar)) AND primarytype:(album OR ep)",
+     "mb_total": 206,
+     "top": [
+      "Kendrick Lamar — Kendrick Lamar (EP, n=3)",
+      "The Kendrick Archives — Kendrick Lamar (Album/Compilation, n=1)",
+      "Mike Kendrick — Mike Kendrick (Album/Compilation, n=1)",
+      "KENDRICK LAMAR (Live Instrumentals) — OMA (Album/Live, n=1)",
+      "The Steppers Tour (live from Paris) — Kendrick Lamar (EP/Live, n=1)",
+      "Bad Kid Chill City — Kendrick Lamar (EP, n=2)",
+      "8-Bit Versions of Kendrick Lamar — 8-Bit Misfits (Album, n=1)",
+      "Kendrication — Kendrick Lamar (Album/Mixtape/Street, n=2)",
+      "Straight Outta Compton — Kendrick Lamar (Album/Mixtape/Street, n=1)",
+      "Welcome to Compton — Kendrick Lamar (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "3846827d-6120-4feb-b057-9b9e922daeab",
+       "title": "Kendrick Lamar",
+       "score": 100,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "05aed423-c4af-49a5-b1ea-335ab1148e00",
+       "title": "The Kendrick Archives",
+       "score": 64,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "e7c9343e-8a2e-4776-a95c-d2835e5c2918",
+       "title": "Mike Kendrick",
+       "score": 48,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "2d32a40d-e430-4b60-a6ab-198aeddbe52e",
+       "title": "KENDRICK LAMAR (Live Instrumentals)",
+       "score": 45,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "45f94a71-03c9-460d-b7a6-01822311e677",
+       "title": "The Steppers Tour (live from Paris)",
+       "score": 43,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "b3ed5743-834a-4f6e-ba76-47cf99b697d1",
+       "title": "Bad Kid Chill City",
+       "score": 43,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "1f7ee065-dfb5-4b32-8f9e-b0fae096c8f1",
+       "title": "8-Bit Versions of Kendrick Lamar",
+       "score": 41,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "8fd09561-4d50-4e9d-86e9-db07fde88087",
+       "title": "Kendrication",
+       "score": 40,
+       "count": 2,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "8678803b-0f4e-4f39-a900-d88746596fc7",
+       "title": "Straight Outta Compton",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "bec925b8-8871-43b8-98ee-7b39f10617c9",
+       "title": "Welcome to Compton",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "7900df56-fa11-4888-a1f1-e9488b5840d5",
+       "title": "The Takeover",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "048d17aa-bcf7-4f3d-abe4-148c611bacb7",
+       "title": "Thoughts & Actions",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "117ddedc-41fd-4d75-8af7-f069744b3cb3",
+       "title": "Revolution Music",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "4e44335c-3f2b-4874-a6c3-71b5e65f75d5",
+       "title": "untitled unmastered.",
+       "score": 40,
+       "count": 13,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "211cf1c5-5508-46fe-b664-9bf63180f6e5",
+       "title": "The New West Mixtape",
+       "score": 40,
+       "count": 2,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "0baa9a11-f74a-486c-be70-f2756bc537ba",
+       "title": "Welcome to Compton 2",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "ee4460fc-344d-43f1-981f-ac374b8c6db4",
+       "title": "Ever Heard of Section 80",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "cf351529-806a-4a43-9273-2d5aeb61f9e8",
+       "title": "Tu Pimp a Caterpillar (Tu‐P‐A‐C)",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "0ab09543-d0a2-4fd1-ab59-9e1e9207640a",
+       "title": "The Art of Peer Pressure",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "b972d088-9ef2-4386-991f-baad5a873837",
+       "title": "Overly Dedicated",
+       "score": 40,
+       "count": 4,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "ebd7bd3a-e872-4016-85a1-1868e2036a08",
+       "title": "Hub City Threat: Minor of the Year",
+       "score": 40,
+       "count": 2,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "bf52193e-123b-4e8b-86c3-745efd633a1b",
+       "title": "Good Kid Done Good",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "0cf96110-28aa-472c-926f-b972ba21f567",
+       "title": "Cartoon and Cereal",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "1f300dfd-fc5a-469e-b39c-76a9bf27805c",
+       "title": "Riding for compton",
+       "score": 40,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "afa728e7-5c3c-40e7-94b2-bb6b3b9136cb",
+       "title": "The New West 2",
+       "score": 40,
+       "count": 2,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      }
+     ],
+     "note": "total 206, 7/10 of top have secondary types"
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 23,
+     "mb_query": "(releasegroup:(bjork) OR artist:(bjork)) AND primarytype:(album OR ep)",
+     "mb_total": 216,
+     "top": [
+      "Björk — Björk (EP/Compilation, n=1)",
+      "Björk — Björk (Album/Compilation, n=1)",
+      "Björk — Björk (Album/Interview/Live, n=1)",
+      "Björk — Björk Guðmundsdóttir (Album, n=19)",
+      "Björk in Stein — Björk (Album/Live, n=1)",
+      "Björk in Paris — Björk (Album/Live, n=1)",
+      "Brant Bjork — Brant Bjork (Album, n=2)",
+      "All Is Full of Björk — Björk (EP/Compilation, n=1)",
+      "MTV History 2000: Björk — Björk (Album/Compilation, n=1)",
+      "The Cover Mix: Björk — Björk (Album/DJ-mix, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "5ba71f2a-6590-3a81-a51f-e7e04a18c6cf",
+       "title": "Björk",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "24839267-aeb5-4261-9bf0-e0b28cb61c9b",
+       "title": "Björk",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "53fe1f4c-4a1a-4aae-86dd-ef01caf1a50f",
+       "title": "Björk",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Interview",
+        "Live"
+       ]
+      },
+      {
+       "id": "e7190579-8711-3422-af2f-16337139ed67",
+       "title": "Björk",
+       "score": 87,
+       "count": 19,
+       "secondary": []
+      },
+      {
+       "id": "aedd47b4-7f76-35b8-845d-a20e1f4c3934",
+       "title": "Björk in Stein",
+       "score": 81,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "662a0b6b-c750-3054-9e7f-a3a3d7f92e57",
+       "title": "Björk in Paris",
+       "score": 81,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "bf81cd19-3ac2-457f-aaac-e29bbff8e002",
+       "title": "Brant Bjork",
+       "score": 80,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "0c89d9bd-504e-4c1b-8d74-8a25cb26c7fd",
+       "title": "All Is Full of Björk",
+       "score": 79,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "f3c89074-3eaf-30c3-b6e0-662bfcdb0de2",
+       "title": "MTV History 2000: Björk",
+       "score": 77,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "6e11cb2a-3773-45d0-999f-6a81213a3e0c",
+       "title": "The Cover Mix: Björk",
+       "score": 77,
+       "count": 1,
+       "secondary": [
+        "DJ-mix"
+       ]
+      },
+      {
+       "id": "6661a61a-559c-4036-85b7-b33d517bdb58",
+       "title": "Apple Music Live: Björk (Cornucopia)",
+       "score": 73,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "d5f37ece-98dd-3c74-892c-37b1e19efa3f",
+       "title": "Brant Bjork & The Operators",
+       "score": 66,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "ce6484f6-55ab-4fc3-8d6b-bcce87642779",
+       "title": "Björk Deathkvlt",
+       "score": 47,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "83c1fa29-6537-3d0c-97c4-29069fa4609e",
+       "title": "The Best Mixes From the Album – Debut for All the People Who Don’t Buy White‐Labels",
+       "score": 46,
+       "count": 6,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "65c4e725-0254-458a-841f-54671f4e5d9e",
+       "title": "Vulnicura Remix Project, Part Three",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "9bb59ca0-254c-3fa6-a353-7e07b8e4595e",
+       "title": "Celebrating Wood and Metal",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "b86153fd-8699-3ff8-87d8-0ea2a05a4a82",
+       "title": "Three",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "0ea34321-490d-4870-9c83-7a66e7f998e9",
+       "title": "Vulnicura Remix Project, Part One",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "de084df9-d05a-45d5-95e5-d1f0dc26d5f4",
+       "title": "Vulnicura Remix Project, Part Two",
+       "score": 46,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "8df81a39-8001-3419-8caa-c61468ca8ba9",
+       "title": "Read: Interpreting Björk",
+       "score": 41,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a6229bda-72e5-3fec-b16e-ec381269f278",
+       "title": "Sketches of Björk",
+       "score": 41,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "61db2db8-1775-4663-9dff-d5ec2139dbea",
+       "title": "Biophilia",
+       "score": 41,
+       "count": 20,
+       "secondary": []
+      },
+      {
+       "id": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+       "title": "Homogenic",
+       "score": 41,
+       "count": 29,
+       "secondary": []
+      },
+      {
+       "id": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+       "title": "Vespertine",
+       "score": 41,
+       "count": 28,
+       "secondary": []
+      },
+      {
+       "id": "988fa5ad-3d93-4d86-b355-6a520cca9824",
+       "title": "Debut / Post",
+       "score": 41,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      }
+     ],
+     "note": "total 216, 8/10 of top have secondary types"
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": null,
+     "mb_query": "(releasegroup:(daft punk) OR artist:(daft punk)) AND primarytype:(album OR ep)",
+     "mb_total": 3031,
+     "top": [
+      "Daft Punk Live in NYC — Daft Punk (Album/Live, n=1)",
+      "Daft Club — Daft Punk (Album/Remix, n=9)",
+      "Human After All / Daft Club — Daft Punk (Album/Compilation, n=3)",
+      "D.A.F.T. : A Story About Dogs, Androids, Firemen and Tomatoes — Daft Punk (Album/Compilation, n=2)",
+      "Louis Vuitton Spring/Summer ’08 – Women’s Wear — Daft Punk (EP/DJ-mix, n=1)",
+      "Complete Reboot — Daft Punk (EP, n=1)",
+      "The Remixes, Volume 3 — Daft Punk (EP, n=1)",
+      "TRON: Legacy Collector’s Digital EP — Daft Punk (EP/Soundtrack, n=1)",
+      "Tron: Legacy Score — Daft Punk (EP/Soundtrack, n=1)",
+      "Discovery (Sample Bandit Bootlegs) — Daft Punk (EP, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "63c8cb6e-91bb-4fb9-a5bc-f97a6980957b",
+       "title": "Daft Punk Live in NYC",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "1fd2e0fe-90f6-35ca-92c0-d816ab3bb79c",
+       "title": "Daft Club",
+       "score": 94,
+       "count": 9,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "3c22791b-bbfe-466f-a818-611767716335",
+       "title": "Human After All / Daft Club",
+       "score": 81,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "b791a9cc-dc92-45ee-b5b9-be5617823411",
+       "title": "D.A.F.T. : A Story About Dogs, Androids, Firemen and Tomatoes",
+       "score": 75,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "182d5b24-b70a-4942-b73a-3fa5b3c9aa61",
+       "title": "Louis Vuitton Spring/Summer ’08 – Women’s Wear",
+       "score": 62,
+       "count": 1,
+       "secondary": [
+        "DJ-mix"
+       ]
+      },
+      {
+       "id": "705400b0-c66f-42df-80c3-21051a7f17b5",
+       "title": "Complete Reboot",
+       "score": 62,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2548c1e0-7fc2-4f6a-896c-52367c68e010",
+       "title": "The Remixes, Volume 3",
+       "score": 62,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b3916e07-4d0f-4ff0-bfd6-0f94060d401e",
+       "title": "TRON: Legacy Collector’s Digital EP",
+       "score": 62,
+       "count": 1,
+       "secondary": [
+        "Soundtrack"
+       ]
+      },
+      {
+       "id": "44fbe109-73c7-43ff-93f7-d6dbb31c420c",
+       "title": "Tron: Legacy Score",
+       "score": 62,
+       "count": 1,
+       "secondary": [
+        "Soundtrack"
+       ]
+      },
+      {
+       "id": "df7d1104-7543-4868-b6c4-92ab83ad27f3",
+       "title": "Discovery (Sample Bandit Bootlegs)",
+       "score": 62,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "025a0ba5-5271-4927-840f-90e2a6231527",
+       "title": "Louis Vuitton Runway Show Mix (Spring / Summer 2008)",
+       "score": 62,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6e4d73c1-9a9d-4bf5-bb7e-7c6857824492",
+       "title": "New Daft Punk",
+       "score": 58,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6f374838-0f94-3066-a8f5-3ec758e4dace",
+       "title": "2006-06-30: Eurockéennes, Belfort, France",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "94c9ccc0-0c9b-306b-8d91-3a45bbdf30bc",
+       "title": "DJ Mix",
+       "score": 58,
+       "count": 4,
+       "secondary": [
+        "Compilation",
+        "DJ-mix"
+       ]
+      },
+      {
+       "id": "68360aa5-6003-403d-8b4f-d04cbda9516c",
+       "title": "Digital Decks",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "100bd201-e1ab-4925-a01f-e69046888069",
+       "title": "About and Technologic Mashup",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "DJ-mix"
+       ]
+      },
+      {
+       "id": "5d68adea-fcf7-4a85-968b-49c3078e1f5c",
+       "title": "2006-11-04: Live @ Bue Festival, Buenos Ares, Argentina",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "c1839360-3cab-4176-a0cd-ce831459b6a4",
+       "title": "Live @ We Are Family",
+       "score": 58,
+       "count": 2,
+       "secondary": [
+        "DJ-mix"
+       ]
+      },
+      {
+       "id": "b585e56e-69cb-4f53-9597-320af5e5f541",
+       "title": "TRON: Legacy",
+       "score": 58,
+       "count": 26,
+       "secondary": [
+        "Soundtrack"
+       ]
+      },
+      {
+       "id": "be3df8a5-39cb-4a8c-bb17-a079b13faf74",
+       "title": "Re-Discovery",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "d34c6b11-6b3b-41ea-9fc6-44db1cc6577a",
+       "title": "Random Access Memories (drumless edition)",
+       "score": 58,
+       "count": 3,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "1ed45c8c-9abd-4ec3-9ff6-43d264f0e6b7",
+       "title": "Homework / Discovery",
+       "score": 58,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "e7f82de1-22bd-4ed9-9e87-0dd5d94291db",
+       "title": "Deep Cuts",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "2a7840ab-9567-37f4-85b8-3208db09434b",
+       "title": "Discovery: Bonus Tracks From daftclub.com",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "cb83a67b-428e-379c-bfd0-58031e4ee700",
+       "title": "2007-10-27: Vegoose 2007: Sam Boyd Stadium, Las Vegas, NV, USA",
+       "score": 58,
+       "count": 3,
+       "secondary": [
+        "Live"
+       ]
+      }
+     ],
+     "note": "total 3031, 7/10 of top have secondary types"
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 15,
+     "mb_query": "(releasegroup:(the beatles) OR artist:(the beatles)) AND primarytype:(album OR ep)",
+     "mb_total": 552031,
+     "top": [
+      "The Beatles — The Beatles (EP/Compilation, n=1)",
+      "4-By the Beatles — The Beatles (EP/Compilation, n=2)",
+      "The Beatles’ Hits — The Beatles (EP, n=11)",
+      "The Beatles — The Beatles (Album/Compilation, n=1)",
+      "The Beatles — The Beatles (Album/Compilation, n=1)",
+      "The Beatles — The Beatles (Album/Compilation, n=10)",
+      "The Beatles — The Beatles (Album/Compilation, n=3)",
+      "The Beatles — The Beatles (Album/Compilation, n=1)",
+      "The Beatles — The Beatles (Album/Compilation, n=2)",
+      "The Beatles — The Beatles (Album, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "012f17a8-e5f6-4518-aa36-135bf621b1c7",
+       "title": "The Beatles",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "652e5dc1-c48a-39c5-93f2-cdbad3718113",
+       "title": "4-By the Beatles",
+       "score": 94,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "794a5fcd-4098-3519-b4b6-e66707f4cbc3",
+       "title": "The Beatles’ Hits",
+       "score": 94,
+       "count": 11,
+       "secondary": []
+      },
+      {
+       "id": "452ade55-d271-35f9-80f1-9730239b77e7",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "ea6f4e02-1ebd-4b64-8dfe-dbb8535f18b8",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "3002658c-fcf9-4f9b-9a41-c96ea3b9e2fc",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 10,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "8b7c6e7f-88ba-3db6-80ba-d9a088222ba3",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "3d4f96a0-cca2-4ee4-9e66-4c8a57ed6709",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "9f2fbc77-ea98-4a45-98dc-88815c02bd03",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "71aa4dac-b705-4b6e-be77-ecfa8c238ad0",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4e6e2bc8-7b79-31e0-bd47-a84fba512ee4",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "db1d1fa5-c328-3514-a30c-fa6a4321ffe4",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "26775e40-7227-403a-9fc4-6a0f5206295b",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "de56455b-2894-4ca7-978a-dbfb350286e4",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "055be730-dcad-31bf-b550-45ba9c202aa3",
+       "title": "The Beatles",
+       "score": 94,
+       "count": 58,
+       "secondary": []
+      },
+      {
+       "id": "ccff5932-046f-36f4-964f-45b7923ec39f",
+       "title": "Four by the Beatles",
+       "score": 89,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "e9594026-b87b-3830-8020-6ccc32d5c1a7",
+       "title": "The Beatles’ Million Sellers",
+       "score": 89,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "7657ddbe-5902-4417-9749-e0051434f496",
+       "title": "Introducing... The Beatles / Meet The Beatles!",
+       "score": 88,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a1abf9a5-f5d6-4342-acc4-77145fd305d4",
+       "title": "The Essential Beatles",
+       "score": 88,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "02471224-e5a9-369c-bc65-68d944d46201",
+       "title": "The Early Beatles",
+       "score": 88,
+       "count": 16,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a4fcc821-2715-3f06-a8eb-a8ee8a7c2772",
+       "title": "The Beatles Beat",
+       "score": 88,
+       "count": 4,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "5b896296-b598-3379-bb30-4d9c3b7dd1f2",
+       "title": "The Beatles Ballads",
+       "score": 88,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a63dc65f-09f2-359b-a10e-648f00ecd96c",
+       "title": "With The Beatles",
+       "score": 88,
+       "count": 52,
+       "secondary": []
+      },
+      {
+       "id": "03e1229b-f0e2-4c7c-8f36-c0908e29d444",
+       "title": "The Silver Beatles",
+       "score": 88,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "4abfda52-e0b4-4502-902d-cfae9af0a630",
+       "title": "The Compleat Beatles",
+       "score": 88,
+       "count": 1,
+       "secondary": [
+        "Interview"
+       ]
+      }
+     ],
+     "note": "total 552031, 8/10 of top have secondary types"
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": null,
+     "mb_query": "(releasegroup:(miles davis) OR artist:(miles davis)) AND primarytype:(album OR ep)",
+     "mb_total": 4885,
+     "top": [
+      "Miles Davis — Miles Davis (EP, n=1)",
+      "Miles Davis — Miles Davis (EP, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)",
+      "Miles Davis — Miles Davis (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "d72609a4-aa31-4302-a34c-9d0734f6c461",
+       "title": "Miles Davis",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "adb08873-b5f7-4ad6-9b7d-a7318f7f5386",
+       "title": "Miles Davis",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "3956c126-777c-3fe2-8f09-31762533aeb7",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "b551791c-9f3f-3213-8e0a-1cec99cdb4b1",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "8575e303-c962-3f1d-9db6-3a52678f478c",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "38712adf-1d6a-4320-b6bb-8619f8e2a2a9",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "00188989-57ee-47b2-a221-0ea114f7039e",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "f03573f5-914e-4f1c-9a68-331e20605092",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "fa4de8c7-2760-446c-b230-cb7a023a410b",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "cd2c2818-079b-47f1-82e3-f4d4b004d240",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "0a1b02b0-452f-4e75-9f13-ce72160111bc",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "438bad6c-7410-454e-95bd-6c3fbebfa225",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "3c8d03f7-8890-45d4-8315-96d3450a8437",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "06522146-8ca6-4dd5-a229-bd92f2b45d52",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "812bcf6c-c50f-4c69-b74d-65b4fe81fd05",
+       "title": "Miles Davis",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a9191dcd-23bf-4801-979e-41339b104d96",
+       "title": "Miles Davis Quartet",
+       "score": 89,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "1f5ea6da-aa5c-46fb-bbf4-85701e95ae84",
+       "title": "Simply Miles Davis",
+       "score": 89,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "4d20b6f5-73b5-4ed7-a875-4e4259473885",
+       "title": "Timeless: Miles Davis",
+       "score": 89,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a28477bc-b447-44db-ad82-1a49c77b7f85",
+       "title": "Miles Davis Portrait",
+       "score": 89,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "26dff201-76e8-48ac-b681-e6a39bb36831",
+       "title": "Absolute Miles Davis",
+       "score": 89,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "909a1668-1039-3460-b182-98bc293d5835",
+       "title": "Miles Davis Story",
+       "score": 89,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "e838e0df-9e8c-4aef-a7ce-c86e47bb4549",
+       "title": "Miles Davis For You",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "74b34be2-c48e-49a0-b4ac-d388135d045f",
+       "title": "Miles Davis: Volume 1 / Miles Davis: Volume 2",
+       "score": 84,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "5ce9daa1-2f17-4977-a805-5be681641955",
+       "title": "Miles: The Best of Miles Davis",
+       "score": 84,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "333d1d53-ff19-399d-9501-2bc38f9ab843",
+       "title": "Best of Miles Davis",
+       "score": 84,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      }
+     ],
+     "note": "total 4885, 8/10 of top have secondary types"
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": null,
+     "mb_query": "(releasegroup:(grateful dead) OR artist:(grateful dead)) AND primarytype:(album OR ep)",
+     "mb_total": 12074,
+     "top": [
+      "Dead! Dead! Dead! (EP 2) — Dead! Dead! Dead! (EP, n=1)",
+      "Grateful Dead — Grateful Dead (Album/Live, n=1)",
+      "Grateful Dead — Grateful Dead (Album/Live, n=17)",
+      "Grateful Dead Documentary — Grateful Dead (Album/Compilation, n=1)",
+      "Grateful Dead Origins — Grateful Dead (Album/Compilation, n=1)",
+      "The Grateful Dead — Grateful Dead (Album, n=49)",
+      "Grateful Dead Records Collection — Grateful Dead (Album/Compilation, n=2)",
+      "Flashback With the Grateful Dead — Grateful Dead (Album/Compilation, n=1)",
+      "The Grateful Dead Movie Soundtrack — Grateful Dead (Album/Live, n=2)",
+      "The History of the Grateful Dead — Grateful Dead (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "024ba57d-84a5-3d04-874f-df453c72af02",
+       "title": "Dead! Dead! Dead! (EP 2)",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "397ff8fb-3a22-4ba2-89eb-0a71b52ddb4f",
+       "title": "Grateful Dead",
+       "score": 73,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "77ccd52e-48ff-38a7-a603-5ad4633703f9",
+       "title": "Grateful Dead",
+       "score": 73,
+       "count": 17,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "727297d4-96c1-4274-b256-9fd41ead692f",
+       "title": "Grateful Dead Documentary",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "cf32920c-5714-4466-b166-59ad67ebde56",
+       "title": "Grateful Dead Origins",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "1d272cb1-f8ba-3e65-93ec-cefbbdad5514",
+       "title": "The Grateful Dead",
+       "score": 69,
+       "count": 49,
+       "secondary": []
+      },
+      {
+       "id": "79b5c0d2-e98a-4e90-b450-30c5e7d3f3c0",
+       "title": "Grateful Dead Records Collection",
+       "score": 65,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "273f49db-b351-4ef2-a60a-16234a548ed5",
+       "title": "Flashback With the Grateful Dead",
+       "score": 62,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "014a9559-4e75-3ccb-93b9-46299ad6c2b1",
+       "title": "The Grateful Dead Movie Soundtrack",
+       "score": 62,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "9dafa50b-288b-4f2e-ad4e-cba62f91c896",
+       "title": "The History of the Grateful Dead",
+       "score": 59,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a9e39773-f787-32c3-8f20-73da233c4bf7",
+       "title": "The Very Best of Grateful Dead",
+       "score": 59,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "f4b1b4f3-9c9d-32cc-b187-7687330b709f",
+       "title": "Ladies and Gentlemen… The Grateful Dead",
+       "score": 59,
+       "count": 3,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "82daf0f6-ca42-44d4-ba23-293baf3b6980",
+       "title": "The Best of the Grateful Dead",
+       "score": 59,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "0f04989b-a200-40df-b418-a60d5c693cf3",
+       "title": "Eternally Grateful",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "26d00561-d542-4997-9de2-979cdbb95313",
+       "title": "Grateful Live",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "62a1f47d-7c58-48c9-9041-4cc3b3cb0d7f",
+       "title": "Thankfully Grateful",
+       "score": 58,
+       "count": 1,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "d06abcbb-e704-426e-a0db-815fdfbdfc5f",
+       "title": "Pop History, Vol. 13: The Grateful Dead",
+       "score": 57,
+       "count": 1,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "e1286570-a8b2-483b-8b25-5389ea7ab082",
+       "title": "The Best of the Grateful Dead (1967–1977)",
+       "score": 57,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "024cf6d1-9d97-390d-91a4-3868f2946cb4",
+       "title": "Rockin’ the Rhein With the Grateful Dead",
+       "score": 57,
+       "count": 3,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "ace5692a-30ab-35c8-9614-d27583eda654",
+       "title": "Steppin’ Out With the Grateful Dead: England ’72",
+       "score": 55,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "62e39073-17f0-424c-84b2-ff35198b46b4",
+       "title": "Merry and Grateful",
+       "score": 55,
+       "count": 1,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "8794fd09-c860-39f1-9f3f-d54841d5cbf0",
+       "title": "History of the Grateful Dead, Volume 1: Bear’s Choice",
+       "score": 54,
+       "count": 4,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "745f596d-f75a-3c8e-9ff1-7367019a1611",
+       "title": "Skeletons From the Closet: The Best of the Grateful Dead",
+       "score": 52,
+       "count": 8,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "31c2f643-2cf9-4180-87bc-f81a437528f9",
+       "title": "The Best of the Grateful Dead Live",
+       "score": 52,
+       "count": 1,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "8b910353-7d7f-4868-8dea-f51935548714",
+       "title": "Grateful Dead Live — 1991-08-16 Shoreline Amphitheatre , Mountain View, CA",
+       "score": 51,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      }
+     ],
+     "note": "total 12074, 8/10 of top have secondary types"
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": 14,
+     "mb_query": "(releasegroup:(bob dylan) OR artist:(bob dylan)) AND primarytype:(album OR ep)",
+     "mb_total": 5976,
+     "top": [
+      "Bob Dylan — Bob Dylan (Album/Compilation, n=1)",
+      "Bob Dylan — Bob Dylan (Album/Compilation, n=2)",
+      "Bob Dylan — Bob Dylan (Album, n=20)",
+      "Bob Dylan’s Chronicles — Bob Dylan (Album/Compilation, n=1)",
+      "Bob Dylan 1961-1962 — Bob Dylan (Album/Compilation, n=1)",
+      "Bob Dylan's Dream — Bob Dylan (Album/Compilation, n=1)",
+      "Bob Dylan's Political World — Bob Dylan (Album/Live, n=1)",
+      "The Bob Dylan Sampler — Bob Dylan (Album, n=1)",
+      "Bob Dylan at Seventy — Bob Dylan (Album/Compilation, n=1)",
+      "Bob Dylan’s Greatest Hits — Bob Dylan (Album/Compilation, n=2)"
+     ],
+     "groups": [
+      {
+       "id": "2e45b33b-248e-33bb-b860-97b7733105f2",
+       "title": "Bob Dylan",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "06904e7d-ea93-41d8-851e-6cfe00efbc48",
+       "title": "Bob Dylan",
+       "score": 100,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "6ac612a5-e815-3fed-b341-8b3faa351df4",
+       "title": "Bob Dylan",
+       "score": 100,
+       "count": 20,
+       "secondary": []
+      },
+      {
+       "id": "8c6a3c7e-4065-3f3b-93ca-3f92ddbe6353",
+       "title": "Bob Dylan’s Chronicles",
+       "score": 93,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "af0f8b7d-25e2-4924-b5a4-2d225fe07e5f",
+       "title": "Bob Dylan 1961-1962",
+       "score": 93,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "8760388a-3b96-4bc3-8cff-589899edc94b",
+       "title": "Bob Dylan's Dream",
+       "score": 93,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "bc3b98d5-85dd-402f-b0db-30565696999a",
+       "title": "Bob Dylan's Political World",
+       "score": 87,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "dcd6e93c-c1e5-46a1-8e5f-b516c3bc71ac",
+       "title": "The Bob Dylan Sampler",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "3b416173-32f8-42c7-9b5b-955b4980e54f",
+       "title": "Bob Dylan at Seventy",
+       "score": 87,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "131da5aa-e294-3ba5-9317-282ff939c70e",
+       "title": "Bob Dylan’s Greatest Hits",
+       "score": 87,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "565cc46f-52c2-4c7a-b0ff-803ce4a7d347",
+       "title": "The Real Bob Dylan",
+       "score": 87,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "4faf067d-6952-3325-92bf-04a458b86ff8",
+       "title": "Bob Dylan’s Greatest Hits",
+       "score": 87,
+       "count": 24,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "b70e1d6d-dc14-30a0-81a0-24e80da9faba",
+       "title": "The Essential Bob Dylan",
+       "score": 87,
+       "count": 14,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "169b62aa-c3a5-3ed9-bed1-cc47c4bc51ad",
+       "title": "The Freewheelin’ Bob Dylan",
+       "score": 87,
+       "count": 33,
+       "secondary": []
+      },
+      {
+       "id": "cdfa7e8b-f17a-3285-b5f1-24f2805670cb",
+       "title": "Bob Dylan's American Journey: 1956-1966",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "7ba0271c-c0e0-331e-a759-46dbff1ca3e6",
+       "title": "Bob Dylan for Bangla Desh",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "3e9d972c-f01d-30bf-8a0b-4de5118bce07",
+       "title": "Documents of Bob Dylan 1",
+       "score": 83,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "3449a2db-4800-3a55-a76d-df01ca66a804",
+       "title": "Documents of Bob Dylan 2",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "fb7e949b-fb7a-3649-b449-08aac7913e33",
+       "title": "Bob Dylan's Greatest Hits 2",
+       "score": 83,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "82314932-0469-447f-9101-c84721d6cc1f",
+       "title": "The Origins of Bob Dylan",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "e18515e6-0d70-348c-93d1-4e98958ea13d",
+       "title": "Documents of Bob Dylan 3",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "d79093f0-761c-3924-923d-47a98bfb82da",
+       "title": "Documents of Bob Dylan 4",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "01117689-b3bb-4ce8-aad4-689ed5bf6d9a",
+       "title": "The Bob Dylan 60’s Collection",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "39d8b6a8-7a20-40c2-a3cd-d22d5781d806",
+       "title": "The Best of Bob Dylan",
+       "score": 83,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "14855574-e965-4f21-b1d0-560bc4b0d2af",
+       "title": "Bob Dylan – In Concert",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      }
+     ],
+     "note": "total 5976, 8/10 of top have secondary types"
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 9,
+     "mb_query": "(releasegroup:(ok computer) OR artist:(ok computer)) AND primarytype:(album OR ep)",
+     "mb_total": 1741,
+     "top": [
+      "Computer — Computer (EP, n=1)",
+      "Computer Dance — Computer (Album, n=1)",
+      "Outside Computer — OK Vancouver OK (Album, n=2)",
+      "Computer Kill — Computer Kill (EP, n=1)",
+      "Computer Magic — Computer Magic (EP, n=1)",
+      "OK Go — OK Go (EP, n=2)",
+      "OK PUNK! — OK PUNK! (EP, n=1)",
+      "OK Satán — OK Satán (EP, n=1)",
+      "OK Computer — Radiohead (Album, n=39)",
+      "Viva Computer — Viva Computer (Album, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "40684055-b3dd-49d0-b376-bffc8458a2ba",
+       "title": "Computer",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "12698c8d-9f26-4337-a0fe-a46ad497fdac",
+       "title": "Computer Dance",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "186bdef9-b6de-4e32-857e-45ab5ce109fd",
+       "title": "Outside Computer",
+       "score": 86,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "a86411d1-f646-4ddc-8206-6941a90eb885",
+       "title": "Computer Kill",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ee8ec501-5d48-4204-8756-0bd85285ff6f",
+       "title": "Computer Magic",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "69152a4a-3fae-3008-b263-e1543ea12170",
+       "title": "OK Go",
+       "score": 82,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "43e07332-a844-4a7f-a800-850f6bc706fc",
+       "title": "OK PUNK!",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "04d5a301-a7db-40ec-8df8-c7119b1d915e",
+       "title": "OK Satán",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b1392450-e666-3926-a536-22c65f834433",
+       "title": "OK Computer",
+       "score": 79,
+       "count": 39,
+       "secondary": []
+      },
+      {
+       "id": "a7087d87-d300-3138-ba48-2b5878d3dbbe",
+       "title": "Viva Computer",
+       "score": 79,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2f116129-107f-488c-acf3-8c3bea9c7286",
+       "title": "P.R. Computer",
+       "score": 79,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "44bdb3ec-2650-3012-a7da-7dfd87debd66",
+       "title": "Computer Soup",
+       "score": 79,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "dbfa1402-f7f8-49be-a83c-5c863fa788f0",
+       "title": "Zombie Computer",
+       "score": 79,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "8fb6a305-e716-4bf9-bff5-9f870f5ee46c",
+       "title": "computer dreams",
+       "score": 79,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "284afe4c-b721-4c2a-a9ae-c0dd8f613cdf",
+       "title": "OK's Crush Diary",
+       "score": 78,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "fee5075e-6c61-38db-b76b-1ac9c589d02a",
+       "title": "OK Cobra",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "25a06d28-ecce-3b02-b90a-4421eed392bb",
+       "title": "It's Ok",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6d510d54-8656-4693-8a32-243ff5dc5b48",
+       "title": "Ok Choral",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1f500a65-148e-4daa-8fda-0a45a10071df",
+       "title": "OK. Volca",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5743f434-81eb-4055-aaf5-afe98b22eeff",
+       "title": "OK Pirámides",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "949b2638-47f3-4206-b540-b41d3bc7e8aa",
+       "title": "Hooker O.K.",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "686090b1-a8c0-4126-95f8-a13e16e1cb7f",
+       "title": "Big OK",
+       "score": 76,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "53bbc1a5-55ff-4636-a9c6-4867fc0f0624",
+       "title": "OK Seas",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "07760c8e-d6d5-4589-a67a-e1084f9f0567",
+       "title": "Ok Moon",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5bcaae39-e3c0-4ce3-b661-d50aeb0d3850",
+       "title": "OK?NO!!",
+       "score": 76,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 1741, 0/10 of top have secondary types"
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": null,
+     "mb_query": "(releasegroup:(kind of blue) OR artist:(kind of blue)) AND primarytype:(album OR ep)",
+     "mb_total": 247781,
+     "top": [
+      "Kind Of Mosh — Kind Of Mosh (Album, n=1)",
+      "Some Kind of Hate — Some Kind of Hate (EP, n=1)",
+      "Kind of Like Spitting — Kind of Like Spitting (EP, n=2)",
+      "Last of Our Kind — Last of Our Kind (EP, n=1)",
+      "Few Of A Kind — Few Of A Kind (EP, n=1)",
+      "Two of a Kind — Two of a Kind (Album, n=2)",
+      "This Kind of Punishment — This Kind of Punishment (Album, n=2)",
+      "FOUR of a KIND — FOUR of a KIND (Album, n=1)",
+      "Some Kind of Animal — Some Kind Of Animal (Album, n=1)",
+      "One of a Kind — One of a Kind (Album, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "abcafd7b-31f7-410f-ac27-0583c209b5a5",
+       "title": "Kind Of Mosh",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "521fdbc0-74f1-4827-a072-a4bed21e2ad7",
+       "title": "Some Kind of Hate",
+       "score": 94,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f1d3543f-241f-3398-a102-0826bcbe5167",
+       "title": "Kind of Like Spitting",
+       "score": 94,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "a09910d6-f73c-42d8-8171-f37d10199db7",
+       "title": "Last of Our Kind",
+       "score": 94,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1d748b81-c40f-4788-90d0-0178933bf6e4",
+       "title": "Few Of A Kind",
+       "score": 94,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "585a7f2c-b81a-32c1-880c-b9a0b20e0450",
+       "title": "Two of a Kind",
+       "score": 88,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7207ed61-8815-3d99-8fbf-f02e235c5dbd",
+       "title": "This Kind of Punishment",
+       "score": 88,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "f1042a41-01d3-350c-a481-98ee7f3abc52",
+       "title": "FOUR of a KIND",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4ba15720-1fcf-41fa-924e-900f2f65db99",
+       "title": "Some Kind of Animal",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "da77e250-86a4-4b47-b968-86ec4c4cf067",
+       "title": "One of a Kind",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0f3a87d6-ce4b-41f7-b98e-8ec7f5dbb53c",
+       "title": "Four of a Kind",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "823906db-e62d-4fed-a493-5b38d165b1eb",
+       "title": "Kind Of Like Spitting",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ceaa0cf9-2f4a-43f6-a7e9-26460878c64c",
+       "title": "Three of a Kind",
+       "score": 88,
+       "count": 1,
+       "secondary": [
+        "Spokenword"
+       ]
+      },
+      {
+       "id": "a6edd49a-7e09-438d-9a1a-3d4e618b5a4a",
+       "title": "The Quiet Kind of Blue",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ffaed87c-5a2d-4fd7-b2c9-82793c1f5fc1",
+       "title": "FOUR of a KIND II",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "cf42ad93-1451-48d2-9827-d0167d7543de",
+       "title": "Introducing FOUR of a KIND",
+       "score": 84,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "c7d64773-7db3-4fde-aa47-f0d097952b76",
+       "title": "4 of a Kind 2",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "01f0e0b3-e13c-40d1-9df1-2d482f246125",
+       "title": "Kind Eyes",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "30b0016a-6267-46aa-9588-773e7c206e72",
+       "title": "Fourth Kind",
+       "score": 82,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "b878d610-145f-418c-868d-e9a4c788b0c8",
+       "title": "Winsome Kind",
+       "score": 82,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "c3d3f562-a9fb-48ea-9278-f3e8f80b1e7b",
+       "title": "Killing Kind",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "508034a8-7b2e-4973-8f29-5ce0416ccb84",
+       "title": "The Kind",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "fc402c11-7e59-46c0-b397-1ef9665701cc",
+       "title": "The Good Kind of Mushroom EP",
+       "score": 81,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "47ffa972-9736-47bd-a838-8425b63f704f",
+       "title": "Fear of Blue",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0bf28eb7-0519-4cb5-8a3e-ebba4be4a6ba",
+       "title": "Field of Blue",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 247781, 0/10 of top have secondary types"
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 10,
+     "mb_query": "(releasegroup:(abbey road) OR artist:(abbey road)) AND primarytype:(album OR ep)",
+     "mb_total": 5824,
+     "top": [
+      "Abbey Sings Abbey — Abbey Lincoln (Album, n=2)",
+      "Carfax Abbey — Carfax Abbey (Album, n=1)",
+      "Bedlam Abbey — Bedlam Abbey (Album, n=1)",
+      "Abbey Sings Billie — Abbey Lincoln (Album, n=1)",
+      "Abbey Is Blue — Abbey Lincoln (Album, n=10)",
+      "Road — Road (Album, n=1)",
+      "Road — Road (Album, n=2)",
+      "Enjoy The Beatles! — Abbey Road (Album, n=1)",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone (Album, n=2)",
+      "Abbey Road — The Beatles (Album, n=73)"
+     ],
+     "groups": [
+      {
+       "id": "945b81ad-8d3b-3200-8cc7-fd8145016d06",
+       "title": "Abbey Sings Abbey",
+       "score": 100,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "46b35dd0-7a4f-4b65-a022-287567138e8f",
+       "title": "Carfax Abbey",
+       "score": 91,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d4ed8083-30a7-4a19-8e32-a73876e6af9d",
+       "title": "Bedlam Abbey",
+       "score": 91,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f7b53ce6-2b13-460b-b67d-29b0d7350a6b",
+       "title": "Abbey Sings Billie",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2fa972a2-9165-3423-9ab1-38ed7b07e807",
+       "title": "Abbey Is Blue",
+       "score": 85,
+       "count": 10,
+       "secondary": []
+      },
+      {
+       "id": "a4aac4d0-d0ec-4753-b570-d94c5dcedf5f",
+       "title": "Road",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c0a91ab7-562a-3f0a-8c25-577a9411cf5b",
+       "title": "Road",
+       "score": 85,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "8104c6ff-a88e-43b0-b9b0-e05a4595ac90",
+       "title": "Enjoy The Beatles!",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c0b2899c-41ab-4907-abf0-ff1962477ff2",
+       "title": "Abbey's Road",
+       "score": 80,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+       "title": "Abbey Road",
+       "score": 80,
+       "count": 73,
+       "secondary": []
+      },
+      {
+       "id": "004a4e79-ac6c-448a-9d7f-b1b1714aa22a",
+       "title": "Abbey Road",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1229ccca-71bc-4df2-963c-e701fcc62d1f",
+       "title": "Hiatus Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b6fc0b5c-f168-4112-afcd-b388229266b3",
+       "title": "Goodbye Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "acd2c484-ae1a-4e73-b4a9-477030810587",
+       "title": "Black Road",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "38fbc01e-072a-4322-902a-f8d271cb051f",
+       "title": "Aces Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f2e98dad-003e-450a-8fab-6a580c7de98a",
+       "title": "Hartle Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "886e16b0-fe64-4d2f-ab73-08c80a752806",
+       "title": "My Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "17901d35-02e2-4c1b-a5a2-ebfd9bc4aa4a",
+       "title": "Victory Road",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7a783271-a7e7-4bdb-b9cc-6db8171d3e17",
+       "title": "Penelope Road",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "9bb9111b-0aad-4146-a80e-512da8dee5b8",
+       "title": "Restless Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4de0f798-02e6-3d7c-b7a7-13502d521af8",
+       "title": "Abbey Sings Billie, Volume 2",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "9b906be9-f25a-4d1d-a13e-d3aa7e957631",
+       "title": "Road to Abbey",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1a66b9b9-2098-4422-9f20-e793469bbbf4",
+       "title": "Abbey Lincoln: Warner Jazz: Les Incontournables",
+       "score": 74,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "2334296d-8c8e-4516-b76d-68311a52e3d8",
+       "title": "Addison Road EP",
+       "score": 74,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "92b7feab-2556-4c09-be59-09078aa8f6b3",
+       "title": "That's My Road",
+       "score": 74,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 5824, 0/10 of top have secondary types"
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 2,
+     "mb_query": "(releasegroup:(to pimp a butterfly) OR artist:(to pimp a butterfly)) AND primarytype:(album OR ep)",
+     "mb_total": 165404,
+     "top": [
+      "giving a butterfly a skeleton — giving a butterfly a skeleton (EP, n=1)",
+      "To Pimp a Butterfly — Kendrick Lamar (Album, n=23)",
+      "Pimp Mobile — Pimp Mobile (EP, n=1)",
+      "J-Pimp — J-Pimp (EP, n=1)",
+      "Butterfly Boucher — Butterfly Boucher (EP, n=1)",
+      "Butterfly Trajectory — Butterfly Trajectory (EP, n=1)",
+      "To Pimp a Butterfly (Screwed) — Lost Screwed It! (Album/Remix, n=1)",
+      "Pimp of the Year — Pure Pimp (EP, n=1)",
+      "PIMP LUMPO II — Pimp Lumpo (Album, n=1)",
+      "Pimp Lumpo V — Pimp Lumpo (Album, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "da282e2e-8db0-4bad-8f4a-1c920dbfa8a1",
+       "title": "giving a butterfly a skeleton",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+       "title": "To Pimp a Butterfly",
+       "score": 95,
+       "count": 23,
+       "secondary": []
+      },
+      {
+       "id": "8113ab10-18f8-491e-8364-4f06bab83ce1",
+       "title": "Pimp Mobile",
+       "score": 95,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "02223b10-eb69-4a94-9a09-25a6fb133e4b",
+       "title": "J-Pimp",
+       "score": 95,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "905c2fed-897a-3367-b088-cc4c070d8034",
+       "title": "Butterfly Boucher",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "9b95be07-0fad-4a96-85d8-9908cd16d55b",
+       "title": "Butterfly Trajectory",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "344cf674-abe4-4a00-84cf-900a6c396647",
+       "title": "To Pimp a Butterfly (Screwed)",
+       "score": 86,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "4a50ed33-dd84-44cc-a249-0673b04d85f4",
+       "title": "Pimp of the Year",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d14c9278-d28b-4802-8c62-0aa939623db7",
+       "title": "PIMP LUMPO II",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6bb08092-bb84-44bc-aceb-1437f286c38e",
+       "title": "Pimp Lumpo V",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e4158711-a259-44dd-95bb-068b6b2516b9",
+       "title": "PIMP LUMPO IV",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "eb6a2ee1-43eb-4ee9-b069-7e2b7142ca9e",
+       "title": "Pimp Next Door",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "af8449c8-408e-4480-83a1-5d808f397855",
+       "title": "Princess Goes to the Butterfly Museum",
+       "score": 83,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e39ab804-f837-3f71-9220-cc59d476c21e",
+       "title": "Planet Pimp",
+       "score": 83,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "dc054bdc-722e-3947-b3fc-3692dc2b40e5",
+       "title": "Pimp Master",
+       "score": 83,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "a999883c-a703-4b6f-a2fe-17fdcfb6a0b2",
+       "title": "Butterfly Convict EP",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "871cd4cd-b4d6-4041-a1ce-d5e8fa788270",
+       "title": "The Music of Butterfly",
+       "score": 81,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e42f65c1-8015-32ee-be28-25267b15a1d5",
+       "title": "Butterfly Joe",
+       "score": 81,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "66e9c923-4134-495c-a0e5-4cabfe5bd8fa",
+       "title": "Acoustic Butterfly",
+       "score": 81,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5cc594b5-f3ca-4138-b756-8202a0d54433",
+       "title": "Butterfly Odyssey",
+       "score": 81,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ab00426c-540e-4709-bd1c-dbf4d561f377",
+       "title": "Butterfly 9",
+       "score": 81,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "8b577d0d-d469-48cb-a749-b8eadfb37cce",
+       "title": "Butterfly Boucher",
+       "score": 81,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4a2085d0-0b4b-4c2a-918f-61d35606f9a1",
+       "title": "Obsidian Butterfly",
+       "score": 81,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "df7ee29d-e246-4b87-be92-456c0e29c651",
+       "title": "Long Live the Pimp",
+       "score": 79,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "2f80bd51-e8a9-4cf1-a0a2-0a1b81a115eb",
+       "title": "The Pimp C Mixtape",
+       "score": 79,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 165404, 1/10 of top have secondary types"
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 20,
+     "mb_query": "(releasegroup:(rumours) OR artist:(rumours)) AND primarytype:(album OR ep)",
+     "mb_total": 97,
+     "top": [
+      "Rumours — Rumours (EP, n=1)",
+      "The Rumours — The Rumours (Album, n=1)",
+      "The Best of Vicious Rumours — Vicious Rumours (Album/Compilation, n=1)",
+      "Slow Rain - The Complete Celtic Rumours — Celtic Rumours (Album/Compilation, n=1)",
+      "Rumours — Weekend Recovery (EP, n=1)",
+      "Rumours — House Hustler (EP, n=1)",
+      "Rumours — A Real Dope Thing Ft. Cora E (EP, n=1)",
+      "How Many Roses — Rumours (EP, n=1)",
+      "Infant EP — Rumours (EP, n=1)",
+      "Basin View — Rumours (EP, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "7f75f05e-0e09-4808-899e-0c5ec6a694d1",
+       "title": "Rumours",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c37bdbf9-91a8-4906-b906-1ede5a1a2b2d",
+       "title": "The Rumours",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "560d5cdf-ad43-49b6-8260-996669548792",
+       "title": "The Best of Vicious Rumours",
+       "score": 68,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "b35453d7-42af-40e4-b1dd-c7dde9d02bc7",
+       "title": "Slow Rain - The Complete Celtic Rumours",
+       "score": 63,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "9097b76f-cb44-4781-a326-faa58509040a",
+       "title": "Rumours",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "bd73f1c8-7bef-4286-a916-ffb7590a1836",
+       "title": "Rumours",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f26b7cb4-1c34-4f07-a00b-eb1a45f2006c",
+       "title": "Rumours",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c165779e-cc4d-49ab-aea8-382cb714e55f",
+       "title": "How Many Roses",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7d143bbd-29f9-49eb-aa7c-ee073df0d004",
+       "title": "Infant EP",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "876e1603-55dd-4365-87f8-5dcc5d931170",
+       "title": "Basin View",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "8de4e896-3de6-44d4-b8dd-4b4439e391ca",
+       "title": "Your Taste for Life",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "427cbf3b-7992-4672-938f-721c667c290e",
+       "title": "Neither Innocent nor Wavering",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "16d04bb7-2e14-4f26-9a42-6ef509d1cb77",
+       "title": "If Only You Could Feel Something Too",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "512cd766-e602-3df3-877e-620761b9f647",
+       "title": "Rumours",
+       "score": 48,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "09903167-0d2d-3289-a340-037dc63a7212",
+       "title": "Rumours",
+       "score": 48,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2fd5fb86-4f06-3d01-9598-449936cab92e",
+       "title": "Rumours",
+       "score": 48,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "147f97a1-b6e8-4338-9824-85bb92cca87e",
+       "title": "Rumours",
+       "score": 48,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5f596f53-66b8-4443-9f4d-c6489415ff75",
+       "title": "Rumours",
+       "score": 48,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "9b40c8b2-aa80-43f0-9558-45970eb58514",
+       "title": "Rumours",
+       "score": 48,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "416bb5e5-c7d1-3977-8fd7-7c9daf6c2be6",
+       "title": "Rumours",
+       "score": 48,
+       "count": 81,
+       "secondary": []
+      },
+      {
+       "id": "7df5c244-7026-414e-afb6-cb4801908766",
+       "title": "Megamix",
+       "score": 48,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "10d234e8-1c65-4f23-950f-d271ceeec37c",
+       "title": "Shapes",
+       "score": 48,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "181a7823-ed70-4dc1-a7ff-8a3e5c4330f3",
+       "title": "The Lower We Sink, the Less We Care",
+       "score": 48,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "041e3a5d-6441-4b82-bbc5-554bc8c09f82",
+       "title": "Rumours EP",
+       "score": 46,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d9981629-2d03-4f93-af65-ca919fc405c1",
+       "title": "Rumours EP",
+       "score": 46,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 97, 2/10 of top have secondary types"
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": null,
+     "mb_query": "(releasegroup:(the dark side of the moon) OR artist:(the dark side of the moon)) AND primarytype:(album OR ep)",
+     "mb_total": 673019,
+     "top": [
+      "The Dark Side — The Dark Side (EP, n=1)",
+      "The Charque Side Of The Moon — The Charque Side of the Moon (Album, n=1)",
+      "The Dark Side Of The Shroom EP — Dark Side Of The Shroom (EP, n=1)",
+      "The Dark Side of the Force — The Dark Side of the Force (Album, n=1)",
+      "Doom Side of the Moon — Doom Side of the Moon (Album, n=2)",
+      "Dark Side of the Cop — Dark Side of the Cop (Album, n=1)",
+      "Dark Side Of The Shroom Part 2 - The Remixes — Dark Side Of The Shroom (EP, n=1)",
+      "Moon Ate the Dark — Moon Ate the Dark (Album, n=2)",
+      "Dark Side of the Moon — Moon Byul (EP, n=4)",
+      "Moon Ate the Dark II — Moon Ate the Dark (Album, n=2)"
+     ],
+     "groups": [
+      {
+       "id": "403e7386-e635-4f4a-8c2f-25529b50dbc7",
+       "title": "The Dark Side",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "69016f87-2067-4287-aad2-aa5e1cbcceac",
+       "title": "The Charque Side Of The Moon",
+       "score": 90,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "43f77ce9-8ace-4b10-8e60-d7c9cdcdb25c",
+       "title": "The Dark Side Of The Shroom EP",
+       "score": 90,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d99658b0-52a4-40fb-ac41-b9233f02ad5b",
+       "title": "The Dark Side of the Force",
+       "score": 90,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "9c83ca54-78da-44e7-8d0d-92118f107932",
+       "title": "Doom Side of the Moon",
+       "score": 90,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "246c2f9a-6862-3ab4-b77a-2a74d7b0cf14",
+       "title": "Dark Side of the Cop",
+       "score": 89,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5f33d81a-ce05-489a-8dd2-ca658d525b59",
+       "title": "Dark Side Of The Shroom Part 2 - The Remixes",
+       "score": 83,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "fe56c958-f456-4d1c-888e-0bde84ed88fc",
+       "title": "Moon Ate the Dark",
+       "score": 81,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "dd2d2232-cd23-44ef-80da-53bd70ab09de",
+       "title": "Dark Side of the Moon",
+       "score": 80,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "0421b793-0204-4628-bca7-c12d64f27aa4",
+       "title": "Moon Ate the Dark II",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "eb7cbd93-e551-4b96-b740-2ffa482fbfd2",
+       "title": "Mountains of the Moon",
+       "score": 73,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a6ecf53a-48e8-4494-ae85-3c229e11c3f3",
+       "title": "Afraid of the Dark",
+       "score": 71,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2266bad4-107e-3ab1-bb02-10479d47265e",
+       "title": "The Other Side of the Sky",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7db6e2d0-41d2-3876-8e19-4ab69f293e1c",
+       "title": "The Days of the Moon",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b4ad03c0-205e-35fa-b0ba-b922ab1d0137",
+       "title": "The Dark Side",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b9b13edd-e42f-3349-93b6-acd10ad3048d",
+       "title": "The Best of the Dark",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a2b896c7-0ea2-4c2b-aaa0-3f89430ca88c",
+       "title": "The Moon",
+       "score": 68,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "87c58dec-f440-4ad6-9dfa-71be094f0ae1",
+       "title": "Tribes of the Moon EP",
+       "score": 68,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7a10a0c4-cc96-4f85-9c06-9520d7f2f528",
+       "title": "The Dark EP",
+       "score": 68,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "40707e00-7f38-4767-b924-48d731bc383c",
+       "title": "Oceans Of The Moon",
+       "score": 68,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "02e9a883-b0fc-403e-bd09-1217edb7c838",
+       "title": "Fans of the Dark",
+       "score": 67,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "77230a1b-27b1-3c46-b92a-ce5276f8c26a",
+       "title": "The Wrong Side of the Grave",
+       "score": 64,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "e2b6087f-4545-4b88-b444-b4c95b7e6d28",
+       "title": "\"The Dark Side Project of the Moon\"",
+       "score": 64,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f56b1a9a-6c1b-495c-8f4e-097dfad375b6",
+       "title": "Wrong Side of the Wall",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e8cc8e00-9e79-4133-bb43-45310f8eba6e",
+       "title": "The White Side of the Moon",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 673019, 0/10 of top have secondary types"
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": 2,
+     "mb_query": "(releasegroup:(radiohead kid a) OR artist:(radiohead kid a)) AND primarytype:(album OR ep)",
+     "mb_total": 111916,
+     "top": [
+      "Radiohead — Radiohead (EP, n=1)",
+      "Kid A — Radiohead (Album, n=30)",
+      "LIKE A KID — LIKE A KID (EP, n=1)",
+      "Radiohead Box — Radiohead (Album/Compilation, n=1)",
+      "Radiohead TV Covers — Radiohead (EP, n=1)",
+      "KID A MNESIA — Radiohead (Album/Compilation, n=6)",
+      "Kid 17 — Radiohead (EP/Remix, n=1)",
+      "The Kid A Theory — Radiohead (Album/Compilation, n=1)",
+      "The Best of Radiohead — Radiohead (Album/Compilation, n=1)",
+      "Kid Amnesiac — Radiohead (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "59f25ce9-ae14-43c7-a09e-3a911060043a",
+       "title": "Radiohead",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+       "title": "Kid A",
+       "score": 89,
+       "count": 30,
+       "secondary": []
+      },
+      {
+       "id": "c5561a3e-c4e4-46f2-b7a8-545103e2c50e",
+       "title": "LIKE A KID",
+       "score": 88,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d8dd81ab-d840-4663-8da3-d8c27c2eaf91",
+       "title": "Radiohead Box",
+       "score": 87,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "3ab9fbe7-b809-3db8-96cf-4de6e56bb180",
+       "title": "Radiohead TV Covers",
+       "score": 86,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6f25f9fb-e9e3-4c0d-8904-ecb8b46cd8aa",
+       "title": "KID A MNESIA",
+       "score": 83,
+       "count": 6,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "fdda10b4-d7e4-373c-89ef-2899824b85fe",
+       "title": "Kid 17",
+       "score": 80,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "a9368cad-fd41-4a9b-8b13-bca07d75a4fa",
+       "title": "The Kid A Theory",
+       "score": 79,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "af44dc42-1bf4-4cdc-ad98-cdfdc2312b09",
+       "title": "The Best of Radiohead",
+       "score": 77,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "345686b4-5976-42df-a6ed-c65711dfee4d",
+       "title": "Kid Amnesiac",
+       "score": 75,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "6ce5deab-be1a-4599-9e23-c21ea2ab10e8",
+       "title": "Kid Alive",
+       "score": 75,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "083d02aa-2770-4d84-8c2c-e70e012fa90e",
+       "title": "Kid Eh?",
+       "score": 75,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "79cbf9ea-d630-3b84-b1d5-1a9f0d1b0778",
+       "title": "Kid",
+       "score": 72,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "de69565a-9ebd-4cdb-b8d5-e880167d37c0",
+       "title": "Radiohead’s Kid A: Re‐imagined",
+       "score": 68,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "cb112ffd-aae3-4488-9ca6-682bf1af653e",
+       "title": "Kid Cadaver",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b7c29704-f4dc-49d7-9a20-c1bc02a4095e",
+       "title": "Kid Phang",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "927a3ebb-1013-40f2-a9d5-b7e731b72c36",
+       "title": "Kid Cardiac",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "421a8003-0247-4c6e-9120-b484d9dffe1a",
+       "title": "Kid Icarus",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b7296b6e-99db-4db1-942b-8e5aa680711a",
+       "title": "Kid Runner",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "376464ea-fd28-48c9-8d0f-0cda541fd006",
+       "title": "Candle Kid",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "772d351c-e60b-4fb4-aaa3-90d83a00313a",
+       "title": "Nervous Kid",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5a74225d-8b5b-4e8a-91d7-9082a4c1d724",
+       "title": "Caroline Kid",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ac050f14-3fbc-4e76-af6b-4fcdd9555846",
+       "title": "Kid Thomas",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ae05f520-52bd-441c-b205-6566b7df597e",
+       "title": "Kid Sistr",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2fdce47f-2034-4f84-8313-fd11a6695eac",
+       "title": "Good Kid",
+       "score": 66,
+       "count": 3,
+       "secondary": []
+      }
+     ],
+     "note": "total 111916, 6/10 of top have secondary types"
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 6,
+     "mb_query": "(releasegroup:(beatles revolver) OR artist:(beatles revolver)) AND primarytype:(album OR ep)",
+     "mb_total": 1732,
+     "top": [
+      "Revolver — Revólver (Album, n=1)",
+      "Revolver — Revolver (Album, n=1)",
+      "Revolver EP — Revolver (EP, n=1)",
+      "Basement Revolver — Basement Revolver (EP, n=2)",
+      "Revólver Plateado — Revólver Plateado (Album, n=1)",
+      "Revolver — The Beatles (Album, n=70)",
+      "Revolver — The Pokémon Beatles (Album, n=1)",
+      "Pearl Handled Revolver — Pearl Handled Revolver (Album/Compilation, n=1)",
+      "D-Beatles — D-Beatles (EP, n=1)",
+      "The Beatles — The Beatles (EP/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "667cd1b9-3135-30bc-bd95-457fdfaa6370",
+       "title": "Revolver",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0039b257-08d4-46c3-bc4b-10ddf1c8e2c9",
+       "title": "Revolver",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5c16c1b8-0327-4901-8bb8-33b4147e4817",
+       "title": "Revolver EP",
+       "score": 98,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b43fd920-34e2-4a25-bbe7-202641dbf45c",
+       "title": "Basement Revolver",
+       "score": 89,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "ebf8d968-6e62-4e58-b0c2-13f022b2e863",
+       "title": "Revólver Plateado",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "72d15666-99a7-321e-b1f3-a3f8c09dff9f",
+       "title": "Revolver",
+       "score": 81,
+       "count": 70,
+       "secondary": []
+      },
+      {
+       "id": "37361035-bf07-45d4-973d-3f4ef2a62873",
+       "title": "Revolver",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4c82a81e-e9ec-4367-a789-39ed1f909156",
+       "title": "Pearl Handled Revolver",
+       "score": 72,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "ddf00d7d-2931-4d73-9089-d476971e0c6d",
+       "title": "D-Beatles",
+       "score": 72,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "012f17a8-e5f6-4518-aa36-135bf621b1c7",
+       "title": "The Beatles",
+       "score": 72,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "37983d01-52e0-4054-a1d3-669939171578",
+       "title": "This Is a Revolver",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f8e7a54e-9b70-33a0-a841-7c8006a0189b",
+       "title": "The Alternate Revolver",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "63a5ba79-c19e-4eab-ac8c-63c60c6ade58",
+       "title": "Revolver Alternate Recording",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "b82cf9d9-cd16-48dc-bb47-b462cd1f9872",
+       "title": "The Revolver Sessions",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "928aa116-1489-4929-8b51-63116cb8c3a1",
+       "title": "The Beatles Collection, Volume 4: Revolver / Let It Be",
+       "score": 68,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "652e5dc1-c48a-39c5-93f2-cdbad3718113",
+       "title": "4-By the Beatles",
+       "score": 67,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "4a497b41-4839-3aa0-a4ca-c438ef3f1c62",
+       "title": "Beatles for Sale",
+       "score": 67,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "0027eb62-2add-4f26-8ac8-f5925fbaacf5",
+       "title": "Beatles Sessions Stuff",
+       "score": 67,
+       "count": 1,
+       "secondary": [
+        "Remix",
+        "Demo"
+       ]
+      },
+      {
+       "id": "794a5fcd-4098-3519-b4b6-e66707f4cbc3",
+       "title": "The Beatles’ Hits",
+       "score": 67,
+       "count": 11,
+       "secondary": []
+      },
+      {
+       "id": "dffd4c85-dc81-3374-b672-f8656735ebfc",
+       "title": "Beatles ’65 / Beatles VI",
+       "score": 67,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "51d66e2a-eb9f-4294-a1f8-bdbd6c257492",
+       "title": "Instrumental Beatles",
+       "score": 67,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "8290085e-f31b-4632-bb60-9e23472d4696",
+       "title": "Beatles HC",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0f5791b3-8ff7-41dd-8bbd-89a339530a34",
+       "title": "Blues Beatles",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b2f378bc-a0e0-423f-930a-53a4efaa9c15",
+       "title": "Jazz Beatles",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "16685436-ba85-364d-bbc7-cab7978a3d45",
+       "title": "More Beatles",
+       "score": 67,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      }
+     ],
+     "note": "total 1732, 2/10 of top have secondary types"
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 13,
+     "mb_query": "(releasegroup:(pink floyd the wall) OR artist:(pink floyd the wall)) AND primarytype:(album OR ep)",
+     "mb_total": 554821,
+     "top": [
+      "Pink Floyd — Pink Floyd (EP/Compilation, n=1)",
+      "Pink Floyd — Pink Floyd (Album/Live, n=1)",
+      "The Pink Floyd Collection — Pink Floyd (Album/Compilation, n=1)",
+      "The Live Pink Floyd — Pink Floyd (Album/Live, n=2)",
+      "The Best of Pink Floyd — Pink Floyd (Album/Compilation, n=1)",
+      "The Best of The Pink Floyd — The Pink Floyd (Album/Compilation, n=7)",
+      "Celtic Pink Floyd — Celtic Pink Floyd (Album, n=2)",
+      "The Best of the Pink Floyd — Pink Floyd (Album/Compilation, n=1)",
+      "Echoes: The Best of Pink Floyd — Pink Floyd (Album/Compilation, n=20)",
+      "The Best of Pink Floyd, Volume 1 — Pink Floyd (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "29394a6b-b358-4d46-885c-93a3919abb3b",
+       "title": "Pink Floyd",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "936e8b3f-22c7-4758-89f8-626684a3d9c4",
+       "title": "Pink Floyd",
+       "score": 96,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "0f9c71c8-4309-4044-8792-ffa7e9a37206",
+       "title": "The Pink Floyd Collection",
+       "score": 89,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "75991efc-0461-3c41-9b23-b81f72c3df89",
+       "title": "The Live Pink Floyd",
+       "score": 89,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "c77e630e-3c97-3131-9876-a28ec2fbdb16",
+       "title": "The Best of Pink Floyd",
+       "score": 84,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "7dcccc57-b07e-4857-8b9c-96d612fe3bc5",
+       "title": "The Best of The Pink Floyd",
+       "score": 83,
+       "count": 7,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "d02a59b1-d574-461a-9e40-232781288333",
+       "title": "Celtic Pink Floyd",
+       "score": 83,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7acac44e-8f02-310b-b9e7-99984c4aaab2",
+       "title": "The Best of the Pink Floyd",
+       "score": 83,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "89349f02-09cd-3a27-b972-7d7729d6dee7",
+       "title": "Echoes: The Best of Pink Floyd",
+       "score": 81,
+       "count": 20,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "70cda48e-9051-4866-b84f-86aab9c0f241",
+       "title": "The Best of Pink Floyd, Volume 1",
+       "score": 78,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "78e1e9c9-ba17-4937-ad41-5d53d6bc44b0",
+       "title": "The Wall",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a8525d47-ecb9-3dd9-8011-8413512fc4a4",
+       "title": "Off the Wall",
+       "score": 73,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f2026101-945b-3d05-9ef4-aa718fc3feef",
+       "title": "The Wall",
+       "score": 73,
+       "count": 95,
+       "secondary": []
+      },
+      {
+       "id": "cd19d1bd-baa4-397a-b2a5-0504da9feb6e",
+       "title": "The Sights and Sounds of… Syd Barrett’s Pink Floyd",
+       "score": 73,
+       "count": 2,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "df62e59f-048f-43dc-8844-5ee6b1c57645",
+       "title": "A Foot in the Door: The Best of Pink Floyd",
+       "score": 72,
+       "count": 14,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "797a5928-8fda-41b9-b9ac-43ce69176328",
+       "title": "A Foot in the Door / The Best of Pink Floyd",
+       "score": 71,
+       "count": 5,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "b3f86b66-7ba0-3636-b8e2-02c4c25ee932",
+       "title": "The Floyd’s of London",
+       "score": 71,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "9d70fc87-f80e-42d3-bc66-6a49cb6c204b",
+       "title": "Defacing the Wall",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "c4edc6ac-2e47-4ef9-ae83-7f2ef37f3f20",
+       "title": "Behind The Wall",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "d2cd3eef-d345-4b1e-84d0-74afecfce4d8",
+       "title": "The Wall Rehearsals",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "fa4a6db3-9859-323f-a58f-ec9af50758d8",
+       "title": "The Wall: The Film Soundtrack",
+       "score": 66,
+       "count": 8,
+       "secondary": [
+        "Soundtrack"
+       ]
+      },
+      {
+       "id": "cc354e8c-afaf-4a78-9411-1ede2da5ef08",
+       "title": "The Wall Extended, Version 2",
+       "score": 64,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "fe75b18b-e6c8-456e-9cf4-cfeb1969953a",
+       "title": "Backs to the Wall 1978-82",
+       "score": 64,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "92a95092-1c9a-3c8f-bbe2-ce3787a0afe1",
+       "title": "Every Brick in the Wall",
+       "score": 64,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "fc460301-0017-4609-a595-cb0aa5887994",
+       "title": "Watching the World Upon the Wall",
+       "score": 64,
+       "count": 4,
+       "secondary": [
+        "Live"
+       ]
+      }
+     ],
+     "note": "total 554821, 9/10 of top have secondary types"
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 3,
+     "mb_query": "(releasegroup:(jay\\-z watch the throne) OR artist:(jay\\-z watch the throne)) AND primarytype:(album OR ep)",
+     "mb_total": 556771,
+     "top": [
+      "The Best Of Jay-Z — JAY Z (Album/Mixtape/Street, n=1)",
+      "The Best of JAY‐Z — JAY‐Z (Album/Compilation, n=1)",
+      "Watch the Throne — Jay‐Z & Kanye West (Album, n=19)",
+      "Jay-Z at Studio One — JAY‐Z (Album/Remix, n=1)",
+      "Jay-Z Sings the Blues “The Forgotten Stories” — JAY Z (Album/Mixtape/Street, n=1)",
+      "Clinton Sparks Presents: Jay-Z: Live Concert on Smash — Jay‐Z (Album/Mixtape/Street, n=1)",
+      "God’s Gift: The Nas/Jay-Z Project — Nas & Jay‐Z (Album/Mixtape/Street, n=2)",
+      "z̷ ̸z̸ ̴z̸ ̸z̴ ̶z̴ — z z z z z (Album, n=1)",
+      "The Throne — JAY‐Z & Ye (Album/Mixtape/Street, n=1)",
+      "The Watch Live — The Watch (Album/Live, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "db18df7e-ee69-467f-8a75-ec5e25c4ed91",
+       "title": "The Best Of Jay-Z",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "f43bb772-447c-4115-b6cc-69a1b38aae97",
+       "title": "The Best of JAY‐Z",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a96597aa-93b4-4e14-9e6e-03892ab24979",
+       "title": "Watch the Throne",
+       "score": 95,
+       "count": 19,
+       "secondary": []
+      },
+      {
+       "id": "76f08f5c-19af-47f6-89d4-656e64cc4a41",
+       "title": "Jay-Z at Studio One",
+       "score": 94,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "d76fa31e-6623-4eb4-99e5-ac4a9a2ae439",
+       "title": "Jay-Z Sings the Blues “The Forgotten Stories”",
+       "score": 90,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "e13c912f-2bef-4e3f-b105-026ead9a3684",
+       "title": "Clinton Sparks Presents: Jay-Z: Live Concert on Smash",
+       "score": 82,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "7eefca23-0505-37f3-b40f-34ace88363a1",
+       "title": "God’s Gift: The Nas/Jay-Z Project",
+       "score": 78,
+       "count": 2,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "fd71a903-5785-49da-8186-35141d4f113a",
+       "title": "z̷ ̸z̸ ̴z̸ ̸z̴ ̶z̴",
+       "score": 78,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "457ae5f8-a35d-40e4-b67c-e02c7826c257",
+       "title": "The Throne",
+       "score": 78,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "b19965e8-5599-3daa-9bb6-2c1904169f7e",
+       "title": "The Watch Live",
+       "score": 77,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "3bf94bba-3eaa-3008-9cff-c799bf2a5f8c",
+       "title": "The Soupbone Throne",
+       "score": 71,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "12de6b2b-5e44-4bd2-9c9e-4a1f78bebb88",
+       "title": "She the Throne",
+       "score": 71,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "294e40b6-221b-4f2c-a21c-31598efb2833",
+       "title": "The Night Watch",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "475b342c-0278-485b-abf4-1218ff8ee76a",
+       "title": "Crimson Throne",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "353c037c-3275-4871-8227-950dbabfa1de",
+       "title": "Apocryphal Throne",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6efe19d8-8a52-4ef2-b7ae-49ddabe29e0d",
+       "title": "Malefic Throne",
+       "score": 70,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "0fbec62f-b2b1-44a4-90d8-418a5e72abf4",
+       "title": "Carrion Throne",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c778f868-94f4-4535-be5f-6ea22d89ca0f",
+       "title": "Dusk Watch",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "fd7a003e-5486-468c-bb38-72ac40b56fc6",
+       "title": "Neighborhood Watch",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "50c8a447-cf06-43f8-b2da-450e31a1c434",
+       "title": "Watch the Throne",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "48f95676-cce0-4491-8d62-3e97063e30f5",
+       "title": "Jay-Jay Johanson",
+       "score": 68,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "0a9acd51-3f9a-4058-87f7-7fe74e56d8ef",
+       "title": "Jay Jay Johnson",
+       "score": 68,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "0594e55d-cd82-4e6f-a0ac-c26b68fc9d46",
+       "title": "Tales of the Astro Throne",
+       "score": 65,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7706ce27-bebe-330f-8835-47be9989a1cf",
+       "title": "Ibex Throne",
+       "score": 65,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "93a01aba-c137-4c83-97b5-8cdcc53fca37",
+       "title": "Mammon’s Throne",
+       "score": 65,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 556771, 8/10 of top have secondary types"
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": null,
+     "mb_query": "(releasegroup:(blue) OR artist:(blue)) AND primarytype:(album OR ep)",
+     "mb_total": 13881,
+     "top": [
+      "Blue — Blue (Album, n=5)",
+      "Blue — Blue (Album, n=1)",
+      "Blue — Blue (Album, n=1)",
+      "Blue — Blue (Album, n=1)",
+      "Blue — Helicon Blue (EP, n=1)",
+      "4ever Blue — Blue (Album/Compilation, n=3)",
+      "Ultimate Blue — Blue (Album/Compilation, n=1)",
+      "Blue Merle — Blue Merle (EP, n=1)",
+      "Blue Base — Blue Base (EP, n=1)",
+      "Blue Dream — Blue Dream (EP, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "1063729e-7de7-44d4-8ced-027337b82e6c",
+       "title": "Blue",
+       "score": 100,
+       "count": 5,
+       "secondary": []
+      },
+      {
+       "id": "bc39e16c-a282-4a7a-8f04-5292658fff76",
+       "title": "Blue",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0161a1df-2e4e-498d-b680-2103f255c82b",
+       "title": "Blue",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a4b98d87-d30a-4d03-8be0-dff169d7a182",
+       "title": "Blue",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "da488ee8-d527-49f9-a048-ea0fdc1eaf98",
+       "title": "Blue",
+       "score": 99,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1aff11d1-ee54-3a01-9aac-56bb21aea14d",
+       "title": "4ever Blue",
+       "score": 93,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "0fd33137-028c-472f-933b-038c757e999d",
+       "title": "Ultimate Blue",
+       "score": 93,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "a842a7c2-0319-3644-89d8-779d18955efe",
+       "title": "Blue Merle",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6755aac5-9a6a-3dd3-9fef-0f494a69a6df",
+       "title": "Blue Base",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e3f1b3ef-9ad8-4cad-8846-3a174ca1cd99",
+       "title": "Blue Dream",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2b37d62e-cb9b-4d68-8cd7-cd720b73c0a6",
+       "title": "Portsea Blue",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "056d6d4a-136e-34fe-bb65-6c08573322b2",
+       "title": "Blue Lite",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4a003c3c-b587-418e-afdc-4ff48ab53f87",
+       "title": "Blue Giant",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5de21245-a4d0-495e-a42b-58b97988b3c8",
+       "title": "Blue EP",
+       "score": 92,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "5564cb83-5897-4dd4-896c-ec85bcdf4a6e",
+       "title": "Chrisopher Blue",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "3305a12b-b65b-4e7a-846a-c1bec3e3d939",
+       "title": "Great Blue",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "456dca41-e4e6-4e88-8cb6-a1d60f11d87f",
+       "title": "Blue Unit",
+       "score": 92,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "58c6632a-dc53-482b-8b86-a5944474bc11",
+       "title": "Blue Panther",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a4672d28-5244-41cd-b5d4-77b54841e4b6",
+       "title": "Blue Jeans",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "baa5cf02-b6b4-442b-966a-ed4b8027c740",
+       "title": "Blue Moon",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "9b02d0e7-1144-42df-b7e1-532a7c43f812",
+       "title": "Blue Daze",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7c56f5dc-9b4b-41de-98cf-9014b9f5beff",
+       "title": "Empty Blue",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "06230b49-a6bb-4e18-a19a-9438839312a1",
+       "title": "Deep Blue",
+       "score": 92,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7b035e54-2693-41a7-b8bf-ef111e749b15",
+       "title": "Blue Velvet",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6563dc8d-40c9-40d1-a1d3-d8a50be9c64f",
+       "title": "Blue Hippos",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 13881, 2/10 of top have secondary types"
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": null,
+     "mb_query": "(releasegroup:(red) OR artist:(red)) AND primarytype:(album OR ep)",
+     "mb_total": 9518,
+     "top": [
+      "Red — Red (Album, n=2)",
+      "Red Red Krovvy — Red Red Krovvy (Album, n=1)",
+      "Red Red Meat — Red Red Meat (Album, n=3)",
+      "Red Cabaret — Red Cabaret (EP, n=1)",
+      "Red Sparowes — Red Sparowes (EP/Demo, n=1)",
+      "Vex Red — Vex Red (EP/Demo, n=1)",
+      "Red Molly — Red Molly (EP, n=1)",
+      "Red Razor — Red Razor (EP, n=1)",
+      "Midnight Red — Midnight Red (EP, n=1)",
+      "Red Wizard — Red Wizard (EP, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "b0197b1a-f661-447d-b669-2a8558e51f92",
+       "title": "Red",
+       "score": 100,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "20a4d978-25ff-4da8-aa53-513644645d81",
+       "title": "Red Red Krovvy",
+       "score": 99,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "95625691-a50a-309c-87cf-918080f1d2a2",
+       "title": "Red Red Meat",
+       "score": 99,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "c70a5139-0c8c-3167-9dd0-c05ad341d9f2",
+       "title": "Red Cabaret",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "cef54a78-9299-36e0-97b8-a5df89f1d643",
+       "title": "Red Sparowes",
+       "score": 92,
+       "count": 1,
+       "secondary": [
+        "Demo"
+       ]
+      },
+      {
+       "id": "d60c183b-dd20-3e6c-a82a-f639615c0b64",
+       "title": "Vex Red",
+       "score": 92,
+       "count": 1,
+       "secondary": [
+        "Demo"
+       ]
+      },
+      {
+       "id": "b09d608a-0117-3f10-a7d1-c23662f7d252",
+       "title": "Red Molly",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "291412ca-24a1-4bfb-a281-88ecc2905e5a",
+       "title": "Red Razor",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "431e9032-d0ad-42b3-9252-ad0737aaada7",
+       "title": "Midnight Red",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7e78ee24-6bb1-4f2a-be8b-3c3c41b3039b",
+       "title": "Red Wizard",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7aadd370-2e2d-4451-8258-7397b53cce53",
+       "title": "Red Butcher",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7a508873-8042-34b5-b1f0-b06a888f0f27",
+       "title": "Edible Red",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4435c6e7-1d6d-3152-8239-173cdd768d11",
+       "title": "Stained Red",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "3fd0235c-cafc-489b-babd-6aafb07d9264",
+       "title": "Red Swingline",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "57d774b4-d529-48b4-b963-b780fbde8786",
+       "title": "Red Spektor",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "37f6bbdc-ae97-4e9a-a2f3-3306c322e84e",
+       "title": "Red Void",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a52356f6-e788-40bc-ab28-080f98100160",
+       "title": "Red Blanket",
+       "score": 92,
+       "count": 1,
+       "secondary": [
+        "Demo"
+       ]
+      },
+      {
+       "id": "de331178-816b-491a-91e4-18cd0027e3cc",
+       "title": "Red Forest",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "806ac724-61b4-48f4-b8e1-2badae3f41c1",
+       "title": "Red Valley",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "216275fb-2218-4bf5-8b00-4db70fc7fef8",
+       "title": "Red Asphalt",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "36e5e394-ad1c-41e5-ab94-97bc945a5925",
+       "title": "Submission Red",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "355ca738-ba2e-42fc-a3ef-87c10ce98d67",
+       "title": "Red Rocket",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f17a4648-3d8d-4a4e-86f5-fbe9d3ddcbe0",
+       "title": "Red Riders",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "00a8b810-6a1b-4fa0-b6ab-422f4fd5fad3",
+       "title": "Red Eyes",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7fceec61-4d98-45f3-ad97-68c5bdeef4b1",
+       "title": "Red Lights",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 9518, 2/10 of top have secondary types"
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": null,
+     "mb_query": "(releasegroup:(1989) OR artist:(1989)) AND primarytype:(album OR ep)",
+     "mb_total": 532,
+     "top": [
+      "The Right Life — 1989 (Album, n=1)",
+      "The Way We Were in 1989 — The Way We Were in 1989 (Album, n=1)",
+      "Façades — 1989 Tiananmen (Album, n=1)",
+      "1989 — Cleeve Morris (EP, n=1)",
+      "1989 — Marc Suun (EP, n=1)",
+      "1989 — To Avoid (EP, n=2)",
+      "1989 — Juventud Podrida (EP/Demo, n=1)",
+      "1989 — Die Schwarzen Schafe (EP, n=1)",
+      "1989 — SHORTCUT MIFFY! (EP, n=1)",
+      "1989 — Amotinados do Teffé (EP, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "a78cffe3-67fc-43b7-afe6-94e4bf5edc5f",
+       "title": "The Right Life",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0d6535e6-fc21-49d4-98c2-30c7d5daa852",
+       "title": "The Way We Were in 1989",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ced2574a-139d-450e-b8f2-97892ad252aa",
+       "title": "Façades",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c98026d8-f1c2-49bb-8fa1-6c6a06d53db5",
+       "title": "1989",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b8571502-85ac-47db-9b5d-4c3eb78d48de",
+       "title": "1989",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "947e108d-6b1f-4abc-bf72-eaa4d486f0d5",
+       "title": "1989",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "25d9db14-650e-423a-a13e-39dda624e247",
+       "title": "1989",
+       "score": 77,
+       "count": 1,
+       "secondary": [
+        "Demo"
+       ]
+      },
+      {
+       "id": "99dc7dbc-5a2a-477a-99e2-47fe41bfb411",
+       "title": "1989",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f61921aa-93fb-45b5-9cd6-6a6dd30671ed",
+       "title": "1989",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "83137895-58a4-408c-aee3-475a9bffcfbc",
+       "title": "1989",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "59f1b878-d026-3dc8-b8f7-eb26c34bd8cc",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "bde2b445-7147-4e80-af63-a32f6df0da57",
+       "title": "1989",
+       "score": 69,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "59b8716c-d730-4a77-aaa6-30e395d129b7",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "093a98bc-f597-3da6-b862-fdfbb171b868",
+       "title": "1989",
+       "score": 69,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "5db5f082-a1c9-36e2-a241-9fc972f82be6",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "669defad-cd40-466d-a93d-d2037c57115d",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1b196f06-8793-4637-b79a-c0283e33b195",
+       "title": "1989",
+       "score": 69,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "b6dce69e-c437-3d01-981f-25477dd8b222",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "579497a7-103f-4345-a802-228903903464",
+       "title": "1989",
+       "score": 69,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "b26585a7-28af-43fe-8be0-1447784621a2",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4e767cbc-d55b-4a84-81ec-c7851d8fb998",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b2a7b9c4-126d-46cd-a923-5e5cd8c02135",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e73523f8-490b-4a08-a528-e16b3c3ea4af",
+       "title": "1989",
+       "score": 69,
+       "count": 6,
+       "secondary": []
+      },
+      {
+       "id": "df47d530-4438-488d-8feb-a09a3fa2e6eb",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a322b04f-ec52-4674-b643-955029d6f02f",
+       "title": "1989",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 532, 1/10 of top have secondary types"
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": null,
+     "mb_query": "(releasegroup:(21) OR artist:(21)) AND primarytype:(album OR ep)",
+     "mb_total": 2036,
+     "top": [
+      "21 Grams — 21 Grams (EP, n=1)",
+      "21 BOuTONS — 21 BOuTONS (Album, n=1)",
+      "Creme 21 — Creme 21 (Album, n=4)",
+      "Piso 21 — Piso 21 (Album, n=2)",
+      "21 Guns — 21 Guns (Album, n=1)",
+      "Aurora 21 — Aurora 21 (Album, n=1)",
+      "21. Peron — 21. Peron (Album, n=2)",
+      "Empire 21 — Empire 21 (Album, n=1)",
+      "21 Gang — 21 Savage (Album/Mixtape/Street, n=3)",
+      "21 Uzi — 21 Savage (Album/Mixtape/Street, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "47a4296f-46d8-4eaa-9ff1-462124bdbffd",
+       "title": "21 Grams",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "43d5d588-fbba-4d17-8e80-05a4d456726a",
+       "title": "21 BOuTONS",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "626a7393-20d9-3c00-86e5-081d74827833",
+       "title": "Creme 21",
+       "score": 92,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "59d2624e-476a-4ffe-8400-2a7302800e99",
+       "title": "Piso 21",
+       "score": 92,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "8a27fac0-3b1c-4c8e-9119-16a2ef75d483",
+       "title": "21 Guns",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "bfb5004f-97d9-45f2-b4bd-30b7912723d7",
+       "title": "Aurora 21",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "74d7edae-85b2-36bb-98fb-ed1000b28617",
+       "title": "21. Peron",
+       "score": 92,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "e4d8970c-4735-4c75-98f7-4dfc0ab16719",
+       "title": "Empire 21",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f4cb9935-2a2e-4e60-b828-967ff38dc81f",
+       "title": "21 Gang",
+       "score": 92,
+       "count": 3,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "7d2993b8-b9a3-4a28-9d46-3081b9bd92b4",
+       "title": "21 Uzi",
+       "score": 92,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "93cd3282-0eef-375b-9683-a798cb58afbb",
+       "title": "21 Union Square",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "5020fe6e-0dee-4f87-aec0-c1e4bb41c480",
+       "title": "21 Dub Street",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "30c370cd-2511-451d-9113-3d16a7ef6b29",
+       "title": "Keep IT 21",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1f844094-db9f-4491-a503-27520b9ba161",
+       "title": "21 Dark Years",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a05ba559-1200-46a1-9e2b-6db9dcca4a08",
+       "title": "21 Bodies",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2fbb4301-c6dd-4625-b3f6-fa330783595f",
+       "title": "Limi-T 21",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "40e1953a-eb7b-48c5-b66b-84d971e3c6d3",
+       "title": "The Villains 21",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "416b0f5a-0296-4e48-9ba2-46d3f0b45a40",
+       "title": "Horrorpunks in 21",
+       "score": 78,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "535acea9-2e22-3322-96e0-6f3d12ff1f3e",
+       "title": "Million Lights: A Collection of Songs by Trisomie 21",
+       "score": 71,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "6870a325-0503-401e-85e4-8ce59d4f324b",
+       "title": "Los Illusions Vol. Luigi 21 Plus",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ab591272-894b-4fdf-b4fd-95d330575c4e",
+       "title": "Hello! Project presents…「Premier seat」～モーニング娘。’21 Premium～",
+       "score": 64,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "61322da0-e509-41ec-bd5c-b03615f547c3",
+       "title": "Necro-Viral Frenzy in 21 Night",
+       "score": 60,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "6592c781-b27f-4dae-ba7f-f74f06d2296e",
+       "title": "Rarytasy",
+       "score": 60,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "7c34b5d1-6edf-4db7-b27e-2e5b7cf24781",
+       "title": "Blue Coast Inn",
+       "score": 60,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7cd7d36f-1989-4122-9bee-e4491e428cdf",
+       "title": "GREETING",
+       "score": 60,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 2036, 2/10 of top have secondary types"
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": null,
+     "mb_query": "(releasegroup:(radiohed) OR artist:(radiohed)) AND primarytype:(album OR ep)",
+     "mb_total": 0,
+     "top": [],
+     "groups": [],
+     "note": "total 0, 0/10 of top have secondary types"
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 10,
+     "mb_query": "(releasegroup:(beatels abbey road) OR artist:(beatels abbey road)) AND primarytype:(album OR ep)",
+     "mb_total": 5824,
+     "top": [
+      "Abbey Sings Abbey — Abbey Lincoln (Album, n=2)",
+      "Carfax Abbey — Carfax Abbey (Album, n=1)",
+      "Bedlam Abbey — Bedlam Abbey (Album, n=1)",
+      "Abbey Sings Billie — Abbey Lincoln (Album, n=1)",
+      "Abbey Is Blue — Abbey Lincoln (Album, n=10)",
+      "Road — Road (Album, n=1)",
+      "Road — Road (Album, n=2)",
+      "Enjoy The Beatles! — Abbey Road (Album, n=1)",
+      "Abbey's Road — Ada Montellanico feat. Giovanni Falzone (Album, n=2)",
+      "Abbey Road — The Beatles (Album, n=73)"
+     ],
+     "groups": [
+      {
+       "id": "945b81ad-8d3b-3200-8cc7-fd8145016d06",
+       "title": "Abbey Sings Abbey",
+       "score": 100,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "46b35dd0-7a4f-4b65-a022-287567138e8f",
+       "title": "Carfax Abbey",
+       "score": 91,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "d4ed8083-30a7-4a19-8e32-a73876e6af9d",
+       "title": "Bedlam Abbey",
+       "score": 91,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f7b53ce6-2b13-460b-b67d-29b0d7350a6b",
+       "title": "Abbey Sings Billie",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2fa972a2-9165-3423-9ab1-38ed7b07e807",
+       "title": "Abbey Is Blue",
+       "score": 85,
+       "count": 10,
+       "secondary": []
+      },
+      {
+       "id": "a4aac4d0-d0ec-4753-b570-d94c5dcedf5f",
+       "title": "Road",
+       "score": 85,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c0a91ab7-562a-3f0a-8c25-577a9411cf5b",
+       "title": "Road",
+       "score": 85,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "8104c6ff-a88e-43b0-b9b0-e05a4595ac90",
+       "title": "Enjoy The Beatles!",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c0b2899c-41ab-4907-abf0-ff1962477ff2",
+       "title": "Abbey's Road",
+       "score": 80,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+       "title": "Abbey Road",
+       "score": 80,
+       "count": 73,
+       "secondary": []
+      },
+      {
+       "id": "004a4e79-ac6c-448a-9d7f-b1b1714aa22a",
+       "title": "Abbey Road",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1229ccca-71bc-4df2-963c-e701fcc62d1f",
+       "title": "Hiatus Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b6fc0b5c-f168-4112-afcd-b388229266b3",
+       "title": "Goodbye Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "acd2c484-ae1a-4e73-b4a9-477030810587",
+       "title": "Black Road",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "38fbc01e-072a-4322-902a-f8d271cb051f",
+       "title": "Aces Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f2e98dad-003e-450a-8fab-6a580c7de98a",
+       "title": "Hartle Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "886e16b0-fe64-4d2f-ab73-08c80a752806",
+       "title": "My Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "17901d35-02e2-4c1b-a5a2-ebfd9bc4aa4a",
+       "title": "Victory Road",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7a783271-a7e7-4bdb-b9cc-6db8171d3e17",
+       "title": "Penelope Road",
+       "score": 77,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "9bb9111b-0aad-4146-a80e-512da8dee5b8",
+       "title": "Restless Road",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4de0f798-02e6-3d7c-b7a7-13502d521af8",
+       "title": "Abbey Sings Billie, Volume 2",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "9b906be9-f25a-4d1d-a13e-d3aa7e957631",
+       "title": "Road to Abbey",
+       "score": 77,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1a66b9b9-2098-4422-9f20-e793469bbbf4",
+       "title": "Abbey Lincoln: Warner Jazz: Les Incontournables",
+       "score": 74,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "2334296d-8c8e-4516-b76d-68311a52e3d8",
+       "title": "Addison Road EP",
+       "score": 74,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "92b7feab-2556-4c09-be59-09078aa8f6b3",
+       "title": "That's My Road",
+       "score": 74,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 5824, 0/10 of top have secondary types"
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": 5,
+     "mb_query": "(releasegroup:(kendrik lamar damn) OR artist:(kendrik lamar damn)) AND primarytype:(album OR ep)",
+     "mb_total": 676,
+     "top": [
+      "Kendrick Lamar — Kendrick Lamar (EP, n=3)",
+      "DAMN!DAMN!DAMN!DAMN! — The Hot Damn! (EP, n=1)",
+      "Duke It Out With Damn Damn Patriots — Damn Damn Patriots (EP, n=1)",
+      "Damn Craters — Damn Craters (EP, n=1)",
+      "DAMN. — Kendrick Lamar (Album, n=54)",
+      "Damn Terran — Damn Terran (Album, n=1)",
+      "God Damn — God Damn (Album, n=2)",
+      "Damn Freaks — Damn Freaks (Album, n=1)",
+      "Damn Sessions — Damn Sessions (Album, n=1)",
+      "Damn Yankees — Damn Yankees (Album, n=13)"
+     ],
+     "groups": [
+      {
+       "id": "3846827d-6120-4feb-b057-9b9e922daeab",
+       "title": "Kendrick Lamar",
+       "score": 100,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "935ffed1-a0ca-43af-bb3b-549034c271ce",
+       "title": "DAMN!DAMN!DAMN!DAMN!",
+       "score": 92,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ed5a6032-0593-45e0-aa11-38059bb1fa9c",
+       "title": "Duke It Out With Damn Damn Patriots",
+       "score": 87,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "84dc4ad2-f064-44df-ba8d-a26f6471561b",
+       "title": "Damn Craters",
+       "score": 84,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+       "title": "DAMN.",
+       "score": 83,
+       "count": 54,
+       "secondary": []
+      },
+      {
+       "id": "1b3ddc3d-5339-43cb-af2a-0601578dd699",
+       "title": "Damn Terran",
+       "score": 78,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "80c0b2ba-3db6-4d7d-a53a-b95ac25e84a5",
+       "title": "God Damn",
+       "score": 78,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "30ee4180-80db-4394-9454-81b5aa9411f0",
+       "title": "Damn Freaks",
+       "score": 78,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "7519940e-23bf-4a3f-87bc-aefce30841f8",
+       "title": "Damn Sessions",
+       "score": 78,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f5e11206-1d43-3332-acc8-107efbcc661d",
+       "title": "Damn Yankees",
+       "score": 78,
+       "count": 13,
+       "secondary": []
+      },
+      {
+       "id": "ed12a7d6-1b1b-42bf-9e07-1659ed6bfdc7",
+       "title": "Damn Good Liars EP",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "65b8040e-e471-4972-ace6-4dd5be4902c8",
+       "title": "The Damn Straights EP",
+       "score": 69,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "54c15805-446a-347f-8447-d7d5a60ed0e7",
+       "title": "Damn Dirty Ape",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a4e6b6d6-3000-3c1d-b27b-42409ed92a5f",
+       "title": "Damn the Diva",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a52bf34c-66f3-3151-be71-9016426f1d53",
+       "title": "Damn the Machine",
+       "score": 67,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "65c25526-3992-4924-9276-fabc992c570d",
+       "title": "Damn the Band",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "52c4bf6a-0127-4e0e-bb8c-1a1ef81f7e6a",
+       "title": "The Damn Devils",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "80aa38a9-788a-428b-a5d2-cc1cf5913540",
+       "title": "Those Damn Eyes",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "1789784c-5285-4b2d-8255-661a4b497187",
+       "title": "The Damn Truth",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b82b3966-6da7-48d7-9108-37c9a2e38f11",
+       "title": "The Damn Thing",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "3206e5f3-37f6-4307-ab9f-8be053175a30",
+       "title": "Damn Tall Buildings",
+       "score": 67,
+       "count": 2,
+       "secondary": [
+        "Audiobook",
+        "Audio drama"
+       ]
+      },
+      {
+       "id": "0e6021f9-7e0d-41c9-9431-11c40b528bdf",
+       "title": "All The Damn Action",
+       "score": 65,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c24c97cc-4865-4218-ba18-75f7c116d6d6",
+       "title": "Surra / Damn Youth",
+       "score": 64,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6b80060c-bc88-43cd-a916-8a2c1034dc87",
+       "title": "All the Damn Vampires EP",
+       "score": 62,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "2fadf8bc-c75b-390b-ba9a-acc8ca4a0a8d",
+       "title": "Big Damn Nation",
+       "score": 57,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 676, 0/10 of top have secondary types"
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 4,
+     "mb_query": "(releasegroup:(fleetwod mac rumours) OR artist:(fleetwod mac rumours)) AND primarytype:(album OR ep)",
+     "mb_total": 1368,
+     "top": [
+      "Rumours — Rumours (EP, n=1)",
+      "Fleetwood Mac / Rumours — Fleetwood Mac (Album/Compilation, n=1)",
+      "The Rumours — The Rumours (Album, n=1)",
+      "Rumours — Fleetwood Mac (Album, n=81)",
+      "The Best of Vicious Rumours — Vicious Rumours (Album/Compilation, n=1)",
+      "Adam Mac — Adam Mac (EP, n=1)",
+      "Fleetwood Mac — Fleetwood Mac (EP, n=1)",
+      "Rumours Outtakes — Fleetwood Mac (Album/Compilation, n=2)",
+      "Rumours Live — Fleetwood Mac (Album/Live, n=3)",
+      "Slow Rain - The Complete Celtic Rumours — Celtic Rumours (Album/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "7f75f05e-0e09-4808-899e-0c5ec6a694d1",
+       "title": "Rumours",
+       "score": 100,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ff1401ed-44e6-46f8-8ab3-232b34603552",
+       "title": "Fleetwood Mac / Rumours",
+       "score": 86,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "c37bdbf9-91a8-4906-b906-1ede5a1a2b2d",
+       "title": "The Rumours",
+       "score": 80,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "416bb5e5-c7d1-3977-8fd7-7c9daf6c2be6",
+       "title": "Rumours",
+       "score": 74,
+       "count": 81,
+       "secondary": []
+      },
+      {
+       "id": "560d5cdf-ad43-49b6-8260-996669548792",
+       "title": "The Best of Vicious Rumours",
+       "score": 68,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "80d1923d-1bfd-4a0f-984c-149c54a1c88c",
+       "title": "Adam Mac",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "76e0ba19-5d83-4da9-8b2a-39f1956d184a",
+       "title": "Fleetwood Mac",
+       "score": 67,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c5e1e90f-a702-3a7c-831e-4be25c5dc528",
+       "title": "Rumours Outtakes",
+       "score": 67,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "b155f9f9-3dd1-4440-a1b2-62a7b1f0318f",
+       "title": "Rumours Live",
+       "score": 67,
+       "count": 3,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "b35453d7-42af-40e4-b1dd-c7dde9d02bc7",
+       "title": "Slow Rain - The Complete Celtic Rumours",
+       "score": 63,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "260e37b9-8c3f-447c-b7a1-a2420125f135",
+       "title": "Lee Mac EP",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6e881f91-74ab-44c6-b164-05f3aaa7f1cd",
+       "title": "Lee Mac E.P.",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0f19ec46-beab-3fd0-a998-95acf8364b81",
+       "title": "Mac Morin",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c0551a07-0da8-4196-855e-5f113933fe9d",
+       "title": "Mac Powell",
+       "score": 63,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "30ebf5d1-d4a0-400f-85b3-294f97517a7c",
+       "title": "Shorty Mac",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b084a1d2-8aa2-453c-8c8e-a9ea0eb286e5",
+       "title": "Mac Cornish",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "953d52ff-e690-4c9e-8f3e-b1727bb50451",
+       "title": "Mac Blagick",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "53081995-f509-4ddd-9aa6-c1c681870926",
+       "title": "Mac Blackout",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e82a7e7c-270e-4102-8c2b-2585aadc421d",
+       "title": "Mac McAnally",
+       "score": 63,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "91cbe49c-3b19-469b-b98e-de799f7ce377",
+       "title": "Mac Davis",
+       "score": 63,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "8a745bdb-e77e-46ad-acc4-3a658d2350fd",
+       "title": "Vintage Mac",
+       "score": 63,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "008c5c5b-af44-45c2-82e0-e7f474eaf016",
+       "title": "Fleetwood Mac",
+       "score": 63,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "71db9dad-4ab3-48d2-bc16-4a7f9c32b10b",
+       "title": "Fleetwood Mac",
+       "score": 63,
+       "count": 1,
+       "secondary": [
+        "Compilation",
+        "Live"
+       ]
+      },
+      {
+       "id": "6b5d9bf1-f496-34b5-9488-7df2533d6208",
+       "title": "Fleetwood Mac",
+       "score": 63,
+       "count": 44,
+       "secondary": []
+      },
+      {
+       "id": "a3f3d5fb-7324-4b72-9e05-d6d05807e907",
+       "title": "Mac Wiseman",
+       "score": 63,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 1368, 5/10 of top have secondary types"
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "mb_query": "(releasegroup:(Björk Homogenic) OR artist:(Björk Homogenic)) AND primarytype:(album OR ep)",
+     "mb_total": 220,
+     "top": [
+      "Homogenic — Björk (Album, n=29)",
+      "Björk — Björk (EP/Compilation, n=1)",
+      "Homogenic Live — Björk (Album/Live, n=5)",
+      "Björk — Björk (Album/Compilation, n=1)",
+      "Björk — Björk (Album/Interview/Live, n=1)",
+      "Björk — Björk Guðmundsdóttir (Album, n=19)",
+      "Björk in Stein — Björk (Album/Live, n=1)",
+      "Björk in Paris — Björk (Album/Live, n=1)",
+      "Brant Bjork — Brant Bjork (Album, n=2)",
+      "All Is Full of Björk — Björk (EP/Compilation, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+       "title": "Homogenic",
+       "score": 100,
+       "count": 29,
+       "secondary": []
+      },
+      {
+       "id": "5ba71f2a-6590-3a81-a51f-e7e04a18c6cf",
+       "title": "Björk",
+       "score": 93,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "04cfa988-848b-31f5-9591-6a3e5f37dad2",
+       "title": "Homogenic Live",
+       "score": 91,
+       "count": 5,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "24839267-aeb5-4261-9bf0-e0b28cb61c9b",
+       "title": "Björk",
+       "score": 88,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "53fe1f4c-4a1a-4aae-86dd-ef01caf1a50f",
+       "title": "Björk",
+       "score": 88,
+       "count": 1,
+       "secondary": [
+        "Interview",
+        "Live"
+       ]
+      },
+      {
+       "id": "e7190579-8711-3422-af2f-16337139ed67",
+       "title": "Björk",
+       "score": 81,
+       "count": 19,
+       "secondary": []
+      },
+      {
+       "id": "aedd47b4-7f76-35b8-845d-a20e1f4c3934",
+       "title": "Björk in Stein",
+       "score": 76,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "662a0b6b-c750-3054-9e7f-a3a3d7f92e57",
+       "title": "Björk in Paris",
+       "score": 76,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "bf81cd19-3ac2-457f-aaac-e29bbff8e002",
+       "title": "Brant Bjork",
+       "score": 74,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "0c89d9bd-504e-4c1b-8d74-8a25cb26c7fd",
+       "title": "All Is Full of Björk",
+       "score": 73,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "f3c89074-3eaf-30c3-b6e0-662bfcdb0de2",
+       "title": "MTV History 2000: Björk",
+       "score": 72,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "6e11cb2a-3773-45d0-999f-6a81213a3e0c",
+       "title": "The Cover Mix: Björk",
+       "score": 72,
+       "count": 1,
+       "secondary": [
+        "DJ-mix"
+       ]
+      },
+      {
+       "id": "6661a61a-559c-4036-85b7-b33d517bdb58",
+       "title": "Apple Music Live: Björk (Cornucopia)",
+       "score": 68,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "5244a41d-22d4-497c-a975-e3aa9af4a5f2",
+       "title": "Let's Talk: Music from the Original Motion Picture Soundtrack \"Demi Ucok\"",
+       "score": 62,
+       "count": 2,
+       "secondary": [
+        "Soundtrack"
+       ]
+      },
+      {
+       "id": "d5f37ece-98dd-3c74-892c-37b1e19efa3f",
+       "title": "Brant Bjork & The Operators",
+       "score": 62,
+       "count": 4,
+       "secondary": []
+      },
+      {
+       "id": "10a032bf-7d64-33b4-85eb-43881f35bf38",
+       "title": "Epic Symphony",
+       "score": 58,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "f73a6e27-e2b7-439e-96c9-66119587441e",
+       "title": "Let a Thousand Flowers Bloom",
+       "score": 58,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "337b78b3-13bb-44a4-9f19-27f16735a41a",
+       "title": "Echoes of the Universe",
+       "score": 58,
+       "count": 3,
+       "secondary": []
+      },
+      {
+       "id": "ce6484f6-55ab-4fc3-8d6b-bcce87642779",
+       "title": "Björk Deathkvlt",
+       "score": 44,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "de084df9-d05a-45d5-95e5-d1f0dc26d5f4",
+       "title": "Vulnicura Remix Project, Part Two",
+       "score": 43,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "b86153fd-8699-3ff8-87d8-0ea2a05a4a82",
+       "title": "Three",
+       "score": 43,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "9bb59ca0-254c-3fa6-a353-7e07b8e4595e",
+       "title": "Celebrating Wood and Metal",
+       "score": 43,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "83c1fa29-6537-3d0c-97c4-29069fa4609e",
+       "title": "The Best Mixes From the Album – Debut for All the People Who Don’t Buy White‐Labels",
+       "score": 43,
+       "count": 6,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "0ea34321-490d-4870-9c83-7a66e7f998e9",
+       "title": "Vulnicura Remix Project, Part One",
+       "score": 43,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      },
+      {
+       "id": "65c4e725-0254-458a-841f-54671f4e5d9e",
+       "title": "Vulnicura Remix Project, Part Three",
+       "score": 43,
+       "count": 1,
+       "secondary": [
+        "Remix"
+       ]
+      }
+     ],
+     "note": "total 220, 7/10 of top have secondary types"
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "mb_query": "(releasegroup:(sigur ros agaetis byrjun) OR artist:(sigur ros agaetis byrjun)) AND primarytype:(album OR ep)",
+     "mb_total": 209,
+     "top": [
+      "Ágætis byrjun — Sigur Rós (Album, n=28)",
+      "Sigur Rós Presents Liminal Sleep — Sigur Rós (Album, n=1)",
+      "In a Frozen Sea: A Year With Sigur Rós — Sigur Rós (Album/Compilation, n=1)",
+      ":::kai/ros::: — :::kai/ros::: (EP, n=1)",
+      "iTunes Festival: London 2013 — Sigur Rós (EP/Live, n=2)",
+      "Kveikur — Sigur Rós (EP/Live, n=1)",
+      "Takk… — Sigur Rós (EP, n=2)",
+      "Sæglópur — Sigur Rós (EP, n=6)",
+      "Ba Ba Ti Ki Di Do — Sigur Rós (EP, n=9)",
+      "2001-04-17: Hamburg, Germany — Sigur Rós (Album/Live, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "62b427b8-1c52-34e7-b250-da2aa3e44860",
+       "title": "Ágætis byrjun",
+       "score": 100,
+       "count": 28,
+       "secondary": []
+      },
+      {
+       "id": "68b3e4db-e0ce-42ed-83ac-0e9b4db6e5bd",
+       "title": "Sigur Rós Presents Liminal Sleep",
+       "score": 75,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "e75a31dc-eb66-4a0a-b911-874baac40b3d",
+       "title": "In a Frozen Sea: A Year With Sigur Rós",
+       "score": 65,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "1b2cfc96-2259-4172-9b8f-04e474f63bed",
+       "title": ":::kai/ros:::",
+       "score": 46,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "b927e61d-5e21-4f86-8635-131c70fe63d7",
+       "title": "iTunes Festival: London 2013",
+       "score": 41,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "7980fd96-8a4a-4294-8b3d-53768893c74c",
+       "title": "Kveikur",
+       "score": 41,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "d4da6808-2e66-49bc-9068-1a4538c7e27b",
+       "title": "Takk…",
+       "score": 41,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "5268c5bf-f1dd-3d7f-a3db-4d25c21c358e",
+       "title": "Sæglópur",
+       "score": 41,
+       "count": 6,
+       "secondary": []
+      },
+      {
+       "id": "4d56b463-6fd6-3f04-8141-074a0018fba9",
+       "title": "Ba Ba Ti Ki Di Do",
+       "score": 41,
+       "count": 9,
+       "secondary": []
+      },
+      {
+       "id": "4d7f0cdd-9680-34e2-af8e-8edbd8c14e55",
+       "title": "2001-04-17: Hamburg, Germany",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "daf93819-a0ab-3b3e-8d1a-28db85baa187",
+       "title": "2005-09-19: Maisey Hall, Toronto, ON, Canada",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "2a097a8e-b55c-34a8-9728-6721c3bfa0f1",
+       "title": "2005-07-13: Paradiso, Amsterdam, The Netherlands",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "afc70d47-88ce-3384-aba9-aff2a8bd7785",
+       "title": "2001-04-23: City Variety's Hall, Leeds, UK",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "ee1657d4-1a43-392c-bb47-f19da87d04fa",
+       "title": "2005-09-11: The Music Center at Strathmore, MD, USA",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "bbccdb34-2055-3f57-b9ec-6da67e91a330",
+       "title": "2001-09-28: Women's Club, Minneapolis, MN, USA",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "bbf95d09-e34c-30ed-95ca-4fe510c0784e",
+       "title": "2006-02-09: Madison Square Garden, New York City, NY, USA",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "5e3f5efb-13af-3668-b83a-df12d0d941d7",
+       "title": "2003-06-24: Villa Medici, Prato, Italy",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "3e05b52a-9c8b-4865-8b03-4e934550027d",
+       "title": "2001-07-13: Montreux Jazz Festival, Montreux, Switzerland",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "3d6cb663-add0-37b3-b914-a1f7347428b0",
+       "title": "2001-04-13: Vienna, Austria",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "ec9cdbc4-9975-301c-a8d9-edbdb498185f",
+       "title": "1999-06-12: Icelandic Opera House, Reykjavík, Iceland",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "b951bffd-27df-33a9-95f1-770cf6ecb67c",
+       "title": "2003-02-12: Hammersmith Apollo, London, UK",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "6fb7d786-ff58-4db0-b5c9-8c94aba72129",
+       "title": "Tíu Lifandi",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "dc1cd438-6fee-4aa6-88ae-2e6503aaa8f3",
+       "title": "2013-02-26: Forest National, Brussels, Belgium",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "534adb9b-e612-4058-972d-d29ff03029b0",
+       "title": "Coliseu do Porto 02/28/2003",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "59d7a9cc-2540-4dea-95e4-ea948b961696",
+       "title": "2008-07-05: Rock Werchter, Werchter, Belgium",
+       "score": 39,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      }
+     ],
+     "note": "total 209, 4/10 of top have secondary types"
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 3,
+     "mb_query": "(releasegroup:(beyonce lemonade) OR artist:(beyonce lemonade)) AND primarytype:(album OR ep)",
+     "mb_total": 266,
+     "top": [
+      "BEYONCÉ — Beyoncé (Album, n=28)",
+      "Lemonade — Lemonade (Album, n=1)",
+      "Lemonade — Beyoncé (Album, n=24)",
+      "The Beyoncé Experience Live — Beyoncé (Album/Live, n=2)",
+      "Lemonade Influence — Lemonade Influence (Album, n=1)",
+      "BEYONCÉ BOWL (Live From Houston, Texas) — Beyoncé (EP/Live, n=1)",
+      "4 Intimate Nights With Beyoncé — Beyoncé (Album/Live, n=1)",
+      "Above and Beyoncé: Dance Mixes — Beyoncé (Album/Compilation/Remix, n=2)",
+      "RENAISSANCE: A Film by Beyoncé (Live) — Beyoncé (Album/Live, n=1)",
+      "Disney Karaoke Series: Lemonade Mouth — Lemonade Mouth Karaoke (Album, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "8596171e-23b2-4bdd-8f1c-11960df0ecbe",
+       "title": "BEYONCÉ",
+       "score": 100,
+       "count": 28,
+       "secondary": []
+      },
+      {
+       "id": "13e33eaa-e837-3dcc-8f4f-78f13b304241",
+       "title": "Lemonade",
+       "score": 97,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c1f22e07-7bdf-4a4f-8b50-7747c1091ef6",
+       "title": "Lemonade",
+       "score": 93,
+       "count": 24,
+       "secondary": []
+      },
+      {
+       "id": "b6d34031-2c7a-4e1d-820a-ee567ef217e4",
+       "title": "The Beyoncé Experience Live",
+       "score": 82,
+       "count": 2,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "390fbaeb-2e5a-47f9-8b51-39e72a97d839",
+       "title": "Lemonade Influence",
+       "score": 82,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "6e64de2c-fca9-40b2-a3be-bf692b81efef",
+       "title": "BEYONCÉ BOWL (Live From Houston, Texas)",
+       "score": 81,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "af3d4773-74cc-41f2-83df-63a43221f589",
+       "title": "4 Intimate Nights With Beyoncé",
+       "score": 79,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "cd8f701a-1109-4d5c-91ea-ecb12fa24fd8",
+       "title": "Above and Beyoncé: Dance Mixes",
+       "score": 79,
+       "count": 2,
+       "secondary": [
+        "Compilation",
+        "Remix"
+       ]
+      },
+      {
+       "id": "054817c5-a610-41c2-a5d1-92a0ee4b7d9c",
+       "title": "RENAISSANCE: A Film by Beyoncé (Live)",
+       "score": 76,
+       "count": 1,
+       "secondary": [
+        "Live"
+       ]
+      },
+      {
+       "id": "dd821d4d-11fb-4027-aa49-330b7f60f0b9",
+       "title": "Disney Karaoke Series: Lemonade Mouth",
+       "score": 64,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "8c1318ef-dff0-447f-8a69-15717a3ddc09",
+       "title": "EP1",
+       "score": 56,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "a8234f5e-7cb0-46c7-8a38-8f38191622e0",
+       "title": "Demo",
+       "score": 56,
+       "count": 1,
+       "secondary": [
+        "Demo"
+       ]
+      },
+      {
+       "id": "d7c0a772-1890-4bc9-8639-bff1f8d404c7",
+       "title": "Our Poems Set To Music",
+       "score": 56,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0c195340-307d-4cad-bf77-d3a7d1d9698f",
+       "title": "Pink",
+       "score": 56,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "0ba74f85-448c-4e8f-bcae-6622ccea8dc6",
+       "title": "SQUEEZE ME",
+       "score": 56,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "efe5fe17-99fd-4481-9579-b53d736c897e",
+       "title": "STARMAKER",
+       "score": 56,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "403555c6-7f1a-4451-9946-5309068e63f4",
+       "title": "Garagisme",
+       "score": 56,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "c9fc0fd6-62b1-47c8-b85f-61254225b4f8",
+       "title": "Pure Moods",
+       "score": 56,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "d9101d7a-fe96-4762-a064-253a5db3a63c",
+       "title": "Beyonce",
+       "score": 55,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "32785442-0a7e-4a35-985b-2597aa3ead83",
+       "title": "Lemonade",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ed887db3-7cb3-4b7a-9f0e-057757edbf1e",
+       "title": "Lemonade",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "87d6bf6d-b6aa-4cae-8782-de2680903ed1",
+       "title": "Lemonade",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "f22d7ff8-733a-4caf-8307-5d7d8bf3a8c7",
+       "title": "Lemonade",
+       "score": 53,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "ee95adcb-c8d6-48f1-b8f3-49687998ee18",
+       "title": "Lemonade",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "351fa7d4-f8bd-4ecc-bb15-d8f4d08a8e40",
+       "title": "Lemonade",
+       "score": 53,
+       "count": 1,
+       "secondary": []
+      }
+     ],
+     "note": "total 266, 5/10 of top have secondary types"
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 4,
+     "mb_query": "(releasegroup:(motorhead ace of spades) OR artist:(motorhead ace of spades)) AND primarytype:(album OR ep)",
+     "mb_total": 235750,
+     "top": [
+      "Ace of Spades — Motörhead (Album/Compilation, n=1)",
+      "Ace of Spades — Motörhead (Album/Compilation, n=1)",
+      "Ace of Spades — Motörhead (Album/Compilation, n=1)",
+      "Ace of Spades — Motörhead (Album, n=31)",
+      "Ace of Spades — Ace B47 (Album/Mixtape/Street, n=1)",
+      "Bomber / Ace of Spades — Motörhead (Album/Compilation, n=1)",
+      "Motörhead — Motörhead (Album/Compilation, n=1)",
+      "Motörhead — Motörhead (Album/Compilation, n=1)",
+      "Motörhead — Motörhead (Album, n=20)",
+      "Ace of Spades — A Primitive Evolution (EP, n=1)"
+     ],
+     "groups": [
+      {
+       "id": "5a72e9b3-5075-3671-9750-8f3fa6e0d2f8",
+       "title": "Ace of Spades",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "fd30c271-6c92-4198-8b20-9c7c8dc276bb",
+       "title": "Ace of Spades",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "045a1a95-fce1-412b-8558-24330ce1fa71",
+       "title": "Ace of Spades",
+       "score": 100,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "51d51de2-0312-4798-8529-bed2ae2581c6",
+       "title": "Ace of Spades",
+       "score": 100,
+       "count": 31,
+       "secondary": []
+      },
+      {
+       "id": "a534c372-0da8-4012-89b2-44cf65c1603e",
+       "title": "Ace of Spades",
+       "score": 90,
+       "count": 1,
+       "secondary": [
+        "Mixtape/Street"
+       ]
+      },
+      {
+       "id": "bdd6150f-34e7-46d5-ad9c-93ce62b43dbc",
+       "title": "Bomber / Ace of Spades",
+       "score": 87,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "d6fc0311-a958-304e-877a-50940226043b",
+       "title": "Motörhead",
+       "score": 76,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "76d64ecf-18f8-4d5a-b773-d87d2e6b31f2",
+       "title": "Motörhead",
+       "score": 76,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "43b4c679-bb92-3479-8763-501fd5173d3d",
+       "title": "Motörhead",
+       "score": 76,
+       "count": 20,
+       "secondary": []
+      },
+      {
+       "id": "d596bb08-a399-4f44-98f5-d4f5da313968",
+       "title": "Ace of Spades",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "38b43cc3-5f38-44d4-b7af-296e5b482cbf",
+       "title": "Ace of Spades",
+       "score": 70,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7d44df36-80ef-4d33-bffe-3993e06d22bc",
+       "title": "Ace of Spades",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "8ff71d1e-74cc-4c5a-9d82-52b40e698ee5",
+       "title": "Ace of Spades",
+       "score": 70,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "fcc16ea4-f956-38e1-8af6-3107e97acb52",
+       "title": "The Best of Motörhead",
+       "score": 69,
+       "count": 2,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "e0d006a1-5ad6-4401-8d62-b7100332ffc6",
+       "title": "The Best of Motörhead",
+       "score": 69,
+       "count": 3,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "9a4d8d11-873e-4cb7-ab3b-9c4d987a136e",
+       "title": "2 Originals of Motörhead",
+       "score": 69,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "4341aef2-a025-4588-92bf-2748ac9a0852",
+       "title": "Ace of Cups",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ddb8c3ec-f451-4a23-abb3-7a24f4e3dd72",
+       "title": "Ace of Pentacles",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "3f6612d8-4165-4ef3-bbdb-9edffb80fb45",
+       "title": "Maid of Ace",
+       "score": 66,
+       "count": 2,
+       "secondary": []
+      },
+      {
+       "id": "7f7d2997-f05c-44fc-8193-7dcc178bacec",
+       "title": "The Complete Motörhead Kit",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "69d9d2e2-e809-339f-8eab-24f397522062",
+       "title": "Ace of Spades",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "ce36a0fc-d404-4c4e-9bde-4b4f8228d169",
+       "title": "Ace of Spades",
+       "score": 66,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      },
+      {
+       "id": "bf19db54-b972-4d16-9719-f90fd0027ba3",
+       "title": "Ace Of Spades",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "8aded37f-412e-4302-b476-67a9799b5bb8",
+       "title": "Ace Of Spades",
+       "score": 66,
+       "count": 1,
+       "secondary": []
+      },
+      {
+       "id": "4e5043af-f3ee-4ccb-ae56-88c0ed68784e",
+       "title": "The Complete Best of Motörhead",
+       "score": 66,
+       "count": 1,
+       "secondary": [
+        "Compilation"
+       ]
+      }
+     ],
+     "note": "total 235750, 7/10 of top have secondary types"
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 6,
+     "hit@10": 13,
+     "mrr": 0.172
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 0,
+      "mrr": 0.011
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 0,
+      "mrr": 0.035
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 1,
+      "hit@10": 3,
+      "mrr": 0.127
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 2,
+      "hit@10": 3,
+      "mrr": 0.269
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 0,
+      "mrr": 0.0
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 0,
+      "hit@10": 3,
+      "mrr": 0.138
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 3,
+      "hit@10": 4,
+      "mrr": 0.646
+     }
+    }
+   }
+  }
+ ]
+}

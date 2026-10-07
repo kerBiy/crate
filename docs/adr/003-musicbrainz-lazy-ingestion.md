@@ -1,6 +1,6 @@
 # ADR-003: MusicBrainz as the catalog source, with on-demand ingestion
 
-Date: 2026-10-05 · Status: accepted
+Date: 2026-10-05 · Status: accepted (search ranking and when to ask MusicBrainz: see ADR-010)
 
 ## Context
 

@@ -262,7 +262,9 @@ create table albums (
   artist_credit      text not null,     -- display string, e.g. "Simon & Garfunkel"
   primary_artist_id  uuid references artists(id),
   primary_type       varchar(20),       -- Album | EP
+  secondary_types    text[],            -- e.g. {Live} or {Compilation}; null = unknown (stored before V3)
   first_release_date varchar(10),       -- MB dates can be partial: "1997" or "1997-05"
+  release_count      integer,           -- releases in the group (popularity); only search results report it
   search_text        text not null,     -- normalized in Java: lowercase, no diacritics, title + artist
   fetched_at         timestamptz not null
 );
@@ -280,6 +282,14 @@ create table search_cache (
   fetched_at       timestamptz not null
 );
 
+-- MusicBrainz's ranked answer per cached query (ADR-010)
+create table search_results (
+  normalized_query text    not null references search_cache on delete cascade,
+  album_id         uuid    not null references albums on delete cascade,
+  rank             integer not null,
+  primary key (normalized_query, album_id)
+);
+
 create table processed_events (
   event_id     uuid primary key,
   processed_at timestamptz not null default now()
@@ -295,16 +305,21 @@ create table processed_events (
 - **Rate limit: about 1 request per second** from our IP. Enforce it globally in-process with a token bucket (one catalog instance in the MVP). On HTTP 503: back off with jitter and retry, maximum 3 times.
 - Never call MusicBrainz inside a DB transaction.
 - Build Lucene queries in one place (`MusicBrainzQueryBuilder`). If the input contains `" - "`, split it into artist and title.
-- Keep only release groups with primary type Album or EP.
+- Keep only release groups with primary type Album or EP. In search, also drop the excluded secondary types (`MusicBrainzQueryBuilder.EXCLUDED_SECONDARY_TYPES`) unless the title is exactly the query; lookups by id keep them.
 - Exact query syntax and `inc=` parameters: verify against the MusicBrainz API docs. Capture real responses once and keep them as WireMock fixtures.
 
-**Search algorithm (read-through cache)**
+**Search algorithm (read-through cache of MusicBrainz's ranking, ADR-010)**
 
 1. Normalize the query: lowercase, strip diacritics (`java.text.Normalizer`), collapse whitespace.
-2. Search locally with trigram **word similarity** on `search_text` (`query <% search_text`, served by the GIN index), ordered by similarity, limit 20. Word similarity scores the query against the best-matching part of `search_text`; plain `similarity()` compares whole strings and penalizes long titles, so a one-letter typo ("radiohed") scores below 0.3.
-3. If there are at least 5 good matches (word similarity ≥ 0.5, `crate.catalog.search.match-threshold`), **or** the normalized query is in `search_cache` and is younger than 7 days → return the local results.
-4. Otherwise call MusicBrainz (rate-limited, outside any DB transaction), upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock), record the query in `search_cache` (even when MusicBrainz found nothing), repeat step 2 and return.
-5. If MusicBrainz fails or times out → return local results with `partial: true`. **Never fail a search because MusicBrainz is down.**
+2. If the normalized query is in `search_cache` and younger than 7 days → return its stored `search_results` in rank order.
+3. Otherwise ask MusicBrainz (rate-limited, outside any DB transaction), 1–3 requests:
+   1. The query, 100 results: every word required in title or artist; compilations, live albums, remixes, DJ-mixes, mixtapes, demos etc. excluded unless the title is exactly the query (soundtracks stay).
+   2. Only if that found nothing: the same query allowing misspellings (`word~` for words of 4+ letters).
+   3. If the whole query is the name of an artist credited in the results ("radiohead", "beatles", "bjork"): that artist's albums.
+4. Rank: the artist's albums first, most releases first; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock), then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing) and replace its `search_results`. Return them.
+5. If MusicBrainz fails or times out → local fallback with `partial: true`: trigram **word similarity** on `search_text` (`query <% search_text`, ≥ 0.5, served by the GIN index), excluded secondary types left out, most releases first among equal matches. **Never fail a search because MusicBrainz is down.**
+
+Search quality is measured with `services/catalog-service/search-eval` (30 queries, hit@3); rerun it when changing anything above.
 
 **Album details:** local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
 
@@ -778,6 +793,7 @@ Date: YYYY-MM-DD · Status: accepted | superseded by ADR-XXX
 | 007 | Feed: fan-out on read (MVP) → fan-out on write (Phase 2). |
 | 008 | Same-origin deployment behind Caddy, so no CORS in production. |
 | 009 | Hosting on Oracle Always Free (ARM), with fallbacks. |
+| 010 | Search ranking: MusicBrainz ranks (AND query, secondary types excluded, artist's albums first, score + popularity); we cache the ranking per query. Measured with a 30-query eval set. |
 
 ---
 

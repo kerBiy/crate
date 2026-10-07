@@ -1,7 +1,7 @@
 ENV_FILE := infra/compose/.env
 COMPOSE  := docker compose -f infra/compose/docker-compose.yml --env-file $(ENV_FILE)
 
-.PHONY: infra-up infra-down infra-reset logs ps check-env jwt-keys
+.PHONY: infra-up infra-down infra-reset logs ps check-env jwt-keys catalog-prune-unrated
 
 JWT_KEY := infra/compose/secrets/jwt-private.pem
 
@@ -26,6 +26,16 @@ logs: check-env
 
 ps: check-env
 	$(COMPOSE) ps
+
+## One-off, local only: delete stored albums nobody has rated (re-fetched from MusicBrainz on demand)
+# Not a Flyway migration on purpose: migrations run in production too, and shouldn't delete data.
+# Removes rows stored before ADR-010 without secondary types, so old compilations stop matching.
+catalog-prune-unrated: check-env
+	$(COMPOSE) exec -T postgres psql -U postgres -d catalog_db -v ON_ERROR_STOP=1 -c "\
+	  begin; \
+	  delete from albums a where not exists (select 1 from album_stats s where s.album_id = a.id and s.rating_count > 0); \
+	  delete from artists ar where not exists (select 1 from albums a where a.primary_artist_id = ar.id); \
+	  commit;"
 
 ## Create the RSA private key user-service signs JWTs with (local dev only, git-ignored)
 # One shell block: an `exit` on its own recipe line would only end that line's shell.

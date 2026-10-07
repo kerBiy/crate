@@ -1,0 +1,455 @@
+{
+  "_comment": "Search evaluation set. A case passes when any expected release group (MusicBrainz MBID) is in the top 3. Titles/artists are for humans only; matching is by mbid.",
+  "cases": [
+    {
+      "query": "radiohead",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "b1392450-e666-3926-a536-22c65f834433",
+          "title": "OK Computer",
+          "artist": "Radiohead"
+        },
+        {
+          "mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artist": "Radiohead"
+        },
+        {
+          "mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artist": "Radiohead"
+        },
+        {
+          "mbid": "b8048f24-c026-3398-b23a-b5e50716cbc7",
+          "title": "The Bends",
+          "artist": "Radiohead"
+        }
+      ]
+    },
+    {
+      "query": "kendrick lamar",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+          "title": "To Pimp a Butterfly",
+          "artist": "Kendrick Lamar"
+        },
+        {
+          "mbid": "499c19c8-0dab-4824-884b-6191d145e95b",
+          "title": "good kid, m.A.A.d city",
+          "artist": "Kendrick Lamar"
+        },
+        {
+          "mbid": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+          "title": "DAMN.",
+          "artist": "Kendrick Lamar"
+        }
+      ]
+    },
+    {
+      "query": "bjork",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+          "title": "Homogenic",
+          "artist": "Björk"
+        },
+        {
+          "mbid": "6891a28c-5865-36e2-9e5f-c9fac1d3595f",
+          "title": "Debut",
+          "artist": "Björk"
+        },
+        {
+          "mbid": "b2a6e057-087d-3ae5-a6e5-7f5fa39808ff",
+          "title": "Post",
+          "artist": "Björk"
+        },
+        {
+          "mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+          "title": "Vespertine",
+          "artist": "Björk"
+        }
+      ]
+    },
+    {
+      "query": "daft punk",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "48117b90-a16e-34ca-a514-19c702df1158",
+          "title": "Discovery",
+          "artist": "Daft Punk"
+        },
+        {
+          "mbid": "aa997ea0-2936-40bd-884d-3af8a0e064dc",
+          "title": "Random Access Memories",
+          "artist": "Daft Punk"
+        },
+        {
+          "mbid": "00054665-89fa-33d5-a8f0-1728ea8c32c3",
+          "title": "Homework",
+          "artist": "Daft Punk"
+        }
+      ]
+    },
+    {
+      "query": "the beatles",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+          "title": "Abbey Road",
+          "artist": "The Beatles"
+        },
+        {
+          "mbid": "72d15666-99a7-321e-b1f3-a3f8c09dff9f",
+          "title": "Revolver",
+          "artist": "The Beatles"
+        },
+        {
+          "mbid": "9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
+          "title": "Sgt. Pepper’s Lonely Hearts Club Band",
+          "artist": "The Beatles"
+        },
+        {
+          "mbid": "055be730-dcad-31bf-b550-45ba9c202aa3",
+          "title": "The Beatles",
+          "artist": "The Beatles"
+        },
+        {
+          "mbid": "dca03435-8adb-30a5-ba82-5a162267ff38",
+          "title": "Rubber Soul",
+          "artist": "The Beatles"
+        }
+      ]
+    },
+    {
+      "query": "miles davis",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "8e8a594f-2175-38c7-a871-abb68ec363e7",
+          "title": "Kind of Blue",
+          "artist": "Miles Davis"
+        },
+        {
+          "mbid": "a9e30282-5b37-3f92-b897-b9659a1a312b",
+          "title": "Bitches Brew",
+          "artist": "Miles Davis"
+        },
+        {
+          "mbid": "966fede2-31b2-3b6a-ab50-4a650d3bb97d",
+          "title": "Sketches of Spain",
+          "artist": "Miles Davis"
+        }
+      ]
+    },
+    {
+      "query": "grateful dead",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "994c2c59-d32f-304e-8f53-bda17a254f52",
+          "title": "American Beauty",
+          "artist": "Grateful Dead"
+        },
+        {
+          "mbid": "6fdb82d8-9aee-35ed-8092-8434866bab7f",
+          "title": "Workingman’s Dead",
+          "artist": "Grateful Dead"
+        }
+      ]
+    },
+    {
+      "query": "bob dylan",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "fb48b1dc-412f-36aa-8820-1023c08c46c6",
+          "title": "Highway 61 Revisited",
+          "artist": "Bob Dylan"
+        },
+        {
+          "mbid": "329fb554-2a81-3d8a-8e22-ec2c66810019",
+          "title": "Blonde on Blonde",
+          "artist": "Bob Dylan"
+        },
+        {
+          "mbid": "9c1b8072-eb1d-33d2-af8c-984d46e40902",
+          "title": "Blood on the Tracks",
+          "artist": "Bob Dylan"
+        },
+        {
+          "mbid": "169b62aa-c3a5-3ed9-bed1-cc47c4bc51ad",
+          "title": "The Freewheelin’ Bob Dylan",
+          "artist": "Bob Dylan"
+        }
+      ]
+    },
+    {
+      "query": "ok computer",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "b1392450-e666-3926-a536-22c65f834433",
+          "title": "OK Computer",
+          "artist": "Radiohead"
+        }
+      ]
+    },
+    {
+      "query": "kind of blue",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "8e8a594f-2175-38c7-a871-abb68ec363e7",
+          "title": "Kind of Blue",
+          "artist": "Miles Davis"
+        }
+      ]
+    },
+    {
+      "query": "abbey road",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+          "title": "Abbey Road",
+          "artist": "The Beatles"
+        }
+      ]
+    },
+    {
+      "query": "to pimp a butterfly",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+          "title": "To Pimp a Butterfly",
+          "artist": "Kendrick Lamar"
+        }
+      ]
+    },
+    {
+      "query": "rumours",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "416bb5e5-c7d1-3977-8fd7-7c9daf6c2be6",
+          "title": "Rumours",
+          "artist": "Fleetwood Mac"
+        }
+      ]
+    },
+    {
+      "query": "the dark side of the moon",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "f5093c06-23e3-404f-aeaa-40f72885ee3a",
+          "title": "The Dark Side of the Moon",
+          "artist": "Pink Floyd"
+        }
+      ]
+    },
+    {
+      "query": "radiohead kid a",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artist": "Radiohead"
+        }
+      ]
+    },
+    {
+      "query": "beatles revolver",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "72d15666-99a7-321e-b1f3-a3f8c09dff9f",
+          "title": "Revolver",
+          "artist": "The Beatles"
+        }
+      ]
+    },
+    {
+      "query": "pink floyd the wall",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "f2026101-945b-3d05-9ef4-aa718fc3feef",
+          "title": "The Wall",
+          "artist": "Pink Floyd"
+        }
+      ]
+    },
+    {
+      "query": "jay-z watch the throne",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "a96597aa-93b4-4e14-9e6e-03892ab24979",
+          "title": "Watch the Throne",
+          "artist": "Jay‐Z & Kanye West"
+        }
+      ]
+    },
+    {
+      "query": "blue",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "42d725fb-a8b7-388c-8866-3b02789af326",
+          "title": "Blue",
+          "artist": "Joni Mitchell"
+        }
+      ]
+    },
+    {
+      "query": "red",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "a73cecde-0923-40ad-aad1-e8c24ba6c3d2",
+          "title": "Red",
+          "artist": "Taylor Swift"
+        },
+        {
+          "mbid": "89bc97c8-921a-3758-8481-3b39c564e297",
+          "title": "Red",
+          "artist": "King Crimson"
+        }
+      ]
+    },
+    {
+      "query": "1989",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "4d9ec1c2-58ec-48a4-aa0a-916718adead0",
+          "title": "1989",
+          "artist": "Taylor Swift"
+        }
+      ]
+    },
+    {
+      "query": "21",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "e4174758-d333-4a8e-a31f-dd0edd51518e",
+          "title": "21",
+          "artist": "Adele"
+        }
+      ]
+    },
+    {
+      "query": "radiohed",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "b1392450-e666-3926-a536-22c65f834433",
+          "title": "OK Computer",
+          "artist": "Radiohead"
+        },
+        {
+          "mbid": "e75c0549-ad55-39e3-8025-c72c5d4a3c5d",
+          "title": "Kid A",
+          "artist": "Radiohead"
+        },
+        {
+          "mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artist": "Radiohead"
+        },
+        {
+          "mbid": "b8048f24-c026-3398-b23a-b5e50716cbc7",
+          "title": "The Bends",
+          "artist": "Radiohead"
+        }
+      ]
+    },
+    {
+      "query": "beatels abbey road",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+          "title": "Abbey Road",
+          "artist": "The Beatles"
+        }
+      ]
+    },
+    {
+      "query": "kendrik lamar damn",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+          "title": "DAMN.",
+          "artist": "Kendrick Lamar"
+        }
+      ]
+    },
+    {
+      "query": "fleetwod mac rumours",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "416bb5e5-c7d1-3977-8fd7-7c9daf6c2be6",
+          "title": "Rumours",
+          "artist": "Fleetwood Mac"
+        }
+      ]
+    },
+    {
+      "query": "Björk Homogenic",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+          "title": "Homogenic",
+          "artist": "Björk"
+        }
+      ]
+    },
+    {
+      "query": "sigur ros agaetis byrjun",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "62b427b8-1c52-34e7-b250-da2aa3e44860",
+          "title": "Ágætis byrjun",
+          "artist": "Sigur Rós"
+        }
+      ]
+    },
+    {
+      "query": "beyonce lemonade",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "c1f22e07-7bdf-4a4f-8b50-7747c1091ef6",
+          "title": "Lemonade",
+          "artist": "Beyoncé"
+        }
+      ]
+    },
+    {
+      "query": "motorhead ace of spades",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "51d51de2-0312-4798-8529-bed2ae2581c6",
+          "title": "Ace of Spades",
+          "artist": "Motörhead"
+        }
+      ]
+    }
+  ]
+}

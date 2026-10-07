@@ -11,6 +11,7 @@ import { RatingInput } from '../components/ui/RatingInput.tsx'
 import { RatingStars } from '../components/ui/RatingStars.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
+import { Textarea } from '../components/ui/Textarea.tsx'
 import { ToastMessage, ToastRegion, useToast } from '../components/ui/Toast.tsx'
 import { Vinyl } from '../components/ui/Vinyl.tsx'
 import { albums, coverUrl, everyone } from '../lab/albums.ts'
@@ -81,6 +82,21 @@ export function ComponentsPage() {
           </Cell>
           <Cell label="Large (search)">
             <Input label="Search" type="search" size="lg" hint="Album or artist" />
+          </Cell>
+        </Block>
+
+        <Block name="Textarea" use="Longer writing, such as a review. Same label, hint and error as Input.">
+          <Cell label="With hint">
+            <Textarea label="Your review" hint="Up to 5000 characters." maxLength={5000} />
+          </Cell>
+          <Cell label="Filled">
+            <Textarea label="Your review" defaultValue="The best one, no debate. Let Down still gets me every time." />
+          </Cell>
+          <Cell label="Error">
+            <Textarea label="Your review" error="Keep it under 5000 characters." />
+          </Cell>
+          <Cell label="Disabled">
+            <Textarea label="Your review" defaultValue="A grower. Give it three listens." disabled />
           </Cell>
         </Block>
 

@@ -1,4 +1,4 @@
-package io.github.kerbiy.crate.user.web;
+package io.github.kerbiy.crate.review.web;
 
 import java.net.URI;
 import java.util.List;

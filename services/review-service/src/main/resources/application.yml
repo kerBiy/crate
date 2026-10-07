@@ -1,6 +1,12 @@
 spring:
   application:
     name: review-service
+  jpa:
+    # Flyway owns the schema; Hibernate only checks that the entities match it.
+    hibernate:
+      ddl-auto: validate
+    # Don't keep a DB session open while the HTTP response is being written.
+    open-in-view: false
 
 server:
   port: 8083
@@ -10,3 +16,10 @@ management:
     web:
       exposure:
         include: health
+
+crate:
+  catalog:
+    # catalog-service, used to check that an album exists before it's rated.
+    # base-url is set per profile; startup fails without it.
+    # SPEC 3.3: every service-to-service call has an explicit timeout.
+    timeout: 2s

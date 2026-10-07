@@ -1,5 +1,8 @@
-package io.github.kerbiy.crate.user.web;
+package io.github.kerbiy.crate.review.web;
 
+import io.github.kerbiy.crate.review.catalog.AlbumNotFoundException;
+import io.github.kerbiy.crate.review.catalog.CatalogUnavailableException;
+import io.github.kerbiy.crate.review.review.ReviewConflictException;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -70,6 +73,31 @@ class ProblemDetailsHandler extends ResponseEntityExceptionHandler {
         ProblemDetail problem = Problems.validationFailed(List.of(
                 Problems.fieldError(ex.getParameterName(), "is required")));
         return handleExceptionInternal(ex, problem, headers, status, request);
+    }
+
+    @ExceptionHandler(AlbumNotFoundException.class)
+    ProblemDetail handleAlbumNotFound(AlbumNotFoundException ex) {
+        return problem(HttpStatus.NOT_FOUND, "album-not-found", "Album not found", "This album doesn't exist.");
+    }
+
+    /** 503, not 404: we couldn't ask, so we don't know whether the album exists. */
+    @ExceptionHandler(CatalogUnavailableException.class)
+    ProblemDetail handleCatalogUnavailable(CatalogUnavailableException ex) {
+        return problem(HttpStatus.SERVICE_UNAVAILABLE, "catalog-unavailable", "Catalog unavailable",
+                "Couldn't check that this album exists. Try again in a moment.");
+    }
+
+    @ExceptionHandler(ReviewConflictException.class)
+    ProblemDetail handleReviewConflict(ReviewConflictException ex) {
+        return problem(HttpStatus.CONFLICT, "review-conflict", "Review conflict",
+                "This review kept changing while it was being saved. Try again.");
+    }
+
+    private static ProblemDetail problem(HttpStatus status, String slug, String title, String detail) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(status, detail);
+        problem.setType(Problems.type(slug));
+        problem.setTitle(title);
+        return problem;
     }
 
     /** Anything unexpected: log it, but never send internals (messages, stack traces) to the client. */

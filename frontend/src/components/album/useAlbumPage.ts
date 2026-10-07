@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { useToast } from '../ui/Toast.tsx'
 
 /** A flag that turns on for one CSS animation and off when it ends. */
-function useOneShot() {
+export function useOneShot() {
   const [on, setOn] = useState(false)
   const play = useCallback(() => setOn(true), [])
   const done = useCallback(() => setOn(false), [])

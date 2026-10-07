@@ -1,16 +1,24 @@
 import type { AlbumDetails } from '../../api/types.ts'
-import { EmptyState } from '../ui/States.tsx'
-import { RateControl } from './actions.tsx'
+import { ToastRegion, useToast } from '../ui/Toast.tsx'
+import { AlbumReviews } from './AlbumReviews.tsx'
 import { FriendRatings } from './bits.tsx'
-import { Reviews, SectionTitle } from './Reviews.tsx'
+import { MyRating } from './MyRating.tsx'
+import { SectionTitle } from './Reviews.tsx'
 import { Sleeve } from './Sleeve.tsx'
+import { useOneShot } from './useAlbumPage.ts'
 
 /**
  * Album page (variant B with the record from C), filled from GET /api/albums/{id}.
  * No dominant color stored yet, so the header has no wash and the record label uses the accent.
- * Ratings, reviews and friends have no backend yet: their empty states show, rating is disabled.
+ * Rating and reviews are live. The average and histogram come from rating events (task 6), and
+ * friends from follows: until then they stay empty instead of showing made-up numbers.
  */
 export function AlbumView({ album }: { album: AlbumDetails }) {
+  const toast = useToast()
+  const spin = useOneShot()
+  // Only rating moves the record here; sending and listen later aren't built yet.
+  const idle = useOneShot()
+
   const facts = [
     ['Released', releaseDate(album.firstReleaseDate)],
     ['Type', album.primaryType],
@@ -20,7 +28,12 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
     <>
       <header className="border-b border-border">
         <div className="mx-auto flex max-w-content flex-col gap-6 px-4 py-8 lg:flex-row lg:gap-8 lg:px-6">
-          <Sleeve title={album.title} artist={album.artistCredit} src={album.coverUrl} />
+          <Sleeve
+            title={album.title}
+            artist={album.artistCredit}
+            src={album.coverUrl}
+            motion={{ spin, send: idle, nudge: idle }}
+          />
           <div className="flex min-w-0 flex-1 flex-col gap-6">
             <div>
               <h1 className="font-narrow font-display text-h2 font-semibold text-text lg:text-h1">{album.title}</h1>
@@ -37,7 +50,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
               </dl>
             )}
             <div className="mt-auto">
-              <RateControl title={album.title} value={0} />
+              <MyRating albumId={album.id} title={album.title} notify={toast.show} onRated={spin.play} />
             </div>
           </div>
         </div>
@@ -46,7 +59,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
       <main className="relative mx-auto grid max-w-content gap-12 px-4 py-8 lg:grid-cols-3 lg:px-6">
         <section className="lg:col-span-2">
           <SectionTitle>Reviews</SectionTitle>
-          <Reviews reviews={[]} state="empty" onRetry={() => {}} emptyMessage="No reviews yet." />
+          <AlbumReviews albumId={album.id} />
         </section>
         <aside className="order-first flex flex-col gap-8 lg:order-none lg:border-l lg:border-border lg:pl-8">
           <section>
@@ -57,7 +70,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
                 <span className="text-meta text-muted">average from {album.ratingCount}</span>
               </p>
             ) : (
-              <EmptyState message="No ratings yet." />
+              <p className="text-muted">The average and spread of ratings show up here soon.</p>
             )}
           </section>
           <section>
@@ -66,6 +79,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
           </section>
         </aside>
       </main>
+      <ToastRegion message={toast.message} />
     </>
   )
 }

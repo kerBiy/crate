@@ -233,7 +233,7 @@ create index follows_followee_idx on follows (followee_id);
 | `GET /users/me` | — | current user |
 | `PATCH /users/me` | `{displayName}` | updated user |
 | `GET /users/{username}` | — | public profile + follower/following counts |
-| `GET /users?ids=a,b,c` | max 100 ids | batch lookup (used to render feeds) |
+| `GET /users?ids=a,b,c` | max 100 ids | `{items: [{id, username, displayName}]}`, request order, unknown ids left out (used to render reviews and feeds) |
 | `GET /users/search?q=` | — | users matching username/display name |
 | `PUT /users/{id}/follow` | — | 204, idempotent |
 | `DELETE /users/{id}/follow` | — | 204, idempotent |
@@ -376,16 +376,18 @@ create index reviews_user_idx  on reviews (user_id,  created_at desc, id desc);
 
 | Method & path | Notes |
 |---|---|
-| `PUT /reviews/albums/{albumId}` `{rating, body?}` | Upsert my review. 201 created / 200 updated. Validates the album exists via `GET catalog/albums/{id}` (2 s timeout). |
-| `DELETE /reviews/albums/{albumId}` | 204 |
+| `PUT /reviews/albums/{albumId}` `{rating, body?}` | Upsert my review. 201 created / 200 updated. Validates the album exists via `GET catalog/albums/{id}` (2 s timeout): catalog 404 → 404; any other failure (5xx, timeout, no connection) → **503**, never 404, because then we can't tell. A blank body is stored as null. |
+| `DELETE /reviews/albums/{albumId}` | 204, also when there was nothing to delete |
 | `GET /reviews/albums/{albumId}/me` | my review or 404 |
 | `GET /reviews/albums/{albumId}?cursor=&limit=20` | reviews of an album |
 | `GET /reviews/users/{userId}?cursor=&limit=20` | a user's reviews (profile page) |
 | `GET /reviews/feed?cursor=&limit=20` | **Feed v1:** fetch following IDs from user-service, then `WHERE user_id = ANY(:ids)` ordered by `(created_at, id) DESC` |
 
+A review is `{id, userId, albumId, rating, body, createdAt, updatedAt}`; lists are `{items, nextCursor}` (section 7).
+
 The frontend renders feed items by batch-fetching albums (`GET /albums?ids=`) and users (`GET /users?ids=`).
 
-**Concurrency:** the unique `(user_id, album_id)` constraint plus `@Version`. A double-click that hits the unique constraint is caught, re-read, and handled as an update.
+**Concurrency:** the unique `(user_id, album_id)` constraint plus `@Version`. A double-click that hits the unique constraint is caught, re-read, and handled as an update. A version conflict is retried on a fresh read too; each attempt is its own transaction, at most 3, then 409.
 
 **Events:** after a successful commit, publish to `review.events` with key = `albumId`: `ReviewCreated`, `ReviewUpdated` (only if rating or body changed; includes `oldRating`), `ReviewDeleted`. MVP uses `@TransactionalEventListener(phase = AFTER_COMMIT)`. This is the known dual-write shortcut from section 3.6.
 

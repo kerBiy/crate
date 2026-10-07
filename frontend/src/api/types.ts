@@ -33,3 +33,23 @@ export type AlbumDetails = AlbumSummary & {
 
 /** catalog-service SearchResponse. partial: MusicBrainz couldn't be asked, results may be missing. */
 export type SearchResponse = { items: AlbumSummary[]; partial: boolean }
+
+/** review-service ReviewResponse. rating is in half stars: 1 = ½ star, 10 = 5 stars. */
+export type Review = {
+  id: string
+  userId: string
+  albumId: string
+  rating: number
+  body: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+/** One page of a cursor-paginated list. nextCursor is null on the last page. */
+export type Page<T> = { items: T[]; nextCursor: string | null }
+
+/** user-service UserSummary: someone next to their activity. */
+export type UserSummary = { id: string; username: string; displayName: string | null }
+
+/** A review with its author, ready to show. author is null when the account no longer exists. */
+export type ReviewWithAuthor = Review & { author: UserSummary | null }

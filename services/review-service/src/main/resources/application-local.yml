@@ -9,3 +9,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/reviews_db
     username: review_service
     password: ${REVIEWS_DB_PASSWORD}
+
+crate:
+  catalog:
+    base-url: http://localhost:8082

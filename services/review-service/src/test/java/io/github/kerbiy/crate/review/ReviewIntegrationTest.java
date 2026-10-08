@@ -5,6 +5,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
+import io.github.kerbiy.crate.review.events.FailingCommit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -20,7 +21,8 @@ import org.springframework.test.web.servlet.client.RestTestClient;
 /** Base for review integration tests: real Postgres, WireMock as catalog-service, a clean slate per test. */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestTestClient
-@Import(TestcontainersConfiguration.class)
+// Every test imports the same classes, so they all share one Spring context (and one set of containers).
+@Import({TestcontainersConfiguration.class, FailingCommit.class})
 public abstract class ReviewIntegrationTest {
 
     protected static final String CATALOG_ALBUM = "/albums/.+";

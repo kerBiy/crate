@@ -7,6 +7,20 @@ spring:
       ddl-auto: validate
     # Don't keep a DB session open while the HTTP response is being written.
     open-in-view: false
+  kafka:
+    # bootstrap-servers is set per profile (local: localhost:29092).
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # Spring Kafka 4's Jackson 3 serializer (JsonSerializer is the deprecated Jackson 2 one).
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      # acks=all and enable.idempotence=true are already Kafka's producer defaults: the broker confirms
+      # a write only once it's stored, and a retried send can't be written twice.
+      properties:
+        # No __TypeId__ header: consumers dispatch on eventType, not on our Java class names (SPEC 6.3).
+        "[spring.json.add.type.headers]": false
+        # send() blocks while it fetches topic metadata; with Kafka down that's 60 s by default, inside
+        # an HTTP request. Fail fast instead: the review is already saved (see ADR-006).
+        "[max.block.ms]": 3000
 
 server:
   port: 8083

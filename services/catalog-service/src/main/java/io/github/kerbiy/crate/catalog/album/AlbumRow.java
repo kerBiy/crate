@@ -1,5 +1,7 @@
 package io.github.kerbiy.crate.catalog.album;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 /** An album as stored in catalog_db, with its rating aggregate (zeros when nobody rated it yet). */
@@ -11,7 +13,11 @@ public record AlbumRow(
         String primaryType,
         String firstReleaseDate,
         int ratingCount,
-        int ratingSum) {
+        int ratingSum,
+        List<Integer> ratingDistribution) {
+
+    /** The distribution of an album nobody rated. */
+    public static final List<Integer> NO_RATINGS = Collections.nCopies(10, 0);
 
     /** "1997" from "1997-05-21", or null when MusicBrainz has no date. */
     public String year() {

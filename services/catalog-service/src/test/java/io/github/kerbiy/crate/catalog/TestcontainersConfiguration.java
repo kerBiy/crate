@@ -7,11 +7,12 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.DynamicPropertyRegistrar;
+import org.testcontainers.kafka.KafkaContainer;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
 /**
  * Shared by every integration test: all of them @Import this, so Spring caches one context and
- * starts one Postgres container and one WireMock "MusicBrainz" for the whole test run.
+ * starts one Postgres container, one Kafka broker and one WireMock "MusicBrainz" for the whole test run.
  */
 @TestConfiguration(proxyBeanMethods = false)
 public class TestcontainersConfiguration {
@@ -22,6 +23,13 @@ public class TestcontainersConfiguration {
     @ServiceConnection
     PostgreSQLContainer postgres() {
         return new PostgreSQLContainer("postgres:17.11-alpine");
+    }
+
+    // Same image as infra/compose, and like there, topics aren't created on first use.
+    @Bean
+    @ServiceConnection
+    KafkaContainer kafka() {
+        return new KafkaContainer("apache/kafka:4.3.1").withEnv("KAFKA_AUTO_CREATE_TOPICS_ENABLE", "false");
     }
 
     // Stands in for musicbrainz.org (under /ws/2) and coverartarchive.org (under /caa);

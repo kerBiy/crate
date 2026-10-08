@@ -1,4 +1,5 @@
 import type { AlbumDetails } from '../../api/types.ts'
+import { Histogram } from '../ui/Histogram.tsx'
 import { ToastRegion, useToast } from '../ui/Toast.tsx'
 import { AlbumReviews } from './AlbumReviews.tsx'
 import { FriendRatings } from './bits.tsx'
@@ -10,8 +11,9 @@ import { useOneShot } from './useAlbumPage.ts'
 /**
  * Album page (variant B with the record from C), filled from GET /api/albums/{id}.
  * No dominant color stored yet, so the header has no wash and the record label uses the accent.
- * Rating and reviews are live. The average and histogram come from rating events (task 6), and
- * friends from follows: until then they stay empty instead of showing made-up numbers.
+ * Rating and reviews are live. The average, count and histogram are built by catalog-service from
+ * rating events; after I rate, they update at once and then settle on the server's numbers
+ * (see showRatingChange in api/queries.ts). Friends come from follows: until then that stays empty.
  */
 export function AlbumView({ album }: { album: AlbumDetails }) {
   const toast = useToast()
@@ -65,12 +67,15 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
           <section>
             <SectionTitle>Ratings</SectionTitle>
             {album.ratingCount > 0 && album.avgRating !== null ? (
-              <p className="flex items-baseline gap-2">
-                <span className="font-narrow font-display text-h3 font-semibold text-text">{album.avgRating.toFixed(1)}</span>
-                <span className="text-meta text-muted">average from {album.ratingCount}</span>
-              </p>
+              <>
+                <p className="mb-3 flex items-baseline gap-2">
+                  <span className="font-narrow font-display text-h3 font-semibold text-text">{album.avgRating.toFixed(1)}</span>
+                  <span className="text-meta text-muted">average from {album.ratingCount}</span>
+                </p>
+                <Histogram counts={album.ratingDistribution} />
+              </>
             ) : (
-              <p className="text-muted">The average and spread of ratings show up here soon.</p>
+              <p className="text-muted">No ratings yet. Be the first to rate it.</p>
             )}
           </section>
           <section>

@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { setSession } from '../auth/session.ts'
 import { api, ApiError } from './client.ts'
 import type { AlbumDetails, Me, Page, Review, ReviewWithAuthor, SearchResponse, Token, UserSummary } from './types.ts'
@@ -22,12 +22,76 @@ export function useAlbumSearch(query: string) {
   })
 }
 
+const albumKey = (id: string) => ['albums', id] as const
+const fetchAlbum = (id: string, signal?: AbortSignal) => api<AlbumDetails>(`/albums/${encodeURIComponent(id)}`, { signal })
+
 export function useAlbum(id: string) {
   return useQuery({
-    queryKey: ['albums', id],
-    queryFn: ({ signal }) => api<AlbumDetails>(`/albums/${encodeURIComponent(id)}`, { signal }),
+    queryKey: albumKey(id),
+    queryFn: ({ signal }) => fetchAlbum(id, signal),
     staleTime: 5 * 60_000,
   })
+}
+
+/**
+ * The album's stats with one rating changed: added (old null), replaced, or removed (new null).
+ * Same delta math as catalog-service's consumer. Ratings are 1–10 (half stars).
+ */
+export function applyRatingChange(album: AlbumDetails, oldRating: number | null, newRating: number | null): AlbumDetails {
+  const distribution = [...album.ratingDistribution]
+  if (oldRating !== null) distribution[oldRating - 1] -= 1
+  if (newRating !== null) distribution[newRating - 1] += 1
+  const ratingCount = distribution.reduce((total, count) => total + count, 0)
+  const sum = distribution.reduce((total, count, i) => total + count * (i + 1), 0)
+  // Rounded like the server: stars, one decimal.
+  const avgRating = ratingCount ? Math.round((sum / ratingCount / 2) * 10) / 10 : null
+  return { ...album, ratingDistribution: distribution, ratingCount, avgRating }
+}
+
+/** Refetch delays after a rating change, in ms: about 7.5 s in all. */
+const reconcileDelays = [500, 1000, 2000, 4000]
+const reconciling = new Map<string, AbortController>()
+
+/**
+ * Album stats are built by catalog-service from Kafka events, so right after a save they are a moment
+ * behind (eventual consistency). The page shows the expected numbers at once, then asks the server
+ * again until its stats move past `before` (the event was processed), and the server's numbers win.
+ * If they never move (the event was lost, see ADR-006), the server's numbers are shown at the end anyway.
+ */
+function showRatingChange(queryClient: QueryClient, albumId: string, oldRating: number | null, newRating: number | null) {
+  if (oldRating === newRating) return
+  const before = queryClient.getQueryData<AlbumDetails>(albumKey(albumId))
+  if (!before) return
+  // A newer change to this album restarts the wait.
+  reconciling.get(albumId)?.abort()
+  const controller = new AbortController()
+  reconciling.set(albumId, controller)
+  // An in-flight fetch could land with the old numbers after our patch.
+  void queryClient.cancelQueries({ queryKey: albumKey(albumId) })
+  queryClient.setQueryData(albumKey(albumId), applyRatingChange(before, oldRating, newRating))
+
+  const moved = (album: AlbumDetails) =>
+    album.ratingCount !== before.ratingCount ||
+    album.ratingDistribution.some((count, i) => count !== before.ratingDistribution[i])
+
+  void (async () => {
+    for (const [attempt, delay] of reconcileDelays.entries()) {
+      await new Promise((resolve) => setTimeout(resolve, delay))
+      if (controller.signal.aborted) return
+      try {
+        // Fetched outside the cache: a still-stale answer must not replace the expected numbers.
+        const server = await fetchAlbum(albumId, controller.signal)
+        if (moved(server) || attempt === reconcileDelays.length - 1) {
+          queryClient.setQueryData(albumKey(albumId), server)
+          break
+        }
+      } catch {
+        // Offline or aborted: keep the expected numbers; the next visit refetches.
+        if (controller.signal.aborted) return
+      }
+    }
+    if (reconciling.get(albumId) === controller) reconciling.delete(albumId)
+  })()
 }
 
 /** Stars on screen (0.5–5) ↔ what the API stores (1–10). */
@@ -113,7 +177,10 @@ export function useSaveReview(albumId: string) {
       return { previous }
     },
     onError: (_error, _input, context) => queryClient.setQueryData(key, context?.previous ?? null),
-    onSuccess: (review) => queryClient.setQueryData(key, review),
+    onSuccess: (review, _input, context) => {
+      queryClient.setQueryData(key, review)
+      showRatingChange(queryClient, albumId, context?.previous?.rating ?? null, review.rating)
+    },
     onSettled: () => queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) }),
   })
 }
@@ -132,6 +199,7 @@ export function useDeleteReview(albumId: string) {
       return { previous }
     },
     onError: (_error, _input, context) => queryClient.setQueryData(key, context?.previous ?? null),
+    onSuccess: (_data, _input, context) => showRatingChange(queryClient, albumId, context?.previous?.rating ?? null, null),
     onSettled: () => queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) }),
   })
 }

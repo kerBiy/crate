@@ -4,6 +4,7 @@ import io.github.kerbiy.crate.catalog.musicbrainz.ArtistCredit;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzQueryBuilder;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
 import io.github.kerbiy.crate.catalog.search.SearchText;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -26,7 +27,8 @@ public class AlbumRepository {
     // Album columns plus the rating aggregate; albums nobody rated have no album_stats row.
     private static final String SELECT_ALBUMS = """
             select a.id, a.title, a.artist_credit, a.primary_artist_id, a.primary_type, a.first_release_date,
-                   coalesce(s.rating_count, 0) as rating_count, coalesce(s.rating_sum, 0) as rating_sum
+                   coalesce(s.rating_count, 0) as rating_count, coalesce(s.rating_sum, 0) as rating_sum,
+                   s.rating_distribution
             from albums a
             left join album_stats s on s.album_id = a.id
             """;
@@ -214,6 +216,15 @@ public class AlbumRepository {
                 rs.getString("primary_type"),
                 rs.getString("first_release_date"),
                 rs.getInt("rating_count"),
-                rs.getInt("rating_sum"));
+                rs.getInt("rating_sum"),
+                distribution(rs.getArray("rating_distribution")));
+    }
+
+    /** Ratings per half-star value, ½ star first; ten zeros when the album has no album_stats row. */
+    private static List<Integer> distribution(Array array) throws SQLException {
+        if (array == null) {
+            return AlbumRow.NO_RATINGS;
+        }
+        return List.of((Integer[]) array.getArray());
     }
 }

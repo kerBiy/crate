@@ -29,6 +29,8 @@ export type AlbumDetails = AlbumSummary & {
   primaryType: string | null
   /** MusicBrainz dates can be partial: "1997", "1997-05" or "1997-05-21". */
   firstReleaseDate: string | null
+  /** Ratings per half-star value: 10 entries, ½ star first, 5 stars last. */
+  ratingDistribution: number[]
 }
 
 /** catalog-service SearchResponse. partial: MusicBrainz couldn't be asked, results may be missing. */

@@ -9,6 +9,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/reviews_db
     username: review_service
     password: ${REVIEWS_DB_PASSWORD}
+  kafka:
+    # The EXTERNAL listener of infra/compose's Kafka, for apps running on the Mac.
+    bootstrap-servers: localhost:29092
 
 crate:
   catalog:

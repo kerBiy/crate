@@ -1,5 +1,8 @@
 package io.github.kerbiy.crate.review.review;
 
+import io.github.kerbiy.crate.contracts.review.ReviewCreated;
+import io.github.kerbiy.crate.contracts.review.ReviewDeleted;
+import io.github.kerbiy.crate.contracts.review.ReviewUpdated;
 import io.github.kerbiy.crate.review.catalog.CatalogClient;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +10,7 @@ import java.util.UUID;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
@@ -26,11 +30,14 @@ class ReviewService {
     private final ReviewRepository reviews;
     private final CatalogClient catalog;
     private final TransactionTemplate transaction;
+    private final ApplicationEventPublisher events;
 
-    ReviewService(ReviewRepository reviews, CatalogClient catalog, TransactionTemplate transaction) {
+    ReviewService(ReviewRepository reviews, CatalogClient catalog, TransactionTemplate transaction,
+            ApplicationEventPublisher events) {
         this.reviews = reviews;
         this.catalog = catalog;
         this.transaction = transaction;
+        this.events = events;
     }
 
     record Upserted(Review review, boolean created) {
@@ -47,6 +54,9 @@ class ReviewService {
      * Either way the loser retries from a fresh read, so it becomes an update of the winner's row.
      * Each attempt is its own transaction: after a failed statement Postgres aborts the
      * transaction, so the retry can't happen inside it.
+     *
+     * <p>A change publishes ReviewCreated or ReviewUpdated, which ReviewEventPublisher sends to Kafka
+     * only after the attempt's transaction commits; a rolled-back attempt's event is dropped.
      */
     Upserted upsert(UUID userId, UUID albumId, int rating, String body) {
         // An HTTP call: never inside a DB transaction (it would hold a connection while waiting).
@@ -76,13 +86,22 @@ class ReviewService {
         Optional<Review> existing = reviews.findByUserIdAndAlbumId(userId, albumId);
         if (existing.isPresent()) {
             Review review = existing.get();
-            review.apply(rating, body);
-            // Flush now, so a version conflict is thrown here, inside the attempt, not at commit.
-            reviews.flush();
+            // Read before apply(). @Version guarantees nobody changed the row since this read, so
+            // oldRating really is the rating this update replaces.
+            int oldRating = review.getRating();
+            if (review.apply(rating, body)) {
+                // Flush now, so a version conflict is thrown here, inside the attempt, not at commit.
+                reviews.flush();
+                events.publishEvent(new ReviewUpdated(review.getId(), userId, albumId, review.getRating(), oldRating,
+                        review.getBody() != null));
+            }
             return new Upserted(review, false);
         }
         // saveAndFlush: the insert runs now, so a unique violation surfaces inside this attempt.
-        return new Upserted(reviews.saveAndFlush(new Review(userId, albumId, rating, body)), true);
+        Review created = reviews.saveAndFlush(new Review(userId, albumId, rating, body));
+        events.publishEvent(new ReviewCreated(created.getId(), userId, albumId, created.getRating(),
+                created.getBody() != null));
+        return new Upserted(created, true);
     }
 
     private static boolean violates(DataIntegrityViolationException e, String constraint) {
@@ -98,10 +117,21 @@ class ReviewService {
         return reviews.findByUserIdAndAlbumId(userId, albumId);
     }
 
-    /** Idempotent: deleting a review that isn't there is fine. */
+    /**
+     * Idempotent: deleting a review that isn't there is fine, and publishes nothing.
+     *
+     * <p>The row is read with {@code select ... for update}, which locks it until this transaction
+     * ends. Two concurrent deletes (a double-click) then can't both see the row: the second waits,
+     * and once the first commits it finds nothing. So exactly one ReviewDeleted goes out, and
+     * catalog subtracts the rating once. It carries the rating, which catalog needs to subtract.
+     */
     @Transactional
     void delete(UUID userId, UUID albumId) {
-        reviews.deleteByUserAndAlbum(userId, albumId);
+        reviews.findForUpdate(userId, albumId).ifPresent(review -> {
+            reviews.delete(review);
+            reviews.flush();
+            events.publishEvent(new ReviewDeleted(review.getId(), userId, albumId, review.getRating()));
+        });
     }
 
     ReviewPage ofAlbum(UUID albumId, ReviewCursor cursor, int limit) {

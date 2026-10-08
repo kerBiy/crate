@@ -1,11 +1,12 @@
 package io.github.kerbiy.crate.review.review;
 
+import jakarta.persistence.LockModeType;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,10 +20,10 @@ interface ReviewRepository extends JpaRepository<Review, UUID> {
 
     Optional<Review> findByUserIdAndAlbumId(UUID userId, UUID albumId);
 
-    /** One statement, no load first. Returns the number of rows deleted (0 or 1). */
-    @Modifying
-    @Query("delete from Review r where r.userId = :userId and r.albumId = :albumId")
-    int deleteByUserAndAlbum(UUID userId, UUID albumId);
+    /** Reads and locks the row ({@code select ... for update}) until the transaction ends. */
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select r from Review r where r.userId = :userId and r.albumId = :albumId")
+    Optional<Review> findForUpdate(UUID userId, UUID albumId);
 
     @NativeQuery("""
             select * from reviews

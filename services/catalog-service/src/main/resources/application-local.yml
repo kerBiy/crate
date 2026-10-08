@@ -9,3 +9,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/catalog_db
     username: catalog_service
     password: ${CATALOG_DB_PASSWORD}
+  kafka:
+    # The EXTERNAL listener of infra/compose's Kafka, for apps running on the Mac.
+    bootstrap-servers: localhost:29092

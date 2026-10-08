@@ -1,6 +1,23 @@
 spring:
   application:
     name: catalog-service
+  kafka:
+    # bootstrap-servers is set per profile (local: localhost:29092).
+    consumer:
+      # Consumers with the same group id split the topic's partitions between them, and the group
+      # remembers (commits) how far it has read in each partition.
+      group-id: catalog-service
+      # With no committed offset yet (a brand-new group), start from the oldest message, not "only new ones".
+      auto-offset-reset: earliest
+      # The listener receives the raw JSON and dispatches on eventType itself (SPEC 6.3).
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      # Commit each record's offset right after the listener returns, i.e. after its DB transaction
+      # committed. A crash in between means the record comes again: at-least-once, hence processed_events.
+      ack-mode: record
+      # Three consumer threads in the group, one per partition of review.events.
+      concurrency: 3
 
 server:
   port: 8082

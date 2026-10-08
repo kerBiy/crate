@@ -274,9 +274,12 @@ create index albums_search_trgm on albums using gin (search_text gin_trgm_ops);
 
 -- No FK to albums on purpose: events may arrive before the album row exists.
 create table album_stats (
-  album_id     uuid primary key,
-  rating_count integer not null default 0,
-  rating_sum   integer not null default 0     -- sum of 1–10 values
+  album_id            uuid primary key,
+  rating_count        integer   not null default 0,
+  rating_sum          integer   not null default 0,   -- sum of 1–10 values
+  -- ratings per value: element i (1-based) counts ratings of i, so ½★ first, 5★ last (the histogram)
+  rating_distribution integer[] not null default '{0,0,0,0,0,0,0,0,0,0}'
+                      check (cardinality(rating_distribution) = 10)
 );
 
 create table search_cache (
@@ -332,7 +335,7 @@ Search quality is measured with `services/catalog-service/search-eval` (30 queri
 | Method & path | Result |
 |---|---|
 | `GET /albums/search?q=&limit=20` | `{items: [{id, title, artistCredit, year, coverUrl, avgRating, ratingCount}], partial}`; `q` 1–100 chars, `limit` 1–50 |
-| `GET /albums/{id}` | album details + stats |
+| `GET /albums/{id}` | album details + stats: `avgRating` (stars, one decimal, null without ratings), `ratingCount`, `ratingDistribution` (10 counts, ½★ first) |
 | `GET /albums?ids=a,b,c` | `{items: [...]}`, max 100, stored albums only, request order (used to render feeds) |
 | `GET /albums/top?limit=50` | ranked by Bayesian average (nice-to-have) |
 
@@ -342,13 +345,13 @@ Search quality is measured with `services/catalog-service/search-eval` (30 queri
 
 | Event | Effect on `album_stats` |
 |---|---|
-| `ReviewCreated` | count + 1, sum + rating |
-| `ReviewUpdated` | sum + (newRating − oldRating), only if the rating changed |
-| `ReviewDeleted` | count − 1, sum − rating |
+| `ReviewCreated` | count + 1, sum + rating, distribution[rating] + 1 |
+| `ReviewUpdated` | sum + (newRating − oldRating), distribution[oldRating] − 1, distribution[newRating] + 1; only if the rating changed |
+| `ReviewDeleted` | count − 1, sum − rating, distribution[rating] − 1 |
 
-Insert into `processed_events` in **the same DB transaction** as the stats update. If the event ID already exists, it was already processed: skip it. The Kafka offset is committed only after the listener returns, which happens after the DB commit.
+Insert into `processed_events` in **the same DB transaction** as the stats update. If the event ID already exists, it was already processed: skip it. The Kafka offset is committed only after the listener returns (`ack-mode: record`), which happens after the DB commit. The listener runs 3 consumer threads (one per partition). It reads the envelope as JSON and dispatches on `eventType`; an unknown type is logged and skipped. The row is created by the album's first event, and read with `SELECT … FOR UPDATE` while it's changed. `rating_distribution` is the source of truth: each event shifts one or two buckets, and `rating_count` / `rating_sum` are recomputed from it, so the three can't disagree. **A bucket never goes below 0:** a delta that would make it negative (removing a rating catalog never counted, i.e. stats that already drifted) is clamped at 0 and logged as a WARN with the event id.
 
-Note for interviews: deltas are commutative, so for *sums* the order doesn't matter, but idempotency does. Per-key ordering still matters for other consumers (Phase 2).
+Note for interviews: plain deltas are commutative, so for *sums* the order wouldn't matter, but idempotency does. The clamp gives that up on purpose: a `ReviewDeleted` processed before its `ReviewCreated` would be clamped and the stats would end one too high. That can't happen while a review's events share a key (one partition, producer order = commit order); it only bites stats that have already drifted, where a negative count would be worse. Per-key ordering also matters for other consumers (Phase 2).
 
 **Seed job:** `seed/albums.txt` holds lines of the form `Artist - Title`, for example your 200–300 favorite albums. A `seed` Spring profile runs a `CommandLineRunner` that resolves each line through the rate-limited client and upserts it. 300 albums take about 5 minutes.
 
@@ -389,7 +392,9 @@ The frontend renders feed items by batch-fetching albums (`GET /albums?ids=`) an
 
 **Concurrency:** the unique `(user_id, album_id)` constraint plus `@Version`. A double-click that hits the unique constraint is caught, re-read, and handled as an update. A version conflict is retried on a fresh read too; each attempt is its own transaction, at most 3, then 409.
 
-**Events:** after a successful commit, publish to `review.events` with key = `albumId`: `ReviewCreated`, `ReviewUpdated` (only if rating or body changed; includes `oldRating`), `ReviewDeleted`. MVP uses `@TransactionalEventListener(phase = AFTER_COMMIT)`. This is the known dual-write shortcut from section 3.6.
+**Events:** after a successful commit, publish to `review.events` with key = `albumId`: `ReviewCreated`, `ReviewUpdated` (only if rating or body changed; includes `oldRating`), `ReviewDeleted` (includes the removed `rating`). MVP uses `@TransactionalEventListener(phase = AFTER_COMMIT)`. This is the known dual-write shortcut from section 3.6 (ADR-006). `DELETE` reads the row with `SELECT … FOR UPDATE` before deleting it, so two concurrent deletes produce one `ReviewDeleted`, not two.
+
+**Stats after rating (frontend):** `album_stats` is eventually consistent: right after a `PUT`/`DELETE` returns, catalog hasn't processed the event yet. The album page applies the change to the average, count and histogram itself (same delta math as the consumer), then refetches the album at 0.5 / 1 / 2 / 4 s until the server's stats change, and shows the server's numbers from then on (also after the last try, so a lost event shows up as a missing change).
 
 ### 5.5 activity-service (Phase 2)
 
@@ -469,6 +474,16 @@ create table shares (
 }
 ```
 
+Payloads on `review.events` (records in `libs/event-contracts`, ratings 1–10):
+
+| `eventType` | `payload` |
+|---|---|
+| `ReviewCreated` | `{reviewId, userId, albumId, rating, hasBody}` |
+| `ReviewUpdated` | `{reviewId, userId, albumId, rating, oldRating, hasBody}` (`oldRating == rating` when only the text changed) |
+| `ReviewDeleted` | `{reviewId, userId, albumId, rating}` (the rating that was removed) |
+
+Values are plain JSON (Spring Kafka's `JacksonJsonSerializer` with `spring.json.add.type.headers=false`), `occurredAt` is ISO-8601 UTC.
+
 ### 6.2 Topics
 
 | Topic | Key | Producer | Consumers | Phase |
@@ -479,6 +494,7 @@ create table shares (
 
 - 3 partitions per topic. That is enough to demonstrate consumer-group parallelism; more is pointless on one broker.
 - Replication factor 1 (single broker). This is a documented limitation.
+- Topics are created explicitly: the broker has auto-creation off. Each service declares the topics it uses as `NewTopic` beans and Spring's `KafkaAdmin` creates missing ones at startup (both review-service and catalog-service declare `review.events`, so start order doesn't matter).
 - `follow.state`: value `{ "followed": true, "at": "…" }` on follow, **tombstone** (null value) on unfollow. Log compaction keeps the latest state per key.
 
 ### 6.3 Rules

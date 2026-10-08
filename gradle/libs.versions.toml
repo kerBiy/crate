@@ -31,6 +31,8 @@ spring-security-crypto = { module = "org.springframework.security:spring-securit
 spring-security-oauth2-jose = { module = "org.springframework.security:spring-security-oauth2-jose" }
 # Gateway: validates JWTs against a JWKS. Boot 4 name (spring-boot-starter-oauth2-resource-server is the deprecated alias).
 spring-boot-starter-security-oauth2-resource-server = { module = "org.springframework.boot:spring-boot-starter-security-oauth2-resource-server" }
+# Spring for Apache Kafka 4 (Jackson 3 serializers: JacksonJsonSerializer/Deserializer).
+spring-boot-starter-kafka = { module = "org.springframework.boot:spring-boot-starter-kafka" }
 
 spring-boot-starter-webmvc-test = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
 spring-boot-starter-webflux-test = { module = "org.springframework.boot:spring-boot-starter-webflux-test" }
@@ -39,6 +41,10 @@ spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-te
 # Testcontainers 2.x artifact names (versions from the Boot BOM).
 testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
 testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
+# org.testcontainers.kafka.KafkaContainer (apache/kafka image); Boot gives it a @ServiceConnection.
+testcontainers-kafka = { module = "org.testcontainers:testcontainers-kafka" }
+# "Wait until this assertion passes": for results that arrive asynchronously, like consumed events.
+awaitility = { module = "org.awaitility:awaitility" }
 # In-process HTTP stub for tests. The standalone jar shades Jetty and Jackson 2, so nothing clashes.
 wiremock-standalone = { module = "org.wiremock:wiremock-standalone", version.ref = "wiremock" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }

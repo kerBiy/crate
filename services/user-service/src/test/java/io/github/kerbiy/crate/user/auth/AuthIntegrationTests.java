@@ -90,6 +90,18 @@ class AuthIntegrationTests {
     }
 
     @Test
+    void registerRejectsUsernamesThatCollideWithPaths() {
+        // GET /users/me and /users/search are literal paths: a profile with these names would be unreachable.
+        for (String reserved : new String[] {"me", "Search"}) {
+            register(reserved, UUID.randomUUID() + "@example.com", PASSWORD, INVITE_CODE)
+                    .expectStatus().isBadRequest()
+                    .expectBody()
+                    .jsonPath("$.type").isEqualTo("urn:crate:problem:validation-failed")
+                    .jsonPath("$.errors[0].field").isEqualTo("username");
+        }
+    }
+
+    @Test
     void registerRejectsInvalidFieldsWithFieldErrors() {
         register("x", "not-an-email", "short", INVITE_CODE)
                 .expectStatus().isBadRequest()

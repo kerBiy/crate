@@ -5,8 +5,11 @@ import { AppShell, type Section as NavSection } from '../components/ui/AppShell.
 import { Avatar, AvatarStack } from '../components/ui/Avatar.tsx'
 import { Button, type ButtonVariant } from '../components/ui/Button.tsx'
 import { Cover } from '../components/ui/Cover.tsx'
+import { FeedRow, FeedRowSkeleton } from '../components/ui/FeedRow.tsx'
+import { FollowButton } from '../components/ui/FollowButton.tsx'
 import { Histogram } from '../components/ui/Histogram.tsx'
 import { Input } from '../components/ui/Input.tsx'
+import { PersonRow, PersonRowSkeleton } from '../components/ui/PersonRow.tsx'
 import { RatingInput } from '../components/ui/RatingInput.tsx'
 import { RatingStars } from '../components/ui/RatingStars.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
@@ -25,6 +28,7 @@ const sectionNames: Record<NavSection, string> = { feed: 'Feed', search: 'Search
 export function ComponentsPage() {
   const [tab, setTab] = useState<NavSection>('feed')
   const [rating, setRating] = useState(0)
+  const [following, setFollowing] = useState(false)
   const toast = useToast()
   const [ok, kid] = albums
 
@@ -215,6 +219,70 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
+        <Block name="FollowButton" use="On a profile. Pops once into Following; press Following to unfollow.">
+          <Cell label="Try it">
+            <FollowButton following={following} onToggle={() => setFollowing(!following)} />
+          </Cell>
+          <Cell label="Following">
+            <FollowButton following onToggle={() => {}} />
+          </Cell>
+        </Block>
+
+        <Block name="PersonRow" use="Someone in a list of people: search, followers, following.">
+          <Cell label="With a display name">
+            <PersonRow username="ana_p" displayName="Ana Popescu" />
+          </Cell>
+          <Cell label="Username only">
+            <PersonRow username="radu" displayName={null} />
+          </Cell>
+          <Cell label="Loading">
+            <div className="w-full">
+              <PersonRowSkeleton />
+            </div>
+          </Cell>
+        </Block>
+
+        <Block name="FeedRow" use="One friend's rating in the feed. Small cover, never the record.">
+          <div className="col-span-full flex max-w-prose flex-col divide-y divide-border">
+            <FeedRow
+              name="Ana"
+              username="ana_p"
+              albumId={ok.mbid}
+              title={ok.title}
+              artist={ok.artist}
+              coverUrl={coverUrl(ok.mbid, 250)}
+              rating={4.5}
+              body="The best one, no debate. Let Down still gets me every time, and the second half is the reason I keep coming back to it on long drives."
+              at="2026-10-08T10:00:00Z"
+              when="3h"
+            />
+            <FeedRow
+              name="Radu"
+              username="radu"
+              albumId={kid.mbid}
+              title={kid.title}
+              artist={kid.artist}
+              coverUrl={coverUrl(kid.mbid, 250)}
+              rating={3}
+              body={null}
+              at="2026-10-01T10:00:00Z"
+              when="1 Oct 2026"
+            />
+            <FeedRow
+              name="Someone"
+              username={null}
+              albumId={ok.mbid}
+              title="Songs for the Night Bus"
+              artist="Unknown"
+              rating={2}
+              body="No cover, and the account is gone."
+              at="2026-10-08T10:00:00Z"
+              when="5m"
+            />
+            <FeedRowSkeleton />
+          </div>
+        </Block>
+
         <Block name="Skeleton" use="Loading. Shaped like the content it stands in for; pulses in place.">
           <Cell label="Line, block, circle">
             <div className="flex items-center gap-4">
@@ -224,8 +292,9 @@ export function ComponentsPage() {
             </div>
           </Cell>
           <Cell label="Text: inside a line, keeps its height">
-            <p className="text-body text-muted">
-              <Skeleton shape="text" className="w-24" /> rated <Skeleton shape="text" className="w-32" />
+            {/* Full width, like a real line of text: fractions resolve against the line. */}
+            <p className="w-full text-body text-muted">
+              <Skeleton shape="text" className="w-1/4" /> rated <Skeleton shape="text" className="w-1/3" />
             </p>
           </Cell>
           <Cell label="Review row">

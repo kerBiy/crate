@@ -9,6 +9,8 @@ type CoverProps = {
   eager?: boolean
   /** Called once the cover is settled: the image has loaded, or the initials replaced it. */
   onSettled?: () => void
+  /** sm: thumbnails in rows (feed), so the initials of a missing cover fit. */
+  size?: 'md' | 'sm'
 }
 
 type Status = 'loading' | 'loaded' | 'missing'
@@ -17,7 +19,7 @@ type Status = 'loading' | 'loaded' | 'missing'
  * Album art in a square that never changes size. Until the image arrives the square pulses;
  * then the image fades in. Each cover does this on its own.
  */
-export function Cover({ src, title, artist, eager = false, onSettled }: CoverProps) {
+export function Cover({ src, title, artist, eager = false, onSettled, size = 'md' }: CoverProps) {
   // Keyed by URL, so a new src starts loading again instead of inheriting the old state.
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
   const [failedSrc, setFailedSrc] = useState<string | null>(null)
@@ -34,7 +36,7 @@ export function Cover({ src, title, artist, eager = false, onSettled }: CoverPro
       <div
         role="img"
         aria-label={alt}
-        className="flex aspect-square w-full items-center justify-center rounded-cover border border-border bg-surface font-display text-h2 text-muted"
+        className={`flex aspect-square w-full items-center justify-center rounded-cover border border-border bg-surface font-display text-muted ${size === 'sm' ? 'text-body' : 'text-h2'}`}
       >
         {initials(title)}
       </div>

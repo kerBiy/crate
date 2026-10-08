@@ -69,6 +69,14 @@ class ReviewController {
         return reviews.ofUser(userId, parse(cursor), limit);
     }
 
+    /** My friends' reviews, newest first. 503 when user-service can't say who I follow. */
+    @GetMapping("/feed")
+    ReviewPage feed(@RequestHeader(name = USER_ID, required = false) UUID userId,
+            @RequestParam(required = false) String cursor,
+            @RequestParam(defaultValue = "20") @Min(1) @Max(50) int limit) {
+        return reviews.feed(signedIn(userId), parse(cursor), limit);
+    }
+
     // Not required = true: a missing header means "not signed in" (401), not a malformed request (400).
     private static UUID signedIn(UUID userId) {
         if (userId == null) {

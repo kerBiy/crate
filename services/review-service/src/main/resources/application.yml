@@ -37,3 +37,7 @@ crate:
     # base-url is set per profile; startup fails without it.
     # SPEC 3.3: every service-to-service call has an explicit timeout.
     timeout: 2s
+  users:
+    # user-service, asked who someone follows for the feed (SPEC 5.4).
+    # base-url is set per profile; startup fails without it.
+    timeout: 2s

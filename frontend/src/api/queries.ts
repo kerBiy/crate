@@ -1,7 +1,20 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { setSession } from '../auth/session.ts'
 import { api, ApiError } from './client.ts'
-import type { AlbumDetails, Me, Page, Review, ReviewWithAuthor, SearchResponse, Token, UserSummary } from './types.ts'
+import type {
+  AlbumDetails,
+  AlbumSummary,
+  FeedItem,
+  Me,
+  Page,
+  Profile,
+  RatedAlbum,
+  Review,
+  ReviewWithAuthor,
+  SearchResponse,
+  Token,
+  UserSummary,
+} from './types.ts'
 
 export const searchLimit = 24
 /** Shorter queries match too much to be useful, and each new query can cost several MusicBrainz calls. */
@@ -181,7 +194,10 @@ export function useSaveReview(albumId: string) {
       queryClient.setQueryData(key, review)
       showRatingChange(queryClient, albumId, context?.previous?.rating ?? null, review.rating)
     },
-    onSettled: () => queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) }),
+    onSettled: () => {
+      void queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) })
+      void queryClient.invalidateQueries({ queryKey: socialKeys.ratingsAll })
+    },
   })
 }
 
@@ -200,7 +216,160 @@ export function useDeleteReview(albumId: string) {
     },
     onError: (_error, _input, context) => queryClient.setQueryData(key, context?.previous ?? null),
     onSuccess: (_data, _input, context) => showRatingChange(queryClient, albumId, context?.previous?.rating ?? null, null),
-    onSettled: () => queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) }),
+    onSettled: () => {
+      void queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) })
+      void queryClient.invalidateQueries({ queryKey: socialKeys.ratingsAll })
+    },
+  })
+}
+
+// ---------------------------------------------------------------------------
+// People: profiles, follows, the feed.
+// A list from review-service only holds ids. Each page asks for its people and albums in one batch
+// call each (GET /users?ids=, GET /albums?ids=), never one request per row (the N+1 problem).
+// ---------------------------------------------------------------------------
+
+const socialKeys = {
+  profile: (username: string) => ['profiles', username.toLowerCase()] as const,
+  profilesAll: ['profiles'] as const,
+  ratings: (userId: string) => ['ratings', userId] as const,
+  ratingsAll: ['ratings'] as const,
+  follows: (userId: string, kind: FollowListKind) => ['follows', userId, kind] as const,
+  followsAll: ['follows'] as const,
+  people: (q: string) => ['people', q] as const,
+  feed: ['feed'] as const,
+}
+
+export const pageSize = 20
+
+/** Users by id, in one call. Unknown ids are left out, so look them up by id. */
+async function usersById(ids: string[], signal?: AbortSignal) {
+  const unique = [...new Set(ids)]
+  if (!unique.length) return new Map<string, UserSummary>()
+  const { items } = await api<{ items: UserSummary[] }>(`/users?${new URLSearchParams({ ids: unique.join(',') })}`, { signal })
+  return new Map(items.map((user) => [user.id, user]))
+}
+
+/** Albums by id, in one call. Only albums catalog has stored; others are left out. */
+async function albumsById(ids: string[], signal?: AbortSignal) {
+  const unique = [...new Set(ids)]
+  if (!unique.length) return new Map<string, AlbumSummary>()
+  const { items } = await api<{ items: AlbumSummary[] }>(`/albums?${new URLSearchParams({ ids: unique.join(',') })}`, { signal })
+  return new Map(items.map((album) => [album.id, album]))
+}
+
+function pageParams(cursor: string | null) {
+  const params = new URLSearchParams({ limit: String(pageSize) })
+  if (cursor) params.set('cursor', cursor)
+  return params
+}
+
+export function useProfile(username: string) {
+  return useQuery({
+    queryKey: socialKeys.profile(username),
+    queryFn: ({ signal }) => api<Profile>(`/users/${encodeURIComponent(username)}`, { signal }),
+  })
+}
+
+/** Someone's ratings, newest first, each with its album (one albums call per page). */
+export function useUserRatings(userId: string | undefined) {
+  return useInfiniteQuery({
+    queryKey: socialKeys.ratings(userId ?? ''),
+    enabled: !!userId,
+    initialPageParam: null as string | null,
+    getNextPageParam: (last: Page<RatedAlbum>) => last.nextCursor,
+    queryFn: async ({ pageParam, signal }): Promise<Page<RatedAlbum>> => {
+      const page = await api<Page<Review>>(`/reviews/users/${encodeURIComponent(userId!)}?${pageParams(pageParam)}`, { signal })
+      const albums = await albumsById(page.items.map((review) => review.albumId), signal)
+      return {
+        items: page.items.map((review) => ({ ...review, album: albums.get(review.albumId) ?? null })),
+        nextCursor: page.nextCursor,
+      }
+    },
+  })
+}
+
+export type FollowListKind = 'followers' | 'following'
+
+export function useFollowList(userId: string | undefined, kind: FollowListKind) {
+  return useInfiniteQuery({
+    queryKey: socialKeys.follows(userId ?? '', kind),
+    enabled: !!userId,
+    initialPageParam: null as string | null,
+    getNextPageParam: (last: Page<UserSummary>) => last.nextCursor,
+    queryFn: ({ pageParam, signal }) =>
+      api<Page<UserSummary>>(`/users/${encodeURIComponent(userId!)}/${kind}?${pageParams(pageParam)}`, { signal }),
+  })
+}
+
+export function usePeopleSearch(query: string) {
+  const q = query.trim()
+  return useQuery({
+    queryKey: socialKeys.people(q),
+    queryFn: ({ signal }) => api<{ items: UserSummary[] }>(`/users/search?${new URLSearchParams({ q })}`, { signal }),
+    enabled: q.length >= minSearchLength,
+  })
+}
+
+/**
+ * Friends feed v1. review-service finds who I follow and their reviews; then names and albums for
+ * the whole page arrive in two batch calls, sent together. 3 requests a page, however long it is.
+ */
+export function useFeed() {
+  return useInfiniteQuery({
+    queryKey: socialKeys.feed,
+    initialPageParam: null as string | null,
+    getNextPageParam: (last: Page<FeedItem>) => last.nextCursor,
+    queryFn: async ({ pageParam, signal }): Promise<Page<FeedItem>> => {
+      const page = await api<Page<Review>>(`/reviews/feed?${pageParams(pageParam)}`, { signal })
+      const [users, albums] = await Promise.all([
+        usersById(page.items.map((review) => review.userId), signal),
+        albumsById(page.items.map((review) => review.albumId), signal),
+      ])
+      return {
+        items: page.items.map((review) => ({
+          ...review,
+          author: users.get(review.userId) ?? null,
+          album: albums.get(review.albumId) ?? null,
+        })),
+        nextCursor: page.nextCursor,
+      }
+    },
+  })
+}
+
+/**
+ * Follow or unfollow the profile's owner. The button and the follower count change at once and roll
+ * back on error. One person's follow changes run in order (scope), so fast clicks can't cross.
+ */
+export function useFollow(profile: Profile) {
+  const queryClient = useQueryClient()
+  const key = socialKeys.profile(profile.username)
+  return useMutation({
+    scope: { id: `follow-${profile.id}` },
+    mutationFn: (follow: boolean) =>
+      api<void>(`/users/${encodeURIComponent(profile.id)}/follow`, { method: follow ? 'PUT' : 'DELETE' }),
+    onMutate: async (follow) => {
+      await queryClient.cancelQueries({ queryKey: key })
+      const previous = queryClient.getQueryData<Profile>(key)
+      if (previous && previous.followedByMe !== follow) {
+        queryClient.setQueryData<Profile>(key, {
+          ...previous,
+          followedByMe: follow,
+          followerCount: previous.followerCount + (follow ? 1 : -1),
+        })
+      }
+      return { previous }
+    },
+    onError: (_error, _follow, context) => {
+      if (context?.previous) queryClient.setQueryData(key, context.previous)
+    },
+    onSettled: () => {
+      // My own following count, both lists and the feed all changed.
+      void queryClient.invalidateQueries({ queryKey: socialKeys.profilesAll })
+      void queryClient.invalidateQueries({ queryKey: socialKeys.followsAll })
+      void queryClient.invalidateQueries({ queryKey: socialKeys.feed })
+    },
   })
 }
 

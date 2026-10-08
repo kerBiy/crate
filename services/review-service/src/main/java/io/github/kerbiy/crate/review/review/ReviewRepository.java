@@ -52,4 +52,19 @@ interface ReviewRepository extends JpaRepository<Review, UUID> {
             order by created_at desc, id desc
             limit :limit""")
     List<Review> findByUserAfter(UUID userId, Instant createdAt, UUID id, int limit);
+
+    /** Feed v1: reviews by any of {@code userIds}, newest first. */
+    @NativeQuery("""
+            select * from reviews
+            where user_id = any(:userIds)
+            order by created_at desc, id desc
+            limit :limit""")
+    List<Review> findFeed(UUID[] userIds, int limit);
+
+    @NativeQuery("""
+            select * from reviews
+            where user_id = any(:userIds) and (created_at, id) < (:createdAt, :id)
+            order by created_at desc, id desc
+            limit :limit""")
+    List<Review> findFeedAfter(UUID[] userIds, Instant createdAt, UUID id, int limit);
 }

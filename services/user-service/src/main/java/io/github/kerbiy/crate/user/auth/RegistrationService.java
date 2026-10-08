@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,9 @@ import org.springframework.web.ErrorResponseException;
 
 @Service
 class  RegistrationService {
+
+    /** Would collide with literal paths under /users/ (GET /users/me, /users/search): the profile would be unreachable. */
+    private static final Set<String> RESERVED_USERNAMES = Set.of("me", "search");
 
     private final UserRepository users;
     private final PasswordEncoder passwordEncoder;
@@ -38,6 +42,9 @@ class  RegistrationService {
         }
 
         String username = request.username().toLowerCase(Locale.ROOT);
+        if (RESERVED_USERNAMES.contains(username)) {
+            throw Problems.invalidField("username", "is reserved");
+        }
         String email = request.email().strip().toLowerCase(Locale.ROOT);
         // Friendly, specific errors for the common case...
         if (users.existsByUsername(username)) {

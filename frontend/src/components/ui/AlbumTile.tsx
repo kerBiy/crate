@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { Cover } from './Cover.tsx'
+import { RatingStars } from './RatingStars.tsx'
 import { Skeleton } from './Skeleton.tsx'
 import { Vinyl } from './Vinyl.tsx'
 
@@ -13,13 +14,15 @@ type AlbumTileProps = {
   color?: string
   /** In the first visible row: load the cover right away instead of lazily. */
   eager?: boolean
+  /** Someone's rating of it, in stars (profile grid). Shown under the caption. */
+  rating?: number
 }
 
 /**
  * Grid cover: on hover or keyboard focus the sleeve slides left and the record emerges (pointer
  * devices), but only once the cover is in: no record sliding out from behind a placeholder.
  */
-export function AlbumTile({ to, title, artist, src, color, eager }: AlbumTileProps) {
+export function AlbumTile({ to, title, artist, src, color, eager, rating }: AlbumTileProps) {
   const [ready, setReady] = useState(false)
 
   return (
@@ -38,6 +41,7 @@ export function AlbumTile({ to, title, artist, src, color, eager }: AlbumTilePro
           <br />
           {artist}
         </TileCaption>
+        {rating !== undefined && <RatingStars value={rating} className="mt-1 text-meta" />}
       </Link>
     </div>
   )

@@ -88,6 +88,18 @@ Type scale (px): `13 · 15 · 17 · 20 · 24 · 32 · 44`
 ### 4.4 Shape and spacing
 
 - Spacing scale on a 4 px base: `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64`, plus a `1px` hairline (gaps between stars and histogram bars).
+- Named sizes, for things that have a fixed size of their own:
+
+    | Token | Size | Use |
+    |---|---|---|
+    | `tap` | 44 px | Minimum tap target; buttons and inputs |
+    | `avatar-sm` / `avatar` | 24 / 32 px | Avatars |
+    | `thumb` | 56 px | Small covers in rows (feed); never the record |
+    | `cover` | 280 px | Album page cover |
+    | `panel` | 280 px | Album page sidebar |
+    | `tabbar` | 64 px | Mobile tab bar height |
+
+- **Only these sizes exist.** The Tailwind theme resets the default scale, so a class off it (`w-24`, `p-5`) produces no CSS at all and fails silently. Use a step of the scale, a named size, or a fraction (`w-1/3`) for proportional widths such as skeleton lines. A fraction is a share of its parent's width, so the parent needs one: inside a shrink-to-fit box (`items-start`, `inline-block`) it collapses to almost nothing. A new fixed size becomes a token here and in `index.css` first.
 - Radius **follows hierarchy**, not one value for everything:
     - covers `4px` (sleeves are nearly square),
     - buttons and inputs `10px`,

@@ -3,7 +3,10 @@ import { RedirectIfSignedIn, RequireAuth } from './auth/RequireAuth.tsx'
 import { AppShellLayout } from './components/ui/AppShell.tsx'
 import { AlbumPage } from './pages/AlbumPage.tsx'
 import { LoginPage, RegisterPage } from './pages/AuthPages.tsx'
-import { FeedPage, NotFoundPage, ProfilePage } from './pages/PlaceholderPages.tsx'
+import { FeedPage } from './pages/FeedPage.tsx'
+import { FollowListPage } from './pages/FollowListPage.tsx'
+import { NotFoundPage } from './pages/PlaceholderPages.tsx'
+import { MyProfileRedirect, ProfilePage } from './pages/ProfilePage.tsx'
 import { SearchPage } from './pages/SearchPage.tsx'
 
 // Design lab and component catalog, development only. Vite turns import.meta.env.DEV into
@@ -44,7 +47,10 @@ export const router = createBrowserRouter([
           { path: 'feed', element: <FeedPage /> },
           { path: 'search', element: <SearchPage /> },
           { path: 'albums/:id', element: <AlbumPage /> },
-          { path: 'profile', element: <ProfilePage /> },
+          { path: 'profile', element: <MyProfileRedirect /> },
+          { path: 'u/:username', element: <ProfilePage /> },
+          { path: 'u/:username/followers', element: <FollowListPage kind="followers" /> },
+          { path: 'u/:username/following', element: <FollowListPage kind="following" /> },
           { path: '*', element: <NotFoundPage /> },
         ],
       },

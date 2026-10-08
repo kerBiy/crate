@@ -130,7 +130,7 @@ Phase 2 adds `activity-service` (consumes `review.events` and user events, owns 
 | Shortcut | Risk | Fixed in |
 |---|---|---|
 | Kafka event published *after* the DB commit (dual write) | If publishing fails after commit, the event is lost and `album_stats` drifts | Phase 2: transactional outbox |
-| Feed = fan-out on read (`WHERE user_id IN (following)`) | Slower as follows grow; several calls per page | Phase 2: `activity-service`, fan-out on write |
+| Feed = fan-out on read (`WHERE user_id = ANY(following)`, ADR-007) | Slower as follows grow; several calls per page; user-service down = no feed | Phase 2: `activity-service`, fan-out on write |
 | Services trust `X-User-Id` from the gateway | Anything inside the network could impersonate a user | Phase 3: services validate the JWT too |
 | One long-lived access token in `localStorage` | XSS could steal it; no revocation | Phase 2: short access token + rotating refresh token in an httpOnly cookie |
 | Sync call review → catalog without circuit breaker | Catalog down = nobody can rate | Phase 2: Resilience4j |
@@ -220,7 +220,9 @@ create table follows (
   primary key (follower_id, followee_id),
   check (follower_id <> followee_id)
 );
-create index follows_followee_idx on follows (followee_id);
+-- Keyset pagination of both lists, newest follow first (section 7).
+create index follows_followee_idx on follows (followee_id, created_at desc, follower_id desc);
+create index follows_follower_idx on follows (follower_id, created_at desc, followee_id desc);
 ```
 
 **Endpoints**
@@ -232,15 +234,15 @@ create index follows_followee_idx on follows (followee_id);
 | `GET /.well-known/jwks.json` | — | JWKS (internal only) |
 | `GET /users/me` | — | current user |
 | `PATCH /users/me` | `{displayName}` | updated user |
-| `GET /users/{username}` | — | public profile + follower/following counts |
+| `GET /users/{username}` | — | `{id, username, displayName, followerCount, followingCount, followedByMe}`; case-insensitive; 404 if unknown. `followedByMe` is false without `X-User-Id` and on your own profile |
 | `GET /users?ids=a,b,c` | max 100 ids | `{items: [{id, username, displayName}]}`, request order, unknown ids left out (used to render reviews and feeds) |
-| `GET /users/search?q=` | — | users matching username/display name |
-| `PUT /users/{id}/follow` | — | 204, idempotent |
-| `DELETE /users/{id}/follow` | — | 204, idempotent |
-| `GET /users/{id}/following`, `GET /users/{id}/followers` | cursor, limit | paged lists |
-| `GET /users/{id}/following/ids` | — | internal: used by review-service feed v1 |
+| `GET /users/search?q=&limit=20` | `q` 1–50 chars, `limit` ≤ 50 | `{items: [{id, username, displayName}]}`: username or display name contains `q` (case-insensitive, `%`/`_` literal); exact username first, then prefix, then the rest. A sequential scan: fine at friend scale, trigram index if it ever isn't |
+| `PUT /users/{id}/follow` | — | 204, idempotent (`insert … on conflict do nothing`). 400 `cannot-follow-self`, 404 unknown user |
+| `DELETE /users/{id}/follow` | — | 204, idempotent, also for an unknown user |
+| `GET /users/{id}/following`, `GET /users/{id}/followers` | cursor, limit | `{items: [{id, username, displayName}], nextCursor}`, newest follow first; 404 unknown user |
+| `GET /users/{id}/following/ids` | — | `{ids: [...]}`, all of them: used by review-service feed v1. Reachable through the gateway too, which is fine: it shows nothing `/following` doesn't |
 
-**Rules:** password minimum 10 characters; BCrypt; login errors never reveal whether the account exists.
+**Rules:** password minimum 10 characters; BCrypt; login errors never reveal whether the account exists. The usernames `me` and `search` are reserved: Spring prefers the literal paths `/users/me` and `/users/search` over `/users/{username}`, so those profiles would be unreachable.
 **Phase 2:** publishes follow events via the outbox (section 6).
 
 ### 5.3 catalog-service
@@ -384,7 +386,7 @@ create index reviews_user_idx  on reviews (user_id,  created_at desc, id desc);
 | `GET /reviews/albums/{albumId}/me` | my review or 404 |
 | `GET /reviews/albums/{albumId}?cursor=&limit=20` | reviews of an album |
 | `GET /reviews/users/{userId}?cursor=&limit=20` | a user's reviews (profile page) |
-| `GET /reviews/feed?cursor=&limit=20` | **Feed v1:** fetch following IDs from user-service, then `WHERE user_id = ANY(:ids)` ordered by `(created_at, id) DESC` |
+| `GET /reviews/feed?cursor=&limit=20` | **Feed v1 (ADR-007):** fetch following IDs from user-service (`GET /users/{me}/following/ids`, 2 s timeout, before any DB work), then `WHERE user_id = ANY(:ids)` ordered by `(created_at, id) DESC`. Following nobody → empty page. Any user-service failure (5xx, timeout, no connection, unreadable body) → **503** `user-service-unavailable`, never an empty feed |
 
 A review is `{id, userId, albumId, rating, body, createdAt, updatedAt}`; lists are `{items, nextCursor}` (section 7).
 

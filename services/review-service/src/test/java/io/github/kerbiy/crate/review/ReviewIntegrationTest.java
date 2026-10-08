@@ -18,7 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.test.web.servlet.client.RestTestClient;
 
-/** Base for review integration tests: real Postgres, WireMock as catalog-service, a clean slate per test. */
+/** Base for review integration tests: real Postgres, WireMock as catalog-service and user-service, a clean slate per test. */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestTestClient
 // Every test imports the same classes, so they all share one Spring context (and one set of containers).
@@ -34,12 +34,16 @@ public abstract class ReviewIntegrationTest {
     protected WireMockServer catalog;
 
     @Autowired
+    protected WireMockServer users;
+
+    @Autowired
     protected JdbcClient jdbc;
 
     @BeforeEach
     void resetState() {
         jdbc.sql("truncate reviews").update();
         catalog.resetAll();
+        users.resetAll();
         stubAlbumsExist();
     }
 

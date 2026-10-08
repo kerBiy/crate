@@ -4,6 +4,7 @@ import io.github.kerbiy.crate.contracts.review.ReviewCreated;
 import io.github.kerbiy.crate.contracts.review.ReviewDeleted;
 import io.github.kerbiy.crate.contracts.review.ReviewUpdated;
 import io.github.kerbiy.crate.review.catalog.CatalogClient;
+import io.github.kerbiy.crate.review.users.UserClient;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,13 +30,15 @@ class ReviewService {
 
     private final ReviewRepository reviews;
     private final CatalogClient catalog;
+    private final UserClient users;
     private final TransactionTemplate transaction;
     private final ApplicationEventPublisher events;
 
-    ReviewService(ReviewRepository reviews, CatalogClient catalog, TransactionTemplate transaction,
+    ReviewService(ReviewRepository reviews, CatalogClient catalog, UserClient users, TransactionTemplate transaction,
             ApplicationEventPublisher events) {
         this.reviews = reviews;
         this.catalog = catalog;
+        this.users = users;
         this.transaction = transaction;
         this.events = events;
     }
@@ -146,6 +149,24 @@ class ReviewService {
         List<Review> rows = cursor == null
                 ? reviews.findByUser(userId, limit + 1)
                 : reviews.findByUserAfter(userId, cursor.createdAt(), cursor.id(), limit + 1);
+        return page(rows, limit);
+    }
+
+    /**
+     * Feed v1, fan-out on read (SPEC 3.6, ADR-007): ask user-service who I follow, then read their
+     * reviews here. The HTTP call happens before any query, so no DB connection waits on it.
+     *
+     * @throws io.github.kerbiy.crate.review.users.UserServiceUnavailableException user-service couldn't answer
+     */
+    ReviewPage feed(UUID userId, ReviewCursor cursor, int limit) {
+        List<UUID> following = users.followingIds(userId);
+        if (following.isEmpty()) {
+            return new ReviewPage(List.of(), null);
+        }
+        UUID[] ids = following.toArray(UUID[]::new);
+        List<Review> rows = cursor == null
+                ? reviews.findFeed(ids, limit + 1)
+                : reviews.findFeedAfter(ids, cursor.createdAt(), cursor.id(), limit + 1);
         return page(rows, limit);
     }
 

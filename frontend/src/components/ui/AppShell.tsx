@@ -44,12 +44,21 @@ export function AppShell({ children, links = appLinks, current, userName }: AppS
   )
 }
 
-/** AppShell as a layout route, for signed-in pages. Album pages are reached from search. */
+/**
+ * AppShell as a layout route, for signed-in pages. Album pages are reached from search. Profiles
+ * live at /u/:username: mine is the Profile tab, someone else's is no tab.
+ */
 export function AppShellLayout() {
   const { pathname } = useLocation()
   const me = useMe()
+  const profileOf = pathname.match(/^\/u\/([^/]+)/)?.[1]
+  const current: Section | undefined = pathname.startsWith('/albums/')
+    ? 'search'
+    : profileOf && me.data && decodeURIComponent(profileOf).toLowerCase() === me.data.username
+      ? 'profile'
+      : undefined
   return (
-    <AppShell current={pathname.startsWith('/albums/') ? 'search' : undefined} userName={me.data?.username}>
+    <AppShell current={current} userName={me.data?.username}>
       <Outlet />
     </AppShell>
   )

@@ -110,6 +110,8 @@
   --spacing-tap: 44px;
   --spacing-avatar-sm: 24px;
   --spacing-avatar: 32px;
+  /* Small covers in rows (feed). Below 96px: never the record. */
+  --spacing-thumb: 56px;
   --spacing-cover: 280px;
   --spacing-tabbar: 64px;
   --spacing-panel: 280px;
@@ -257,6 +259,11 @@
   50% {
     transform: scale(1.08);
   }
+}
+
+/* Follow: the button pops once as it becomes "Following". */
+.follow-pop {
+  animation: star-pop var(--duration-slow) var(--ease-pop);
 }
 
 /* ---------------------------------------------------------------------------

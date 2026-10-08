@@ -12,8 +12,9 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 
 /**
  * Shared by every integration test: all of them @Import this, so Spring caches one context and
- * starts one Postgres container, one Kafka broker and one WireMock "catalog-service" for the whole
- * test run.
+ * starts one Postgres container, one Kafka broker and two WireMock servers (playing catalog-service
+ * and user-service) for the whole test run. Two WireMockServer beans: injection points pick one by
+ * their name, {@code catalog} or {@code users}.
  */
 @TestConfiguration(proxyBeanMethods = false)
 public class TestcontainersConfiguration {
@@ -40,6 +41,22 @@ public class TestcontainersConfiguration {
         WireMockServer server = new WireMockServer(wireMockConfig().dynamicPort());
         server.start();
         return server;
+    }
+
+    // Stands in for user-service's GET /users/{id}/following/ids.
+    @Bean(destroyMethod = "stop")
+    WireMockServer users() {
+        WireMockServer server = new WireMockServer(wireMockConfig().dynamicPort());
+        server.start();
+        return server;
+    }
+
+    @Bean
+    DynamicPropertyRegistrar userProperties(WireMockServer users) {
+        return registry -> {
+            registry.add("crate.users.base-url", users::baseUrl);
+            registry.add("crate.users.timeout", () -> "500ms");
+        };
     }
 
     @Bean

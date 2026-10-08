@@ -2,6 +2,7 @@ package io.github.kerbiy.crate.review.web;
 
 import io.github.kerbiy.crate.review.catalog.AlbumNotFoundException;
 import io.github.kerbiy.crate.review.catalog.CatalogUnavailableException;
+import io.github.kerbiy.crate.review.users.UserServiceUnavailableException;
 import io.github.kerbiy.crate.review.review.ReviewConflictException;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +86,13 @@ class ProblemDetailsHandler extends ResponseEntityExceptionHandler {
     ProblemDetail handleCatalogUnavailable(CatalogUnavailableException ex) {
         return problem(HttpStatus.SERVICE_UNAVAILABLE, "catalog-unavailable", "Catalog unavailable",
                 "Couldn't check that this album exists. Try again in a moment.");
+    }
+
+    /** 503: without the follow list there's no feed, and an empty one would be a lie. */
+    @ExceptionHandler(UserServiceUnavailableException.class)
+    ProblemDetail handleUserServiceUnavailable(UserServiceUnavailableException ex) {
+        return problem(HttpStatus.SERVICE_UNAVAILABLE, "user-service-unavailable", "User service unavailable",
+                "Couldn't load who you follow. Try again in a moment.");
     }
 
     @ExceptionHandler(ReviewConflictException.class)

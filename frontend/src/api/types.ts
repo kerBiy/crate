@@ -55,3 +55,19 @@ export type UserSummary = { id: string; username: string; displayName: string | 
 
 /** A review with its author, ready to show. author is null when the account no longer exists. */
 export type ReviewWithAuthor = Review & { author: UserSummary | null }
+
+/** user-service Profile: the profile page header. followedByMe is false on my own profile. */
+export type Profile = {
+  id: string
+  username: string
+  displayName: string | null
+  followerCount: number
+  followingCount: number
+  followedByMe: boolean
+}
+
+/** One of my ratings on a profile, with its album. album is null if catalog doesn't have it. */
+export type RatedAlbum = Review & { album: AlbumSummary | null }
+
+/** A friend's rating in the feed, with who and what, ready to show. */
+export type FeedItem = Review & { author: UserSummary | null; album: AlbumSummary | null }

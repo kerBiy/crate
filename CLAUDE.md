@@ -23,6 +23,8 @@ Read docs/SPEC.md before any task. Current phase: **Phase 0**.
 - Every data view has loading, empty and error states.
 - Before saying a UI task is done: screenshot it with Playwright at 390px and 1440px,
   check it against DESIGN.md (especially the Banned list), fix what's off, then show me.
+- For Playwright checks of logged-in pages, log in through the UI with E2E_USERNAME /
+  E2E_PASSWORD from infra/compose/.env (local demo account). Don't register new accounts.
 
 ## Commands
 - make infra-up / make infra-down

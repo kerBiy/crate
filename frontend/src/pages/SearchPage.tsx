@@ -1,10 +1,13 @@
+import { MagnifyingGlass, VinylRecord } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { minSearchLength, useAlbumSearch, usePeopleSearch } from '../api/queries.ts'
 import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
-import { Input } from '../components/ui/Input.tsx'
+import { PageHeader } from '../components/ui/PageHeader.tsx'
 import { PersonRow } from '../components/ui/PersonRow.tsx'
+import { SearchField } from '../components/ui/SearchField.tsx'
 import { SegmentedControl } from '../components/ui/SegmentedControl.tsx'
+import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { PeopleSkeleton } from './FollowListPage.tsx'
 
@@ -13,14 +16,12 @@ const kinds: { id: Kind; label: string }[] = [
   { id: 'albums', label: 'Albums' },
   { id: 'people', label: 'People' },
 ]
-const fields: Record<Kind, { label: string; hint: string }> = {
-  albums: { label: 'Search albums', hint: 'Album or artist' },
-  people: { label: 'Search people', hint: 'Name or username' },
-}
+const fields: Record<Kind, string> = { albums: 'Album or artist', people: 'Name or username' }
 
-const grid = 'grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6'
-// The first row at the widest grid (two rows on mobile) is on screen at once: load those covers eagerly.
-const eagerTiles = 6
+// Fewer, bigger covers: 2 across on a phone, 5 on desktop.
+const grid = 'grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-10'
+// The first row at the widest grid (two and a half rows on a phone) is on screen at once.
+const eagerTiles = 5
 
 /** Waits until the value has stopped changing for `delay` ms. `flush` takes it now, without waiting. */
 function useDebounced<T>(value: T, delay: number) {
@@ -33,8 +34,8 @@ function useDebounced<T>(value: T, delay: number) {
 }
 
 /**
- * One big field for albums or people. Albums show as a cover grid, people as a list. The query and
- * the kind live in the URL (?q=, ?type=people), so Back restores them.
+ * One big field for albums or people, under the page's large title. Albums show as a cover grid,
+ * people as a list. The query and the kind live in the URL (?q=, ?type=people), so Back restores them.
  */
 export function SearchPage() {
   const [params, setParams] = useSearchParams()
@@ -50,32 +51,32 @@ export function SearchPage() {
   }, [query, kind, params, setParams])
 
   return (
-    <main className="mx-auto flex max-w-content flex-col gap-6 px-4 py-8 lg:px-6 lg:py-12">
-      <h1 className="sr-only">Search</h1>
-      <SegmentedControl
-        label="Search for"
-        options={kinds}
-        value={kind}
-        onChange={(next) => setParams(urlParams(query, next), { replace: true })}
-      />
-      <Input
-        // Remount on switch: the label and hint change, and focus moves to the field.
+    <main className="mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12">
+      <PageHeader title="Search">
+        <SegmentedControl
+          label="Search for"
+          options={kinds}
+          value={kind}
+          onChange={(next) => setParams(urlParams(query, next), { replace: true })}
+        />
+      </PageHeader>
+      <SearchField
+        // Remount on switch: the label changes, and focus moves to the field.
         key={kind}
-        label={fields[kind].label}
-        type="search"
-        size="lg"
-        hint={fields[kind].hint}
+        label={fields[kind]}
+        value={text}
+        onChange={setText}
+        onSubmit={searchNow}
         autoFocus
         autoComplete="off"
         spellCheck={false}
         maxLength={kind === 'people' ? 50 : 100}
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        onKeyDown={(event) => event.key === 'Enter' && searchNow()}
-        className="max-w-prose"
+        className="mt-6 lg:mt-8"
       />
-      {query.length >= minSearchLength &&
-        (kind === 'people' ? <PeopleResults query={query} /> : <Results query={query} />)}
+      <div className="mt-10 lg:mt-12">
+        {query.length >= minSearchLength &&
+          (kind === 'people' ? <PeopleResults query={query} /> : <Results query={query} />)}
+      </div>
     </main>
   )
 }
@@ -94,13 +95,13 @@ function PeopleResults({ query }: { query: string }) {
   if (search.isError) {
     return <ErrorState message="Couldn't search right now." onRetry={() => search.refetch()} retrying={search.isFetching} />
   }
-  if (!search.data.items.length) return <EmptyState message="Nobody by that name. Try another." />
+  if (!search.data.items.length) return <EmptyState icon={MagnifyingGlass} message="Nobody by that name. Try another." />
 
   return (
     <ul
       aria-label={`People matching ${query}`}
       aria-busy={search.isPlaceholderData}
-      className="results flex max-w-prose flex-col divide-y divide-border"
+      className="results rows flex max-w-prose flex-col"
     >
       {search.data.items.map((person) => (
         <li key={person.id}>
@@ -120,39 +121,46 @@ function Results({ query }: { query: string }) {
   }
 
   const { items, partial } = search.data
+  if (items.length === 0) return <EmptyState icon={VinylRecord} message="No records in this crate. Try another name." />
+
   return (
     // Previous results while the new query loads: dimmed and marked busy.
-    <section aria-label={`Results for ${query}`} aria-busy={search.isPlaceholderData} className="results flex flex-col gap-4">
-      {partial && <p className="text-meta text-muted">Some results may be missing.</p>}
-      {items.length === 0 ? (
-        <EmptyState message="No records in this crate. Try another name." />
-      ) : (
-        <ul className={grid}>
-          {items.map((album, index) => (
-            <li key={album.id}>
-              <AlbumTile
-                eager={index < eagerTiles}
-                to={`/albums/${album.id}`}
-                title={album.title}
-                artist={album.artistCredit}
-                src={album.coverUrl}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
+    <section aria-label={`Results for ${query}`} aria-busy={search.isPlaceholderData} className="results flex flex-col gap-6">
+      <p className="tabular text-meta text-muted">
+        {items.length} album{items.length === 1 ? '' : 's'}
+        {partial && '. Some may be missing.'}
+      </p>
+      <ul className={grid}>
+        {items.map((album, index) => (
+          <li key={album.id}>
+            <AlbumTile
+              eager={index < eagerTiles}
+              to={`/albums/${album.id}`}
+              title={album.title}
+              artist={album.artistCredit}
+              year={album.year}
+              src={album.coverUrl}
+            />
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
 
 function ResultsSkeleton() {
   return (
-    <ul aria-busy="true" aria-label="Searching" className={grid}>
-      {Array.from({ length: 12 }, (_, i) => (
-        <li key={i}>
-          <AlbumTileSkeleton />
-        </li>
-      ))}
-    </ul>
+    <div aria-busy="true" aria-label="Searching" className="flex flex-col gap-6">
+      <p className="text-meta">
+        <Skeleton shape="text" className="w-16" />
+      </p>
+      <ul aria-hidden="true" className={grid}>
+        {Array.from({ length: 10 }, (_, i) => (
+          <li key={i}>
+            <AlbumTileSkeleton />
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

@@ -28,22 +28,6 @@ const devRoutes: RouteObject[] = import.meta.env.DEV
     ]
   : []
 
-// v2 design proposal with real data, inside the signed-in shell. Development only, temporary.
-const labV2Routes: RouteObject[] = import.meta.env.DEV
-  ? [
-      {
-        path: 'lab/v2/search',
-        lazy: () => import('./lab/v2/SearchPageV2.tsx').then((m) => ({ Component: m.SearchPageV2 })),
-        HydrateFallback: () => null,
-      },
-      {
-        path: 'lab/v2/album/:id',
-        lazy: () => import('./lab/v2/AlbumPageV2.tsx').then((m) => ({ Component: m.AlbumPageV2 })),
-        HydrateFallback: () => null,
-      },
-    ]
-  : []
-
 export const router = createBrowserRouter([
   ...devRoutes,
   {
@@ -69,7 +53,6 @@ export const router = createBrowserRouter([
           { path: 'u/:username/followers', element: <FollowListPage kind="followers" /> },
           { path: 'u/:username/following', element: <FollowListPage kind="following" /> },
           { path: 'settings', element: <SettingsPage /> },
-          ...labV2Routes,
           { path: '*', element: <NotFoundPage /> },
         ],
       },

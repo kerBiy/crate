@@ -18,6 +18,7 @@ type ReviewsProps = {
   footer?: ReactNode
 }
 
+/** Reviews as reading material: text one step up (lead), separators inset to the text column. */
 export function Reviews({
   reviews,
   state,
@@ -32,18 +33,18 @@ export function Reviews({
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <ul className="flex flex-col divide-y divide-border">
+    <div className="flex flex-col gap-6">
+      <ul className="rows flex flex-col gap-6">
         {reviews.map((review) => (
-          <li key={review.id ?? review.name} className="flex gap-3 py-4 first:pt-0">
+          <li key={review.id ?? review.name} className="flex gap-4">
             <Avatar name={review.name} />
-            <div className="flex min-w-0 flex-col gap-1">
-              <p className="flex flex-wrap items-center gap-x-3 text-meta">
-                <span className="font-medium text-text">{review.name}</span>
-                <RatingStars value={review.rating} />
-                <span className="text-muted">{review.when}</span>
+            <div className="row-rule min-w-0 flex-1 pb-6">
+              <p className="flex items-baseline justify-between gap-3">
+                <span className="truncate text-body font-medium text-text">{review.name}</span>
+                <span className="shrink-0 text-meta text-muted">{review.when}</span>
               </p>
-              {review.text && <p className="max-w-prose whitespace-pre-line text-text">{review.text}</p>}
+              <RatingStars value={review.rating} className="mt-1 text-meta" />
+              {review.text && <p className="mt-3 max-w-prose text-lead whitespace-pre-line text-text">{review.text}</p>}
             </div>
           </li>
         ))}
@@ -57,12 +58,13 @@ function ReviewsSkeleton() {
   return (
     <ul aria-busy="true" aria-label="Loading reviews" className="flex flex-col gap-8">
       {[0, 1, 2].map((i) => (
-        <li key={i} className="flex gap-3">
+        <li key={i} className="flex gap-4">
           <Skeleton shape="circle" className="size-avatar" />
           <div className="flex w-full max-w-prose flex-col gap-2">
-            <Skeleton className="h-3 w-1/3" />
-            <Skeleton className="h-3 w-full" />
-            <Skeleton className="h-3 w-2/3" />
+            <Skeleton className="h-4 w-1/3" />
+            <Skeleton className="h-3 w-1/4" />
+            <Skeleton className="mt-2 h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
           </div>
         </li>
       ))}

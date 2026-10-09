@@ -7,6 +7,8 @@ type RatingInputProps = {
   onRate: (value: number) => void
   disabled?: boolean
   ref?: Ref<HTMLDivElement>
+  /** lg: the album page, where rating is the main action. Same 44px cells, bigger stars. */
+  size?: 'md' | 'lg'
 }
 
 /**
@@ -16,7 +18,7 @@ type RatingInputProps = {
  * scroll, not a rating: the browser takes it (pan-y) and the preview goes back.
  * Keyboard: arrow keys move, Enter confirms, Escape puts the saved value back.
  */
-export function RatingInput({ label, value, onRate, disabled = false, ref }: RatingInputProps) {
+export function RatingInput({ label, value, onRate, disabled = false, ref, size = 'md' }: RatingInputProps) {
   const [pending, setPending] = useState<number | null>(null)
   // The last confirmed rating: its stars pop once. Keyed by count so the same value can pop again.
   const [popped, setPopped] = useState({ count: 0, value: 0 })
@@ -99,7 +101,7 @@ export function RatingInput({ label, value, onRate, disabled = false, ref }: Rat
       onKeyDown={disabled ? undefined : onKeyDown}
       onBlur={() => setPending(null)}
       {...(disabled ? {} : pointer)}
-      className={`-mx-2 inline-flex touch-pan-y rounded-control text-h3 select-none ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+      className={`-mx-2 inline-flex touch-pan-y rounded-control ${size === 'lg' ? 'text-h2' : 'text-h3'} select-none ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
     >
       {[0, 1, 2, 3, 4].map((i) => {
         const fill = starFill(shown, i)

@@ -19,15 +19,18 @@ type FeedRowProps = {
   when: string
 }
 
-/** One activity in the feed: "ana rated OK Computer", stars, a short review, when. Small cover, no record. */
+/**
+ * One activity in the feed: "ana rated OK Computer", stars, a short review, when. Small cover, no record.
+ * In a `rows` list the separator starts at the text, not under the cover.
+ */
 export function FeedRow({ name, username, albumId, title, artist, coverUrl, rating, body, at, when }: FeedRowProps) {
   const album = `/albums/${albumId}`
   return (
-    <article className="flex gap-3 py-4">
+    <article className="flex gap-3 pt-4">
       <Link to={album} className="w-thumb shrink-0 self-start rounded-cover" tabIndex={-1} aria-hidden="true">
         <Cover src={coverUrl} title={title} artist={artist} size="sm" />
       </Link>
-      <div className="flex min-w-0 flex-col gap-1">
+      <div className="row-rule flex min-w-0 flex-1 flex-col gap-1 pb-4">
         <p className="text-text">
           {username ? (
             <Link to={`/u/${encodeURIComponent(username)}`} className="font-medium">
@@ -55,9 +58,9 @@ export function FeedRow({ name, username, albumId, title, artist, coverUrl, rati
 
 export function FeedRowSkeleton() {
   return (
-    <div aria-hidden="true" className="flex gap-3 py-4">
+    <div aria-hidden="true" className="flex gap-3 pt-4">
       <Skeleton shape="block" className="size-thumb" />
-      <div className="flex w-full max-w-prose flex-col gap-2 pt-1">
+      <div className="row-rule flex w-full flex-col gap-2 pt-1 pb-4">
         <Skeleton className="h-3 w-2/3" />
         <Skeleton className="h-3 w-1/4" />
         <Skeleton className="h-3 w-full" />

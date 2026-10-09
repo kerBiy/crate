@@ -11,13 +11,15 @@ type SleeveProps = {
   color?: string
   /** Action animations (spin on rate, travel on send, nudge on listen later). Omit for none. */
   motion?: Pick<AlbumPageState, 'spin' | 'send' | 'nudge'>
+  /** Desktop: stays in place while its column scrolls (the page's flex row needs items-start). */
+  pinned?: boolean
 }
 
 /**
  * Album page cover with the record: slides out once the cover has loaded, and reacts to actions
- * if given. The cover is above the fold, so it loads eagerly.
+ * if given. 280px on mobile, 360px on desktop. The cover is above the fold, so it loads eagerly.
  */
-export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
+export function Sleeve({ title, artist, src, color, motion, pinned = false }: SleeveProps) {
   const [coverReady, setCoverReady] = useState(false)
   const [revealed, setRevealed] = useState(false)
 
@@ -28,7 +30,7 @@ export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
   }
 
   return (
-    <div className="sleeve shrink-0">
+    <div className={`sleeve shrink-0 ${pinned ? 'sleeve-pinned' : ''}`}>
       <div
         className="sleeve-record"
         // The record stays in the sleeve until the cover is in, then slides out once.
@@ -45,7 +47,7 @@ export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
         </div>
       </div>
       <div className="sleeve-cover" data-nudging={motion?.nudge.on ? '' : undefined} onAnimationEnd={motion?.nudge.done}>
-        <Cover src={src} title={title} artist={artist} eager onSettled={() => setCoverReady(true)} />
+        <Cover src={src} title={title} artist={artist} eager size="lg" onSettled={() => setCoverReady(true)} />
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { BookmarkSimple, PaperPlaneTilt } from '@phosphor-icons/react'
+import { BookmarkSimple, MagnifyingGlass, PaperPlaneTilt, VinylRecord } from '@phosphor-icons/react'
 import { useState, type ReactNode } from 'react'
 import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
 import { AppShell, type Section as NavSection } from '../components/ui/AppShell.tsx'
@@ -9,9 +9,12 @@ import { FeedRow, FeedRowSkeleton } from '../components/ui/FeedRow.tsx'
 import { FollowButton } from '../components/ui/FollowButton.tsx'
 import { Histogram } from '../components/ui/Histogram.tsx'
 import { Input } from '../components/ui/Input.tsx'
+import { PageHeader } from '../components/ui/PageHeader.tsx'
 import { PersonRow, PersonRowSkeleton } from '../components/ui/PersonRow.tsx'
 import { RatingInput } from '../components/ui/RatingInput.tsx'
 import { RatingStars } from '../components/ui/RatingStars.tsx'
+import { SearchField } from '../components/ui/SearchField.tsx'
+import { SectionHeading } from '../components/ui/SectionHeading.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { Textarea } from '../components/ui/Textarea.tsx'
@@ -37,6 +40,7 @@ export function ComponentsPage() {
   const [following, setFollowing] = useState(false)
   const toast = useToast()
   const [kind, setKind] = useState<'albums' | 'people'>('albums')
+  const [query, setQuery] = useState('')
   const [ok, kid] = albums
 
   return (
@@ -49,6 +53,33 @@ export function ComponentsPage() {
       </div>
 
       <main className="mx-auto flex max-w-content flex-col px-4 pb-16 lg:px-6">
+        <Block name="PageHeader" use="The large title of a top-level page, with an optional control at the end of its row.">
+          <div className="col-span-full flex flex-col gap-8">
+            <PageHeader title="Search">
+              <SegmentedControl label="Search for" options={kindOptions} value={kind} onChange={setKind} />
+            </PageHeader>
+            <PageHeader title="Feed" />
+          </div>
+        </Block>
+
+        <Block name="SectionHeading" use="A section inside a page: Ratings, Reviews.">
+          <Cell label="Default">
+            <div>
+              <SectionHeading>Reviews</SectionHeading>
+              <p className="text-muted">The section's content starts here.</p>
+            </div>
+          </Cell>
+        </Block>
+
+        <Block name="SearchField" use="The one field of the Search page. Clear puts focus back in the field; Enter searches now.">
+          <Cell label={query ? 'With text: try Clear' : 'Empty: type something'}>
+            <SearchField label="Album or artist" value={query} onChange={setQuery} className="w-full" />
+          </Cell>
+          <Cell label="With text">
+            <SearchField label="Name or username" value="ana" onChange={() => {}} className="w-full" />
+          </Cell>
+        </Block>
+
         <Block name="Button" use="One primary per view; secondary for the rest; ghost inside rows.">
           {variants.map((variant) => (
             <Cell key={variant} label={sentence(variant)}>
@@ -91,9 +122,6 @@ export function ComponentsPage() {
           <Cell label="Disabled">
             <Input label="Email" defaultValue="ana@example.com" disabled />
           </Cell>
-          <Cell label="Large (search)">
-            <Input label="Search" type="search" size="lg" hint="Album or artist" />
-          </Cell>
         </Block>
 
         <Block name="Textarea" use="Longer writing, such as a review. Same label, hint and error as Input.">
@@ -134,12 +162,30 @@ export function ComponentsPage() {
           <Cell label="Disabled">
             <RatingInput label="Rate In Rainbows" value={4} onRate={() => {}} disabled />
           </Cell>
+          <Cell label="Large (album page)">
+            <RatingInput label="Rate Kid A" value={4.5} onRate={() => {}} size="lg" />
+          </Cell>
         </Block>
 
         <Block
           name="Cover"
-          use="Album art at any size. Pulses until its image loads, then fades in. Falls back to initials when missing."
+          use="Album art at any size. Pulses until its image loads, then fades in with its hairline edge. Falls back to initials when missing."
         >
+          <Cell label="Large (album page, 8px corners)">
+            <div className="w-cover-lg max-w-full">
+              <Cover src={coverUrl(kid.mbid, 500)} title={kid.title} artist={kid.artist} size="lg" eager />
+            </div>
+          </Cell>
+          <Cell label="Small (rows)">
+            <div className="flex gap-3">
+              <div className="w-thumb">
+                <Cover src={coverUrl(ok.mbid, 250)} title={ok.title} artist={ok.artist} size="sm" />
+              </div>
+              <div className="w-thumb">
+                <Cover title="Songs for the Night Bus" artist="Unknown" size="sm" />
+              </div>
+            </div>
+          </Cell>
           <Cell label="Image (throttle the network to see the pulse)">
             <div className="w-cover max-w-full">
               <Cover src={coverUrl(ok.mbid, 500)} title={ok.title} artist={ok.artist} eager />
@@ -167,17 +213,18 @@ export function ComponentsPage() {
           use="Cover grids. Hover or focus a tile to see the record, once its cover is in. First row eager, the rest lazy."
         >
           <div className="col-span-full">
-            <ul className="grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-10">
               <li>
                 <AlbumTileSkeleton />
               </li>
               {albums.map((album, index) => (
                 <li key={album.mbid}>
                   <AlbumTile
-                    eager={index < 6}
+                    eager={index < 5}
                     to={`/lab/album/${album.mbid}`}
                     title={album.title}
                     artist={album.artist}
+                    year={String(album.year)}
                     src={coverUrl(album.mbid, 250)}
                     color={album.dominantColor}
                   />
@@ -202,6 +249,11 @@ export function ComponentsPage() {
           </Cell>
           <Cell label="No ratings">
             <HistogramFrame counts={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]} />
+          </Cell>
+          <Cell label="Large (album page summary)">
+            <div className="w-full pt-12">
+              <Histogram counts={ok.histogram} size="lg" />
+            </div>
           </Cell>
         </Block>
 
@@ -235,59 +287,67 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
-        <Block name="PersonRow" use="Someone in a list of people: search, followers, following.">
-          <Cell label="With a display name">
-            <PersonRow username="ana_p" displayName="Ana Popescu" />
-          </Cell>
-          <Cell label="Username only">
-            <PersonRow username="radu" displayName={null} />
-          </Cell>
-          <Cell label="Loading">
-            <div className="w-full">
+        <Block name="PersonRow" use="Someone in a list of people: search, followers, following. In a rows list, separators start at the name.">
+          <ul className="rows col-span-full flex max-w-prose flex-col">
+            <li>
+              <PersonRow username="ana_p" displayName="Ana Popescu" />
+            </li>
+            <li>
+              <PersonRow username="radu" displayName={null} />
+            </li>
+            <li>
               <PersonRowSkeleton />
-            </div>
-          </Cell>
+            </li>
+          </ul>
         </Block>
 
         <Block name="FeedRow" use="One friend's rating in the feed. Small cover, never the record.">
-          <div className="col-span-full flex max-w-prose flex-col divide-y divide-border">
-            <FeedRow
-              name="Ana"
-              username="ana_p"
-              albumId={ok.mbid}
-              title={ok.title}
-              artist={ok.artist}
-              coverUrl={coverUrl(ok.mbid, 250)}
-              rating={4.5}
-              body="The best one, no debate. Let Down still gets me every time, and the second half is the reason I keep coming back to it on long drives."
-              at="2026-10-08T10:00:00Z"
-              when="3h"
-            />
-            <FeedRow
-              name="Radu"
-              username="radu"
-              albumId={kid.mbid}
-              title={kid.title}
-              artist={kid.artist}
-              coverUrl={coverUrl(kid.mbid, 250)}
-              rating={3}
-              body={null}
-              at="2026-10-01T10:00:00Z"
-              when="1 Oct 2026"
-            />
-            <FeedRow
-              name="Someone"
-              username={null}
-              albumId={ok.mbid}
-              title="Songs for the Night Bus"
-              artist="Unknown"
-              rating={2}
-              body="No cover, and the account is gone."
-              at="2026-10-08T10:00:00Z"
-              when="5m"
-            />
-            <FeedRowSkeleton />
-          </div>
+          <ul className="rows col-span-full flex max-w-prose flex-col">
+            <li>
+              <FeedRow
+                name="Ana"
+                username="ana_p"
+                albumId={ok.mbid}
+                title={ok.title}
+                artist={ok.artist}
+                coverUrl={coverUrl(ok.mbid, 250)}
+                rating={4.5}
+                body="The best one, no debate. Let Down still gets me every time, and the second half is the reason I keep coming back to it on long drives."
+                at="2026-10-08T10:00:00Z"
+                when="3h"
+              />
+            </li>
+            <li>
+              <FeedRow
+                name="Radu"
+                username="radu"
+                albumId={kid.mbid}
+                title={kid.title}
+                artist={kid.artist}
+                coverUrl={coverUrl(kid.mbid, 250)}
+                rating={3}
+                body={null}
+                at="2026-10-01T10:00:00Z"
+                when="1 Oct 2026"
+              />
+            </li>
+            <li>
+              <FeedRow
+                name="Someone"
+                username={null}
+                albumId={ok.mbid}
+                title="Songs for the Night Bus"
+                artist="Unknown"
+                rating={2}
+                body="No cover, and the account is gone."
+                at="2026-10-08T10:00:00Z"
+                when="5m"
+              />
+            </li>
+            <li>
+              <FeedRowSkeleton />
+            </li>
+          </ul>
         </Block>
 
         <Block name="Skeleton" use="Loading. Shaped like the content it stands in for; pulses in place.">
@@ -305,33 +365,40 @@ export function ComponentsPage() {
             </p>
           </Cell>
           <Cell label="Review row">
-            <div className="flex w-full gap-3">
+            <div className="flex w-full gap-4">
               <Skeleton shape="circle" className="size-avatar" />
               <div className="flex w-full flex-col gap-2">
-                <Skeleton className="h-3 w-1/3" />
-                <Skeleton className="h-3 w-full" />
-                <Skeleton className="h-3 w-2/3" />
+                <Skeleton className="h-4 w-1/3" />
+                <Skeleton className="h-3 w-1/4" />
+                <Skeleton className="mt-2 h-4 w-full" />
+                <Skeleton className="h-4 w-2/3" />
               </div>
             </div>
           </Cell>
           <Cell label="Cover grid (AlbumTileSkeleton)">
-            <div className="grid w-full grid-cols-3 gap-3">
-              {[0, 1, 2].map((i) => (
+            <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8">
+              {[0, 1].map((i) => (
                 <AlbumTileSkeleton key={i} />
               ))}
             </div>
           </Cell>
         </Block>
 
-        <Block name="EmptyState" use="A list with nothing in it: one line, one action.">
+        <Block name="EmptyState" use="A list with nothing in it: one line in lead, an optional icon, one action.">
           <Cell label="With action">
             <EmptyState
               message="Your crate is empty. Save albums to listen to later."
               action={<Button variant="primary">Search albums</Button>}
             />
           </Cell>
+          <Cell label="With icon">
+            <EmptyState icon={VinylRecord} message="No records in this crate. Try another name." />
+          </Cell>
+          <Cell label="Icon, people">
+            <EmptyState icon={MagnifyingGlass} message="Nobody by that name. Try another." />
+          </Cell>
           <Cell label="Line only">
-            <EmptyState message="No records in this crate. Try another name." />
+            <EmptyState message="Nothing spinning yet. Follow a friend to fill this crate." />
           </Cell>
         </Block>
 

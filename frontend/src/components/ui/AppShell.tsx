@@ -50,7 +50,11 @@ export function AppShell({ children, links = appLinks, current, userName }: AppS
  * from, Search when opened directly (DESIGN.md section 8).
  */
 export function AppShellLayout() {
-  const { pathname } = useLocation()
+  const location = useLocation()
+  // The v2 lab pages stand in for Search and the album page (development only, temporary).
+  const pathname = import.meta.env.DEV
+    ? location.pathname.replace(/^\/lab\/v2\/album\//, '/albums/').replace(/^\/lab\/v2\//, '/')
+    : location.pathname
   const me = useMe()
   const profileOf = pathname.match(/^\/u\/([^/]+)/)?.[1]
   const mine = Boolean(profileOf && me.data && decodeURIComponent(profileOf).toLowerCase() === me.data.username)

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { StarGlyph } from './RatingStars.tsx'
 
 /** 0.5 → "½ star", 1 → "1 star", 4.5 → "4½ stars". */
 export function formatStars(value: number) {
@@ -12,8 +13,9 @@ export function formatStars(value: number) {
  * or tap (touch) shows how many people gave that rating. The chart is one Tab stop; arrow keys,
  * Home and End move between bars.
  * counts: ratings per half-star bucket, 10 entries for 0.5, 1, 1.5 … 5.
+ * size lg: the album page's ratings summary, taller bars with the scale's ends (½ star, 5 stars) under them.
  */
-export function Histogram({ counts }: { counts: number[] }) {
+export function Histogram({ counts, size = 'md' }: { counts: number[]; size?: 'md' | 'lg' }) {
   const [active, setActive] = useState<number | null>(null)
   const root = useRef<HTMLDivElement>(null)
   const total = counts.reduce((sum, count) => sum + count, 0)
@@ -54,7 +56,7 @@ export function Histogram({ counts }: { counts: number[] }) {
   return (
     <div ref={root} role="group" aria-label={`Ratings spread, ${total} rating${total === 1 ? '' : 's'}`} className="relative">
       {active !== null && <Readout index={active} text={describe(active)} />}
-      <div className="flex h-12 items-end">
+      <div className={`flex items-end ${size === 'lg' ? 'h-20' : 'h-12'}`}>
         {counts.map((count, i) => (
           <button
             key={i}
@@ -81,6 +83,17 @@ export function Histogram({ counts }: { counts: number[] }) {
           </button>
         ))}
       </div>
+      {size === 'lg' && (
+        // The scale's ends, in muted: labels, not ratings.
+        <div aria-hidden="true" className="mt-2 flex justify-between text-meta">
+          <StarGlyph fill={0.5} muted />
+          <span className="inline-flex gap-hairline">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <StarGlyph key={i} fill={1} muted />
+            ))}
+          </span>
+        </div>
+      )}
     </div>
   )
 }

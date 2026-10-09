@@ -14,6 +14,8 @@ type AlbumTileProps = {
   color?: string
   /** In the first visible row: load the cover right away instead of lazily. */
   eager?: boolean
+  /** Release year, after the artist: tells reissues and namesakes apart. */
+  year?: string | null
   /** Someone's rating of it, in stars (profile grid). Shown under the caption. */
   rating?: number
 }
@@ -22,7 +24,7 @@ type AlbumTileProps = {
  * Grid cover: on hover or keyboard focus the sleeve slides left and the record emerges (pointer
  * devices), but only once the cover is in: no record sliding out from behind a placeholder.
  */
-export function AlbumTile({ to, title, artist, src, color, eager, rating }: AlbumTileProps) {
+export function AlbumTile({ to, title, artist, year, src, color, eager, rating }: AlbumTileProps) {
   const [ready, setReady] = useState(false)
 
   return (
@@ -37,9 +39,8 @@ export function AlbumTile({ to, title, artist, src, color, eager, rating }: Albu
           </div>
         </div>
         <TileCaption>
-          <span className="font-narrow font-display font-semibold">{title}</span>
-          <br />
-          {artist}
+          <span className="block truncate text-body font-medium text-text">{title}</span>
+          <span className="block truncate text-meta text-muted">{year ? `${artist}, ${year}` : artist}</span>
         </TileCaption>
         {rating !== undefined && <RatingStars value={rating} className="mt-1 text-meta" />}
       </Link>
@@ -53,14 +54,17 @@ export function AlbumTileSkeleton() {
     <div aria-hidden="true">
       <Skeleton shape="block" className="aspect-square w-full" />
       <TileCaption>
-        <Skeleton shape="text" className="w-3/4" />
-        <br />
-        <Skeleton shape="text" className="w-1/2" />
+        <span className="block text-body">
+          <Skeleton shape="text" className="w-3/4" />
+        </span>
+        <span className="block text-meta">
+          <Skeleton shape="text" className="w-1/2" />
+        </span>
       </TileCaption>
     </div>
   )
 }
 
 function TileCaption({ children }: { children: ReactNode }) {
-  return <p className="mt-1 line-clamp-2 text-meta text-muted">{children}</p>
+  return <p className="mt-3 flex flex-col">{children}</p>
 }

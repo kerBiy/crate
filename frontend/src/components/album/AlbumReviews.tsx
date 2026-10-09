@@ -35,7 +35,7 @@ export function AlbumReviews({ albumId }: { albumId: string }) {
 
 const dateFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 
-function toView(review: ReviewWithAuthor): Review {
+export function toView(review: ReviewWithAuthor): Review {
   return {
     id: review.id,
     // An account that no longer exists keeps its reviews, without a name.

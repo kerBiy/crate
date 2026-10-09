@@ -16,13 +16,15 @@ type MyRatingProps = {
   toast: Toast
   /** The record's one slow spin when a rating is given. */
   onRated: () => void
+  /** lg: the album page's own strip: bigger stars, the label in body size. */
+  size?: 'md' | 'lg'
 }
 
 /**
  * Rate, change or remove my rating, and write the optional review text that goes with it.
  * The page's main action: a label says what the stars are, and their actions sit right under them.
  */
-export function MyRating({ albumId, title, toast, onRated }: MyRatingProps) {
+export function MyRating({ albumId, title, toast, onRated, size = 'md' }: MyRatingProps) {
   const notify = toast.show
   const mine = useMyReview(albumId)
   const save = useSaveReview(albumId)
@@ -123,10 +125,10 @@ export function MyRating({ albumId, title, toast, onRated }: MyRatingProps) {
 
   return (
     <div className="flex flex-col items-start gap-1">
-      <p className="text-meta text-muted">
+      <p className={size === 'lg' ? 'text-body font-medium text-text' : 'text-meta text-muted'}>
         {mine.isPending ? <Skeleton shape="text" className="w-16" /> : review ? 'Your rating' : 'Rate this album'}
       </p>
-      <RatingInput ref={starsRef} label={`Rate ${title}`} value={stars} onRate={rate} disabled={mine.isPending} />
+      <RatingInput ref={starsRef} label={`Rate ${title}`} value={stars} onRate={rate} disabled={mine.isPending} size={size} />
 
       {review && !editing && (
         <div className="-mx-4 flex flex-wrap">

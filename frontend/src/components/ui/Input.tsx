@@ -27,8 +27,8 @@ export function Input({ label, hint, error, size = 'md', id, className = '', ...
         aria-describedby={note ? noteId : undefined}
         className={`rounded-control border bg-surface text-text ${
           size === 'lg' ? 'h-16 px-4 text-h4' : 'h-tap px-3 text-body'
-        } placeholder:text-muted disabled:cursor-not-allowed disabled:bg-bg disabled:text-muted ${
-          error ? 'border-danger' : 'border-border'
+        } placeholder:text-muted disabled:cursor-not-allowed disabled:border-border disabled:bg-bg disabled:text-muted ${
+          error ? 'border-danger' : 'border-border-strong'
         }`}
         {...rest}
       />

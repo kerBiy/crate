@@ -11,11 +11,17 @@
   --surface: #221e1a;
   --surface-raised: #2c2722;
   --border: #3a342e;
+  /* Edges of controls (inputs, secondary buttons): 3:1 or more on bg, surface and surface-raised. */
+  --border-strong: #7a7066;
   --text: #ede7df;
   --muted: #a39a8f;
   --accent: #e5935a;
   --accent-text: #e5935a;
   --on-accent: #1a1410;
+  /* Pressed: the primary button steps toward the background; other controls take --pressed. */
+  --accent-pressed: #d1814a;
+  --pressed: #2c2722;
+  --focus: #e5935a;
   /* Lightened from #D45D4C: it failed AA on surface-raised. */
   --danger: #e2705e;
 
@@ -37,12 +43,18 @@
   --surface: #ffffff;
   --surface-raised: #ffffff;
   --border: #e2ded8;
+  --border-strong: #8f877d;
   --text: #1c1915;
   --muted: #6b635a;
   --accent: #c9733a;
   --accent-text: #a85a26;
   /* Was #FFFFFF: white on the light accent is only 3.5:1. */
   --on-accent: #1c1915;
+  /* Lighter, not darker: on-accent is dark text here and keeps 6.5:1. */
+  --accent-pressed: #d68c57;
+  --pressed: #ebe8e4;
+  /* The light accent is only 3.2:1 on bg; accent-text keeps the ring at 4.1:1 or more everywhere. */
+  --focus: #a85a26;
   --danger: #b8432f;
 
   --vinyl-disc: #1c1915;
@@ -56,17 +68,32 @@
   --wash-strength: 12%;
 }
 
+/* More contrast asked for: every edge is a strong one, secondary text moves toward text. */
+@media (prefers-contrast: more) {
+  :root {
+    --border: var(--border-strong);
+    --muted: #c2bab0;
+  }
+  [data-theme="light"] {
+    --border: var(--border-strong);
+    --muted: #4f4842;
+  }
+}
+
 @theme inline {
   --color-*: initial;
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
   --color-on-accent: var(--on-accent);
+  --color-accent-pressed: var(--accent-pressed);
+  --color-pressed: var(--pressed);
   --color-danger: var(--danger);
 }
 
@@ -158,6 +185,8 @@
 @layer base {
   html {
     background: var(--bg);
+    /* Press states are our own (DESIGN.md section 7); no grey box from iOS on top. */
+    -webkit-tap-highlight-color: transparent;
   }
   body {
     background: var(--bg);
@@ -166,9 +195,11 @@
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
     -webkit-font-smoothing: antialiased;
+    /* viewport-fit=cover lets the page reach the screen's edges; keep content off the notch in landscape. */
+    padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
   }
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--focus);
     outline-offset: 2px;
   }
   /* The browser's own clear button ignores the theme (blue in light). Escape still clears. */
@@ -280,6 +311,7 @@
   overflow: hidden;
   aspect-ratio: 1;
   border-radius: var(--radius-cover);
+  transition: transform var(--duration-fast) var(--ease-standard);
 }
 .tile-cover {
   position: relative;
@@ -287,6 +319,10 @@
 }
 .tile-record {
   display: none;
+}
+/* Pressed (every device): the tile gives a little under the finger or the click. */
+.tile a:active .tile-art {
+  transform: scale(0.98);
 }
 @media (hover: hover) and (pointer: fine) {
   .tile-record {
@@ -347,6 +383,14 @@
   opacity: 1;
 }
 
+/* Search: the previous results stay up, dimmed, while the next query loads. */
+.results {
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+.results[aria-busy="true"] {
+  opacity: 0.55;
+}
+
 /* Button loading state. Removed by the reduced-motion rule below, leaving a still icon. */
 .spinner {
   animation: spinner var(--duration-spin) linear infinite;
@@ -357,6 +401,7 @@
   }
 }
 
+/* Reduced motion: nothing moves, scales, spins or pulses. Opacity fades stay, at fast. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -364,10 +409,15 @@
     animation: none !important;
     transition: none !important;
   }
+  .cover-img,
+  .results {
+    transition: opacity var(--duration-fast) linear !important;
+  }
   .tile-record {
     display: none !important;
   }
-  .tile-cover {
+  .tile-cover,
+  .tile a:active .tile-art {
     transform: none !important;
   }
 }
@@ -377,7 +427,14 @@
   font-stretch: 78%;
 }
 
-/* App navigation: bottom tabs on mobile sit above the home indicator. */
+/* App navigation: bottom tabs on mobile sit above the home indicator (needs viewport-fit=cover). */
 .tabbar {
   padding-bottom: env(safe-area-inset-bottom);
+}
+/* Room for the tab bar, home indicator included: page content, and floating things above the bar. */
+@utility pb-tabbar-safe {
+  padding-bottom: calc(var(--spacing-tabbar) + env(safe-area-inset-bottom));
+}
+@utility bottom-tabbar-safe {
+  bottom: calc(var(--spacing-tabbar) + env(safe-area-inset-bottom));
 }

@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { setSession } from '../auth/session.ts'
 import { api, ApiError } from './client.ts'
 import type {
@@ -32,6 +32,8 @@ export function useAlbumSearch(query: string) {
       api<SearchResponse>(`/albums/search?${new URLSearchParams({ q, limit: String(searchLimit) })}`, { signal }),
     enabled: q.length >= minSearchLength,
     staleTime: 5 * 60_000,
+    // A new query keeps the last results on screen (dimmed) instead of flashing the skeleton grid.
+    placeholderData: keepPreviousData,
   })
 }
 
@@ -308,6 +310,7 @@ export function usePeopleSearch(query: string) {
     queryKey: socialKeys.people(q),
     queryFn: ({ signal }) => api<{ items: UserSummary[] }>(`/users/search?${new URLSearchParams({ q })}`, { signal }),
     enabled: q.length >= minSearchLength,
+    placeholderData: keepPreviousData,
   })
 }
 

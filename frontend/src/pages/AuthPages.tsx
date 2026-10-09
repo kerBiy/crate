@@ -8,7 +8,7 @@ import { Input } from '../components/ui/Input.tsx'
 /** Centered form, the wordmark as the only decoration (DESIGN.md section 13). */
 function AuthLayout({ title, error, children, footer }: { title: string; error?: string; children: ReactNode; footer: ReactNode }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-4 py-12">
+    <main className="flex min-h-dvh flex-col items-center justify-center px-4 py-12">
       <div className="flex w-full max-w-form flex-col gap-8">
         <p className="font-display text-h2 font-bold text-text" aria-hidden="true">
           crate

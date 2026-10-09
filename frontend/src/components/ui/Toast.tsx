@@ -33,7 +33,7 @@ export function ToastRegion({ message }: { message: string | null }) {
   return (
     <div
       aria-live="polite"
-      className="pointer-events-none fixed inset-x-4 bottom-tabbar z-30 flex justify-center pb-4 lg:bottom-0 lg:pb-6"
+      className="pointer-events-none fixed inset-x-4 bottom-tabbar-safe z-30 flex justify-center pb-4 lg:bottom-0 lg:pb-6"
     >
       {message && <ToastMessage>{message}</ToastMessage>}
     </div>

@@ -8,7 +8,7 @@ const off = `${segment} text-muted`
 export function ThemeToggle() {
   const { theme, toggle } = useTheme()
   return (
-    <div className="flex rounded-control border border-border p-1" role="group" aria-label="Theme">
+    <div className="flex rounded-control border border-border-strong p-1" role="group" aria-label="Theme">
       <button type="button" onClick={theme === 'light' ? toggle : undefined} aria-pressed={theme === 'dark'} className={theme === 'dark' ? on : off}>
         Dark
       </button>

@@ -74,7 +74,7 @@ export function Histogram({ counts }: { counts: number[] }) {
           >
             <span
               className={`w-full rounded-t-cover ${
-                i === active ? 'bg-accent' : count === max ? 'bg-muted' : 'bg-border'
+                i === active ? 'bg-accent' : count === max ? 'bg-text' : 'bg-muted'
               }`}
               style={{ height: `${Math.max(6, (count / max) * 100)}%` }}
             />

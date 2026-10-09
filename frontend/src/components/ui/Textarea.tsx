@@ -24,8 +24,8 @@ export function Textarea({ label, hint, error, id, rows = 5, className = '', ...
         rows={rows}
         aria-invalid={error ? true : undefined}
         aria-describedby={note ? noteId : undefined}
-        className={`resize-y rounded-control border bg-surface px-3 py-2 text-body text-text placeholder:text-muted disabled:cursor-not-allowed disabled:bg-bg disabled:text-muted ${
-          error ? 'border-danger' : 'border-border'
+        className={`resize-y rounded-control border bg-surface px-3 py-2 text-body text-text placeholder:text-muted disabled:cursor-not-allowed disabled:border-border disabled:bg-bg disabled:text-muted ${
+          error ? 'border-danger' : 'border-border-strong'
         }`}
         {...rest}
       />

@@ -37,7 +37,7 @@ export function AppShell({ children, links = appLinks, current, userName }: AppS
   const active = current ?? desktopOrder.find((tab) => pathname.startsWith(links[tab.id]))?.id
 
   return (
-    <div className="min-h-screen overflow-x-clip pb-tabbar lg:pb-0">
+    <div className="min-h-dvh overflow-x-clip pb-tabbar-safe lg:pb-0">
       <AppNav links={links} current={active} userName={userName} />
       {children}
     </div>
@@ -80,7 +80,7 @@ function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current
                   <Link
                     to={links[tab.id]}
                     aria-current={tab.id === current ? 'page' : undefined}
-                    className={`flex h-tap items-center rounded-control px-3 text-body ${
+                    className={`flex h-tap items-center rounded-control px-3 text-body active:bg-pressed ${
                       tab.id === current ? 'bg-surface font-medium text-text' : 'text-muted'
                     }`}
                   >
@@ -106,7 +106,7 @@ function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current
                 <Link
                   to={links[tab.id]}
                   aria-current={active ? 'page' : undefined}
-                  className={`flex h-full flex-col items-center justify-center gap-1 text-meta ${
+                  className={`flex h-full flex-col items-center justify-center gap-1 text-meta active:bg-pressed ${
                     active ? 'font-medium text-text' : 'text-muted'
                   }`}
                 >

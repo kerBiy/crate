@@ -31,7 +31,7 @@ export function DevPanel() {
     <div
       ref={root}
       onKeyDown={(event) => event.key === 'Escape' && setOpen(false)}
-      className="fixed right-4 bottom-tabbar z-30 flex flex-col items-end gap-2 pb-4 lg:right-6 lg:bottom-0 lg:pb-6"
+      className="fixed right-4 bottom-tabbar-safe z-30 flex flex-col items-end gap-2 pb-4 lg:right-6 lg:bottom-0 lg:pb-6"
     >
       {open && (
         <section
@@ -41,7 +41,7 @@ export function DevPanel() {
         >
           <h2 className="text-meta text-muted">Design lab</h2>
 
-          <div className="flex rounded-control border border-border p-1" role="group" aria-label="Page">
+          <div className="flex rounded-control border border-border-strong p-1" role="group" aria-label="Page">
             <Link to="/lab/grid" className={onGrid ? on : off} aria-current={onGrid ? 'page' : undefined}>
               Grid
             </Link>
@@ -56,7 +56,7 @@ export function DevPanel() {
               <select
                 value={album}
                 onChange={(event) => navigate(`/lab/album/${event.target.value}${search}`)}
-                className="h-tap rounded-control border border-border bg-surface px-3 text-body text-text"
+                className="h-tap rounded-control border border-border-strong bg-surface px-3 text-body text-text"
               >
                 {albums.map((a) => (
                   <option key={a.mbid} value={a.mbid}>

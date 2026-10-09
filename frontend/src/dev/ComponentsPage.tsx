@@ -348,7 +348,7 @@ export function ComponentsPage() {
 
         <Block name="AppShell" use="The frame of every page. This page sits inside it.">
           <Cell label="Active section">
-            <div className="flex rounded-control border border-border p-1" role="group" aria-label="Active section">
+            <div className="flex rounded-control border border-border-strong p-1" role="group" aria-label="Active section">
               {sections.map((section) => (
                 <button
                   key={section}

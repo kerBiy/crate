@@ -10,10 +10,11 @@ type ButtonProps = ComponentProps<'button'> & {
   loading?: boolean
 }
 
+// Pressed shows on pointer-down, with no transition (DESIGN.md section 7).
 const looks: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-on-accent',
-  secondary: 'border border-border bg-surface text-text',
-  ghost: 'text-text',
+  primary: 'bg-accent text-on-accent active:bg-accent-pressed',
+  secondary: 'border border-border-strong bg-surface text-text active:bg-pressed',
+  ghost: 'text-text active:bg-pressed',
 }
 
 // Same for every variant: quiet, and clearly not the thing to press.

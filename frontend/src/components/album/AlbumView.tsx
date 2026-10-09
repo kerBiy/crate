@@ -2,7 +2,6 @@ import type { AlbumDetails } from '../../api/types.ts'
 import { Histogram } from '../ui/Histogram.tsx'
 import { ToastRegion, useToast } from '../ui/Toast.tsx'
 import { AlbumReviews } from './AlbumReviews.tsx'
-import { FriendRatings } from './bits.tsx'
 import { MyRating } from './MyRating.tsx'
 import { SectionTitle } from './Reviews.tsx'
 import { Sleeve } from './Sleeve.tsx'
@@ -13,7 +12,8 @@ import { useOneShot } from './useAlbumPage.ts'
  * No dominant color stored yet, so the header has no wash and the record label uses the accent.
  * Rating and reviews are live. The average, count and histogram are built by catalog-service from
  * rating events; after I rate, they update at once and then settle on the server's numbers
- * (see showRatingChange in api/queries.ts). Friends come from follows: until then that stays empty.
+ * (see showRatingChange in api/queries.ts). "Friends who listened" (FriendRatings) comes back once
+ * friends' ratings of an album are served; until then the section would only ever say "none".
  */
 export function AlbumView({ album }: { album: AlbumDetails }) {
   const toast = useToast()
@@ -77,10 +77,6 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
             ) : (
               <p className="text-muted">No ratings yet. Be the first to rate it.</p>
             )}
-          </section>
-          <section>
-            <SectionTitle>Friends who listened</SectionTitle>
-            <FriendRatings friends={[]} />
           </section>
         </aside>
       </main>

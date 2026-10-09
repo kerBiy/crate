@@ -56,12 +56,16 @@ Warm neutrals plus one accent: a **soft, warm, low-saturation orange** (apricot,
 | `bg` | `#181512` | `#F4F3F1` | Page background |
 | `surface` | `#221E1A` | `#FFFFFF` | Panels, sheets, inputs |
 | `surface-raised` | `#2C2722` | `#FFFFFF` + border | Menus, popovers |
-| `border` | `#3A342E` | `#E2DED8` | Dividers, input borders |
+| `border` | `#3A342E` | `#E2DED8` | Dividers and decorative edges only |
+| `border-strong` | `#7A7066` | `#8F877D` | Edges of controls: inputs, secondary buttons, segmented controls |
 | `text` | `#EDE7DF` | `#1C1915` | Main text |
 | `muted` | `#A39A8F` | `#6B635A` | Secondary text, meta |
-| `accent` | `#E5935A` | `#C9733A` | Stars, primary buttons, focus ring, icons |
+| `accent` | `#E5935A` | `#C9733A` | Stars, primary buttons, icons |
+| `accent-pressed` | `#D1814A` | `#D68C57` | Primary button while pressed: one step toward the background |
 | `accent-text` | `#E5935A` | `#A85A26` | Accent used *as text* (needs AA contrast) |
-| `on-accent` | `#1A1410` | `#FFFFFF` | Text on accent backgrounds |
+| `on-accent` | `#1A1410` | `#1C1915` | Text on accent backgrounds |
+| `focus` | `#E5935A` | `#A85A26` | Focus ring (`accent` in dark, `accent-text` in light) |
+| `pressed` | `#2C2722` | `#EBE8E4` | Secondary and ghost controls, tabs, while pressed |
 | `danger` | `#D45D4C` | `#B8432F` | Errors, destructive actions |
 | `skeleton` | `#221E1A` | `#EBE8E4` | Loading placeholders, dim end of the pulse |
 | `skeleton-highlight` | `#2C2722` | `#E2DED8` | Bright end of the pulse |
@@ -69,7 +73,8 @@ Warm neutrals plus one accent: a **soft, warm, low-saturation orange** (apricot,
 Rules:
 - **One accent only.** No secondary brand color.
 - Never put text directly on raw cover colors.
-- Every text/background pair must pass **WCAG AA**. Verify the values above and adjust them if they don't.
+- Every text/background pair must pass **WCAG AA** (4.5:1). Verify the values above and adjust them if they don't.
+- Things you need to see to use the UI need **3:1** against what's around them: control edges (`border-strong`), the focus ring, chart bars. `border` is too faint for that (about 1.4:1) and is only for dividers, and for disabled controls, which should look out of reach.
 - The light background must stay neutral, **not cream**.
 - The skeleton pair is its own token in light mode: `surface` and `surface-raised` are both white there and would vanish on `bg`.
 
@@ -141,9 +146,12 @@ This is *the* memorable element. Nothing else competes with it.
 Tokens:
 - Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars). `toast 2400ms` (how long a toast stays up). `pulse 1600ms` (one loading pulse, dim to bright).
 - Easing: `standard cubic-bezier(.22,1,.36,1)`, a smooth ease-out with a long soft landing. Pop: `cubic-bezier(.34,1.2,.64,1)`, an ease-out with only a slight overshoot, for action feedback. Pulse: `cubic-bezier(.45,0,.55,1)`, symmetric, for the loading breathe.
+- **`pop` is only for the reward moments in the table below** (stars, Follow, the crate nudge). Overshoot says "you did something"; anywhere else it reads as wobble. Interface pieces (menus, toasts, pressed states, sheets) use `standard` and never overshoot.
 - Slow and smooth over snappy: motion should feel like handling a record, not a UI flicking.
 
 At rest: nothing moves. **No fade-in on every section, and no hover effects on everything** (only covers get the vinyl).
+
+**Pressed is feedback, not decoration.** Everything you can press reacts on pointer-down, before the click lands: buttons, tabs and segmented controls take `pressed` (primary buttons `accent-pressed`), with no transition. Cover tiles shrink slightly while held (`scale .98`, `fast`, `standard`), since on touch they have no hover to show they're alive. This is not a hover effect and doesn't break "calm at rest".
 
 **Loading is the one exception** (section 10): skeletons pulse in place between `skeleton` and `skeleton-highlight`, all in step. A pulse changes color only: no gradient sweep, nothing slides. Each cover fades in over `base` once its own image has loaded; that's the only fade-in in the app.
 
@@ -157,6 +165,8 @@ At rest: nothing moves. **No fade-in on every section, and no hover effects on e
 | Send to a friend | The record slides out of the sleeve toward the right, then a toast: "Sent to Ana". |
 
 All of these respect `prefers-reduced-motion` (instant state change, no movement).
+
+**Reduced motion means gentler, not nothing.** With `prefers-reduced-motion`, nothing moves, scales, spins or pulses. Fades that only change opacity stay, shortened to `fast`, because something popping in from nowhere is harsh too.
 
 ---
 
@@ -214,7 +224,8 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
     - Once results arrive, every tile keeps its exact square and pulses until *its* cover has loaded, then the image fades in (`base`, `standard`). No layout shift, no tile waits for another.
     - The vinyl hover/focus effect only works once the tile's cover is in (or has fallen back to initials). On the album page the record waits in the sleeve and slides out once the cover is in.
     - `front-250` in grids, `front-500` on the album page. Images are `loading="lazy"` and `decoding="async"`, except the first visible row (the first 6 tiles) and the album page cover, which load eagerly at high priority.
-    - With `prefers-reduced-motion`: static placeholder, the image appears without a fade.
+    - With `prefers-reduced-motion`: static placeholder, the image cross-fades in over `fast`.
+- **A new search keeps the old results up.** While the next query loads, the previous results stay in place, dimmed, and the list is marked busy. The skeleton grid is only for the very first search. Enter searches right away instead of waiting for the pause after typing.
 - **Empty:** one short line + one action.
 - **Error:** what happened + a "Try again" button.
 - **Missing cover:** a neutral sleeve with the album's initials in the display face. Search leaves out albums the Cover Art Archive confirmed have no cover; the album page still shows them with this sleeve.
@@ -223,10 +234,13 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
 
 ## 11. Accessibility (non-negotiable)
 
-- WCAG AA contrast in both themes.
-- Visible focus ring in `accent` on every interactive element.
+- WCAG AA contrast in both themes: 4.5:1 for text, 3:1 for control edges, the focus ring and chart bars.
+- Visible focus ring in `focus` on every interactive element.
 - Fully keyboard usable. The rating input uses arrow keys (half-star steps) and Enter to confirm.
-- `prefers-reduced-motion` respected everywhere.
+- Escape closes an editor (such as the review) without losing what was typed: reopening it brings the draft back. Only Cancel throws a draft away.
+- `prefers-reduced-motion` respected everywhere (section 7).
+- `prefers-contrast: more`: every edge uses `border-strong` (dividers too) and `muted` text moves closer to `text`.
+- Respect the device's edges: the page draws under the iPhone's rounded corners and home indicator (`viewport-fit=cover`) and pads itself with the safe-area insets; full-height pages use dynamic viewport height (`dvh`) so the browser toolbar doesn't hide their bottom.
 - Real `alt` text for covers: "Cover of OK Computer by Radiohead".
 - Tap targets ≥ 44 px on mobile.
 
@@ -272,13 +286,13 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
 Base components live in `frontend/src/components/ui/`. Every state of each one is on `/dev/components` (development only).
 
 - **Button**: any action. `primary` for the one main action in a view, `secondary` for the rest, `ghost` for low-key actions inside rows. `loading` while the action runs; `disabled` when it can't run yet. A link that acts as the main action uses `buttonStyles()`.
-- **Input**: every text field, always with a visible label. `hint` for short help, `error` for what's wrong and how to fix it.
+- **Input**: every text field, always with a visible label and a `border-strong` edge. `hint` for short help, `error` for what's wrong and how to fix it.
 - **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
 - **RatingInput**: giving a rating. Half-star steps with the arrow keys, Enter confirms.
 - **Cover**: album art at any size, in a square that never changes size. Pulses until its image loads, then fades in; falls back to a neutral sleeve with initials when the image is missing. `eager` for covers visible on arrival.
 - **Vinyl**: the record, label tinted with the album color. Only with covers of 96 px or more.
 - **AlbumTile**: one album in a cover grid; the record slides out on hover or focus, once the cover is in. **AlbumTileSkeleton**: the same tile while the list loads.
-- **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar.
+- **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar. Bars in `muted`, the most common rating in `text`, the one being read in `accent`.
 - **Avatar**: a person next to their name. `sm` in dense rows.
 - **AvatarStack**: a group of people in one line, such as friends who listened, with "+N" for the rest.
 - **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content; `text` sits inside a line of text so the line keeps its height. Pulses in place.

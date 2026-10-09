@@ -21,14 +21,14 @@ const grid = 'grid grid-cols-3 gap-3 md:grid-cols-4 lg:grid-cols-6'
 // The first row at the widest grid (two rows on mobile) is on screen at once: load those covers eagerly.
 const eagerTiles = 6
 
-/** Waits until the value has stopped changing for `delay` ms. */
+/** Waits until the value has stopped changing for `delay` ms. `flush` takes it now, without waiting. */
 function useDebounced<T>(value: T, delay: number) {
   const [settled, setSettled] = useState(value)
   useEffect(() => {
     const timer = setTimeout(() => setSettled(value), delay)
     return () => clearTimeout(timer)
   }, [value, delay])
-  return settled
+  return [settled, () => setSettled(value)] as const
 }
 
 /**
@@ -40,7 +40,7 @@ export function SearchPage() {
   const kind: Kind = params.get('type') === 'people' ? 'people' : 'albums'
   const [text, setText] = useState(params.get('q') ?? '')
   // Long enough that a pause mid-word doesn't fire a search: every new album query may reach MusicBrainz.
-  const query = useDebounced(text.trim(), 350)
+  const [query, searchNow] = useDebounced(text.trim(), 350)
 
   // Keep ?q= in step with what is being searched, without piling up history entries.
   useEffect(() => {
@@ -51,7 +51,7 @@ export function SearchPage() {
   return (
     <main className="mx-auto flex max-w-content flex-col gap-6 px-4 py-8 lg:px-6 lg:py-12">
       <h1 className="sr-only">Search</h1>
-      <div role="group" aria-label="Search for" className="flex gap-1 self-start rounded-control border border-border p-1">
+      <div role="group" aria-label="Search for" className="flex gap-1 self-start rounded-control border border-border-strong p-1">
         {kinds.map((option) => {
           const active = option.id === kind
           return (
@@ -60,7 +60,7 @@ export function SearchPage() {
               type="button"
               aria-pressed={active}
               onClick={() => setParams(urlParams(query, option.id), { replace: true })}
-              className={`h-tap rounded-control px-4 text-body ${active ? 'bg-surface-raised font-medium text-text' : 'text-muted'}`}
+              className={`h-tap rounded-control px-4 text-body active:bg-pressed ${active ? 'bg-surface-raised font-medium text-text' : 'text-muted'}`}
             >
               {option.label}
             </button>
@@ -80,6 +80,7 @@ export function SearchPage() {
         maxLength={kind === 'people' ? 50 : 100}
         value={text}
         onChange={(event) => setText(event.target.value)}
+        onKeyDown={(event) => event.key === 'Enter' && searchNow()}
         className="max-w-prose"
       />
       {query.length >= minSearchLength &&
@@ -105,7 +106,11 @@ function PeopleResults({ query }: { query: string }) {
   if (!search.data.items.length) return <EmptyState message="Nobody by that name. Try another." />
 
   return (
-    <ul aria-label={`People matching ${query}`} className="flex max-w-prose flex-col divide-y divide-border">
+    <ul
+      aria-label={`People matching ${query}`}
+      aria-busy={search.isPlaceholderData}
+      className="results flex max-w-prose flex-col divide-y divide-border"
+    >
       {search.data.items.map((person) => (
         <li key={person.id}>
           <PersonRow username={person.username} displayName={person.displayName} />
@@ -125,7 +130,8 @@ function Results({ query }: { query: string }) {
 
   const { items, partial } = search.data
   return (
-    <section aria-label={`Results for ${query}`} className="flex flex-col gap-4">
+    // Previous results while the new query loads: dimmed and marked busy.
+    <section aria-label={`Results for ${query}`} aria-busy={search.isPlaceholderData} className="results flex flex-col gap-4">
       {partial && <p className="text-meta text-muted">Some results may be missing.</p>}
       {items.length === 0 ? (
         <EmptyState message="No records in this crate. Try another name." />

@@ -22,7 +22,8 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
   const save = useSaveReview(albumId)
   const remove = useDeleteReview(albumId)
   const [editing, setEditing] = useState(false)
-  const [draft, setDraft] = useState('')
+  // Unsaved review text. Escape closes the editor but keeps it; only Cancel, saving or removing drops it.
+  const [draft, setDraft] = useState<string | null>(null)
   // When the editor closes, keyboard focus goes back to the button that opened it.
   const editButton = useRef<HTMLButtonElement>(null)
   const wasEditing = useRef(false)
@@ -45,6 +46,7 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
 
   const review = mine.data ?? null
   const stars = review ? toStars(review.rating) : 0
+  const left = maxReviewLength - (draft?.length ?? 0)
 
   function rate(value: number) {
     onRated()
@@ -56,6 +58,7 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
 
   function removeRating() {
     setEditing(false)
+    setDraft(null)
     remove.mutate(undefined, {
       onSuccess: () => notify('Rating removed'),
       onError: () => notify("Couldn't remove your rating. Try again."),
@@ -63,19 +66,25 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
   }
 
   function startEditing() {
-    setDraft(review?.body ?? '')
+    setDraft((kept) => kept ?? review?.body ?? '')
     setEditing(true)
+  }
+
+  function cancelEditing() {
+    setEditing(false)
+    setDraft(null)
   }
 
   function saveReview(event: FormEvent) {
     event.preventDefault()
     if (!review) return
-    const body = draft.trim() || null
+    const body = draft?.trim() || null
     save.mutate(
       { rating: review.rating, body },
       {
         onSuccess: () => {
           setEditing(false)
+          setDraft(null)
           notify(body ? 'Review saved' : 'Review removed')
         },
         onError: (error) => notify(saveFailed(error, 'review')),
@@ -93,7 +102,7 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
       {review && !editing && (
         <div className="-mx-4 flex flex-wrap">
           <Button ref={editButton} variant="ghost" onClick={startEditing}>
-            {review.body ? 'Edit review' : 'Write a review'}
+            {review.body || draft !== null ? 'Edit review' : 'Write a review'}
           </Button>
           <Button variant="ghost" onClick={removeRating} loading={remove.isPending}>
             Remove rating
@@ -109,17 +118,17 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
         >
           <Textarea
             label="Your review"
-            value={draft}
+            value={draft ?? ''}
             onChange={(event) => setDraft(event.target.value)}
             maxLength={maxReviewLength}
-            hint={draft.length > maxReviewLength - 500 ? `${maxReviewLength - draft.length} characters left` : undefined}
+            hint={left < 500 ? `${left} characters left` : undefined}
             autoFocus
           />
           <div className="flex flex-wrap gap-3">
             <Button type="submit" variant="primary" loading={save.isPending}>
               Save review
             </Button>
-            <Button variant="ghost" onClick={() => setEditing(false)}>
+            <Button variant="ghost" onClick={cancelEditing}>
               Cancel
             </Button>
           </div>

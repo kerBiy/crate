@@ -8,6 +8,7 @@ import { FollowListPage } from './pages/FollowListPage.tsx'
 import { NotFoundPage } from './pages/PlaceholderPages.tsx'
 import { MyProfileRedirect, ProfilePage } from './pages/ProfilePage.tsx'
 import { SearchPage } from './pages/SearchPage.tsx'
+import { SettingsPage } from './pages/SettingsPage.tsx'
 
 // Design lab and component catalog, development only. Vite turns import.meta.env.DEV into
 // `false` for the production build, so this branch and its dynamic imports are dropped and
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
           { path: 'u/:username', element: <ProfilePage /> },
           { path: 'u/:username/followers', element: <FollowListPage kind="followers" /> },
           { path: 'u/:username/following', element: <FollowListPage kind="following" /> },
+          { path: 'settings', element: <SettingsPage /> },
           { path: '*', element: <NotFoundPage /> },
         ],
       },

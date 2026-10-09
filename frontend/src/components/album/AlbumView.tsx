@@ -52,7 +52,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
               </dl>
             )}
             <div className="mt-auto">
-              <MyRating albumId={album.id} title={album.title} notify={toast.show} onRated={spin.play} />
+              <MyRating albumId={album.id} title={album.title} toast={toast} onRated={spin.play} />
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
           </section>
         </aside>
       </main>
-      <ToastRegion message={toast.message} />
+      <ToastRegion toast={toast} />
     </>
   )
 }

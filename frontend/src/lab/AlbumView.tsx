@@ -82,7 +82,7 @@ export function AlbumView({ album, state, onRetry }: AlbumViewProps) {
           </section>
         </aside>
       </main>
-      <ToastRegion message={page.toast} />
+      <ToastRegion toast={page.toast} />
     </>
   )
 }

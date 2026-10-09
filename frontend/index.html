@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Crate</title>
     <script>
-      // Apply the saved theme before first paint. Dark is the default.
+      // Apply the saved theme before first paint. Dark is the default; "system" follows the device.
       try {
-        if (localStorage.getItem('crate-theme') === 'light') document.documentElement.dataset.theme = 'light'
+        const theme = localStorage.getItem('crate-theme')
+        const light = theme === 'light' || (theme === 'system' && matchMedia('(prefers-color-scheme: light)').matches)
+        if (light) document.documentElement.dataset.theme = 'light'
       } catch {}
     </script>
   </head>

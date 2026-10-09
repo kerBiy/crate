@@ -1,28 +1,47 @@
 import { useState } from 'react'
 
-export type Theme = 'dark' | 'light'
+/** What the person chose. "system" follows the device's appearance, live. */
+export type ThemeChoice = 'dark' | 'light' | 'system'
 
 const key = 'crate-theme'
+const deviceLight = window.matchMedia('(prefers-color-scheme: light)')
 
-function current(): Theme {
-  return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+/** The saved choice; dark when there is none (DESIGN.md section 4.1). */
+function saved(): ThemeChoice {
+  try {
+    const value = localStorage.getItem(key)
+    return value === 'light' || value === 'system' ? value : 'dark'
+  } catch {
+    return 'dark'
+  }
 }
 
-/** Theme lives on <html data-theme>; dark is the default. index.html applies it before paint. */
-export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(current)
+/** Theme lives on <html data-theme>: "light" or absent (dark). index.html applies it before paint. */
+function apply(choice: ThemeChoice) {
+  const light = choice === 'light' || (choice === 'system' && deviceLight.matches)
+  if (light) document.documentElement.dataset.theme = 'light'
+  else delete document.documentElement.dataset.theme
+}
 
-  function toggle() {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark'
-    if (next === 'light') document.documentElement.dataset.theme = 'light'
-    else delete document.documentElement.dataset.theme
+/** Once, at startup: with "Match system", follow the device when it switches between light and dark. */
+export function followDeviceTheme() {
+  deviceLight.addEventListener('change', () => {
+    if (saved() === 'system') apply('system')
+  })
+}
+
+export function useTheme() {
+  const [choice, setChoice] = useState<ThemeChoice>(saved)
+
+  function choose(next: ThemeChoice) {
+    apply(next)
     try {
       localStorage.setItem(key, next)
     } catch {
       // Storage can be blocked; the theme still applies for this visit.
     }
-    setTheme(next)
+    setChoice(next)
   }
 
-  return { theme, toggle }
+  return { choice, choose }
 }

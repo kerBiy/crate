@@ -1,26 +1,33 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ApiError } from '../../api/client.ts'
-import { toRating, toStars, useDeleteReview, useMyReview, useSaveReview } from '../../api/queries.ts'
+import { toRating, toStars, useMyReview, useRemoveReview, useSaveReview } from '../../api/queries.ts'
 import { Button } from '../ui/Button.tsx'
 import { RatingInput } from '../ui/RatingInput.tsx'
+import { Skeleton } from '../ui/Skeleton.tsx'
 import { Textarea } from '../ui/Textarea.tsx'
+import type { Toast } from '../ui/Toast.tsx'
 
 const maxReviewLength = 5000
 
 type MyRatingProps = {
   albumId: string
   title: string
-  /** Confirms what happened, or says what failed. */
-  notify: (message: string) => void
+  /** Confirms what happened, or says what failed; carries the Undo for a removed rating. */
+  toast: Toast
   /** The record's one slow spin when a rating is given. */
   onRated: () => void
 }
 
-/** Rate, change or remove my rating, and write the optional review text that goes with it. */
-export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
+/**
+ * Rate, change or remove my rating, and write the optional review text that goes with it.
+ * The page's main action: a label says what the stars are, and their actions sit right under them.
+ */
+export function MyRating({ albumId, title, toast, onRated }: MyRatingProps) {
+  const notify = toast.show
   const mine = useMyReview(albumId)
   const save = useSaveReview(albumId)
-  const remove = useDeleteReview(albumId)
+  const removal = useRemoveReview(albumId, () => notify("Couldn't remove your rating. Try again."))
+  const starsRef = useRef<HTMLDivElement>(null)
   const [editing, setEditing] = useState(false)
   // Unsaved review text. Escape closes the editor but keeps it; only Cancel, saving or removing drops it.
   const [draft, setDraft] = useState<string | null>(null)
@@ -49,6 +56,9 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
   const left = maxReviewLength - (draft?.length ?? 0)
 
   function rate(value: number) {
+    // Rating again during the Undo window replaces the removal: the server still has the row.
+    removal.drop()
+    toast.dismiss()
     onRated()
     save.mutate(
       { rating: toRating(value), body: review?.body ?? null },
@@ -56,12 +66,31 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
     )
   }
 
+  /** Focus was on the toast's Undo (or nowhere, once it closed): bring it back to the stars. */
+  function refocus() {
+    const focused = document.activeElement
+    if (!focused || focused === document.body || focused.closest('.toast')) starsRef.current?.focus()
+  }
+
+  /** Gone from the screen at once; the DELETE waits for the Undo window (see useRemoveReview). */
   function removeRating() {
     setEditing(false)
     setDraft(null)
-    remove.mutate(undefined, {
-      onSuccess: () => notify('Rating removed'),
-      onError: () => notify("Couldn't remove your rating. Try again."),
+    removal.remove()
+    notify('Rating removed', {
+      // "Remove rating" has just disappeared, so focus goes to Undo instead of being lost.
+      action: {
+        label: 'Undo',
+        focus: true,
+        run: () => {
+          removal.undo()
+          refocus()
+        },
+      },
+      onClose: () => {
+        removal.commit()
+        refocus()
+      },
     })
   }
 
@@ -93,18 +122,18 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-        <RatingInput label={`Rate ${title}`} value={stars} onRate={rate} disabled={mine.isPending} />
-        <span className="text-meta text-muted">{mine.isPending ? '' : review ? 'Rated' : 'Rate'}</span>
-      </div>
+    <div className="flex flex-col items-start gap-1">
+      <p className="text-meta text-muted">
+        {mine.isPending ? <Skeleton shape="text" className="w-16" /> : review ? 'Your rating' : 'Rate this album'}
+      </p>
+      <RatingInput ref={starsRef} label={`Rate ${title}`} value={stars} onRate={rate} disabled={mine.isPending} />
 
       {review && !editing && (
         <div className="-mx-4 flex flex-wrap">
           <Button ref={editButton} variant="ghost" onClick={startEditing}>
             {review.body || draft !== null ? 'Edit review' : 'Write a review'}
           </Button>
-          <Button variant="ghost" onClick={removeRating} loading={remove.isPending}>
+          <Button variant="ghost" onClick={removeRating} loading={removal.removing}>
             Remove rating
           </Button>
         </div>
@@ -114,7 +143,7 @@ export function MyRating({ albumId, title, notify, onRated }: MyRatingProps) {
         <form
           onSubmit={saveReview}
           onKeyDown={(event) => event.key === 'Escape' && setEditing(false)}
-          className="flex max-w-prose flex-col gap-3"
+          className="mt-2 flex w-full max-w-prose flex-col gap-3"
         >
           <Textarea
             label="Your review"

@@ -4,6 +4,7 @@ import { minSearchLength, useAlbumSearch, usePeopleSearch } from '../api/queries
 import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
 import { Input } from '../components/ui/Input.tsx'
 import { PersonRow } from '../components/ui/PersonRow.tsx'
+import { SegmentedControl } from '../components/ui/SegmentedControl.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { PeopleSkeleton } from './FollowListPage.tsx'
 
@@ -51,22 +52,12 @@ export function SearchPage() {
   return (
     <main className="mx-auto flex max-w-content flex-col gap-6 px-4 py-8 lg:px-6 lg:py-12">
       <h1 className="sr-only">Search</h1>
-      <div role="group" aria-label="Search for" className="flex gap-1 self-start rounded-control border border-border-strong p-1">
-        {kinds.map((option) => {
-          const active = option.id === kind
-          return (
-            <button
-              key={option.id}
-              type="button"
-              aria-pressed={active}
-              onClick={() => setParams(urlParams(query, option.id), { replace: true })}
-              className={`h-tap rounded-control px-4 text-body active:bg-pressed ${active ? 'bg-surface-raised font-medium text-text' : 'text-muted'}`}
-            >
-              {option.label}
-            </button>
-          )
-        })}
-      </div>
+      <SegmentedControl
+        label="Search for"
+        options={kinds}
+        value={kind}
+        onChange={(next) => setParams(urlParams(query, next), { replace: true })}
+      />
       <Input
         // Remount on switch: the label and hint change, and focus moves to the field.
         key={kind}

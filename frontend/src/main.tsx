@@ -7,6 +7,9 @@ import '@fontsource-variable/instrument-sans/standard.css'
 import './index.css'
 import { queryClient } from './api/queryClient.ts'
 import { router } from './router.tsx'
+import { followDeviceTheme } from './theme.ts'
+
+followDeviceTheme()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

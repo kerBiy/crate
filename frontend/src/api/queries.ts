@@ -1,3 +1,4 @@
+import { useEffect, useEffectEvent, useRef } from 'react'
 import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { setSession } from '../auth/session.ts'
 import { api, ApiError } from './client.ts'
@@ -203,26 +204,77 @@ export function useSaveReview(albumId: string) {
   })
 }
 
-/** Remove my rating (and its text). Optimistic, like saving. */
-export function useDeleteReview(albumId: string) {
+/**
+ * Remove my rating (and its text), with a window to undo it. The rating leaves the screen at once,
+ * but the DELETE is only sent by commit(), when the window ends (the "Undo" toast closes).
+ *
+ * Why wait instead of deleting now and saving again on undo: a delete is final on the server. It
+ * publishes ReviewDeleted, and saving again makes a new review (new id, new createdAt, a
+ * ReviewCreated event), so an undone review would jump to the top of feeds as if just written, the
+ * average would move twice, and a failed re-save would lose the text for good. Waiting means an undo
+ * never reaches the server at all.
+ *
+ * The price: until commit, the server still has the rating (the average updates after). Leaving the
+ * album page commits at once; closing the tab sends the DELETE as keepalive, so it outlives the page.
+ */
+export function useRemoveReview(albumId: string, onFailed: () => void) {
   const queryClient = useQueryClient()
   const key = reviewKeys.mine(albumId)
-  return useMutation({
+  const pending = useRef<Review | null>(null)
+  const removal = useMutation({
     scope: { id: `review-${albumId}` },
-    mutationFn: () => api<void>(`/reviews/albums/${encodeURIComponent(albumId)}`, { method: 'DELETE' }),
-    onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: key })
-      const previous = queryClient.getQueryData<Review | null>(key)
-      queryClient.setQueryData(key, null)
-      return { previous }
+    mutationFn: (review: Review) =>
+      api<void>(`/reviews/albums/${encodeURIComponent(review.albumId)}`, { method: 'DELETE', keepalive: true }),
+    onError: (_error, review) => {
+      queryClient.setQueryData(key, review)
+      onFailed()
     },
-    onError: (_error, _input, context) => queryClient.setQueryData(key, context?.previous ?? null),
-    onSuccess: (_data, _input, context) => showRatingChange(queryClient, albumId, context?.previous?.rating ?? null, null),
+    onSuccess: (_data, review) => showRatingChange(queryClient, albumId, review.rating, null),
     onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: reviewKeys.list(albumId) })
       void queryClient.invalidateQueries({ queryKey: socialKeys.ratingsAll })
     },
   })
+
+  /** Take the rating off the screen; nothing is sent yet. */
+  function remove() {
+    const review = queryClient.getQueryData<Review | null>(key)
+    if (!review) return
+    void queryClient.cancelQueries({ queryKey: key })
+    queryClient.setQueryData(key, null)
+    pending.current = review
+  }
+
+  /** Put it back. The server never knew. */
+  function undo() {
+    if (!pending.current) return
+    queryClient.setQueryData(key, pending.current)
+    pending.current = null
+  }
+
+  /** The window is over: send the DELETE. Safe to call more than once. */
+  function commit() {
+    const review = pending.current
+    if (!review) return
+    pending.current = null
+    removal.mutate(review)
+  }
+
+  /** A new rating replaces the pending removal: the server still has the row, so the save updates it. */
+  function drop() {
+    pending.current = null
+  }
+
+  const flush = useEffectEvent(commit)
+  useEffect(() => {
+    window.addEventListener('pagehide', flush)
+    return () => {
+      window.removeEventListener('pagehide', flush)
+      flush()
+    }
+  }, [])
+
+  return { remove, undo, commit, drop, removing: removal.isPending }
 }
 
 // ---------------------------------------------------------------------------

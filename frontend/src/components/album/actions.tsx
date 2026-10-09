@@ -12,12 +12,13 @@ type RateControlProps = {
   onRate?: (value: number) => void
 }
 
+/** The stars under a label that says what they are (DESIGN.md section 15, RatingInput). */
 export function RateControl({ title, value, onRate }: RateControlProps) {
-  const note = !onRate ? 'Rating opens soon' : value ? 'Rated' : 'Rate'
+  const label = !onRate ? 'Rating opens soon' : value ? 'Your rating' : 'Rate this album'
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col items-start gap-1">
+      <p className="text-meta text-muted">{label}</p>
       <RatingInput label={`Rate ${title}`} value={value} onRate={onRate ?? (() => {})} disabled={!onRate} />
-      <span className="text-meta text-muted">{note}</span>
     </div>
   )
 }

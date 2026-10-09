@@ -15,6 +15,7 @@ import { RatingStars } from '../components/ui/RatingStars.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { Textarea } from '../components/ui/Textarea.tsx'
+import { SegmentedControl } from '../components/ui/SegmentedControl.tsx'
 import { ToastMessage, ToastRegion, useToast } from '../components/ui/Toast.tsx'
 import { Vinyl } from '../components/ui/Vinyl.tsx'
 import { albums, coverUrl, everyone } from '../lab/albums.ts'
@@ -25,11 +26,17 @@ const sections: NavSection[] = ['feed', 'search', 'profile']
 const sectionNames: Record<NavSection, string> = { feed: 'Feed', search: 'Search', profile: 'Profile' }
 
 /** Every base component in every state, for checking both themes at a glance. Development only. */
+const kindOptions: { id: 'albums' | 'people'; label: string }[] = [
+  { id: 'albums', label: 'Albums' },
+  { id: 'people', label: 'People' },
+]
+
 export function ComponentsPage() {
   const [tab, setTab] = useState<NavSection>('feed')
   const [rating, setRating] = useState(0)
   const [following, setFollowing] = useState(false)
   const toast = useToast()
+  const [kind, setKind] = useState<'albums' | 'people'>('albums')
   const [ok, kid] = albums
 
   return (
@@ -337,12 +344,23 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
+        <Block name="SegmentedControl" use="Two or three exclusive choices side by side: what to search for, the theme.">
+          <Cell label="Two options">
+            <SegmentedControl label="Search for" options={kindOptions} value={kind} onChange={setKind} />
+          </Cell>
+        </Block>
+
         <Block name="Toast" use="Confirming an action that changed something. One at a time.">
           <Cell label="Message">
             <ToastMessage>Added to listen later</ToastMessage>
           </Cell>
           <Cell label="Live">
             <Button onClick={() => toast.show('Sent to Ana')}>Show a toast</Button>
+          </Cell>
+          <Cell label="With an action">
+            <Button onClick={() => toast.show('Rating removed', { action: { label: 'Undo', run: () => {} } })}>
+              Show with Undo
+            </Button>
           </Cell>
         </Block>
 
@@ -366,7 +384,7 @@ export function ComponentsPage() {
           </Cell>
         </Block>
       </main>
-      <ToastRegion message={toast.message} />
+      <ToastRegion toast={toast} />
     </AppShell>
   )
 }

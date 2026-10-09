@@ -45,7 +45,7 @@ Borrow the *logic*, not the look. Never copy Letterboxd's logo, its brand colors
 - **Dark is the default** ("the shop after hours"). Light ("the shop in daylight") is fully supported.
 - Themes are implemented **only through tokens** (CSS variables on `:root` and `[data-theme="light"]`), mapped into the Tailwind theme.
 - **Components never use `dark:` variants or raw hex values.** They use semantic tokens (`bg`, `surface`, `text`, `muted`, `accent`…). Switching theme must require zero component changes.
-- The user's choice is remembered. With no choice yet, use dark.
+- Three choices in Settings: **Dark**, **Light**, **Match system** (follows the device's appearance, live). The choice is remembered. With no choice yet, use dark: the shop after hours is who we are, so following the device is opt-in.
 
 ### 4.2 Color
 
@@ -88,6 +88,7 @@ Rules:
 Type scale (px): `13 · 15 · 17 · 20 · 24 · 32 · 44`
 - Body: 15–16, line-height ~1.5. Line length < 75 characters.
 - Album title on the album page: 32 (mobile) / 44 (desktop), display face, tight letter-spacing.
+- **Tracking follows size.** Large type reads loose, small type reads cramped, so letter-spacing is set per step: 44 → `-0.03em`, 32 → `-0.02em`, 24 → `-0.01em`, 20 → `-0.005em`, 15–17 → `0`, 13 → `+0.01em`. It lives in the type tokens, never on a component.
 - **Sentence case everywhere.** No all-caps labels.
 
 ### 4.4 Shape and spacing
@@ -144,7 +145,7 @@ This is *the* memorable element. Nothing else competes with it.
 ## 7. Motion: calm, then pop
 
 Tokens:
-- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars). `toast 2400ms` (how long a toast stays up). `pulse 1600ms` (one loading pulse, dim to bright).
+- Durations: `fast 180ms`, `base 300ms`, `slow 500ms`. Signature: `vinyl 480ms` (grid slide), `reveal 900ms` (album page record slides out on open), `spin 1000ms` (record spin), `stagger 70ms` (between stars). `toast 2400ms` (how long a toast stays up). `toast-action 6000ms` (a toast with an action such as Undo: long enough to reach it). `pulse 1600ms` (one loading pulse, dim to bright).
 - Easing: `standard cubic-bezier(.22,1,.36,1)`, a smooth ease-out with a long soft landing. Pop: `cubic-bezier(.34,1.2,.64,1)`, an ease-out with only a slight overshoot, for action feedback. Pulse: `cubic-bezier(.45,0,.55,1)`, symmetric, for the loading breathe.
 - **`pop` is only for the reward moments in the table below** (stars, Follow, the crate nudge). Overshoot says "you did something"; anywhere else it reads as wobble. Interface pieces (menus, toasts, pressed states, sheets) use `standard` and never overshoot.
 - Slow and smooth over snappy: motion should feel like handling a record, not a UI flicking.
@@ -152,6 +153,10 @@ Tokens:
 At rest: nothing moves. **No fade-in on every section, and no hover effects on everything** (only covers get the vinyl).
 
 **Pressed is feedback, not decoration.** Everything you can press reacts on pointer-down, before the click lands: buttons, tabs and segmented controls take `pressed` (primary buttons `accent-pressed`), with no transition. Cover tiles shrink slightly while held (`scale .98`, `fast`, `standard`), since on touch they have no hover to show they're alive. This is not a hover effect and doesn't break "calm at rest".
+
+**Previewing a value is feedback too.** The rating stars follow the pointer: hovering shows what that rating would look like, and pressing and dragging across the stars scrubs through half-steps under the finger. Nothing is saved until release (or Enter on the keyboard). Moving away puts the saved value back.
+
+**Toasts enter and leave along the same path:** up `8px` and in over `base` / `standard`, then back down and out the same way. Reduced motion: fade only. A toast is a reaction to your action, so it isn't motion at rest.
 
 **Loading is the one exception** (section 10): skeletons pulse in place between `skeleton` and `skeleton-highlight`, all in step. A pulse changes color only: no gradient sweep, nothing slides. Each cover fades in over `base` once its own image has loaded; that's the only fade-in in the app.
 
@@ -175,6 +180,9 @@ All of these respect `prefers-reduced-motion` (instant state change, no movement
 ### Navigation
 - **Desktop:** top bar with the wordmark `crate` (lowercase, display face) on the left; Search, Feed, Profile; avatar on the right.
 - **Mobile:** bottom tab bar with three tabs: Feed, Search, Profile.
+- **The tab says where you came from.** An album page keeps the tab you reached it from (Feed, Search or Profile); Search when opened directly. Someone else's profile shows no tab.
+- **The header's edge appears only once content scrolls under it.** At the top of a page the header and the page are one surface; the `border` line fades in over the first `8px` of scroll. No blur, no shadow.
+- **Settings** (theme, log out) is reached from your own profile, never from the main navigation: rare things live one level deeper.
 
 ### Cover grids (medium, Letterboxd-like)
 - 3 columns on mobile (390 px), 4 on tablet, 6 on desktop.
@@ -212,6 +220,7 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
     - Empty listen-later: "Your crate is empty. Save albums to listen to later."
     - No search results: "No records in this crate. Try another name."
 - **Errors are plain and useful, never cute:** "Couldn't load reviews. Try again."
+- **Undo beats "Are you sure?"** Removing something you made (a rating and its review) happens at once, with "Rating removed" and **Undo** in the toast. Confirmation dialogs only for what can't be undone.
 - No "Welcome to Crate!", no taglines, no marketing copy.
 
 ---
@@ -236,7 +245,8 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
 
 - WCAG AA contrast in both themes: 4.5:1 for text, 3:1 for control edges, the focus ring and chart bars.
 - Visible focus ring in `focus` on every interactive element.
-- Fully keyboard usable. The rating input uses arrow keys (half-star steps) and Enter to confirm.
+- Fully keyboard usable. The rating input uses arrow keys (half-star steps) and Enter to confirm; pointer scrubbing (section 7) is an extra, never the only way.
+- A toast's action is reachable without a mouse: when the control you used disappears (Remove rating), focus moves to the toast's action, and back to the stars when the toast closes. The toast never closes while it's hovered or has keyboard focus (time limits are the user's to control); Escape closes it.
 - Escape closes an editor (such as the review) without losing what was typed: reopening it brings the draft back. Only Cancel throws a draft away.
 - `prefers-reduced-motion` respected everywhere (section 7).
 - `prefers-contrast: more`: every edge uses `border-strong` (dividers too) and `muted` text moves closer to `text`.
@@ -269,6 +279,7 @@ On mobile everything stacks: cover (full width, max 280 px), title, actions as a
 | Album | Section 8 layout; the main screen of the app. |
 | Profile | Four favorites on top, then a grid of rated albums; follow button; follower counts. |
 | Friends feed | A list of activity rows: small cover, "ana rated OK Computer", stars, time. |
+| Settings | Theme (Dark / Light / Match system) and Log out. Reached from your own profile. |
 
 ---
 
@@ -288,7 +299,7 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **Button**: any action. `primary` for the one main action in a view, `secondary` for the rest, `ghost` for low-key actions inside rows. `loading` while the action runs; `disabled` when it can't run yet. A link that acts as the main action uses `buttonStyles()`.
 - **Input**: every text field, always with a visible label and a `border-strong` edge. `hint` for short help, `error` for what's wrong and how to fix it.
 - **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
-- **RatingInput**: giving a rating. Half-star steps with the arrow keys, Enter confirms.
+- **RatingInput**: giving a rating. Hover previews, press-and-drag scrubs, release commits; half-star steps with the arrow keys, Enter confirms. On the album page it sits under a label that says what it is ("Rate this album", then "Your rating"), with its review and remove actions right below it.
 - **Cover**: album art at any size, in a square that never changes size. Pulses until its image loads, then fades in; falls back to a neutral sleeve with initials when the image is missing. `eager` for covers visible on arrival.
 - **Vinyl**: the record, label tinted with the album color. Only with covers of 96 px or more.
 - **AlbumTile**: one album in a cover grid; the record slides out on hover or focus, once the cover is in. **AlbumTileSkeleton**: the same tile while the list loads.
@@ -298,7 +309,8 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content; `text` sits inside a line of text so the line keeps its height. Pulses in place.
 - **EmptyState**: a list with nothing in it. One line and at most one action.
 - **ErrorState**: something failed to load. Plain message and "Try again".
-- **Toast**: confirming an action that changed something. One at a time, via `useToast` and a single `ToastRegion` per page.
+- **SegmentedControl**: two or three mutually exclusive choices side by side, the chosen one raised: what Search looks for, the theme. Not for navigation (that's the tabs).
+- **Toast**: confirming an action that changed something. One at a time, via `useToast` and a single `ToastRegion` per page. At most **one action** ("Undo"); a toast with an action stays up for `toast-action` and pauses while hovered or focused from the keyboard.
 - **AppShell**: the frame of every page: top bar on desktop, bottom tabs on mobile.
 
 Inline `style` is only for data: a bar's height, the album's color, a star's stagger index. ESLint rejects arbitrary Tailwind values, `dark:` variants and raw hex in components.

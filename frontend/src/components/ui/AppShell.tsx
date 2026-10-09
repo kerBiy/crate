@@ -1,5 +1,5 @@
 import { House, MagnifyingGlass, User, type Icon } from '@phosphor-icons/react'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link, Outlet, useLocation } from 'react-router'
 import { useMe } from '../../api/queries.ts'
 import { Avatar } from './Avatar.tsx'
@@ -45,18 +45,28 @@ export function AppShell({ children, links = appLinks, current, userName }: AppS
 }
 
 /**
- * AppShell as a layout route, for signed-in pages. Album pages are reached from search. Profiles
- * live at /u/:username: mine is the Profile tab, someone else's is no tab.
+ * AppShell as a layout route, for signed-in pages. Profiles live at /u/:username: mine (and my
+ * Settings) is the Profile tab, someone else's is no tab. An album page keeps the tab it was reached
+ * from, Search when opened directly (DESIGN.md section 8).
  */
 export function AppShellLayout() {
   const { pathname } = useLocation()
   const me = useMe()
   const profileOf = pathname.match(/^\/u\/([^/]+)/)?.[1]
-  const current: Section | undefined = pathname.startsWith('/albums/')
-    ? 'search'
-    : profileOf && me.data && decodeURIComponent(profileOf).toLowerCase() === me.data.username
+  const mine = Boolean(profileOf && me.data && decodeURIComponent(profileOf).toLowerCase() === me.data.username)
+  const own: Section | undefined =
+    mine || pathname.startsWith('/settings') || pathname.startsWith(appLinks.profile)
       ? 'profile'
-      : undefined
+      : pathname.startsWith(appLinks.feed)
+        ? 'feed'
+        : pathname.startsWith(appLinks.search)
+          ? 'search'
+          : undefined
+  // The last tab visited. Updated while rendering (React's pattern for state derived from a change),
+  // so an album page knows it at once.
+  const [cameFrom, setCameFrom] = useState<Section>('search')
+  if (own && own !== cameFrom) setCameFrom(own)
+  const current = pathname.startsWith('/albums/') ? cameFrom : own
   return (
     <AppShell current={current} userName={me.data?.username}>
       <Outlet />
@@ -68,7 +78,7 @@ export function AppShellLayout() {
 function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current?: Section; userName?: string }) {
   return (
     <>
-      <header className="sticky top-0 z-10 border-b border-border bg-bg">
+      <header className="app-header sticky top-0 z-10 border-b border-border bg-bg">
         <div className="mx-auto flex h-12 max-w-content items-center gap-8 px-4 lg:h-16 lg:px-6">
           <Link to={links.feed} className="font-display text-h3 font-bold text-text">
             crate

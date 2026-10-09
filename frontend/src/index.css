@@ -106,14 +106,18 @@
   --text-*: initial;
   --text-meta: 13px;
   --text-meta--line-height: 1.4;
+  /* Tracking follows size: small text opens up a little, large text tightens. */
+  --text-meta--letter-spacing: 0.01em;
   --text-body: 15px;
   --text-body--line-height: 1.55;
   --text-lead: 17px;
   --text-lead--line-height: 1.5;
   --text-h4: 20px;
   --text-h4--line-height: 1.35;
+  --text-h4--letter-spacing: -0.005em;
   --text-h3: 24px;
   --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.01em;
   --text-h2: 32px;
   --text-h2--line-height: 1.08;
   --text-h2--letter-spacing: -0.02em;
@@ -177,6 +181,8 @@
   --stagger: 70ms;
   /* How long a toast stays up. Mirrored by toastDuration in components/ui/Toast.tsx. */
   --duration-toast: 2400ms;
+  /* A toast with an action (Undo) stays longer, so it can be reached. Mirrored by toastActionDuration. */
+  --duration-toast-action: 6000ms;
   /* One loading pulse, dim to bright. Slow: loading should feel calm, not urgent. */
   --duration-pulse: 1600ms;
   --wash-reach: 400px;
@@ -403,15 +409,20 @@
 
 /* Reduced motion: nothing moves, scales, spins or pulses. Opacity fades stay, at fast. */
 @media (prefers-reduced-motion: reduce) {
-  *,
+  /* The header edge follows scroll position, it doesn't move: it stays. */
+  *:not(.app-header),
   *::before,
   *::after {
     animation: none !important;
     transition: none !important;
   }
   .cover-img,
-  .results {
+  .results,
+  .toast {
     transition: opacity var(--duration-fast) linear !important;
+  }
+  .toast {
+    translate: none !important;
   }
   .tile-record {
     display: none !important;
@@ -425,6 +436,42 @@
 /* Bricolage's width axis, for condensed titles. */
 .font-narrow {
   font-stretch: 78%;
+}
+
+/* ---------------------------------------------------------------------------
+ * Toasts rise into place and leave the way they came (DESIGN.md section 7).
+ * ------------------------------------------------------------------------- */
+.toast {
+  transition:
+    opacity var(--duration-base) var(--ease-standard),
+    translate var(--duration-base) var(--ease-standard);
+  @starting-style {
+    opacity: 0;
+    translate: 0 var(--spacing-2);
+  }
+}
+.toast[data-leaving] {
+  opacity: 0;
+  translate: 0 var(--spacing-2);
+}
+
+/*
+ * The app header's edge shows only once content scrolls under it (over the first 8px of scroll).
+ * A page too short to scroll has an inactive timeline, so the edge stays hidden: nothing is under it.
+ * Without scroll timelines (older browsers) the edge simply stays, as before.
+ */
+@supports (animation-timeline: scroll()) {
+  .app-header {
+    border-bottom-color: transparent;
+    animation: header-edge linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0px var(--spacing-2);
+  }
+}
+@keyframes header-edge {
+  to {
+    border-bottom-color: var(--border);
+  }
 }
 
 /* App navigation: bottom tabs on mobile sit above the home indicator (needs viewport-fit=cover). */

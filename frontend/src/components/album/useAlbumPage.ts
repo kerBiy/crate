@@ -35,7 +35,7 @@ export function useAlbumPage() {
       send.play()
       toast.show(`Sent to ${name}`)
     },
-    toast: toast.message,
+    toast,
     spin,
     send,
     nudge,

@@ -1,12 +1,12 @@
+import { GearSix } from '@phosphor-icons/react'
 import { Link, Navigate, useParams } from 'react-router'
 import { ApiError } from '../api/client.ts'
 import { toStars, useFollow, useMe, useProfile, useUserRatings } from '../api/queries.ts'
-import { logout } from '../api/queryClient.ts'
 import type { Profile } from '../api/types.ts'
 import { SectionTitle } from '../components/album/Reviews.tsx'
 import { LoadMore } from '../components/LoadMore.tsx'
 import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
-import { Button, buttonStyles } from '../components/ui/Button.tsx'
+import { buttonStyles } from '../components/ui/Button.tsx'
 import { FollowButton } from '../components/ui/FollowButton.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
@@ -73,9 +73,11 @@ function ProfileHeader({ profile, mine }: { profile: Profile; mine: boolean }) {
         </p>
       </div>
       {mine ? (
-        <Button variant="ghost" onClick={logout} className="-mx-4 self-start lg:self-auto">
-          Log out
-        </Button>
+        // Rare things (theme, log out) live one level deeper, not where others see Follow.
+        <Link to="/settings" className={`${buttonStyles('ghost')} -mx-4 self-start lg:self-auto`}>
+          <GearSix size="1.25em" aria-hidden="true" />
+          Settings
+        </Link>
       ) : (
         <Follow profile={profile} />
       )}
@@ -108,7 +110,7 @@ function Follow({ profile }: { profile: Profile }) {
           })
         }}
       />
-      <ToastRegion message={toast.message} />
+      <ToastRegion toast={toast} />
     </>
   )
 }

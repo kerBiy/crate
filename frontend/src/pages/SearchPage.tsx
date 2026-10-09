@@ -2,7 +2,7 @@ import { MagnifyingGlass, VinylRecord } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { minSearchLength, useAlbumSearch, usePeopleSearch } from '../api/queries.ts'
-import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
+import { AlbumTile, AlbumTileSkeleton, albumGrid, eagerAlbumTiles } from '../components/ui/AlbumTile.tsx'
 import { PageHeader } from '../components/ui/PageHeader.tsx'
 import { PersonRow } from '../components/ui/PersonRow.tsx'
 import { SearchField } from '../components/ui/SearchField.tsx'
@@ -17,11 +17,6 @@ const kinds: { id: Kind; label: string }[] = [
   { id: 'people', label: 'People' },
 ]
 const fields: Record<Kind, string> = { albums: 'Album or artist', people: 'Name or username' }
-
-// Fewer, bigger covers: 2 across on a phone, 5 on desktop.
-const grid = 'grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-10'
-// The first row at the widest grid (two and a half rows on a phone) is on screen at once.
-const eagerTiles = 5
 
 /** Waits until the value has stopped changing for `delay` ms. `flush` takes it now, without waiting. */
 function useDebounced<T>(value: T, delay: number) {
@@ -130,11 +125,11 @@ function Results({ query }: { query: string }) {
         {items.length} album{items.length === 1 ? '' : 's'}
         {partial && '. Some may be missing.'}
       </p>
-      <ul className={grid}>
+      <ul className={albumGrid}>
         {items.map((album, index) => (
           <li key={album.id}>
             <AlbumTile
-              eager={index < eagerTiles}
+              eager={index < eagerAlbumTiles}
               to={`/albums/${album.id}`}
               title={album.title}
               artist={album.artistCredit}
@@ -154,7 +149,7 @@ function ResultsSkeleton() {
       <p className="text-meta">
         <Skeleton shape="text" className="w-16" />
       </p>
-      <ul aria-hidden="true" className={grid}>
+      <ul aria-hidden="true" className={albumGrid}>
         {Array.from({ length: 10 }, (_, i) => (
           <li key={i}>
             <AlbumTileSkeleton />

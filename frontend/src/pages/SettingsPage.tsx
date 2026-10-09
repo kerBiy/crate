@@ -1,11 +1,12 @@
 import { Link } from 'react-router'
 import { logout } from '../api/queryClient.ts'
-import { SectionTitle } from '../components/album/Reviews.tsx'
 import { Button } from '../components/ui/Button.tsx'
+import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { SectionHeading } from '../components/ui/SectionHeading.tsx'
 import { SegmentedControl } from '../components/ui/SegmentedControl.tsx'
 import { useTheme, type ThemeChoice } from '../theme.ts'
 
-const page = 'mx-auto flex max-w-content flex-col gap-8 px-4 py-8 lg:px-6 lg:py-12'
+const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
 const themes: { id: ThemeChoice; label: string }[] = [
   { id: 'dark', label: 'Dark' },
   { id: 'light', label: 'Light' },
@@ -18,17 +19,17 @@ export function SettingsPage() {
   return (
     <main className={page}>
       <header className="flex flex-col">
-        <Link to="/profile" className="flex min-h-tap items-center self-start rounded-control text-meta text-muted">
+        <Link to="/profile" className="flex min-h-tap items-center self-start rounded-control text-body text-muted">
           Your profile
         </Link>
-        <h1 className="font-display text-h3 font-semibold text-text">Settings</h1>
+        <PageHeader title="Settings" />
       </header>
-      <section className="flex flex-col">
-        <SectionTitle>Theme</SectionTitle>
+      <section className="mt-8 flex flex-col items-start lg:mt-12">
+        <SectionHeading>Theme</SectionHeading>
         <SegmentedControl label="Theme" options={themes} value={choice} onChange={choose} />
       </section>
-      <section className="flex flex-col items-start">
-        <SectionTitle>Account</SectionTitle>
+      <section className="mt-12 flex flex-col items-start lg:mt-16">
+        <SectionHeading>Account</SectionHeading>
         <Button onClick={logout}>Log out</Button>
       </section>
     </main>

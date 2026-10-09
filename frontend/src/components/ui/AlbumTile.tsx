@@ -5,6 +5,11 @@ import { RatingStars } from './RatingStars.tsx'
 import { Skeleton } from './Skeleton.tsx'
 import { Vinyl } from './Vinyl.tsx'
 
+/** The cover grid (DESIGN.md section 8): fewer, bigger covers, 2 across on a phone, 5 on desktop. */
+export const albumGrid = 'grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-10'
+/** The first row at the widest grid (two and a half rows on a phone) is on screen at once. */
+export const eagerAlbumTiles = 5
+
 type AlbumTileProps = {
   to: string
   title: string

@@ -1,20 +1,25 @@
+import { VinylRecord } from '@phosphor-icons/react'
 import { Link } from 'react-router'
 import { toStars, useFeed } from '../api/queries.ts'
 import type { FeedItem } from '../api/types.ts'
 import { LoadMore } from '../components/LoadMore.tsx'
 import { buttonStyles } from '../components/ui/Button.tsx'
 import { FeedRow, FeedRowSkeleton } from '../components/ui/FeedRow.tsx'
+import { PageHeader } from '../components/ui/PageHeader.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { formatWhen, nameOf } from '../format.ts'
 
-const page = 'mx-auto flex max-w-content flex-col gap-6 px-4 py-8 lg:px-6 lg:py-12'
+const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
+const list = 'rows flex max-w-prose flex-col'
 
 /** What the people I follow rated, newest first. */
 export function FeedPage() {
   return (
     <main className={page}>
-      <h1 className="font-display text-h3 font-semibold text-text">Feed</h1>
-      <Feed />
+      <PageHeader title="Feed" />
+      <div className="mt-6 lg:mt-8">
+        <Feed />
+      </div>
     </main>
   )
 }
@@ -24,7 +29,7 @@ function Feed() {
 
   if (feed.isPending) {
     return (
-      <ul aria-busy="true" aria-label="Loading feed" className="flex max-w-prose flex-col divide-y divide-border">
+      <ul aria-busy="true" aria-label="Loading feed" className={list}>
         {[0, 1, 2, 3].map((i) => (
           <li key={i}>
             <FeedRowSkeleton />
@@ -42,6 +47,7 @@ function Feed() {
   if (!items.length) {
     return (
       <EmptyState
+        icon={VinylRecord}
         message="Nothing spinning yet. Follow a friend to fill this crate."
         action={
           <Link to="/search?type=people" className={buttonStyles('primary')}>
@@ -53,8 +59,8 @@ function Feed() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <ul className="flex max-w-prose flex-col divide-y divide-border">
+    <div className="flex flex-col gap-8">
+      <ul className={list}>
         {items.map((item) => (
           <li key={item.id}>
             <Row item={item} />

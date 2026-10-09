@@ -4,12 +4,16 @@ import { useFollowList, useMe, useProfile, type FollowListKind } from '../api/qu
 import type { Profile } from '../api/types.ts'
 import { LoadMore } from '../components/LoadMore.tsx'
 import { buttonStyles } from '../components/ui/Button.tsx'
+import { PageHeader } from '../components/ui/PageHeader.tsx'
 import { PersonRow, PersonRowSkeleton } from '../components/ui/PersonRow.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { nameOf } from '../format.ts'
 
-const page = 'mx-auto flex max-w-content flex-col gap-8 px-4 py-8 lg:px-6 lg:py-12'
+const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
+const body = 'mt-6 lg:mt-8'
+// Back to the person whose list this is: small, above the large title, as tall as a tap.
+const back = 'flex min-h-tap items-center self-start rounded-control text-body text-muted'
 const titles: Record<FollowListKind, string> = { followers: 'Followers', following: 'Following' }
 
 /** /u/:username/followers and /following: the people, newest follow first. */
@@ -20,8 +24,13 @@ export function FollowListPage({ kind }: { kind: FollowListKind }) {
   if (profile.isPending) {
     return (
       <main aria-busy="true" aria-label="Loading" className={page}>
-        <Skeleton className="h-8 w-1/2 lg:w-1/4" />
-        <PeopleSkeleton />
+        <div className="flex min-h-tap items-center">
+          <Skeleton className="h-3 w-1/4 lg:w-1/12" />
+        </div>
+        <Skeleton className="h-12 w-1/2 lg:h-16 lg:w-1/4" />
+        <div className={body}>
+          <PeopleSkeleton />
+        </div>
       </main>
     )
   }
@@ -29,12 +38,14 @@ export function FollowListPage({ kind }: { kind: FollowListKind }) {
     const missing = profile.error instanceof ApiError && profile.error.status === 404
     return (
       <main className={page}>
-        <h1 className="font-display text-h3 font-semibold text-text">{titles[kind]}</h1>
-        {missing ? (
-          <EmptyState message="No one by that name. The link may be old or mistyped." />
-        ) : (
-          <ErrorState message="Couldn't load this list." onRetry={() => profile.refetch()} retrying={profile.isFetching} />
-        )}
+        <PageHeader title={titles[kind]} />
+        <div className={body}>
+          {missing ? (
+            <EmptyState message="No one by that name. The link may be old or mistyped." />
+          ) : (
+            <ErrorState message="Couldn't load this list." onRetry={() => profile.refetch()} retrying={profile.isFetching} />
+          )}
+        </div>
       </main>
     )
   }
@@ -42,12 +53,14 @@ export function FollowListPage({ kind }: { kind: FollowListKind }) {
   return (
     <main className={page}>
       <header className="flex flex-col">
-        <Link to={`/u/${encodeURIComponent(profile.data.username)}`} className="flex min-h-tap items-center self-start rounded-control text-meta text-muted">
+        <Link to={`/u/${encodeURIComponent(profile.data.username)}`} className={back}>
           {nameOf(profile.data)}
         </Link>
-        <h1 className="font-display text-h3 font-semibold text-text">{titles[kind]}</h1>
+        <PageHeader title={titles[kind]} />
       </header>
-      <People profile={profile.data} kind={kind} />
+      <div className={body}>
+        <People profile={profile.data} kind={kind} />
+      </div>
     </main>
   )
 }
@@ -80,8 +93,8 @@ function People({ profile, kind }: { profile: Profile; kind: FollowListKind }) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <ul className="flex max-w-prose flex-col divide-y divide-border">
+    <div className="flex flex-col gap-8">
+      <ul className="rows flex max-w-prose flex-col">
         {people.map((person) => (
           <li key={person.id}>
             <PersonRow username={person.username} displayName={person.displayName} />
@@ -101,7 +114,7 @@ function People({ profile, kind }: { profile: Profile; kind: FollowListKind }) {
 
 export function PeopleSkeleton() {
   return (
-    <ul aria-busy="true" aria-label="Loading people" className="flex max-w-prose flex-col">
+    <ul aria-busy="true" aria-label="Loading people" className="rows flex max-w-prose flex-col">
       {Array.from({ length: 5 }, (_, i) => (
         <li key={i}>
           <PersonRowSkeleton />

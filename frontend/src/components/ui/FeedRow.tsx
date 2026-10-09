@@ -50,7 +50,7 @@ export function FeedRow({ name, username, albumId, title, artist, coverUrl, rati
             {when}
           </time>
         </p>
-        {body && <p className="line-clamp-2 max-w-prose text-text">{body}</p>}
+        {body && <p className="mt-1 line-clamp-2 max-w-prose text-lead text-text">{body}</p>}
       </div>
     </article>
   )
@@ -63,7 +63,7 @@ export function FeedRowSkeleton() {
       <div className="row-rule flex w-full flex-col gap-2 pt-1 pb-4">
         <Skeleton className="h-3 w-2/3" />
         <Skeleton className="h-3 w-1/4" />
-        <Skeleton className="h-3 w-full" />
+        <Skeleton className="mt-2 h-3 w-full" />
       </div>
     </div>
   )

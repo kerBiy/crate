@@ -319,7 +319,7 @@ export function ComponentsPage() {
           </ul>
         </Block>
 
-        <Block name="FeedRow" use="One friend's rating in the feed. Small cover, never the record.">
+        <Block name="FeedRow" use="One friend's rating in the feed. The avatar opens the person; the rest of the row opens the album. Tab: avatar, then row.">
           <ul className="rows col-span-full flex max-w-prose flex-col">
             <li>
               <FeedRow

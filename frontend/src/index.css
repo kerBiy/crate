@@ -532,3 +532,50 @@
 .rows > li:not(:last-child) .row-rule {
   border-bottom: 1px solid var(--border);
 }
+
+/*
+ * A row that opens one place from anywhere on it (FeedRow: the album). Links can't nest, so the
+ * row's main link stretches its ::after over the row (positioned with .row-press); other targets
+ * in the row sit above it with `relative z-10`. The focus ring and the pressed state belong to
+ * the whole row, since that is what you're about to open.
+ */
+.row-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Above the row's own positioned pieces (the cover), below its other targets (z-10). */
+  z-index: 1;
+  border-radius: var(--radius-control);
+}
+.row-link:focus-visible {
+  outline: none;
+}
+.row-link:focus-visible::after {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.row-press {
+  border-radius: var(--radius-control);
+}
+
+/*
+ * A small control (an avatar) with a full tap target: the hit area grows to `tap` around it,
+ * centred, without moving anything. Pressed shows behind the control, the size of the target.
+ * Needs a positioned parent context: the element itself is `relative`.
+ */
+.tap-area {
+  position: relative;
+}
+.tap-area::before {
+  content: "";
+  position: absolute;
+  inset: calc((100% - var(--spacing-tap)) / 2);
+  z-index: -1;
+  border-radius: 9999px;
+}
+.tap-area:active::before {
+  background: var(--pressed);
+}
+.row-press:has(.row-link:active) {
+  background: var(--pressed);
+}

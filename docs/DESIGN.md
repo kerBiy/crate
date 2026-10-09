@@ -224,6 +224,7 @@ All of these respect `prefers-reduced-motion` (instant state change, no movement
 
 ### Lists
 - Rows (feed, people, reviews) are separated by **inset hairlines**: the `border` line starts where the text starts (after the avatar or thumbnail) and there is none after the last row. Full-width rules cut the page; inset ones only separate the items.
+- **A feed row is two targets, side by side, never nested:** the avatar (32 px, with a 44 px `tap` target around it) opens the person, and the rest of the row opens the album. Order left to right, and for the keyboard: avatar, then the row. The name stays an inline link on desktop for the pointer, but isn't a Tab stop (the avatar already is); on touch a tap on the name opens the album like the rest of the row. The small cover sits at the end of the row. Pressing the row takes `pressed`; its focus ring goes around the whole row.
 
 ### Album page (desktop)
 
@@ -327,7 +328,7 @@ On mobile everything stacks in the same order: cover (record ⅓ out, up to 280 
 | Search | One big input; results as a cover grid. |
 | Album | Section 8 layout; the main screen of the app. |
 | Profile | Four favorites on top, then a grid of rated albums; follow button; follower counts. |
-| Friends feed | A list of activity rows: small cover, "ana rated OK Computer", stars, time. |
+| Friends feed | A list of activity rows: avatar, "ana rated OK Computer", stars, time, small cover at the end. |
 | Settings | Theme (Dark / Light / Match system) and Log out. Reached from your own profile. |
 
 ---
@@ -361,7 +362,7 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **PageHeader**: the large title of a top-level page, with an optional control at the end of its row.
 - **SectionHeading**: a section inside a page ("Ratings", "Reviews"): `h3`, `24` above its content.
 - **SearchField**: the one field of the Search page. A visible label, a magnifier inside, a clear button once there is text (it puts focus back in the field), Enter searches now.
-- **Rows** (`FeedRow`, `PersonRow`, review rows): put them in a list with the `rows` class to get inset separators; each row marks its text column with `row-rule`.
+- **Rows** (`FeedRow`, `PersonRow`, review rows): put them in a list with the `rows` class to get inset separators; each row marks its text column with `row-rule`. A row that opens one place from anywhere on it (`FeedRow`) is `row-press`, its main link is `row-link` (stretched over the row), and any other target in it sits above with `z-10`. A target smaller than `tap` (the avatar) takes `tap-area`: its hit area grows to 44 px around it, centred, without moving the layout, and its pressed state shows behind it.
 - **ErrorState**: something failed to load. Plain message and "Try again".
 - **SegmentedControl**: two or three mutually exclusive choices side by side, the chosen one raised: what Search looks for, the theme. Not for navigation (that's the tabs).
 - **Toast**: confirming an action that changed something. One at a time, via `useToast` and a single `ToastRegion` per page. At most **one action** ("Undo"); a toast with an action stays up for `toast-action` and pauses while hovered or focused from the keyboard.

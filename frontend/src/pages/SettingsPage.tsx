@@ -1,12 +1,11 @@
 import { Link } from 'react-router'
 import { logout } from '../api/queryClient.ts'
 import { Button } from '../components/ui/Button.tsx'
-import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { PageHeader, pageFrame } from '../components/ui/PageHeader.tsx'
 import { SectionHeading } from '../components/ui/SectionHeading.tsx'
 import { SegmentedControl } from '../components/ui/SegmentedControl.tsx'
 import { useTheme, type ThemeChoice } from '../theme.ts'
 
-const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
 const themes: { id: ThemeChoice; label: string }[] = [
   { id: 'dark', label: 'Dark' },
   { id: 'light', label: 'Light' },
@@ -17,7 +16,7 @@ const themes: { id: ThemeChoice; label: string }[] = [
 export function SettingsPage() {
   const { choice, choose } = useTheme()
   return (
-    <main className={page}>
+    <main className={pageFrame}>
       <header className="flex flex-col">
         <Link to="/profile" className="flex min-h-tap items-center self-start rounded-control text-body text-muted">
           Your profile

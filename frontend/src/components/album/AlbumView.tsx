@@ -2,6 +2,7 @@ import type { AlbumDetails } from '../../api/types.ts'
 import { Histogram } from '../ui/Histogram.tsx'
 import { RatingStars } from '../ui/RatingStars.tsx'
 import { SectionHeading } from '../ui/SectionHeading.tsx'
+import { EmptyState } from '../ui/States.tsx'
 import { ToastRegion, useToast } from '../ui/Toast.tsx'
 import { AlbumReviews } from './AlbumReviews.tsx'
 import { MyRating } from './MyRating.tsx'
@@ -67,7 +68,7 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
 
 function RatingSummary({ album }: { album: AlbumDetails }) {
   if (album.ratingCount === 0 || album.avgRating === null) {
-    return <p className="text-muted">No ratings yet. Be the first to rate it.</p>
+    return <EmptyState message="No ratings yet. Be the first to rate it." />
   }
   const count = album.ratingCount
   return (

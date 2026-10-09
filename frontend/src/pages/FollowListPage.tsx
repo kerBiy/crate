@@ -4,13 +4,12 @@ import { useFollowList, useMe, useProfile, type FollowListKind } from '../api/qu
 import type { Profile } from '../api/types.ts'
 import { LoadMore } from '../components/LoadMore.tsx'
 import { buttonStyles } from '../components/ui/Button.tsx'
-import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { PageHeader, pageFrame } from '../components/ui/PageHeader.tsx'
 import { PersonRow, PersonRowSkeleton } from '../components/ui/PersonRow.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { nameOf } from '../format.ts'
 
-const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
 const body = 'mt-6 lg:mt-8'
 // Back to the person whose list this is: small, above the large title, as tall as a tap.
 const back = 'flex min-h-tap items-center self-start rounded-control text-body text-muted'
@@ -23,7 +22,7 @@ export function FollowListPage({ kind }: { kind: FollowListKind }) {
 
   if (profile.isPending) {
     return (
-      <main aria-busy="true" aria-label="Loading" className={page}>
+      <main aria-busy="true" aria-label="Loading" className={pageFrame}>
         <div className="flex min-h-tap items-center">
           <Skeleton className="h-3 w-1/4 lg:w-1/12" />
         </div>
@@ -37,7 +36,7 @@ export function FollowListPage({ kind }: { kind: FollowListKind }) {
   if (profile.isError) {
     const missing = profile.error instanceof ApiError && profile.error.status === 404
     return (
-      <main className={page}>
+      <main className={pageFrame}>
         <PageHeader title={titles[kind]} />
         <div className={body}>
           {missing ? (
@@ -51,7 +50,7 @@ export function FollowListPage({ kind }: { kind: FollowListKind }) {
   }
 
   return (
-    <main className={page}>
+    <main className={pageFrame}>
       <header className="flex flex-col">
         <Link to={`/u/${encodeURIComponent(profile.data.username)}`} className={back}>
           {nameOf(profile.data)}

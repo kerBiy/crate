@@ -56,11 +56,12 @@ export function Reviews({
 
 function ReviewsSkeleton() {
   return (
-    <ul aria-busy="true" aria-label="Loading reviews" className="flex flex-col gap-8">
+    // The real list's geometry (rows, inset rules), so nothing moves when the reviews arrive.
+    <ul aria-busy="true" aria-label="Loading reviews" className="rows flex flex-col gap-6">
       {[0, 1, 2].map((i) => (
         <li key={i} className="flex gap-4">
           <Skeleton shape="circle" className="size-avatar" />
-          <div className="flex w-full max-w-prose flex-col gap-2">
+          <div className="row-rule flex min-w-0 flex-1 flex-col gap-2 pb-6">
             <Skeleton className="h-4 w-1/3" />
             <Skeleton className="h-3 w-1/4" />
             <Skeleton className="mt-2 h-4 w-full" />

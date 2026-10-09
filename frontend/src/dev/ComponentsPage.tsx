@@ -4,12 +4,13 @@ import { AlbumTile, AlbumTileSkeleton } from '../components/ui/AlbumTile.tsx'
 import { AppShell, type Section as NavSection } from '../components/ui/AppShell.tsx'
 import { Avatar, AvatarStack } from '../components/ui/Avatar.tsx'
 import { Button, type ButtonVariant } from '../components/ui/Button.tsx'
+import { Sleeve } from '../components/album/Sleeve.tsx'
 import { Cover } from '../components/ui/Cover.tsx'
 import { FeedRow, FeedRowSkeleton } from '../components/ui/FeedRow.tsx'
 import { FollowButton } from '../components/ui/FollowButton.tsx'
 import { Histogram } from '../components/ui/Histogram.tsx'
 import { Input } from '../components/ui/Input.tsx'
-import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { PageHeader, pageFrame } from '../components/ui/PageHeader.tsx'
 import { PersonRow, PersonRowSkeleton } from '../components/ui/PersonRow.tsx'
 import { RatingInput } from '../components/ui/RatingInput.tsx'
 import { RatingStars } from '../components/ui/RatingStars.tsx'
@@ -25,8 +26,11 @@ import { albums, coverUrl, everyone } from '../lab/albums.ts'
 import { ThemeToggle } from './ThemeToggle.tsx'
 
 const variants: ButtonVariant[] = ['primary', 'secondary', 'ghost']
-const sections: NavSection[] = ['feed', 'search', 'profile']
-const sectionNames: Record<NavSection, string> = { feed: 'Feed', search: 'Search', profile: 'Profile' }
+const sections: { id: NavSection; label: string }[] = [
+  { id: 'feed', label: 'Feed' },
+  { id: 'search', label: 'Search' },
+  { id: 'profile', label: 'Profile' },
+]
 
 /** Every base component in every state, for checking both themes at a glance. Development only. */
 const kindOptions: { id: 'albums' | 'people'; label: string }[] = [
@@ -45,20 +49,20 @@ export function ComponentsPage() {
 
   return (
     <AppShell current={tab}>
-      <div className="sticky top-12 z-10 border-b border-border bg-bg lg:top-16">
-        <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-3 px-4 py-3 lg:px-6">
-          <h1 className="font-display text-h3 font-semibold text-text">Components</h1>
+      <main className={pageFrame}>
+        <PageHeader title="Components">
           <ThemeToggle />
-        </div>
-      </div>
+        </PageHeader>
 
-      <main className="mx-auto flex max-w-content flex-col px-4 pb-16 lg:px-6">
         <Block name="PageHeader" use="The large title of a top-level page, with an optional control at the end of its row.">
           <div className="col-span-full flex flex-col gap-8">
             <PageHeader title="Search">
               <SegmentedControl label="Search for" options={kindOptions} value={kind} onChange={setKind} />
             </PageHeader>
             <PageHeader title="Feed" />
+            <div className="max-w-prose">
+              <PageHeader title="A title long enough to break onto two lines" />
+            </div>
           </div>
         </Block>
 
@@ -117,7 +121,7 @@ export function ComponentsPage() {
             <Input label="Invite code" hint="Ask a friend who's already in." />
           </Cell>
           <Cell label="Error">
-            <Input label="Password" type="password" defaultValue="short" error="Use at least 8 characters." />
+            <Input label="Password" type="password" defaultValue="short" error="Use at least 10 characters." />
           </Cell>
           <Cell label="Disabled">
             <Input label="Email" defaultValue="ana@example.com" disabled />
@@ -194,6 +198,20 @@ export function ComponentsPage() {
           <Cell label="Missing cover">
             <div className="w-cover max-w-full">
               <Cover title="Songs for the Night Bus" artist="Unknown" />
+            </div>
+          </Cell>
+        </Block>
+
+        <Block name="Sleeve" use="The album page cover with its record, a third out. Pinned in its column on desktop.">
+          <Cell label="Cover in, record out">
+            {/* The sleeve sizes itself from its parent's width. */}
+            <div className="w-full">
+              <Sleeve title={kid.title} artist={kid.artist} src={coverUrl(kid.mbid, 500)} color={kid.dominantColor} />
+            </div>
+          </Cell>
+          <Cell label="Missing cover">
+            <div className="w-full">
+              <Sleeve title="Songs for the Night Bus" artist="Unknown" color={ok.dominantColor} />
             </div>
           </Cell>
         </Block>
@@ -433,21 +451,7 @@ export function ComponentsPage() {
 
         <Block name="AppShell" use="The frame of every page. This page sits inside it.">
           <Cell label="Active section">
-            <div className="flex rounded-control border border-border-strong p-1" role="group" aria-label="Active section">
-              {sections.map((section) => (
-                <button
-                  key={section}
-                  type="button"
-                  aria-pressed={tab === section}
-                  onClick={() => setTab(section)}
-                  className={`flex h-tap flex-1 items-center justify-center rounded-control px-3 text-body ${
-                    tab === section ? 'bg-surface font-medium text-text' : 'text-muted'
-                  }`}
-                >
-                  {sectionNames[section]}
-                </button>
-              ))}
-            </div>
+            <SegmentedControl label="Active section" options={sections} value={tab} onChange={setTab} />
           </Cell>
         </Block>
       </main>
@@ -459,9 +463,10 @@ export function ComponentsPage() {
 /** One component: its name and when to use it, then its states. */
 function Block({ name, use, children }: { name: string; use: string; children: ReactNode }) {
   return (
-    <section aria-labelledby={`c-${name}`} className="grid gap-6 border-b border-border py-8 lg:grid-cols-4 lg:gap-8">
+    // Blocks are separated by space, not rules (DESIGN.md section 2): 48 apart on mobile, 64 on desktop.
+    <section aria-labelledby={`c-${name}`} className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-4 lg:gap-8">
       <div className="flex flex-col gap-1">
-        <h2 id={`c-${name}`} className="font-display text-h4 font-semibold text-text">
+        <h2 id={`c-${name}`} className="font-display text-h3 font-semibold text-text">
           {name}
         </h2>
         <p className="text-meta text-muted">{use}</p>

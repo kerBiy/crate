@@ -4,6 +4,7 @@ import { useAlbum } from '../api/queries.ts'
 import { AlbumSkeleton } from '../components/album/AlbumSkeleton.tsx'
 import { AlbumView } from '../components/album/AlbumView.tsx'
 import { buttonStyles } from '../components/ui/Button.tsx'
+import { pageFrame } from '../components/ui/PageHeader.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 
 export function AlbumPage() {
@@ -16,7 +17,7 @@ export function AlbumPage() {
     // 404: MusicBrainz doesn't know it. 400: not even a valid id. Either way, nothing to retry.
     const missing = album.error instanceof ApiError && (album.error.status === 404 || album.error.status === 400)
     return (
-      <main className="mx-auto max-w-content px-4 py-12 lg:px-6">
+      <main className={pageFrame}>
         {missing ? (
           <EmptyState
             message="Couldn't find this album."

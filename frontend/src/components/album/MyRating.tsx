@@ -4,6 +4,7 @@ import { toRating, toStars, useMyReview, useRemoveReview, useSaveReview } from '
 import { Button } from '../ui/Button.tsx'
 import { RatingInput } from '../ui/RatingInput.tsx'
 import { Skeleton } from '../ui/Skeleton.tsx'
+import { ErrorState } from '../ui/States.tsx'
 import { Textarea } from '../ui/Textarea.tsx'
 import type { Toast } from '../ui/Toast.tsx'
 
@@ -43,14 +44,7 @@ export function MyRating({ albumId, title, toast, onRated, size = 'md' }: MyRati
   }, [editing])
 
   if (mine.isError) {
-    return (
-      <div role="alert" className="flex flex-wrap items-center gap-3">
-        <p className="text-text">Couldn't load your rating.</p>
-        <Button variant="ghost" onClick={() => mine.refetch()} loading={mine.isFetching}>
-          Try again
-        </Button>
-      </div>
-    )
+    return <ErrorState message="Couldn't load your rating." onRetry={() => mine.refetch()} retrying={mine.isFetching} />
   }
 
   const review = mine.data ?? null

@@ -30,10 +30,11 @@ type ErrorStateProps = {
   retrying?: boolean
 }
 
+/** Same shape as EmptyState: the failure is the view's content now, so it reads at lead size. */
 export function ErrorState({ message, onRetry, retrying = false }: ErrorStateProps) {
   return (
-    <div role="alert" className="flex flex-col items-start gap-3">
-      <p className="max-w-prose text-text">{message}</p>
+    <div role="alert" className="flex flex-col items-start gap-4">
+      <p className="max-w-prose text-lead text-text">{message}</p>
       <Button onClick={onRetry} loading={retrying}>
         Try again
       </Button>

@@ -7,14 +7,13 @@ import { LoadMore } from '../components/LoadMore.tsx'
 import { AlbumTile, AlbumTileSkeleton, albumGrid, eagerAlbumTiles } from '../components/ui/AlbumTile.tsx'
 import { buttonStyles } from '../components/ui/Button.tsx'
 import { FollowButton } from '../components/ui/FollowButton.tsx'
-import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { PageHeader, pageFrame } from '../components/ui/PageHeader.tsx'
 import { SectionHeading } from '../components/ui/SectionHeading.tsx'
 import { Skeleton } from '../components/ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { ToastRegion, useToast } from '../components/ui/Toast.tsx'
 import { count, nameOf } from '../format.ts'
 
-const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
 
 /** /u/:username: who they are, follow counts, Follow, and the albums they rated. */
 export function ProfilePage() {
@@ -26,7 +25,7 @@ export function ProfilePage() {
   if (profile.isError) {
     const missing = profile.error instanceof ApiError && profile.error.status === 404
     return (
-      <main className={page}>
+      <main className={pageFrame}>
         <PageHeader title={missing ? 'Not found' : 'Profile'} />
         <div className="mt-6 lg:mt-8">
           {missing ? (
@@ -49,7 +48,7 @@ export function ProfilePage() {
   const person = profile.data
   const mine = me.data?.id === person.id
   return (
-    <main className={page}>
+    <main className={pageFrame}>
       <ProfileHeader profile={person} mine={mine} />
       <section className="mt-12 flex flex-col lg:mt-16">
         <SectionHeading>Rated</SectionHeading>
@@ -185,7 +184,7 @@ function RatingsSkeleton() {
 
 function ProfileSkeleton() {
   return (
-    <main aria-busy="true" aria-label="Loading profile" className={page}>
+    <main aria-busy="true" aria-label="Loading profile" className={pageFrame}>
       <div className="flex flex-col">
         <Skeleton className="h-12 w-2/3 lg:h-16 lg:w-1/3" />
         <Skeleton className="mt-4 h-4 w-1/3 lg:mt-6 lg:w-1/6" />
@@ -205,8 +204,11 @@ export function MyProfileRedirect() {
   if (me.isPending) return <ProfileSkeleton />
   if (me.isError) {
     return (
-      <main className={page}>
-        <ErrorState message="Couldn't load your profile." onRetry={() => me.refetch()} retrying={me.isFetching} />
+      <main className={pageFrame}>
+        <PageHeader title="Profile" />
+        <div className="mt-6 lg:mt-8">
+          <ErrorState message="Couldn't load your profile." onRetry={() => me.refetch()} retrying={me.isFetching} />
+        </div>
       </main>
     )
   }

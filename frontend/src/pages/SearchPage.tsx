@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { minSearchLength, useAlbumSearch, usePeopleSearch } from '../api/queries.ts'
 import { AlbumTile, AlbumTileSkeleton, albumGrid, eagerAlbumTiles } from '../components/ui/AlbumTile.tsx'
-import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { PageHeader, pageFrame } from '../components/ui/PageHeader.tsx'
 import { PersonRow } from '../components/ui/PersonRow.tsx'
 import { SearchField } from '../components/ui/SearchField.tsx'
 import { SegmentedControl } from '../components/ui/SegmentedControl.tsx'
@@ -46,7 +46,7 @@ export function SearchPage() {
   }, [query, kind, params, setParams])
 
   return (
-    <main className="mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12">
+    <main className={pageFrame}>
       <PageHeader title="Search">
         <SegmentedControl
           label="Search for"

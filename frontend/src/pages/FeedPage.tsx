@@ -5,17 +5,16 @@ import type { FeedItem } from '../api/types.ts'
 import { LoadMore } from '../components/LoadMore.tsx'
 import { buttonStyles } from '../components/ui/Button.tsx'
 import { FeedRow, FeedRowSkeleton } from '../components/ui/FeedRow.tsx'
-import { PageHeader } from '../components/ui/PageHeader.tsx'
+import { PageHeader, pageFrame } from '../components/ui/PageHeader.tsx'
 import { EmptyState, ErrorState } from '../components/ui/States.tsx'
 import { formatWhen, nameOf } from '../format.ts'
 
-const page = 'mx-auto flex max-w-content flex-col px-4 pt-6 pb-16 lg:px-6 lg:pt-12'
 const list = 'rows flex max-w-prose flex-col'
 
 /** What the people I follow rated, newest first. */
 export function FeedPage() {
   return (
-    <main className={page}>
+    <main className={pageFrame}>
       <PageHeader title="Feed" />
       <div className="mt-6 lg:mt-8">
         <Feed />

@@ -10,11 +10,11 @@ function AuthLayout({ title, error, children, footer }: { title: string; error?:
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center px-4 py-12">
       <div className="flex w-full max-w-form flex-col gap-8">
-        <p className="font-display text-h2 font-bold text-text" aria-hidden="true">
+        <p className="font-display text-h3 font-bold text-text" aria-hidden="true">
           crate
         </p>
         <div className="flex flex-col gap-6">
-          <h1 className="font-display text-h3 font-semibold text-text">{title}</h1>
+          <h1 className="font-narrow font-display text-h1 font-semibold text-balance text-text">{title}</h1>
           {error && (
             <p role="alert" className="text-body text-danger">
               {error}

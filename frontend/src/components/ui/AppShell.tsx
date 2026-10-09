@@ -80,7 +80,7 @@ function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current
     <>
       <header className="app-header sticky top-0 z-10 border-b border-border bg-bg">
         <div className="mx-auto flex h-12 max-w-content items-center gap-8 px-4 lg:h-16 lg:px-6">
-          <Link to={links.feed} className="font-display text-h3 font-bold text-text">
+          <Link to={links.feed} className="flex h-tap items-center rounded-control font-display text-h3 font-bold text-text">
             crate
           </Link>
           <nav aria-label="Main" className="hidden lg:block">
@@ -91,7 +91,7 @@ function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current
                     to={links[tab.id]}
                     aria-current={tab.id === current ? 'page' : undefined}
                     className={`flex h-tap items-center rounded-control px-3 text-body active:bg-pressed ${
-                      tab.id === current ? 'bg-surface font-medium text-text' : 'text-muted'
+                      tab.id === current ? 'bg-surface-raised font-medium text-text' : 'text-muted'
                     }`}
                   >
                     {tab.label}

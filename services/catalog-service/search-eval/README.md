@@ -25,7 +25,20 @@ from the DB/cache). `eval.py mb` shows what MusicBrainz itself returns for the q
 original diagnosis, not as a score.
 
 `results/` holds the reports behind docs/adr/010-search-ranking.md: the baseline, the result after
-ADR-010, the run with cover checks, and the raw MusicBrainz diagnosis.
+ADR-010, the run with cover checks, and the raw MusicBrainz diagnosis. The `2026-10-11-*` reports
+are behind docs/adr/011-deezer-rejected.md.
+
+`queries-niche.json`: 9 queries for coverage outside the mainstream (Romanian, Bandcamp-only,
+pre-1970), chosen before any tuning or comparison. Report it separately from `queries.json`.
+
+`endpoint` options for other sets and sources:
+
+- `--cases queries-niche.json`: which query file to run (default `queries.json`).
+- `--path /albums/search`: the search path on `--base`, to score another endpoint with the same
+  response shape (`items[]` with `id`, `title`, `artistCredit`).
+- `--match title`: count a hit by normalized title + one shared artist name instead of by MBID,
+  for sources without MusicBrainz IDs. Every run prints both matchings; the report stores both
+  (`rank_mbid`, `rank_title`).
 
 Search hides albums without a cover. When an expected album is missing, `endpoint` asks the Cover
 Art Archive about it and prints "no cover: …" in that row and in the summary. Compare a new run with

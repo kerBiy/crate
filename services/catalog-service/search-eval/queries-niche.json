@@ -1,0 +1,104 @@
+{
+  "_comment": "Niche coverage set, reported separately from queries.json (which was used for tuning). Chosen 2026-10-11 before any Deezer run. bandcamp = on Bandcamp, not on Spotify (Deerhoof and King Gizzard pulled their catalogues from Spotify; Cindy Lee's Diamond Jubilee never was). Each expected album verified on MusicBrainz.",
+  "cases": [
+    {
+      "query": "subcarpați pielea de găină",
+      "category": "romanian",
+      "expected": [
+        {
+          "mbid": "89ac8096-7e26-450a-9f52-eebb9b19f57f",
+          "title": "Pielea de găină",
+          "artist": "Subcarpați"
+        }
+      ]
+    },
+    {
+      "query": "vița de vie fenomental",
+      "category": "romanian",
+      "expected": [
+        {
+          "mbid": "f5bc50e2-6a1d-3483-ba9f-8d655dd0fe87",
+          "title": "Fenomental",
+          "artist": "Vița de vie"
+        }
+      ]
+    },
+    {
+      "query": "alexandru andrieș muzică de divorț",
+      "category": "romanian",
+      "expected": [
+        {
+          "mbid": "8650d561-91ae-3b4f-9e6d-5981da77ee38",
+          "title": "Muzică de divorț",
+          "artist": "Alexandru Andrieș"
+        }
+      ]
+    },
+    {
+      "query": "cindy lee diamond jubilee",
+      "category": "bandcamp",
+      "expected": [
+        {
+          "mbid": "442d3e54-f7f2-45b7-a743-61e0c2372284",
+          "title": "Diamond Jubilee",
+          "artist": "Cindy Lee"
+        }
+      ]
+    },
+    {
+      "query": "deerhoof miracle-level",
+      "category": "bandcamp",
+      "expected": [
+        {
+          "mbid": "9bc50628-993e-4eeb-90de-a2bb62d41003",
+          "title": "Miracle-Level",
+          "artist": "Deerhoof"
+        }
+      ]
+    },
+    {
+      "query": "king gizzard flight b741",
+      "category": "bandcamp",
+      "expected": [
+        {
+          "mbid": "2dc473a8-c4af-4dc0-8907-c609bf953499",
+          "title": "Flight b741",
+          "artist": "King Gizzard & the Lizard Wizard"
+        }
+      ]
+    },
+    {
+      "query": "odessey and oracle",
+      "category": "pre-1970",
+      "expected": [
+        {
+          "mbid": "9a4a9ebf-f4f7-3dba-9b80-0b274cbc80f9",
+          "title": "Odessey and Oracle",
+          "artist": "The Zombies"
+        }
+      ]
+    },
+    {
+      "query": "money jungle",
+      "category": "pre-1970",
+      "expected": [
+        {
+          "mbid": "1c18538e-e9be-3449-8be1-f3cdc7b493e0",
+          "title": "Money Jungle",
+          "artist": "Duke Ellington"
+        }
+      ]
+    },
+    {
+      "query": "forever changes",
+      "category": "pre-1970",
+      "expected": [
+        {
+          "mbid": "c7035bc6-6101-326f-992c-401d451c1716",
+          "title": "Forever Changes",
+          "artist": "Love"
+        }
+      ]
+    }
+  ]
+}

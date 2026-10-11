@@ -1,0 +1,381 @@
+{
+ "mode": "endpoint",
+ "base": "http://localhost:8092",
+ "path": "/albums/search-deezer",
+ "match": "title",
+ "cases": "queries-niche.json",
+ "passes": [
+  {
+   "label": "cold",
+   "results": [
+    {
+     "query": "subcarpați pielea de găină",
+     "category": "romanian",
+     "rank": null,
+     "ms": 156,
+     "rank_mbid": null,
+     "rank_title": null,
+     "partial": false,
+     "top": [
+      "Piele De Gaina — Subcarpaţi"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "vița de vie fenomental",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 165,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Fenomental — Vita de Vie"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "alexandru andrieș muzică de divorț",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 224,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Muzica de divort — Alexandru Andries"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "cindy lee diamond jubilee",
+     "category": "bandcamp",
+     "rank": null,
+     "ms": 156,
+     "rank_mbid": null,
+     "rank_title": null,
+     "partial": false,
+     "top": [
+      "Diamond Jubilee — Bent Denim"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "deerhoof miracle-level",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 190,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Miracle-Level — Deerhoof"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "king gizzard flight b741",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 159,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Flight b741 — King Gizzard & The Lizard Wizard"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "odessey and oracle",
+     "category": "pre-1970",
+     "rank": null,
+     "ms": 327,
+     "rank_mbid": null,
+     "rank_title": null,
+     "partial": false,
+     "top": [
+      "Odessey & Oracle — The Zombies",
+      "Technicolor — Odessey And Oracle",
+      "Crocorama — Odessey And Oracle",
+      "Odessey and Oracle — The Chrysanthemums",
+      "Speculatio — Odessey And Oracle",
+      "The Cold and Distant Oracle — Midnight Odyssey",
+      "A Rose For Emily — The Zombies",
+      "All the Best — The Zombies",
+      "Live In Concert at Metropolis Studios, London — The Zombies",
+      "Different Game — The Zombies"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "money jungle",
+     "category": "pre-1970",
+     "rank": 1,
+     "ms": 571,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Money Jungle — Duke Ellington",
+      "Money Jungle: Provocative in Blue — Terri Lyne Carrington, Erin Boheme",
+      "Money Junkie — Lady3 Kush",
+      "More Jungle Drums — Morton Gould and His Orchestra",
+      "Hungry Koala Presents : 2015 Annual — Astro (AUS)",
+      "Money Gang — Hustensaft Jüngling",
+      "Money Jungle — Optagonen Kids",
+      "Poney Jungle — RP Quartet",
+      "Artist — A Boogie Wit da Hoodie",
+      "Amigo — Chef'Special"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "forever changes",
+     "category": "pre-1970",
+     "rank": 10,
+     "ms": 313,
+     "rank_mbid": null,
+     "rank_title": 10,
+     "partial": false,
+     "top": [
+      "Forever Changed — Nat Bartsch",
+      "Forever Changed — Letizia Dei",
+      "The Need To Feel Alive — Forever Changed",
+      "Forever Changed — T. Graham Brown",
+      "Forever Changing — Laffey",
+      "Forever — Cranes",
+      "World Changed Forever — Dreamtale",
+      "The Man Who Changed Guitar Forever — Allan Holdsworth",
+      "Forever in the Eye of Change — Bysshe",
+      "Forever Changes — Love"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 9,
+     "hit@3": 5,
+     "hit@10": 6,
+     "mrr": 0.567
+    },
+    "by_category": {
+     "romanian": {
+      "n": 3,
+      "hit@3": 2,
+      "hit@10": 2,
+      "mrr": 0.667
+     },
+     "bandcamp": {
+      "n": 3,
+      "hit@3": 2,
+      "hit@10": 2,
+      "mrr": 0.667
+     },
+     "pre-1970": {
+      "n": 3,
+      "hit@3": 1,
+      "hit@10": 2,
+      "mrr": 0.367
+     }
+    }
+   }
+  },
+  {
+   "label": "warm",
+   "results": [
+    {
+     "query": "subcarpați pielea de găină",
+     "category": "romanian",
+     "rank": null,
+     "ms": 189,
+     "rank_mbid": null,
+     "rank_title": null,
+     "partial": false,
+     "top": [
+      "Piele De Gaina — Subcarpaţi"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "vița de vie fenomental",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 112,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Fenomental — Vita de Vie"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "alexandru andrieș muzică de divorț",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 159,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Muzica de divort — Alexandru Andries"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "cindy lee diamond jubilee",
+     "category": "bandcamp",
+     "rank": null,
+     "ms": 118,
+     "rank_mbid": null,
+     "rank_title": null,
+     "partial": false,
+     "top": [
+      "Diamond Jubilee — Bent Denim"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "deerhoof miracle-level",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 151,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Miracle-Level — Deerhoof"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "king gizzard flight b741",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 146,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Flight b741 — King Gizzard & The Lizard Wizard"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "odessey and oracle",
+     "category": "pre-1970",
+     "rank": null,
+     "ms": 313,
+     "rank_mbid": null,
+     "rank_title": null,
+     "partial": false,
+     "top": [
+      "Odessey & Oracle — The Zombies",
+      "Technicolor — Odessey And Oracle",
+      "Crocorama — Odessey And Oracle",
+      "Odessey and Oracle — The Chrysanthemums",
+      "Speculatio — Odessey And Oracle",
+      "The Cold and Distant Oracle — Midnight Odyssey",
+      "A Rose For Emily — The Zombies",
+      "All the Best — The Zombies",
+      "Live In Concert at Metropolis Studios, London — The Zombies",
+      "Different Game — The Zombies"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "money jungle",
+     "category": "pre-1970",
+     "rank": 1,
+     "ms": 385,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Money Jungle — Duke Ellington",
+      "Money Jungle: Provocative in Blue — Terri Lyne Carrington, Erin Boheme",
+      "Money Junkie — Lady3 Kush",
+      "More Jungle Drums — Morton Gould and His Orchestra",
+      "Hungry Koala Presents : 2015 Annual — Astro (AUS)",
+      "Money Gang — Hustensaft Jüngling",
+      "Money Jungle — Optagonen Kids",
+      "Poney Jungle — RP Quartet",
+      "Artist — A Boogie Wit da Hoodie",
+      "Amigo — Chef'Special"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "forever changes",
+     "category": "pre-1970",
+     "rank": 10,
+     "ms": 277,
+     "rank_mbid": null,
+     "rank_title": 10,
+     "partial": false,
+     "top": [
+      "Forever Changed — Nat Bartsch",
+      "Forever Changed — Letizia Dei",
+      "The Need To Feel Alive — Forever Changed",
+      "Forever Changed — T. Graham Brown",
+      "Forever Changing — Laffey",
+      "Forever — Cranes",
+      "World Changed Forever — Dreamtale",
+      "The Man Who Changed Guitar Forever — Allan Holdsworth",
+      "Forever in the Eye of Change — Bysshe",
+      "Forever Changes — Love"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 9,
+     "hit@3": 5,
+     "hit@10": 6,
+     "mrr": 0.567
+    },
+    "by_category": {
+     "romanian": {
+      "n": 3,
+      "hit@3": 2,
+      "hit@10": 2,
+      "mrr": 0.667
+     },
+     "bandcamp": {
+      "n": 3,
+      "hit@3": 2,
+      "hit@10": 2,
+      "mrr": 0.667
+     },
+     "pre-1970": {
+      "n": 3,
+      "hit@3": 1,
+      "hit@10": 2,
+      "mrr": 0.367
+     }
+    }
+   }
+  }
+ ]
+}

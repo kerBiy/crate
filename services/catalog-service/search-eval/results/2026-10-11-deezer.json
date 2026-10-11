@@ -1,0 +1,1369 @@
+{
+ "mode": "endpoint",
+ "base": "http://localhost:8092",
+ "path": "/albums/search-deezer",
+ "match": "title",
+ "cases": "queries.json",
+ "passes": [
+  {
+   "label": "cold",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": 1,
+     "ms": 513,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "In Rainbows — Radiohead",
+      "Kid A — Radiohead",
+      "Pablo Honey — Radiohead",
+      "The Bends — Radiohead",
+      "A Moon Shaped Pool — Radiohead",
+      "Amnesiac — Radiohead",
+      "Hail To the Thief — Radiohead",
+      "OK Computer OKNOTOK 1997 2017 — Radiohead",
+      "KID A MNESIA — Radiohead"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": 1,
+     "ms": 293,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "DAMN. — Kendrick Lamar",
+      "To Pimp A Butterfly — Kendrick Lamar",
+      "Mr. Morale & The Big Steppers — Kendrick Lamar",
+      "GNX — Kendrick Lamar",
+      "good kid, m.A.A.d city — Kendrick Lamar",
+      "Black Panther The Album Music From And Inspired By — Kendrick Lamar",
+      "untitled unmastered. — Kendrick Lamar",
+      "Section.80 — Kendrick Lamar",
+      "DAMN. COLLECTORS EDITION. — Kendrick Lamar",
+      "Overly Dedicated — Kendrick Lamar"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 1,
+     "ms": 475,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Debut — Björk",
+      "Homogenic — Björk",
+      "Post — Björk",
+      "Vespertine — Björk",
+      "Fossora — Björk",
+      "Volta — Björk",
+      "Post (Live) — Björk",
+      "Selma Songs — Björk",
+      "Telegram — Björk",
+      "Vulnicura — Björk"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": 1,
+     "ms": 411,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Random Access Memories — Daft Punk",
+      "Discovery — Daft Punk",
+      "Alive 2007 — Daft Punk",
+      "Homework — Daft Punk",
+      "Human After All — Daft Punk",
+      "TRON: Legacy — Daft Punk",
+      "Musique, Vol. 1 — Daft Punk",
+      "Daft Club — Daft Punk",
+      "TRON: Legacy Reconfigured — Daft Punk",
+      "Around the World — Daft Punk"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 220,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Rubber Soul — The Beatles",
+      "Revolver — The Beatles",
+      "The Beatles — The Beatles",
+      "Sgt. Pepper's Lonely Hearts Club Band — The Beatles",
+      "Let It Be — The Beatles",
+      "Magical Mystery Tour — The Beatles",
+      "Help! — The Beatles",
+      "Please Please Me — The Beatles",
+      "Yellow Submarine — The Beatles"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 290,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Kind Of Blue — Miles Davis",
+      "Bitches Brew — Miles Davis",
+      "In A Silent Way — Miles Davis",
+      "Ascenseur pour l'échafaud — Miles Davis",
+      "Tutu — Miles Davis",
+      "Milestones — Miles Davis",
+      "Get Up With It — Miles Davis",
+      "Doo-Bop — Miles Davis",
+      "'Round About Midnight — Miles Davis",
+      "Workin' With The Miles Davis Quintet — Miles Davis"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 899,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "American Beauty — Grateful Dead",
+      "Workingman's Dead — Grateful Dead",
+      "In the Dark — Grateful Dead",
+      "Aoxomoxoa — Grateful Dead",
+      "Terrapin Station — Grateful Dead",
+      "Europe '72 (Live) — Grateful Dead",
+      "The Music Never Stopped (Live at Philadelphia Spectrum, Philadelphia, PA, 5/13/1978) — Grateful Dead",
+      "Shakedown Street — Grateful Dead",
+      "From the Mars Hotel — Grateful Dead",
+      "Merriweather 6/30/85 (Live) — Grateful Dead"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 506,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Highway 61 Revisited — Bob Dylan",
+      "Desire — Bob Dylan",
+      "Bringing It All Back Home — Bob Dylan",
+      "Blood On The Tracks — Bob Dylan",
+      "Blonde On Blonde — Bob Dylan",
+      "The Freewheelin' Bob Dylan — Bob Dylan",
+      "Pat Garrett & Billy The Kid (Soundtrack From The Motion Picture) — Bob Dylan",
+      "Rough and Rowdy Ways — Bob Dylan",
+      "Nashville Skyline — Bob Dylan",
+      "The Times They Are A-Changin' — Bob Dylan"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 1,
+     "ms": 293,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "OK Computer OKNOTOK 1997 2017 — Radiohead",
+      "Ok Computer Però Trap — Pippo Sowlo",
+      "MF Computer (Radiohead's OK Computer Reimagined) — Mother Falcon",
+      "MCP Performs Radiohead: OK Computer — Molotov Cocktail Piano",
+      "OK Computer (8-bit) — Quinton Sung",
+      "OK COMPUTER. — MONTROPOLIS",
+      "Ok Computer — yu song yoll",
+      "OK Computer — Lowor",
+      "OK Computer — The Doraemons"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": 1,
+     "ms": 584,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Kind Of Blue — Miles Davis",
+      "In Sight — Kind Of Blue",
+      "KIND OF BLUE — Yurika Ohyama",
+      "Kind of Blue — The New York Jazz Trio",
+      "Kind of Blue — Sidney Bechet",
+      "Kind of Blue — TQ",
+      "Kind of Blue - EP — Miles Davis",
+      "Kind of Blue Ballads — Miles Davis",
+      "Kind of Blue, Special Edition: Miles Davis — Miles Davis",
+      "Kind of Blue - America — TQ"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 1,
+     "ms": 586,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Abbey Road — The Beatles Complete On Ukulele",
+      "Abbey Road — Rock4",
+      "The Abbey Road Sessions — Kylie Minogue",
+      "Abbey Road Masters: Emotive Pop — Halla",
+      "Abbey Road Masters: The Soul Sessions — Speedometer",
+      "Abbey Road Live — Colin Vearncombe",
+      "The Abbey Road Sessions — Donavon Frankenreiter",
+      "Abbey Road Masters: Repair & Reflect — Joe Kirby",
+      "Abbey Road Relived (Live) — The Analogues"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 1,
+     "ms": 175,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "To Pimp A Butterfly — Kendrick Lamar",
+      "To Pimp A Butterfly — Mormon Traphouse",
+      "To Pimp A Butterfly — Amy Chen",
+      "How to Pimp a Butterfly — The Click"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 1,
+     "ms": 803,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Rumours (Digi Digi ) — Whizzkids",
+      "Rumours — Jack Dean",
+      "Rumours — Carlton Livingstone",
+      "Infant — RUMOURS",
+      "Rumours — Freddie Mcgregor",
+      "Rumours — Harry Jxye",
+      "Megamix — RUMOURS",
+      "Rumours — PJD",
+      "Rumours — Gully Bop"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": 1,
+     "ms": 685,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "The Dark Side of the Moon — Pink Floyd",
+      "The Dark Side of the Moon — Annie Lalalove",
+      "Metamorphosis — The Dark Side of the Moon",
+      "The Dark Side Of The Moon — Martin miller",
+      "New Horizons — The Dark Side of the Moon",
+      "The Gates of Time — The Dark Side of the Moon",
+      "The Imprisoned Kid — The Dark Side of the Moon",
+      "The Dark Side Of The Moon (Live at Wembley 1974) [2023 Master] — Pink Floyd",
+      "The Dark Side Of The Moon — Ricsárdgír",
+      "The Dark Side of the Moon Redux — Roger Waters"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 131,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Kid A — Radiohead",
+      "KID A MNESIA — Radiohead",
+      "The King Of Limbs — Radiohead",
+      "LANDSCAPES, KNIVES & GLUE – Radiohead's Kid A Recycled — Wooden Elephant"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 129,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Revolver — The Beatles",
+      "Revolver — The Beatles Complete On Ukulele",
+      "A Salute To The Beatles — The Revolver Road Band"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 348,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "The Wall — Pink Floyd",
+      "Pulse (Live) — Pink Floyd",
+      "Solo Cello: Pink Floyd's the Wall — Solo Sounds",
+      "The Wall for Babies: The Complete Pink Floyd-The Wall Album for Babies — Gustavo Zavala",
+      "Rock Masters Live! the Best Covers... (Big One vs Pink Floyd - Ian Paice and Forever Deep vs Deep Purple - Another Brick in the Wall, Mone — Big One",
+      "Delicate Sound of Thunder (Live) — Pink Floyd",
+      "Pink Floyd Show — Big One",
+      "Another Brick In The Wall (Hands On Pink Floyd ) — The Chill-Out Orchestra",
+      "Another Brick in the Wall (Pink Floyd Meets Chill-Out) — The Chill-Out Orchestra",
+      "8-Tracks — Pink Floyd"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 154,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Watch The Throne — JAY Z"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 716,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Blue — Joni Mitchell",
+      "Blue (Da Ba Dee) — Eiffel 65",
+      "Blue — Jonas Blue",
+      "Blue & Lonesome — The Rolling Stones",
+      "Blue — LeAnn Rimes",
+      "Blue — Third Eye Blind",
+      "All Rise — Blue",
+      "One Love — Blue",
+      "Blue — Double",
+      "Blue — KiDi"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 737,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Red — Taylor Swift",
+      "RED — April Art",
+      "Red — King Crimson",
+      "R.E.D. — Ne-Yo",
+      "Red & Black Light — Ibrahim Maalouf",
+      "red — Lil Darkie",
+      "R.E.D. (Rythmes Extrêmement Dangereux) — M. Pokora",
+      "Until We Have Faces — Red",
+      "Innocence & Instinct — Red",
+      "Red — The Communards"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 445,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "1989 — Taylor Swift",
+      "1989 — Kölsch",
+      "1989 — Ryan Adams",
+      "1989 — Саша Скул",
+      "1989 — Kid Vinil",
+      "1989 — Toinho de Limoeiro",
+      "1989 — Pharms",
+      "1989 — Bob & Robison",
+      "1989 — Ditão",
+      "1989 — Disparition"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 381,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "21 — Adele",
+      "21 — Mig",
+      "21 — Omarion",
+      "21 & Up — Lil' Ru",
+      "21 — Estefanía",
+      "21 & Over — Tha Alkaholiks",
+      "'21 — Corey Kent",
+      "21 — Marcus Intalex",
+      "Without Warning — 21 Savage",
+      "american dream — 21 Savage"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": 7,
+     "ms": 436,
+     "rank_mbid": null,
+     "rank_title": 7,
+     "partial": false,
+     "top": [
+      "Radiohedonistyczne — Monika Borzym",
+      "Amnesiac — Radiohead",
+      "OK Computer OKNOTOK 1997 2017 — Radiohead",
+      "Com Lag: 2+2=5 — Radiohead",
+      "Karma Police — Radiohead",
+      "My Iron Lung — Radiohead",
+      "Kid A — Radiohead",
+      "Drill EP — Radiohead",
+      "OK Computer — Radiohead",
+      "In Rainbows — Radiohead"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 1,
+     "ms": 412,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Lucinda Williams Sings The Beatles From Abbey Road — Lucinda Williams",
+      "Abbey Road — The Beatles Complete On Ukulele",
+      "Bob Baldwin Presents: Abbey Road and The Beatles — Bob Baldwin",
+      "The Beatles Sweet Symphony — Abbey Road's Philharmonic Orchestra",
+      "The Beatles Tribute — Abbey Road All-Stars",
+      "Oldies Radio Hit Songs! Featuring the Music of the Beatles, Burt Bacharach, And More — Magical Abbey Road Band",
+      "A Beatles Tribute: Rangzen Live at the Abbey Road Studios — Rangzen",
+      "Beatles By The Sea — Magical Abbey Road Band",
+      "After Abbey Road: Celebrating the 50th Anniversary of The Beatles' Classic (Live) — Mike Westbrook"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": 1,
+     "ms": 175,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "DAMN. — Kendrick Lamar",
+      "DAMN. COLLECTORS EDITION. — Kendrick Lamar"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 1,
+     "ms": 297,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Rumours Live — Fleetwood Mac",
+      "Fleetwood Mac Rumours: Solo Cello — Solo Sounds",
+      "Plays Fleetwood Mac's Rumours — The Royal Philharmonic Orchestra",
+      "Live... Rumours Tour, LA 1978 -Remastered — Fleetwood Mac",
+      "A Tribute to Fleetwood Mac — Rhiannon & the Rumours",
+      "Track Record: De oorsprong van Rumours - Fleetwood Mac — Peter de Ruiter"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 172,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Homogenic — Björk",
+      "Homogenic (Live) — Björk"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 297,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Ágætis byrjun — Sigur Rós",
+      "Ágætis byrjun (A Good Beginning) — Sigur Rós"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 156,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Lemonade — Beyoncé"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 370,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Ace of Spades — Motörhead",
+      "Born to Booze, Live to Sin - A Tribute to Motörhead (Live) — Ace Of Spades",
+      "The Löst Tapes, Vol. 8 (Live at Winter Gardens, Margate, 5th Nov 1984) — Motörhead",
+      "Orgasmatron — Motörhead",
+      "Live at Montreux Jazz Festival '07 — Motörhead",
+      "The Löst Tapes — Motörhead",
+      "All the Aces — Motörhead"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 29,
+     "hit@10": 30,
+     "mrr": 0.971
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 6,
+      "hit@10": 6,
+      "mrr": 1.0
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 3,
+      "hit@10": 4,
+      "mrr": 0.786
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     }
+    }
+   }
+  },
+  {
+   "label": "warm",
+   "results": [
+    {
+     "query": "radiohead",
+     "category": "artist",
+     "rank": 1,
+     "ms": 340,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "In Rainbows — Radiohead",
+      "Kid A — Radiohead",
+      "Pablo Honey — Radiohead",
+      "The Bends — Radiohead",
+      "A Moon Shaped Pool — Radiohead",
+      "Amnesiac — Radiohead",
+      "Hail To the Thief — Radiohead",
+      "OK Computer OKNOTOK 1997 2017 — Radiohead",
+      "KID A MNESIA — Radiohead"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kendrick lamar",
+     "category": "artist",
+     "rank": 1,
+     "ms": 378,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "DAMN. — Kendrick Lamar",
+      "To Pimp A Butterfly — Kendrick Lamar",
+      "Mr. Morale & The Big Steppers — Kendrick Lamar",
+      "GNX — Kendrick Lamar",
+      "good kid, m.A.A.d city — Kendrick Lamar",
+      "Black Panther The Album Music From And Inspired By — Kendrick Lamar",
+      "untitled unmastered. — Kendrick Lamar",
+      "Section.80 — Kendrick Lamar",
+      "DAMN. COLLECTORS EDITION. — Kendrick Lamar",
+      "Overly Dedicated — Kendrick Lamar"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "bjork",
+     "category": "artist",
+     "rank": 1,
+     "ms": 508,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Debut — Björk",
+      "Homogenic — Björk",
+      "Post — Björk",
+      "Vespertine — Björk",
+      "Fossora — Björk",
+      "Volta — Björk",
+      "Post (Live) — Björk",
+      "Selma Songs — Björk",
+      "Telegram — Björk",
+      "Vulnicura — Björk"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "daft punk",
+     "category": "artist",
+     "rank": 1,
+     "ms": 413,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Random Access Memories — Daft Punk",
+      "Discovery — Daft Punk",
+      "Alive 2007 — Daft Punk",
+      "Homework — Daft Punk",
+      "Human After All — Daft Punk",
+      "TRON: Legacy — Daft Punk",
+      "Musique, Vol. 1 — Daft Punk",
+      "Daft Club — Daft Punk",
+      "TRON: Legacy Reconfigured — Daft Punk",
+      "Around the World — Daft Punk"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the beatles",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 429,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Rubber Soul — The Beatles",
+      "Revolver — The Beatles",
+      "The Beatles — The Beatles",
+      "Sgt. Pepper's Lonely Hearts Club Band — The Beatles",
+      "Let It Be — The Beatles",
+      "Magical Mystery Tour — The Beatles",
+      "Help! — The Beatles",
+      "Please Please Me — The Beatles",
+      "Yellow Submarine — The Beatles"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "miles davis",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 318,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Kind Of Blue — Miles Davis",
+      "Bitches Brew — Miles Davis",
+      "In A Silent Way — Miles Davis",
+      "Ascenseur pour l'échafaud — Miles Davis",
+      "Tutu — Miles Davis",
+      "Milestones — Miles Davis",
+      "Get Up With It — Miles Davis",
+      "Doo-Bop — Miles Davis",
+      "'Round About Midnight — Miles Davis",
+      "Workin' With The Miles Davis Quintet — Miles Davis"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "grateful dead",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 424,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "American Beauty — Grateful Dead",
+      "Workingman's Dead — Grateful Dead",
+      "In the Dark — Grateful Dead",
+      "Aoxomoxoa — Grateful Dead",
+      "Terrapin Station — Grateful Dead",
+      "Europe '72 (Live) — Grateful Dead",
+      "The Music Never Stopped (Live at Philadelphia Spectrum, Philadelphia, PA, 5/13/1978) — Grateful Dead",
+      "Shakedown Street — Grateful Dead",
+      "From the Mars Hotel — Grateful Dead",
+      "Merriweather 6/30/85 (Live) — Grateful Dead"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "bob dylan",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 574,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Highway 61 Revisited — Bob Dylan",
+      "Desire — Bob Dylan",
+      "Bringing It All Back Home — Bob Dylan",
+      "Blood On The Tracks — Bob Dylan",
+      "Blonde On Blonde — Bob Dylan",
+      "The Freewheelin' Bob Dylan — Bob Dylan",
+      "Pat Garrett & Billy The Kid (Soundtrack From The Motion Picture) — Bob Dylan",
+      "Rough and Rowdy Ways — Bob Dylan",
+      "Nashville Skyline — Bob Dylan",
+      "The Times They Are A-Changin' — Bob Dylan"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "ok computer",
+     "category": "title",
+     "rank": 1,
+     "ms": 186,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "OK Computer — Radiohead",
+      "OK Computer OKNOTOK 1997 2017 — Radiohead",
+      "Ok Computer Però Trap — Pippo Sowlo",
+      "MF Computer (Radiohead's OK Computer Reimagined) — Mother Falcon",
+      "MCP Performs Radiohead: OK Computer — Molotov Cocktail Piano",
+      "OK Computer (8-bit) — Quinton Sung",
+      "OK COMPUTER. — MONTROPOLIS",
+      "Ok Computer — yu song yoll",
+      "OK Computer — Lowor",
+      "OK Computer — The Doraemons"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kind of blue",
+     "category": "title",
+     "rank": 1,
+     "ms": 427,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Kind Of Blue — Miles Davis",
+      "In Sight — Kind Of Blue",
+      "KIND OF BLUE — Yurika Ohyama",
+      "Kind of Blue — The New York Jazz Trio",
+      "Kind of Blue — Sidney Bechet",
+      "Kind of Blue — TQ",
+      "Kind of Blue - EP — Miles Davis",
+      "Kind of Blue Ballads — Miles Davis",
+      "Kind of Blue, Special Edition: Miles Davis — Miles Davis",
+      "Kind of Blue - America — TQ"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "abbey road",
+     "category": "title",
+     "rank": 1,
+     "ms": 408,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Abbey Road — The Beatles Complete On Ukulele",
+      "Abbey Road — Rock4",
+      "The Abbey Road Sessions — Kylie Minogue",
+      "Abbey Road Masters: Emotive Pop — Halla",
+      "Abbey Road Masters: The Soul Sessions — Speedometer",
+      "Abbey Road Live — Colin Vearncombe",
+      "The Abbey Road Sessions — Donavon Frankenreiter",
+      "Abbey Road Masters: Repair & Reflect — Joe Kirby",
+      "Abbey Road Relived (Live) — The Analogues"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "to pimp a butterfly",
+     "category": "title",
+     "rank": 1,
+     "ms": 100,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "To Pimp A Butterfly — Kendrick Lamar",
+      "To Pimp A Butterfly — Mormon Traphouse",
+      "To Pimp A Butterfly — Amy Chen",
+      "How to Pimp a Butterfly — The Click"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "rumours",
+     "category": "title",
+     "rank": 1,
+     "ms": 432,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Rumours (Digi Digi ) — Whizzkids",
+      "Rumours — Jack Dean",
+      "Rumours — Carlton Livingstone",
+      "Infant — RUMOURS",
+      "Rumours — Freddie Mcgregor",
+      "Rumours — Harry Jxye",
+      "Megamix — RUMOURS",
+      "Rumours — PJD",
+      "Rumours — Gully Bop"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the dark side of the moon",
+     "category": "title",
+     "rank": 1,
+     "ms": 391,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "The Dark Side of the Moon — Pink Floyd",
+      "The Dark Side of the Moon — Annie Lalalove",
+      "Metamorphosis — The Dark Side of the Moon",
+      "The Dark Side Of The Moon — Martin miller",
+      "New Horizons — The Dark Side of the Moon",
+      "The Gates of Time — The Dark Side of the Moon",
+      "The Imprisoned Kid — The Dark Side of the Moon",
+      "The Dark Side Of The Moon (Live at Wembley 1974) [2023 Master] — Pink Floyd",
+      "The Dark Side Of The Moon — Ricsárdgír",
+      "The Dark Side of the Moon Redux — Roger Waters"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "radiohead kid a",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 146,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Kid A — Radiohead",
+      "KID A MNESIA — Radiohead",
+      "The King Of Limbs — Radiohead",
+      "LANDSCAPES, KNIVES & GLUE – Radiohead's Kid A Recycled — Wooden Elephant"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "beatles revolver",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 123,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Revolver — The Beatles",
+      "Revolver — The Beatles Complete On Ukulele",
+      "A Salute To The Beatles — The Revolver Road Band"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "pink floyd the wall",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 185,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "The Wall — Pink Floyd",
+      "Pulse (Live) — Pink Floyd",
+      "Solo Cello: Pink Floyd's the Wall — Solo Sounds",
+      "The Wall for Babies: The Complete Pink Floyd-The Wall Album for Babies — Gustavo Zavala",
+      "Rock Masters Live! the Best Covers... (Big One vs Pink Floyd - Ian Paice and Forever Deep vs Deep Purple - Another Brick in the Wall, Mone — Big One",
+      "Delicate Sound of Thunder (Live) — Pink Floyd",
+      "Pink Floyd Show — Big One",
+      "Another Brick In The Wall (Hands On Pink Floyd ) — The Chill-Out Orchestra",
+      "Another Brick in the Wall (Pink Floyd Meets Chill-Out) — The Chill-Out Orchestra",
+      "8-Tracks — Pink Floyd"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "jay-z watch the throne",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 122,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Watch The Throne — JAY Z"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "blue",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 467,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Blue — Joni Mitchell",
+      "Blue (Da Ba Dee) — Eiffel 65",
+      "Blue — Jonas Blue",
+      "Blue & Lonesome — The Rolling Stones",
+      "Blue — LeAnn Rimes",
+      "Blue — Third Eye Blind",
+      "All Rise — Blue",
+      "One Love — Blue",
+      "Blue — Double",
+      "Blue — KiDi"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "red",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 311,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Red — Taylor Swift",
+      "RED — April Art",
+      "Red — King Crimson",
+      "R.E.D. — Ne-Yo",
+      "Red & Black Light — Ibrahim Maalouf",
+      "red — Lil Darkie",
+      "R.E.D. (Rythmes Extrêmement Dangereux) — M. Pokora",
+      "Until We Have Faces — Red",
+      "Innocence & Instinct — Red",
+      "Red — The Communards"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "1989",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 481,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "1989 — Taylor Swift",
+      "1989 — Kölsch",
+      "1989 — Ryan Adams",
+      "1989 — Саша Скул",
+      "1989 — Kid Vinil",
+      "1989 — Toinho de Limoeiro",
+      "1989 — Pharms",
+      "1989 — Bob & Robison",
+      "1989 — Ditão",
+      "1989 — Disparition"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "21",
+     "category": "short-title",
+     "rank": 1,
+     "ms": 411,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "21 — Adele",
+      "21 — Mig",
+      "21 — Omarion",
+      "21 & Up — Lil' Ru",
+      "21 — Estefanía",
+      "21 & Over — Tha Alkaholiks",
+      "'21 — Corey Kent",
+      "21 — Marcus Intalex",
+      "Without Warning — 21 Savage",
+      "american dream — 21 Savage"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "radiohed",
+     "category": "typo",
+     "rank": 7,
+     "ms": 413,
+     "rank_mbid": null,
+     "rank_title": 7,
+     "partial": false,
+     "top": [
+      "Radiohedonistyczne — Monika Borzym",
+      "Amnesiac — Radiohead",
+      "OK Computer OKNOTOK 1997 2017 — Radiohead",
+      "Com Lag: 2+2=5 — Radiohead",
+      "Karma Police — Radiohead",
+      "My Iron Lung — Radiohead",
+      "Kid A — Radiohead",
+      "Drill EP — Radiohead",
+      "OK Computer — Radiohead",
+      "In Rainbows — Radiohead"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "beatels abbey road",
+     "category": "typo",
+     "rank": 1,
+     "ms": 244,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Abbey Road — The Beatles",
+      "Lucinda Williams Sings The Beatles From Abbey Road — Lucinda Williams",
+      "Abbey Road — The Beatles Complete On Ukulele",
+      "Bob Baldwin Presents: Abbey Road and The Beatles — Bob Baldwin",
+      "The Beatles Sweet Symphony — Abbey Road's Philharmonic Orchestra",
+      "The Beatles Tribute — Abbey Road All-Stars",
+      "Oldies Radio Hit Songs! Featuring the Music of the Beatles, Burt Bacharach, And More — Magical Abbey Road Band",
+      "A Beatles Tribute: Rangzen Live at the Abbey Road Studios — Rangzen",
+      "Beatles By The Sea — Magical Abbey Road Band",
+      "After Abbey Road: Celebrating the 50th Anniversary of The Beatles' Classic (Live) — Mike Westbrook"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kendrik lamar damn",
+     "category": "typo",
+     "rank": 1,
+     "ms": 136,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "DAMN. — Kendrick Lamar",
+      "DAMN. COLLECTORS EDITION. — Kendrick Lamar"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "fleetwod mac rumours",
+     "category": "typo",
+     "rank": 1,
+     "ms": 171,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Rumours — Fleetwood Mac",
+      "Rumours Live — Fleetwood Mac",
+      "Fleetwood Mac Rumours: Solo Cello — Solo Sounds",
+      "Plays Fleetwood Mac's Rumours — The Royal Philharmonic Orchestra",
+      "Live... Rumours Tour, LA 1978 -Remastered — Fleetwood Mac",
+      "A Tribute to Fleetwood Mac — Rhiannon & the Rumours",
+      "Track Record: De oorsprong van Rumours - Fleetwood Mac — Peter de Ruiter"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "Björk Homogenic",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 124,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Homogenic — Björk",
+      "Homogenic (Live) — Björk"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "sigur ros agaetis byrjun",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 122,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Ágætis byrjun — Sigur Rós",
+      "Ágætis byrjun (A Good Beginning) — Sigur Rós"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "beyonce lemonade",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 207,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Lemonade — Beyoncé"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "motorhead ace of spades",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 206,
+     "rank_mbid": null,
+     "rank_title": 1,
+     "partial": false,
+     "top": [
+      "Ace of Spades — Motörhead",
+      "Born to Booze, Live to Sin - A Tribute to Motörhead (Live) — Ace Of Spades",
+      "The Löst Tapes, Vol. 8 (Live at Winter Gardens, Margate, 5th Nov 1984) — Motörhead",
+      "Orgasmatron — Motörhead",
+      "Live at Montreux Jazz Festival '07 — Motörhead",
+      "The Löst Tapes — Motörhead",
+      "All the Aces — Motörhead"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 30,
+     "hit@3": 29,
+     "hit@10": 30,
+     "mrr": 0.971
+    },
+    "by_category": {
+     "artist": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "many-compilations": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "title": {
+      "n": 6,
+      "hit@3": 6,
+      "hit@10": 6,
+      "mrr": 1.0
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "short-title": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "typo": {
+      "n": 4,
+      "hit@3": 3,
+      "hit@10": 4,
+      "mrr": 0.786
+     },
+     "diacritics": {
+      "n": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     }
+    }
+   }
+  }
+ ]
+}

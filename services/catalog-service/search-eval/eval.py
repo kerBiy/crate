@@ -114,8 +114,37 @@ def current_mb_query(user_input):
 
 # ---------------------------------------------------------------- scoring
 
-def load_cases():
-    return json.loads((HERE / "queries.json").read_text())["cases"]
+def load_cases(name="queries.json"):
+    return json.loads((HERE / name).read_text())["cases"]
+
+
+# Matching by title + artist, for sources without MBIDs (--match title).
+FOLD = str.maketrans({"æ": "ae", "Æ": "AE", "ø": "o", "Ø": "O", "ß": "ss", "ð": "d", "þ": "th", "ł": "l"})
+
+
+def norm(text):
+    text = unicodedata.normalize("NFKD", (text or "").translate(FOLD))
+    text = "".join(c for c in text if not unicodedata.combining(c)).lower()
+    text = re.sub(r"[^\w\s]|_", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def artist_names(credit):
+    """'Jay‐Z & Kanye West' → {'jay z', 'kanye west'}: each credited name, normalized, no leading 'the'."""
+    parts = re.split(r"\s*(?:&|,|•|/|\+|;| and | feat\.? | featuring | with | x )\s*", credit or "", flags=re.I)
+    return {re.sub(r"^the ", "", norm(p)) for p in parts if norm(p)}
+
+
+def same_artist(expected, credit):
+    return bool(artist_names(expected) & artist_names(credit))
+
+
+def best_rank_by_title(items, expected):
+    for i, item in enumerate(items, 1):
+        if any(norm(item["title"]) == norm(e["title"]) and same_artist(e["artist"], item["artistCredit"])
+               for e in expected):
+            return i
+    return None
 
 
 def best_rank(ids, expected):
@@ -162,19 +191,21 @@ def print_results(title, results):
 # ---------------------------------------------------------------- modes
 
 def run_endpoint(args):
-    cases = load_cases()
+    cases = load_cases(args.cases)
     passes = []
     for p in range(1, args.passes + 1):
         results = []
         for c in cases:
-            url = f"{args.base}/albums/search?" + urlencode({"q": c["query"], "limit": 20})
+            url = f"{args.base}{args.path}?" + urlencode({"q": c["query"], "limit": 20})
             start = time.monotonic()
             body, status = http_get_json(url)
             ms = round((time.monotonic() - start) * 1000)
             if body is None:
                 sys.exit(f"{url} failed: {status}")
             items = body["items"]
-            rank = best_rank([i["id"] for i in items], c["expected"])
+            rank_mbid = best_rank([i["id"] for i in items], c["expected"])
+            rank_title = best_rank_by_title(items, c["expected"])
+            rank = rank_title if args.match == "title" else rank_mbid
             # Search hides albums without a cover: say so when that's why an expected one is missing.
             returned = {i["id"] for i in items}
             no_cover = [] if rank and rank <= TOP else [
@@ -183,6 +214,7 @@ def run_endpoint(args):
             notes = (["partial"] if body.get("partial") else []) + [f"no cover: {t}" for t in no_cover]
             results.append({
                 "query": c["query"], "category": c["category"], "rank": rank, "ms": ms,
+                "rank_mbid": rank_mbid, "rank_title": rank_title,
                 "partial": body.get("partial", False),
                 "top": [f"{i['title']} — {i['artistCredit']}" for i in items[:10]],
                 "no_cover": no_cover,
@@ -192,11 +224,16 @@ def run_endpoint(args):
         summary = print_results(f"endpoint {args.base}, pass {p} ({label})", results)
         ms = sorted(r["ms"] for r in results)
         print(f"  latency ms: median {ms[len(ms) // 2]}, max {ms[-1]}")
+        other = "mbid" if args.match == "title" else "title"
+        alt = summarize([{**r, "rank": r[f"rank_{other}"]} for r in results])["all"]
+        print(f"  same run matched by {other}: hit@{TOP} {alt[f'hit@{TOP}']}/{alt['n']}  hit@10 {alt['hit@10']}/{alt['n']}"
+              f"  MRR {alt['mrr']}")
         dropped = [(r["query"], t) for r in results for t in r["no_cover"]]
         print("  expected albums missing because they have no cover: "
               + (", ".join(f"{t} ('{q}')" for q, t in dropped) if dropped else "none"))
         passes.append({"label": label, "results": results, "summary": summary})
-    write(args.out, {"mode": "endpoint", "base": args.base, "passes": passes})
+    write(args.out, {"mode": "endpoint", "base": args.base, "path": args.path, "match": args.match,
+                     "cases": args.cases, "passes": passes})
 
 
 def run_mb(args):
@@ -252,6 +289,9 @@ def main():
     e = sub.add_parser("endpoint")
     e.add_argument("--base", default="http://localhost:8082")
     e.add_argument("--passes", type=int, default=2)
+    e.add_argument("--path", default="/albums/search")
+    e.add_argument("--match", choices=["mbid", "title"], default="mbid")
+    e.add_argument("--cases", default="queries.json")
     e.add_argument("--out")
     m = sub.add_parser("mb")
     m.add_argument("--out")

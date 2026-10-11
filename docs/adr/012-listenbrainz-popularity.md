@@ -25,10 +25,14 @@ On a cold search, after MusicBrainz answers and before ranking:
    - body sent with a Content-Length (ListenBrainz rejects chunked bodies)
 3. Rank the query's results by **MusicBrainz score + 15·ln(1 + releases) + 2·ln(1 + listeners)**
    (formula C, `crate.catalog.search.listener-weight: 2`). The artist path ("radiohead") stays ordered by
-   release count.
+   release count; ties go by earliest first release (unknown last), then by MBID (added 2026-10-12: they
+   used to keep MusicBrainz's order, which changes from call to call, e.g. "frank sinatra" in the
+   Step 2 eval).
 4. If ListenBrainz fails in any way (timeout, 4xx/5xx including 429, network error, full rate-limit
    queue), rank with **no** listener counts, not even stored ones. That is exactly the ranking from
    before this ADR. The search never fails and never waits more than the timeout because of ListenBrainz.
+   That ranking is cached for **24 hours** instead of 7 days (`search_cache.without_listeners`, V7;
+   `cache-ttl-without-listeners`), so an outage doesn't keep worse rankings for a week.
 5. Store the fetched counts on `albums` (`listener_count`, `listeners_checked_at`; V6). V6 also clears
    `search_cache`, so old rankings are rebuilt.
 
@@ -139,9 +143,11 @@ Good:
 Bad:
 - A cold search makes one more outbound call (median ~65 ms, at most 400 ms plus up to 1 s of
   rate-limiter wait when cold searches come less than a second apart).
-- A ranking made while ListenBrainz was down is cached for the normal 7 days. MusicBrainz's 1 request/s
-  is the scarcer resource, so we don't re-ask early.
+- During a ListenBrainz outage, each query searched is asked from MusicBrainz again once a day instead of
+  once a week, spending more of its 1 request/s. Its rankings lack listeners for up to 24 hours after
+  ListenBrainz is back.
 - Counts can be up to 30 days old, and albums ListenBrainz doesn't know count as 0 (today's behaviour
   for them).
 - Listener counts reflect ListenBrainz's users, a smaller and more technical crowd than Deezer's.
-- Ties in the artist path still follow MusicBrainz's order, which varies from call to call.
+- The artist-path tie-break (earliest first) is a rule, not a measure of popularity: between two albums
+  with equal releases, the older one wins even if the newer one is better known.

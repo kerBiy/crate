@@ -287,8 +287,9 @@ create table album_stats (
 );
 
 create table search_cache (
-  normalized_query text primary key,
-  fetched_at       timestamptz not null
+  normalized_query  text primary key,
+  fetched_at        timestamptz not null,
+  without_listeners boolean not null default false  -- ranked without ListenBrainz counts (it failed): kept 24 h
 );
 
 -- MusicBrainz's ranked answer per cached query (ADR-010)
@@ -330,12 +331,12 @@ create table processed_events (
 **Search algorithm (read-through cache of MusicBrainz's ranking, ADR-010)**
 
 1. Normalize the query: lowercase, strip diacritics (`java.text.Normalizer`), collapse whitespace.
-2. If the normalized query is in `search_cache` and younger than 7 days → return its stored `search_results` in rank order. **Search never returns albums with `has_cover = false`** (here, after a cold search, and in the fallback); unchecked albums are shown.
+2. If the normalized query is in `search_cache` and younger than 7 days (`cache-ttl`; 24 h when it was ranked without listener counts, `cache-ttl-without-listeners`) → return its stored `search_results` in rank order. **Search never returns albums with `has_cover = false`** (here, after a cold search, and in the fallback); unchecked albums are shown.
 3. Otherwise ask MusicBrainz (rate-limited, outside any DB transaction), 1–3 requests:
    1. The query, 100 results: every word required in title or artist; compilations, live albums, remixes, DJ-mixes, mixtapes, demos etc. excluded unless the title is exactly the query (soundtracks stay).
    2. Only if that found nothing: the same query allowing misspellings (`word~` for words of 4+ letters).
    3. If the whole query is the name of an artist credited in the results ("radiohead", "beatles", "bjork"): that artist's albums.
-4. Rank: the artist's albums first, most releases first; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`) + 2 × ln(1 + ListenBrainz listeners) (`listener-weight`, ADR-012; see *ListenBrainz integration rules* for when counts are missing). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock). Check covers for the top 50 ranked albums not checked yet (see *Cover check*; about +0.4 s median on a cold search, nothing on a warm one). Store the listener counts just fetched. Then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing, and also when ListenBrainz failed: that ranking is kept for the 7 days too) and replace its `search_results`. Return them.
+4. Rank: the artist's albums first, most releases first, ties by earliest first release (unknown last), then by MBID, so the order never depends on MusicBrainz's; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`) + 2 × ln(1 + ListenBrainz listeners) (`listener-weight`, ADR-012; see *ListenBrainz integration rules* for when counts are missing). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock). Check covers for the top 50 ranked albums not checked yet (see *Cover check*; about +0.4 s median on a cold search, nothing on a warm one). Store the listener counts just fetched. Then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing; when ListenBrainz failed, flagged `without_listeners`, so it is asked again after 24 hours instead of 7 days) and replace its `search_results`. Return them.
 5. If MusicBrainz fails or times out → local fallback with `partial: true`: trigram **word similarity** on `search_text` (`query <% search_text`, ≥ 0.5, served by the GIN index), excluded secondary types left out, most releases first among equal matches. **Never fail a search because MusicBrainz is down.**
 
 Search quality is measured with `services/catalog-service/search-eval`: the main set (30 queries, used for tuning), a held-out set (25) and a niche set (9), scored by hit@1, hit@3, MRR and, for artist-name queries, nDCG@5. Rerun all three when changing anything above; held-out and niche must not get worse.

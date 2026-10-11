@@ -14,6 +14,18 @@ import java.util.stream.Stream;
 /** How MusicBrainz's answers become one ranked list (docs/adr/010-search-ranking.md). No I/O. */
 final class SearchRanking {
 
+    /**
+     * The artist's albums: most releases first; on a tie, earliest first release, then MBID, so the
+     * order never depends on the order MusicBrainz happened to return them in. Dates are MusicBrainz's
+     * partial ISO strings ("1956", "1956-03", "1956-03-19"), compared as text: a year alone sorts before
+     * any full date in that year. Unknown dates go last. MBIDs compare as text too ({@code UUID.compareTo}
+     * compares signed numbers, an order nobody would guess).
+     */
+    private static final Comparator<ReleaseGroup> ARTIST_ORDER =
+            Comparator.<ReleaseGroup>comparingInt(SearchRanking::releases).reversed()
+            .thenComparing(ReleaseGroup::firstReleaseDate, Comparator.nullsLast(Comparator.naturalOrder()))
+            .thenComparing(album -> album.id().toString());
+
     private SearchRanking() {
     }
 
@@ -33,7 +45,7 @@ final class SearchRanking {
     }
 
     /**
-     * The artist's albums first, most released first; then everything the query found, by
+     * The artist's albums first (see {@link #ARTIST_ORDER}); then everything the query found, by
      * {@link #relevance}. Duplicates keep their first (best) position.
      *
      * @param listeners ListenBrainz listener count per album; empty when ListenBrainz couldn't be asked,
@@ -41,8 +53,7 @@ final class SearchRanking {
      */
     static List<ReleaseGroup> merge(List<ReleaseGroup> artistAlbums, List<SearchHit> hits, double popularityWeight,
             double listenerWeight, Map<UUID, Integer> listeners) {
-        Stream<ReleaseGroup> artistFirst = artistAlbums.stream()
-                .sorted(Comparator.comparingInt(SearchRanking::releases).reversed());
+        Stream<ReleaseGroup> artistFirst = artistAlbums.stream().sorted(ARTIST_ORDER);
         // Stable sort: equal values keep MusicBrainz's order.
         Stream<ReleaseGroup> byRelevance = hits.stream()
                 .sorted(Comparator.comparingDouble(

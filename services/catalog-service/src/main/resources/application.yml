@@ -35,6 +35,8 @@ crate:
       # 0.5 still matches a one-letter typo ("radiohed").
       match-threshold: 0.5
       cache-ttl: 7d
+      # Rankings made without ListenBrainz counts (it failed) are asked again sooner (ADR 012).
+      cache-ttl-without-listeners: 24h
       # MusicBrainz's maximum. One request either way; more candidates for the popularity ranking.
       musicbrainz-limit: 100
       # Tuned with search-eval (ADR 010): 15 is the smallest weight that reached the best hit@3.

@@ -9,6 +9,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param matchThreshold   minimum pg_trgm word similarity (0–1) for an album to match locally; only
  *                         used when MusicBrainz can't be reached
  * @param cacheTtl         how long a query MusicBrainz already answered is served from our DB
+ * @param cacheTtlWithoutListeners the same for a query ranked without ListenBrainz counts (it failed):
+ *                         shorter, so an outage doesn't keep worse rankings for long (ADR 012)
  * @param musicBrainzLimit how many release groups to request per MusicBrainz search (max 100)
  * @param popularityWeight how much the number of releases counts next to MusicBrainz's score
  *                         (see {@link SearchRanking#relevance})
@@ -17,6 +19,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *                         the largest page a client can ask for
  */
 @ConfigurationProperties("crate.catalog.search")
-record SearchProperties(double matchThreshold, Duration cacheTtl, int musicBrainzLimit, double popularityWeight,
-        double listenerWeight, int coverCheckCount) {
+record SearchProperties(double matchThreshold, Duration cacheTtl, Duration cacheTtlWithoutListeners,
+        int musicBrainzLimit, double popularityWeight, double listenerWeight, int coverCheckCount) {
 }

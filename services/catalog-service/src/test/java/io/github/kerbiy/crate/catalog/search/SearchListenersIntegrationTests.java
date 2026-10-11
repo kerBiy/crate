@@ -107,6 +107,47 @@ class SearchListenersIntegrationTests extends CatalogIntegrationTest {
         expectOrder(JOHNNY_CASH, LOS_TIGRES);
     }
 
+    // --- how long the ranking is cached ---
+
+    @Test
+    void rankingWithoutListenersIsCachedForADayNotAWeek() {
+        stubListeners(serverError());
+        expectOrder(JOHNNY_CASH, LOS_TIGRES);
+        assertThat(withoutListeners()).isTrue();
+
+        // 23 hours later: still served from the cache.
+        ageCache("23 hours");
+        expectOrder(JOHNNY_CASH, LOS_TIGRES);
+        musicBrainz.verify(1, getRequestedFor(urlPathEqualTo(MB_SEARCH)));
+
+        // 25 hours later, ListenBrainz is back: MusicBrainz is asked again and the ranking has listeners.
+        stubListeners(okJson(LOS_TIGRES, 1000, JOHNNY_CASH, 0));
+        ageCache("25 hours");
+        expectOrder(LOS_TIGRES, JOHNNY_CASH);
+        musicBrainz.verify(2, getRequestedFor(urlPathEqualTo(MB_SEARCH)));
+        assertThat(withoutListeners()).isFalse();
+    }
+
+    @Test
+    void rankingWithListenersIsStillCachedForAWeek() {
+        stubListeners(okJson(LOS_TIGRES, 1000, JOHNNY_CASH, 0));
+        expectOrder(LOS_TIGRES, JOHNNY_CASH);
+        assertThat(withoutListeners()).isFalse();
+
+        ageCache("25 hours");
+        expectOrder(LOS_TIGRES, JOHNNY_CASH);
+        musicBrainz.verify(1, getRequestedFor(urlPathEqualTo(MB_SEARCH)));
+    }
+
+    private void ageCache(String interval) {
+        jdbc.sql("update search_cache set fetched_at = now() - cast(:interval as interval)")
+                .param("interval", interval).update();
+    }
+
+    private boolean withoutListeners() {
+        return jdbc.sql("select without_listeners from search_cache").query(Boolean.class).single();
+    }
+
     private void expectOrder(String first, String second) {
         client.get().uri(uri -> uri.path("/albums/search").queryParam("q", "{q}").build("at folsom prison")).exchange()
                 .expectStatus().isOk()

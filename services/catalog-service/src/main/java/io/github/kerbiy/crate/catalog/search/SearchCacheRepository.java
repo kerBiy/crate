@@ -19,16 +19,23 @@ class SearchCacheRepository {
         this.jdbc = jdbc;
     }
 
-    /** True if MusicBrainz answered this query less than {@code ttl} ago. Uses the DB clock, like {@link #store}. */
-    boolean isFresh(String normalizedQuery, Duration ttl) {
+    /**
+     * True if MusicBrainz answered this query less than {@code ttl} ago, or less than
+     * {@code ttlWithoutListeners} ago when it was ranked without ListenBrainz counts. Uses the DB clock,
+     * like {@link #store}.
+     */
+    boolean isFresh(String normalizedQuery, Duration ttl, Duration ttlWithoutListeners) {
         return jdbc.sql("""
                         select exists (
                             select 1 from search_cache
-                            where normalized_query = :q and fetched_at > now() - make_interval(secs => :seconds)
+                            where normalized_query = :q
+                              and fetched_at > now() - make_interval(
+                                      secs => case when without_listeners then :shortSeconds else :seconds end)
                         )
                         """)
                 .param("q", normalizedQuery)
                 .param("seconds", ttl.toSeconds())
+                .param("shortSeconds", ttlWithoutListeners.toSeconds())
                 .query(Boolean.class)
                 .single();
     }
@@ -41,15 +48,19 @@ class SearchCacheRepository {
      * second waits for the first's row lock, then replaces its results. Result rows are written in
      * album-id order, so two writers lock them in the same order and can't deadlock.
      *
-     * @param rankedAlbumIds best first; the albums must already be stored
+     * @param rankedAlbumIds    best first; the albums must already be stored
+     * @param withoutListeners  ranked without ListenBrainz counts because it failed: kept for less time
      */
     @Transactional
-    void store(String normalizedQuery, List<UUID> rankedAlbumIds) {
+    void store(String normalizedQuery, List<UUID> rankedAlbumIds, boolean withoutListeners) {
         jdbc.sql("""
-                        insert into search_cache (normalized_query, fetched_at) values (:q, now())
-                        on conflict (normalized_query) do update set fetched_at = excluded.fetched_at
+                        insert into search_cache (normalized_query, fetched_at, without_listeners)
+                        values (:q, now(), :withoutListeners)
+                        on conflict (normalized_query) do update
+                            set fetched_at = excluded.fetched_at, without_listeners = excluded.without_listeners
                         """)
                 .param("q", normalizedQuery)
+                .param("withoutListeners", withoutListeners)
                 .update();
         jdbc.sql("delete from search_results where normalized_query = :q").param("q", normalizedQuery).update();
 

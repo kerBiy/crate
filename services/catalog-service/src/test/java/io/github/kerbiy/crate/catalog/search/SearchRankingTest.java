@@ -96,6 +96,38 @@ class SearchRankingTest {
                 .containsExactly(one, unknown);
     }
 
+    @Test
+    void artistAlbumsWithEqualReleasesGoEarliestFirstUnknownDateLast() {
+        ReleaseGroup christmas = album("A Jolly Christmas", 25, "1957-09", BJORK);
+        ReleaseGroup swingin = album("Songs for Swingin' Lovers!", 25, "1956-03", BJORK);
+        ReleaseGroup undated = album("Undated", 25, null, BJORK);
+        ReleaseGroup yearOnly = album("Year only", 25, "1956", BJORK);
+
+        assertThat(SearchRanking.merge(List.of(undated, christmas, swingin, yearOnly), List.of(), WEIGHT,
+                LISTENER_WEIGHT, NO_LISTENERS))
+                .containsExactly(yearOnly, swingin, christmas, undated);
+    }
+
+    @Test
+    void artistAlbumsWithEqualReleasesAndDatesGoByMbid() {
+        ReleaseGroup b = album(UUID.fromString("b0000000-0000-0000-0000-000000000000"), "B", 5, "1990");
+        ReleaseGroup a = album(UUID.fromString("a0000000-0000-0000-0000-000000000000"), "A", 5, "1990");
+        // "f…" is a negative number to UUID.compareTo, which would put it first.
+        ReleaseGroup f = album(UUID.fromString("f0000000-0000-0000-0000-000000000000"), "F", 5, "1990");
+
+        assertThat(SearchRanking.merge(List.of(f, b, a), List.of(), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
+                .containsExactly(a, b, f);
+    }
+
+    @Test
+    void artistOrderDoesNotDependOnTheOrderMusicBrainzReturned() {
+        List<ReleaseGroup> albums = List.of(album("One", 25, "1957", BJORK), album("Two", 25, "1957", BJORK),
+                album("Three", 25, null, BJORK), album("Four", 31, "1995", BJORK), album("Five", 25, "1955", BJORK));
+
+        assertThat(SearchRanking.merge(albums.reversed(), List.of(), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
+                .isEqualTo(SearchRanking.merge(albums, List.of(), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS));
+    }
+
     // --- listener counts (ADR 012) ---
 
     @Test
@@ -144,6 +176,16 @@ class SearchRankingTest {
     private static ReleaseGroup album(String title, int releases, ArtistCredit artist) {
         return new ReleaseGroup(UUID.randomUUID(), title, artist.name(), "Album", List.of(), "1997", releases,
                 List.of(artist));
+    }
+
+    private static ReleaseGroup album(String title, int releases, String firstReleaseDate, ArtistCredit artist) {
+        return new ReleaseGroup(UUID.randomUUID(), title, artist.name(), "Album", List.of(), firstReleaseDate,
+                releases, List.of(artist));
+    }
+
+    private static ReleaseGroup album(UUID id, String title, int releases, String firstReleaseDate) {
+        return new ReleaseGroup(id, title, BJORK.name(), "Album", List.of(), firstReleaseDate, releases,
+                List.of(BJORK));
     }
 
     private static SearchHit hit(ReleaseGroup album, int score) {

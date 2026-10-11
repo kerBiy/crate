@@ -64,7 +64,7 @@ class SearchService {
         }
 
         // 2. MusicBrainz answered this query recently: replay its ranking.
-        if (searchCache.isFresh(normalized, properties.cacheTtl())) {
+        if (searchCache.isFresh(normalized, properties.cacheTtl(), properties.cacheTtlWithoutListeners())) {
             return response(albums.findRanked(normalized, limit), false);
         }
 
@@ -87,7 +87,8 @@ class SearchService {
         albums.recordListeners(listeners.fetched());
         checkCovers(ranked);
         // Recorded even when MusicBrainz found nothing, so a nonsense query doesn't hit it every time.
-        searchCache.store(normalized, ranked.stream().map(ReleaseGroup::id).toList());
+        // Ranked without listener counts (ListenBrainz failed): kept for a day, not a week.
+        searchCache.store(normalized, ranked.stream().map(ReleaseGroup::id).toList(), listeners.failed());
         return response(albums.findRanked(normalized, limit), false);
     }
 
@@ -117,7 +118,7 @@ class SearchService {
         Map<UUID, Integer> stored = albums.listenerCounts(hitIds, listenBrainzProperties.refreshAfter());
         List<UUID> missing = hitIds.stream().filter(id -> !stored.containsKey(id)).distinct().toList();
         if (missing.isEmpty()) {
-            return new Listeners(stored, Map.of());
+            return new Listeners(stored, Map.of(), false);
         }
         try {
             long start = System.nanoTime();
@@ -125,10 +126,10 @@ class SearchService {
             log.debug("Fetched {} listener counts in {} ms", fetched.size(), (System.nanoTime() - start) / 1_000_000);
             Map<UUID, Integer> all = new HashMap<>(stored);
             all.putAll(fetched);
-            return new Listeners(all, fetched);
+            return new Listeners(all, fetched, false);
         } catch (ListenBrainzException e) {
             log.warn("ListenBrainz failed for '{}', ranking without listener counts: {}", normalized, e.getMessage());
-            return new Listeners(Map.of(), Map.of());
+            return new Listeners(Map.of(), Map.of(), true);
         }
     }
 
@@ -153,8 +154,11 @@ class SearchService {
     private record Found(List<SearchHit> hits, List<ReleaseGroup> artistAlbums) {
     }
 
-    /** Counts to rank with ({@code all}), and the ones ListenBrainz just sent, to store ({@code fetched}). */
-    private record Listeners(Map<UUID, Integer> all, Map<UUID, Integer> fetched) {
+    /**
+     * Counts to rank with ({@code all}), the ones ListenBrainz just sent, to store ({@code fetched}), and
+     * whether ListenBrainz failed, so the ranking has no counts at all ({@code failed}).
+     */
+    private record Listeners(Map<UUID, Integer> all, Map<UUID, Integer> fetched, boolean failed) {
     }
 
     private static SearchResponse response(List<AlbumRow> albums, boolean partial) {

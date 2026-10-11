@@ -1,0 +1,1293 @@
+{
+ "mode": "endpoint",
+ "base": "http://localhost:8092",
+ "path": "/albums/search",
+ "match": "mbid",
+ "cases": "queries-heldout.json",
+ "passes": [
+  {
+   "label": "cold",
+   "results": [
+    {
+     "query": "frank ocean",
+     "category": "artist",
+     "rank": 1,
+     "ms": 1819,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      3,
+      1
+     ],
+     "partial": false,
+     "top": [
+      "channel ORANGE — Frank Ocean",
+      "Endless — Frank Ocean",
+      "Blonde — Frank Ocean",
+      "Lonny Breaux, Pt. 2 — Frank Ocean",
+      "VSQ Performs Frank Ocean — Vitamin String Quartet",
+      "The New Frank Ocean Album — Netherfriends",
+      "Lullaby Versions of Frank Ocean — Twinkle Twinkle Little Rock Star",
+      "Piano Tribute to Frank Ocean — Blond Piano",
+      "Frank Ocean Channel Orange: Solo Rhodes — Rob Arthur"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "lana del rey",
+     "category": "artist",
+     "rank": 1,
+     "ms": 2066,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1,
+      5,
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Born to Die — Lana Del Rey",
+      "Ultraviolence — Lana Del Rey",
+      "Honeymoon — Lana Del Rey",
+      "Lust for Life — Lana Del Rey",
+      "Norman Fucking Rockwell! — Lana Del Rey",
+      "Blue Banisters — Lana Del Rey",
+      "Chemtrails Over the Country Club — Lana Del Rey",
+      "Did you know that there’s a tunnel under Ocean Blvd — Lana Del Rey",
+      "Lana Del Ray — Lana Del Ray",
+      "Violet Bent Backwards Over the Grass — Lana Del Rey"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "arctic monkeys",
+     "category": "artist",
+     "rank": 2,
+     "ms": 1785,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      3,
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Favourite Worst Nightmare — Arctic Monkeys",
+      "Whatever People Say I Am, That’s What I’m Not — Arctic Monkeys",
+      "AM — Arctic Monkeys",
+      "Humbug — Arctic Monkeys",
+      "Tranquility Base Hotel & Casino — Arctic Monkeys",
+      "The Car — Arctic Monkeys",
+      "Suck It and See — Arctic Monkeys",
+      "Who the Fuck Are Arctic Monkeys? — Arctic Monkeys",
+      "Lullaby Versions of Arctic Monkeys — Twinkle Twinkle Little Rock Star",
+      "Suck It and See Sampler — Arctic Monkeys"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "elvis presley",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 2755,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      2,
+      1
+     ],
+     "partial": false,
+     "top": [
+      "From Elvis in Memphis — Elvis Presley",
+      "Elvis Presley — Elvis Presley",
+      "Elvis’ Christmas Album — Elvis Presley",
+      "Elvis Is Back! — Elvis Presley",
+      "That’s the Way It Is — Elvis Presley",
+      "G.I. Blues — Elvis Presley",
+      "Blue Hawaii — Elvis Presley",
+      "Elvis — Elvis Presley",
+      "Elvis Country: I’m 10,000 Years Old — Elvis Presley",
+      "Something for Everybody — Elvis Presley"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the rolling stones",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 3335,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1,
+      2,
+      4
+     ],
+     "partial": false,
+     "top": [
+      "Exile on Main St. — The Rolling Stones",
+      "Sticky Fingers — The Rolling Stones",
+      "Aftermath — The Rolling Stones",
+      "Let It Bleed — The Rolling Stones",
+      "Some Girls — The Rolling Stones",
+      "Out of Our Heads — The Rolling Stones",
+      "Goats Head Soup — The Rolling Stones",
+      "Black and Blue — The Rolling Stones",
+      "Beggars Banquet — The Rolling Stones",
+      "Between the Buttons — The Rolling Stones"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "frank sinatra",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 3231,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      3,
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Songs for Swingin’ Lovers! — Frank Sinatra",
+      "A Jolly Christmas From Frank Sinatra — Frank Sinatra",
+      "In the Wee Small Hours — Frank Sinatra",
+      "Frank Sinatra Sings for Only the Lonely — Frank Sinatra, orchestra conducted by Nelson Riddle",
+      "Nice ’n’ Easy — Frank Sinatra",
+      "My Way — Frank Sinatra",
+      "Ring-a-Ding Ding! — Frank Sinatra",
+      "Strangers in the Night — Frank Sinatra",
+      "September of My Years — Frank Sinatra",
+      "A Swingin’ Affair! — Frank Sinatra"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "nevermind",
+     "category": "title",
+     "rank": 1,
+     "ms": 2110,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Nevermind — Nirvana",
+      "Nevermind the Name — Nevermind the Name",
+      "Airs & Nevermind Me — Airs & Nevermind Me",
+      "Honestly, Nevermind — Drake",
+      "Nevermind — Kevin Devine",
+      "NEVERMIND — Me.Intelligentz",
+      "Nevermind — Meowlau X Val",
+      "NEVERMIND — NVM",
+      "Nevermind — Clockcleaner",
+      "Nevermind — Poppy Tears"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "thriller",
+     "category": "title",
+     "rank": 1,
+     "ms": 1776,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Thriller — Michael Jackson",
+      "Thriller — Thriller",
+      "Techno Thriller — Techno Thriller",
+      "Thriller — Augustus Pablo",
+      "Thriller — BTOB",
+      "Manila Thriller — Please",
+      "Thriller — Part Chimp",
+      "Thriller — Lambchop",
+      "Thriller — Gorch Fock",
+      "Thriller — Son"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "pet sounds",
+     "category": "title",
+     "rank": 1,
+     "ms": 1137,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Pet Sounds — The Beach Boys",
+      "Pet Sounds — Boy Division",
+      "Pet Sounds — The Cat’s Miaow",
+      "Teenage Pet Sounds — Violent Onsen Geisha",
+      "Pet Sounds, Vol.1 — Petbrick",
+      "Bastard Pet Sounds — ToToM",
+      "Pet Sounds, Vol. 2 — Petbrick",
+      "Pet Sounds — The Re/Mu/sters",
+      "Pet Sounds: In the Key of Dee — Bullion",
+      "Pet Sounds to the Welkin at Dusk — Black Metal Beach Party"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "remain in light",
+     "category": "title",
+     "rank": 3,
+     "ms": 1352,
+     "rank_mbid": 3,
+     "rank_title": 3,
+     "positions": [
+      3
+     ],
+     "partial": false,
+     "top": [
+      "Anosognosia — Remain in Light",
+      "The Sentinel Diaries — Remain in Light",
+      "Remain in Light — Talking Heads",
+      "Remain in Light — Angélique Kidjo",
+      "‘Remain in Light’ Unreleased Outtakes — Talking Heads",
+      "Same as It Never Was: Remain in Light Re-Imagined — Sublunar Minds",
+      "Introduction to a Dream — Remain in Light",
+      "Let the Light In — Ashes Remain"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kanye west my beautiful dark twisted fantasy",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 934,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "My Beautiful Dark Twisted Fantasy — Kanye West"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "nirvana in utero",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 1742,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "In Utero — Nirvana",
+      "A Soulful Tribute to Nirvana’s in Utero — Various Artists",
+      "Nirvana’s In Utero but with the Crash Bandicoot soundfont — Herne"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the strokes is this it",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 249,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Is This It — The Strokes"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "Fleetwood Mac - Tusk",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 1105,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Tusk — Fleetwood Mac"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "25",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 1836,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "25 ta Life — 25 ta Life",
+      "25 — Adele",
+      "25時、ナイトコードで。 SEKAI ALBUM vol.3 — 25時、ナイトコードで。",
+      "25時、ナイトコードで。 SEKAI ALBUM vol.2 — 25時、ナイトコードで。",
+      "25時、ナイトコードで。 SEKAI ALBUM vol.1 — 25時、ナイトコードで。",
+      "25 25 — Factory Floor",
+      "25… Tab — Monster Magnet",
+      "25〜ヴァンサンク〜 — 安倍なつみ",
+      "25 — 송지은",
+      "25 — 電気グルーヴ"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "am",
+     "category": "short-title",
+     "rank": 4,
+     "ms": 1101,
+     "rank_mbid": 4,
+     "rank_title": 4,
+     "positions": [
+      4
+     ],
+     "partial": false,
+     "top": [
+      "ÖfÖ Am 10\" — ÖfÖ Am",
+      "I Am Legion — I Am Legion",
+      "Trans Am — Trans Am",
+      "AM — Arctic Monkeys",
+      "A.M. Interstate — A.M. Interstate",
+      "A.M. Overcast — A.M. Overcast",
+      "AM Radio — AM Radio",
+      "Havana 3 A.M. — Havana 3 A.M.",
+      "I Am Kloot — I Am Kloot",
+      "A.M. — Wilco"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "lover",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 2890,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Lover Power — LOVER",
+      "Lover — Taylor Swift",
+      "Lover — Candy Lover",
+      "Raton Lover — Raton Lover",
+      "Flow Lover — Eddy Lover",
+      "Symmetry Lover — Symmetry Lover",
+      "Monochrome Lover — Monochrome Lover",
+      "The Lover Speaks — The Lover Speaks",
+      "Animal Lover 7 — Animal Lover",
+      "Seeker Lover Keeper — Seeker Lover Keeper"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "currents",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 2186,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "passing currents — Passing Currents",
+      "Currents — Tame Impala",
+      "Currents — In Vain",
+      "Alternating Currents — Spyro Gyra",
+      "Currents — Treaty of Paris",
+      "Currents — Don Williams",
+      "Currents, Constellations — The Nels Cline 4",
+      "Currents — Eisley",
+      "Currents — Michael Logozar",
+      "Currents — Nobody Beats the Drum"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "radiohaed in rainbows",
+     "category": "typo",
+     "rank": 1,
+     "ms": 2556,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "In Rainbows — Radiohead",
+      "In Rainbows Disk 2 — Radiohead",
+      "Vitamin String Quartet performs Radiohead's In Rainbows — Vitamin String Quartet"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "nirvanna nevermind",
+     "category": "typo",
+     "rank": 1,
+     "ms": 2985,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Nevermind — Nirvana",
+      "Nirvana’s Nevermind but with the SM64 soundfont — Something is Real",
+      "The String Quartet Tribute to Nirvana’s Nevermind — Vitamin String Quartet feat. Tallywood Strings",
+      "VSQ Master Series: Tribute To Nirvana's Nevermind — Vitamin String Quartet",
+      "Nirvana’s Nevermind but with the Crash Bandicoot soundfont — Herne"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kanye wset graduation",
+     "category": "typo",
+     "rank": 1,
+     "ms": 4949,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Graduation — Kanye West",
+      "Graduation “Bonus Tracks, Remixes, Unreleased” EP — Kanye West"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "taylr swift folklore",
+     "category": "typo",
+     "rank": 1,
+     "ms": 4955,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "folklore — Taylor Swift",
+      "Piano Tribute to Taylor Swift’s Folklore — One Piano",
+      "Folksnore: Lullaby Covers of Taylor Swift Songs — Sparrow Sleeps"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "motley crue dr feelgood",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 1886,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Dr. Feelgood — Mötley Crüe"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "sigur ros takk",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 1960,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Takk… — Sigur Rós",
+      "Takk… — Sigur Rós"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "rosalia motomami",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 2232,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "MOTOMAMI — ROSALÍA"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 25,
+     "hit@1": 19,
+     "hit@3": 24,
+     "hit@10": 25,
+     "mrr": 0.863,
+     "artist_n": 6,
+     "top5": 1.0,
+     "ndcg@5": 0.908
+    },
+    "by_category": {
+     "artist": {
+      "n": 3,
+      "hit@1": 2,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.833,
+      "artist_n": 3,
+      "top5": 1.0,
+      "ndcg@5": 0.853
+     },
+     "many-compilations": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0,
+      "artist_n": 3,
+      "top5": 1.0,
+      "ndcg@5": 0.962
+     },
+     "title": {
+      "n": 4,
+      "hit@1": 3,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.833
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@1": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "short-title": {
+      "n": 4,
+      "hit@1": 0,
+      "hit@3": 3,
+      "hit@10": 4,
+      "mrr": 0.438
+     },
+     "typo": {
+      "n": 4,
+      "hit@1": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "diacritics": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0
+     }
+    }
+   }
+  },
+  {
+   "label": "warm",
+   "results": [
+    {
+     "query": "frank ocean",
+     "category": "artist",
+     "rank": 1,
+     "ms": 37,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      3,
+      1
+     ],
+     "partial": false,
+     "top": [
+      "channel ORANGE — Frank Ocean",
+      "Endless — Frank Ocean",
+      "Blonde — Frank Ocean",
+      "Lonny Breaux, Pt. 2 — Frank Ocean",
+      "VSQ Performs Frank Ocean — Vitamin String Quartet",
+      "The New Frank Ocean Album — Netherfriends",
+      "Lullaby Versions of Frank Ocean — Twinkle Twinkle Little Rock Star",
+      "Piano Tribute to Frank Ocean — Blond Piano",
+      "Frank Ocean Channel Orange: Solo Rhodes — Rob Arthur"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "lana del rey",
+     "category": "artist",
+     "rank": 1,
+     "ms": 26,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1,
+      5,
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Born to Die — Lana Del Rey",
+      "Ultraviolence — Lana Del Rey",
+      "Honeymoon — Lana Del Rey",
+      "Lust for Life — Lana Del Rey",
+      "Norman Fucking Rockwell! — Lana Del Rey",
+      "Blue Banisters — Lana Del Rey",
+      "Chemtrails Over the Country Club — Lana Del Rey",
+      "Did you know that there’s a tunnel under Ocean Blvd — Lana Del Rey",
+      "Lana Del Ray — Lana Del Ray",
+      "Violet Bent Backwards Over the Grass — Lana Del Rey"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "arctic monkeys",
+     "category": "artist",
+     "rank": 2,
+     "ms": 21,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      3,
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Favourite Worst Nightmare — Arctic Monkeys",
+      "Whatever People Say I Am, That’s What I’m Not — Arctic Monkeys",
+      "AM — Arctic Monkeys",
+      "Humbug — Arctic Monkeys",
+      "Tranquility Base Hotel & Casino — Arctic Monkeys",
+      "The Car — Arctic Monkeys",
+      "Suck It and See — Arctic Monkeys",
+      "Who the Fuck Are Arctic Monkeys? — Arctic Monkeys",
+      "Lullaby Versions of Arctic Monkeys — Twinkle Twinkle Little Rock Star",
+      "Suck It and See Sampler — Arctic Monkeys"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "elvis presley",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 19,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      2,
+      1
+     ],
+     "partial": false,
+     "top": [
+      "From Elvis in Memphis — Elvis Presley",
+      "Elvis Presley — Elvis Presley",
+      "Elvis’ Christmas Album — Elvis Presley",
+      "Elvis Is Back! — Elvis Presley",
+      "That’s the Way It Is — Elvis Presley",
+      "G.I. Blues — Elvis Presley",
+      "Blue Hawaii — Elvis Presley",
+      "Elvis — Elvis Presley",
+      "Elvis Country: I’m 10,000 Years Old — Elvis Presley",
+      "Something for Everybody — Elvis Presley"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the rolling stones",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 15,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1,
+      2,
+      4
+     ],
+     "partial": false,
+     "top": [
+      "Exile on Main St. — The Rolling Stones",
+      "Sticky Fingers — The Rolling Stones",
+      "Aftermath — The Rolling Stones",
+      "Let It Bleed — The Rolling Stones",
+      "Some Girls — The Rolling Stones",
+      "Out of Our Heads — The Rolling Stones",
+      "Goats Head Soup — The Rolling Stones",
+      "Black and Blue — The Rolling Stones",
+      "Beggars Banquet — The Rolling Stones",
+      "Between the Buttons — The Rolling Stones"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "frank sinatra",
+     "category": "many-compilations",
+     "rank": 1,
+     "ms": 14,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      3,
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Songs for Swingin’ Lovers! — Frank Sinatra",
+      "A Jolly Christmas From Frank Sinatra — Frank Sinatra",
+      "In the Wee Small Hours — Frank Sinatra",
+      "Frank Sinatra Sings for Only the Lonely — Frank Sinatra, orchestra conducted by Nelson Riddle",
+      "Nice ’n’ Easy — Frank Sinatra",
+      "My Way — Frank Sinatra",
+      "Ring-a-Ding Ding! — Frank Sinatra",
+      "Strangers in the Night — Frank Sinatra",
+      "September of My Years — Frank Sinatra",
+      "A Swingin’ Affair! — Frank Sinatra"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "nevermind",
+     "category": "title",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Nevermind — Nirvana",
+      "Nevermind the Name — Nevermind the Name",
+      "Airs & Nevermind Me — Airs & Nevermind Me",
+      "Honestly, Nevermind — Drake",
+      "Nevermind — Kevin Devine",
+      "NEVERMIND — Me.Intelligentz",
+      "Nevermind — Meowlau X Val",
+      "NEVERMIND — NVM",
+      "Nevermind — Clockcleaner",
+      "Nevermind — Poppy Tears"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "thriller",
+     "category": "title",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Thriller — Michael Jackson",
+      "Thriller — Thriller",
+      "Techno Thriller — Techno Thriller",
+      "Thriller — Augustus Pablo",
+      "Thriller — BTOB",
+      "Manila Thriller — Please",
+      "Thriller — Part Chimp",
+      "Thriller — Lambchop",
+      "Thriller — Gorch Fock",
+      "Thriller — Son"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "pet sounds",
+     "category": "title",
+     "rank": 1,
+     "ms": 14,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Pet Sounds — The Beach Boys",
+      "Pet Sounds — Boy Division",
+      "Pet Sounds — The Cat’s Miaow",
+      "Teenage Pet Sounds — Violent Onsen Geisha",
+      "Pet Sounds, Vol.1 — Petbrick",
+      "Bastard Pet Sounds — ToToM",
+      "Pet Sounds, Vol. 2 — Petbrick",
+      "Pet Sounds — The Re/Mu/sters",
+      "Pet Sounds: In the Key of Dee — Bullion",
+      "Pet Sounds to the Welkin at Dusk — Black Metal Beach Party"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "remain in light",
+     "category": "title",
+     "rank": 3,
+     "ms": 12,
+     "rank_mbid": 3,
+     "rank_title": 3,
+     "positions": [
+      3
+     ],
+     "partial": false,
+     "top": [
+      "Anosognosia — Remain in Light",
+      "The Sentinel Diaries — Remain in Light",
+      "Remain in Light — Talking Heads",
+      "Remain in Light — Angélique Kidjo",
+      "‘Remain in Light’ Unreleased Outtakes — Talking Heads",
+      "Same as It Never Was: Remain in Light Re-Imagined — Sublunar Minds",
+      "Introduction to a Dream — Remain in Light",
+      "Let the Light In — Ashes Remain"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kanye west my beautiful dark twisted fantasy",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "My Beautiful Dark Twisted Fantasy — Kanye West"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "nirvana in utero",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "In Utero — Nirvana",
+      "A Soulful Tribute to Nirvana’s in Utero — Various Artists",
+      "Nirvana’s In Utero but with the Crash Bandicoot soundfont — Herne"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "the strokes is this it",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Is This It — The Strokes"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "Fleetwood Mac - Tusk",
+     "category": "artist+title",
+     "rank": 1,
+     "ms": 11,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Tusk — Fleetwood Mac"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "25",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 12,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "25 ta Life — 25 ta Life",
+      "25 — Adele",
+      "25時、ナイトコードで。 SEKAI ALBUM vol.3 — 25時、ナイトコードで。",
+      "25時、ナイトコードで。 SEKAI ALBUM vol.2 — 25時、ナイトコードで。",
+      "25時、ナイトコードで。 SEKAI ALBUM vol.1 — 25時、ナイトコードで。",
+      "25 25 — Factory Floor",
+      "25… Tab — Monster Magnet",
+      "25〜ヴァンサンク〜 — 安倍なつみ",
+      "25 — 송지은",
+      "25 — 電気グルーヴ"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "am",
+     "category": "short-title",
+     "rank": 4,
+     "ms": 12,
+     "rank_mbid": 4,
+     "rank_title": 4,
+     "positions": [
+      4
+     ],
+     "partial": false,
+     "top": [
+      "ÖfÖ Am 10\" — ÖfÖ Am",
+      "I Am Legion — I Am Legion",
+      "Trans Am — Trans Am",
+      "AM — Arctic Monkeys",
+      "A.M. Interstate — A.M. Interstate",
+      "A.M. Overcast — A.M. Overcast",
+      "AM Radio — AM Radio",
+      "Havana 3 A.M. — Havana 3 A.M.",
+      "I Am Kloot — I Am Kloot",
+      "A.M. — Wilco"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "lover",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 12,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Lover Power — LOVER",
+      "Lover — Taylor Swift",
+      "Lover — Candy Lover",
+      "Raton Lover — Raton Lover",
+      "Flow Lover — Eddy Lover",
+      "Symmetry Lover — Symmetry Lover",
+      "Monochrome Lover — Monochrome Lover",
+      "The Lover Speaks — The Lover Speaks",
+      "Animal Lover 7 — Animal Lover",
+      "Seeker Lover Keeper — Seeker Lover Keeper"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "currents",
+     "category": "short-title",
+     "rank": 2,
+     "ms": 13,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "passing currents — Passing Currents",
+      "Currents — Tame Impala",
+      "Currents — In Vain",
+      "Alternating Currents — Spyro Gyra",
+      "Currents — Treaty of Paris",
+      "Currents — Don Williams",
+      "Currents, Constellations — The Nels Cline 4",
+      "Currents — Eisley",
+      "Currents — Michael Logozar",
+      "Currents — Nobody Beats the Drum"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "radiohaed in rainbows",
+     "category": "typo",
+     "rank": 1,
+     "ms": 11,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "In Rainbows — Radiohead",
+      "In Rainbows Disk 2 — Radiohead",
+      "Vitamin String Quartet performs Radiohead's In Rainbows — Vitamin String Quartet"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "nirvanna nevermind",
+     "category": "typo",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Nevermind — Nirvana",
+      "Nirvana’s Nevermind but with the SM64 soundfont — Something is Real",
+      "The String Quartet Tribute to Nirvana’s Nevermind — Vitamin String Quartet feat. Tallywood Strings",
+      "VSQ Master Series: Tribute To Nirvana's Nevermind — Vitamin String Quartet",
+      "Nirvana’s Nevermind but with the Crash Bandicoot soundfont — Herne"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "kanye wset graduation",
+     "category": "typo",
+     "rank": 1,
+     "ms": 11,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Graduation — Kanye West",
+      "Graduation “Bonus Tracks, Remixes, Unreleased” EP — Kanye West"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "taylr swift folklore",
+     "category": "typo",
+     "rank": 1,
+     "ms": 11,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "folklore — Taylor Swift",
+      "Piano Tribute to Taylor Swift’s Folklore — One Piano",
+      "Folksnore: Lullaby Covers of Taylor Swift Songs — Sparrow Sleeps"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "motley crue dr feelgood",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 11,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Dr. Feelgood — Mötley Crüe"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "sigur ros takk",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Takk… — Sigur Rós",
+      "Takk… — Sigur Rós"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "rosalia motomami",
+     "category": "diacritics",
+     "rank": 1,
+     "ms": 12,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "MOTOMAMI — ROSALÍA"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 25,
+     "hit@1": 19,
+     "hit@3": 24,
+     "hit@10": 25,
+     "mrr": 0.863,
+     "artist_n": 6,
+     "top5": 1.0,
+     "ndcg@5": 0.908
+    },
+    "by_category": {
+     "artist": {
+      "n": 3,
+      "hit@1": 2,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.833,
+      "artist_n": 3,
+      "top5": 1.0,
+      "ndcg@5": 0.853
+     },
+     "many-compilations": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0,
+      "artist_n": 3,
+      "top5": 1.0,
+      "ndcg@5": 0.962
+     },
+     "title": {
+      "n": 4,
+      "hit@1": 3,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 0.833
+     },
+     "artist+title": {
+      "n": 4,
+      "hit@1": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "short-title": {
+      "n": 4,
+      "hit@1": 0,
+      "hit@3": 3,
+      "hit@10": 4,
+      "mrr": 0.438
+     },
+     "typo": {
+      "n": 4,
+      "hit@1": 4,
+      "hit@3": 4,
+      "hit@10": 4,
+      "mrr": 1.0
+     },
+     "diacritics": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0
+     }
+    }
+   }
+  }
+ ]
+}

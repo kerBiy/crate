@@ -1,0 +1,320 @@
+{
+  "_comment": "Held-out set, reported separately from queries.json (used for tuning). Written 2026-10-11 before any ListenBrainz data was fetched; expected albums chosen by what the query most plausibly means, never by listen counts. Same categories as queries.json; each expected MBID verified on MusicBrainz.",
+  "cases": [
+    {
+      "query": "frank ocean",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "0da340a0-6ad7-4fc2-a272-6f94393a7831",
+          "title": "Blonde",
+          "artist": "Frank Ocean"
+        },
+        {
+          "mbid": "f8f4167d-897c-4b25-a171-638374d1dfa4",
+          "title": "channel ORANGE",
+          "artist": "Frank Ocean"
+        }
+      ]
+    },
+    {
+      "query": "lana del rey",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "4b16a1bc-8644-48ae-9b3e-8ae36aa30cfc",
+          "title": "Born to Die",
+          "artist": "Lana Del Rey"
+        },
+        {
+          "mbid": "24fd0887-9e83-42e3-b27e-e7f89ead4c03",
+          "title": "Norman Fucking Rockwell!",
+          "artist": "Lana Del Rey"
+        },
+        {
+          "mbid": "9d9b3ac3-e630-4644-92c7-fb14d4d68d86",
+          "title": "Ultraviolence",
+          "artist": "Lana Del Rey"
+        }
+      ]
+    },
+    {
+      "query": "arctic monkeys",
+      "category": "artist",
+      "expected": [
+        {
+          "mbid": "a348ba2f-f8b3-4686-b928-e63d8d94d543",
+          "title": "AM",
+          "artist": "Arctic Monkeys"
+        },
+        {
+          "mbid": "6c9c4985-3628-3070-b956-b538f30c9bea",
+          "title": "Whatever People Say I Am, That’s What I’m Not",
+          "artist": "Arctic Monkeys"
+        }
+      ]
+    },
+    {
+      "query": "elvis presley",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "2ebeec96-6ef7-3d4d-943c-0b4a2af1d7cc",
+          "title": "Elvis Presley",
+          "artist": "Elvis Presley"
+        },
+        {
+          "mbid": "2a753764-89d5-3b72-8dff-8c599f1ea925",
+          "title": "From Elvis in Memphis",
+          "artist": "Elvis Presley"
+        }
+      ]
+    },
+    {
+      "query": "the rolling stones",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "4838a3c9-fd2b-30a5-83eb-e32545b5d7fc",
+          "title": "Exile on Main St.",
+          "artist": "The Rolling Stones"
+        },
+        {
+          "mbid": "4a4213d0-f224-3d51-bcca-476f61162681",
+          "title": "Sticky Fingers",
+          "artist": "The Rolling Stones"
+        },
+        {
+          "mbid": "784c0edd-0f37-33a2-9ca5-dff87b4f999c",
+          "title": "Let It Bleed",
+          "artist": "The Rolling Stones"
+        }
+      ]
+    },
+    {
+      "query": "frank sinatra",
+      "category": "many-compilations",
+      "expected": [
+        {
+          "mbid": "5a5d9938-38a9-3f32-b03b-8f14f62b880a",
+          "title": "In the Wee Small Hours",
+          "artist": "Frank Sinatra"
+        },
+        {
+          "mbid": "12421e82-3ca1-39c5-bbcf-bba54ba251e5",
+          "title": "Songs for Swingin’ Lovers!",
+          "artist": "Frank Sinatra"
+        }
+      ]
+    },
+    {
+      "query": "nevermind",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "1b022e01-4da6-387b-8658-8678046e4cef",
+          "title": "Nevermind",
+          "artist": "Nirvana"
+        }
+      ]
+    },
+    {
+      "query": "thriller",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "f32fab67-77dd-3937-addc-9062e28e4c37",
+          "title": "Thriller",
+          "artist": "Michael Jackson"
+        }
+      ]
+    },
+    {
+      "query": "pet sounds",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "fdd96703-7b21-365e-bdea-38029fbeb84e",
+          "title": "Pet Sounds",
+          "artist": "The Beach Boys"
+        }
+      ]
+    },
+    {
+      "query": "remain in light",
+      "category": "title",
+      "expected": [
+        {
+          "mbid": "f6b1b900-6108-32f0-abbd-2855af9151eb",
+          "title": "Remain in Light",
+          "artist": "Talking Heads"
+        }
+      ]
+    },
+    {
+      "query": "kanye west my beautiful dark twisted fantasy",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "5d6e21e1-deb5-428e-bb42-c2a567f3619b",
+          "title": "My Beautiful Dark Twisted Fantasy",
+          "artist": "Kanye West"
+        }
+      ]
+    },
+    {
+      "query": "nirvana in utero",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "2a0981fb-9593-3019-864b-ce934d97a16e",
+          "title": "In Utero",
+          "artist": "Nirvana"
+        }
+      ]
+    },
+    {
+      "query": "the strokes is this it",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "efea26d1-a016-30f6-b8e2-bc8c02336b0a",
+          "title": "Is This It",
+          "artist": "The Strokes"
+        }
+      ]
+    },
+    {
+      "query": "Fleetwood Mac - Tusk",
+      "category": "artist+title",
+      "expected": [
+        {
+          "mbid": "22deeac8-6009-31ad-a069-26e85d246412",
+          "title": "Tusk",
+          "artist": "Fleetwood Mac"
+        }
+      ]
+    },
+    {
+      "query": "25",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "5537624c-3d2f-4f5c-8099-df916082c85c",
+          "title": "25",
+          "artist": "Adele"
+        }
+      ]
+    },
+    {
+      "query": "am",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "a348ba2f-f8b3-4686-b928-e63d8d94d543",
+          "title": "AM",
+          "artist": "Arctic Monkeys"
+        }
+      ]
+    },
+    {
+      "query": "lover",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "30e9785b-7b50-4d29-b3d1-96fb55e3397f",
+          "title": "Lover",
+          "artist": "Taylor Swift"
+        }
+      ]
+    },
+    {
+      "query": "currents",
+      "category": "short-title",
+      "expected": [
+        {
+          "mbid": "08aa7a6c-3e43-4459-87b2-e47faf3a088a",
+          "title": "Currents",
+          "artist": "Tame Impala"
+        }
+      ]
+    },
+    {
+      "query": "radiohaed in rainbows",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "6e335887-60ba-38f0-95af-fae7774336bf",
+          "title": "In Rainbows",
+          "artist": "Radiohead"
+        }
+      ]
+    },
+    {
+      "query": "nirvanna nevermind",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "1b022e01-4da6-387b-8658-8678046e4cef",
+          "title": "Nevermind",
+          "artist": "Nirvana"
+        }
+      ]
+    },
+    {
+      "query": "kanye wset graduation",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "d44c50ad-61fd-3fce-95fc-27024d7f1d30",
+          "title": "Graduation",
+          "artist": "Kanye West"
+        }
+      ]
+    },
+    {
+      "query": "taylr swift folklore",
+      "category": "typo",
+      "expected": [
+        {
+          "mbid": "f1d08326-c23b-4b43-be3b-20b33ab10bf6",
+          "title": "folklore",
+          "artist": "Taylor Swift"
+        }
+      ]
+    },
+    {
+      "query": "motley crue dr feelgood",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "2fc8cf0a-2370-3238-b4f3-0fcea1511c12",
+          "title": "Dr. Feelgood",
+          "artist": "Mötley Crüe"
+        }
+      ]
+    },
+    {
+      "query": "sigur ros takk",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "47d8e9e2-dc13-3d94-afee-1f8c38cec091",
+          "title": "Takk…",
+          "artist": "Sigur Rós"
+        }
+      ]
+    },
+    {
+      "query": "rosalia motomami",
+      "category": "diacritics",
+      "expected": [
+        {
+          "mbid": "f455f658-dd55-4790-8cd3-99c7c273018a",
+          "title": "MOTOMAMI",
+          "artist": "ROSALÍA"
+        }
+      ]
+    }
+  ]
+}

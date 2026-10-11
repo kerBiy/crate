@@ -34,17 +34,19 @@ final class SearchRanking {
 
     /**
      * The artist's albums first, most released first; then everything the query found, by
-     * MusicBrainz's score plus {@code popularityWeight × ln(1 + releases)}. The log keeps a
-     * 136-release classic from swamping relevance: 136 vs 1 release is 4.9 vs 0.7, so with a weight
-     * of 15 popularity is worth up to ~60 score points, not ten thousand. Duplicates keep their
-     * first (best) position.
+     * {@link #relevance}. Duplicates keep their first (best) position.
+     *
+     * @param listeners ListenBrainz listener count per album; empty when ListenBrainz couldn't be asked,
+     *                  which gives exactly the ranking from before listeners were used (ADR 012)
      */
-    static List<ReleaseGroup> merge(List<ReleaseGroup> artistAlbums, List<SearchHit> hits, double popularityWeight) {
+    static List<ReleaseGroup> merge(List<ReleaseGroup> artistAlbums, List<SearchHit> hits, double popularityWeight,
+            double listenerWeight, Map<UUID, Integer> listeners) {
         Stream<ReleaseGroup> artistFirst = artistAlbums.stream()
                 .sorted(Comparator.comparingInt(SearchRanking::releases).reversed());
         // Stable sort: equal values keep MusicBrainz's order.
         Stream<ReleaseGroup> byRelevance = hits.stream()
-                .sorted(Comparator.comparingDouble((SearchHit hit) -> relevance(hit, popularityWeight)).reversed())
+                .sorted(Comparator.comparingDouble(
+                        (SearchHit hit) -> relevance(hit, popularityWeight, listenerWeight, listeners)).reversed())
                 .map(SearchHit::releaseGroup);
 
         Map<UUID, ReleaseGroup> ranked = new LinkedHashMap<>();
@@ -52,8 +54,18 @@ final class SearchRanking {
         return List.copyOf(ranked.values());
     }
 
-    static double relevance(SearchHit hit, double popularityWeight) {
-        return hit.score() + popularityWeight * Math.log1p(releases(hit.releaseGroup()));
+    /**
+     * MusicBrainz's score + {@code popularityWeight × ln(1 + releases)} + {@code listenerWeight × ln(1 +
+     * listeners)}. The logs keep a classic from swamping relevance: 136 vs 1 release is 4.9 vs 0.7, so
+     * with a weight of 15 releases are worth up to ~60 score points, not ten thousand; 100 000 listeners
+     * with a weight of 2 are worth ~23. Releases say what was pressed (ADR 010), listeners what people
+     * play now (ADR 012), which mostly decides short titles such as "am" or "25".
+     */
+    static double relevance(SearchHit hit, double popularityWeight, double listenerWeight,
+            Map<UUID, Integer> listeners) {
+        return hit.score()
+                + popularityWeight * Math.log1p(releases(hit.releaseGroup()))
+                + listenerWeight * Math.log1p(listeners.getOrDefault(hit.releaseGroup().id(), 0));
     }
 
     private static int releases(ReleaseGroup album) {

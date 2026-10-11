@@ -22,3 +22,6 @@ docs/learning/
 
 # Local dev logs and PID files (make dev)
 logs/
+
+# Python
+__pycache__/

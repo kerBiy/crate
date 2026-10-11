@@ -1,6 +1,7 @@
 # ADR-010: Search ranking — let MusicBrainz rank, and cache its ranking
 
-Date: 2026-10-07 · Status: accepted (refines step 2 of ADR-003's search flow)
+Date: 2026-10-07 · Status: accepted (refines step 2 of ADR-003's search flow; ADR-012 adds ListenBrainz
+listener counts to the relevance formula)
 
 ## Context
 

@@ -1,0 +1,451 @@
+{
+ "mode": "candidates",
+ "cases": "queries-niche.json",
+ "pools": [
+  {
+   "query": "subcarpați pielea de găină",
+   "category": "romanian",
+   "expected": [
+    {
+     "mbid": "89ac8096-7e26-450a-9f52-eebb9b19f57f",
+     "title": "Pielea de găină",
+     "artist": "Subcarpați"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "89ac8096-7e26-450a-9f52-eebb9b19f57f",
+     "title": "Pielea de găină",
+     "credit": "Subcarpați",
+     "artists": [
+      {
+       "id": "b115f23e-c1f3-4cbe-95b5-615276ade5f9",
+       "name": "Subcarpați"
+      }
+     ],
+     "releases": 1,
+     "score": 100
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "vița de vie fenomental",
+   "category": "romanian",
+   "expected": [
+    {
+     "mbid": "f5bc50e2-6a1d-3483-ba9f-8d655dd0fe87",
+     "title": "Fenomental",
+     "artist": "Vița de vie"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "f5bc50e2-6a1d-3483-ba9f-8d655dd0fe87",
+     "title": "Fenomental",
+     "credit": "Vița de vie",
+     "artists": [
+      {
+       "id": "04484ae8-4c1c-4c97-bdc2-44206d8c676b",
+       "name": "Vița de Vie"
+      }
+     ],
+     "releases": 2,
+     "score": 100
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "alexandru andrieș muzică de divorț",
+   "category": "romanian",
+   "expected": [
+    {
+     "mbid": "8650d561-91ae-3b4f-9e6d-5981da77ee38",
+     "title": "Muzică de divorț",
+     "artist": "Alexandru Andrieș"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "8650d561-91ae-3b4f-9e6d-5981da77ee38",
+     "title": "Muzică de divorț",
+     "credit": "Alexandru Andrieș",
+     "artists": [
+      {
+       "id": "6387ec0b-8b1d-46df-8685-6c66f6681cc4",
+       "name": "Alexandru Andrieș"
+      }
+     ],
+     "releases": 1,
+     "score": 100
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "cindy lee diamond jubilee",
+   "category": "bandcamp",
+   "expected": [
+    {
+     "mbid": "442d3e54-f7f2-45b7-a743-61e0c2372284",
+     "title": "Diamond Jubilee",
+     "artist": "Cindy Lee"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "442d3e54-f7f2-45b7-a743-61e0c2372284",
+     "title": "Diamond Jubilee",
+     "credit": "Cindy Lee",
+     "artists": [
+      {
+       "id": "a7537f5b-ef6f-424e-9f4d-9b990cb8866f",
+       "name": "Cindy Lee"
+      }
+     ],
+     "releases": 7,
+     "score": 100
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "deerhoof miracle-level",
+   "category": "bandcamp",
+   "expected": [
+    {
+     "mbid": "9bc50628-993e-4eeb-90de-a2bb62d41003",
+     "title": "Miracle-Level",
+     "artist": "Deerhoof"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "9bc50628-993e-4eeb-90de-a2bb62d41003",
+     "title": "Miracle‐Level",
+     "credit": "Deerhoof",
+     "artists": [
+      {
+       "id": "11eabe0c-2638-4808-92f9-1dbd9c453429",
+       "name": "Deerhoof"
+      }
+     ],
+     "releases": 2,
+     "score": 100
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "king gizzard flight b741",
+   "category": "bandcamp",
+   "expected": [
+    {
+     "mbid": "2dc473a8-c4af-4dc0-8907-c609bf953499",
+     "title": "Flight b741",
+     "artist": "King Gizzard & the Lizard Wizard"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "2dc473a8-c4af-4dc0-8907-c609bf953499",
+     "title": "Flight b741",
+     "credit": "King Gizzard & the Lizard Wizard",
+     "artists": [
+      {
+       "id": "f58384a4-2ad2-4f24-89c5-c7b74ae1cce7",
+       "name": "King Gizzard & the Lizard Wizard"
+      }
+     ],
+     "releases": 5,
+     "score": 100
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "odessey and oracle",
+   "category": "pre-1970",
+   "expected": [
+    {
+     "mbid": "9a4a9ebf-f4f7-3dba-9b80-0b274cbc80f9",
+     "title": "Odessey and Oracle",
+     "artist": "The Zombies"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "86e84bdf-9ab7-4598-946d-cfd670bafe12",
+     "title": "Odessey & Oracle and the Casiotone Orchestra",
+     "credit": "Odessey & Oracle",
+     "artists": [
+      {
+       "id": "98d59fdc-6bb6-488d-851e-209497b6a644",
+       "name": "Odessey & Oracle"
+      }
+     ],
+     "releases": 1,
+     "score": 100
+    },
+    {
+     "id": "69778a78-a249-437b-939f-50a0509aa5b2",
+     "title": "Odessey and Oracle",
+     "credit": "Chrysanthemums",
+     "artists": [
+      {
+       "id": "f9dfeca1-2d0e-4a1f-b247-1940692992a0",
+       "name": "The Chrysanthemums"
+      }
+     ],
+     "releases": 3,
+     "score": 78
+    },
+    {
+     "id": "9a4a9ebf-f4f7-3dba-9b80-0b274cbc80f9",
+     "title": "Odessey and Oracle",
+     "credit": "The Zombies",
+     "artists": [
+      {
+       "id": "230ca093-1d00-4c57-9235-147942f66930",
+       "name": "The Zombies"
+      }
+     ],
+     "releases": 30,
+     "score": 78
+    },
+    {
+     "id": "68dbce82-049e-4aa6-a525-b386da81590a",
+     "title": "Crocorama",
+     "credit": "Odessey & Oracle",
+     "artists": [
+      {
+       "id": "98d59fdc-6bb6-488d-851e-209497b6a644",
+       "name": "Odessey & Oracle"
+      }
+     ],
+     "releases": 1,
+     "score": 23
+    },
+    {
+     "id": "c635e9c0-1bd4-4740-b35f-9a58064c91ea",
+     "title": "Technicolor",
+     "credit": "Odessey & Oracle",
+     "artists": [
+      {
+       "id": "98d59fdc-6bb6-488d-851e-209497b6a644",
+       "name": "Odessey & Oracle"
+      }
+     ],
+     "releases": 1,
+     "score": 23
+    },
+    {
+     "id": "f8e7c7f6-2299-404b-bba9-752c24061496",
+     "title": "Speculatio",
+     "credit": "Odessey & Oracle",
+     "artists": [
+      {
+       "id": "98d59fdc-6bb6-488d-851e-209497b6a644",
+       "name": "Odessey & Oracle"
+      }
+     ],
+     "releases": 1,
+     "score": 23
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "money jungle",
+   "category": "pre-1970",
+   "expected": [
+    {
+     "mbid": "1c18538e-e9be-3449-8be1-f3cdc7b493e0",
+     "title": "Money Jungle",
+     "artist": "Duke Ellington"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": null,
+   "hits": [
+    {
+     "id": "1c18538e-e9be-3449-8be1-f3cdc7b493e0",
+     "title": "Money Jungle",
+     "credit": "Duke Ellington • Charlie Mingus • Max Roach",
+     "artists": [
+      {
+       "id": "3af06bc4-68ad-4cae-bb7a-7eeeb45e411f",
+       "name": "Duke Ellington"
+      },
+      {
+       "id": "f3b8e107-abe8-4743-b6a3-4a4ee995e71f",
+       "name": "Charles Mingus"
+      },
+      {
+       "id": "0b6aea55-d855-4a33-ae08-b0280dd28684",
+       "name": "Max Roach"
+      }
+     ],
+     "releases": 16,
+     "score": 100
+    },
+    {
+     "id": "386c621e-a73c-4b8d-91df-6d38faaa6412",
+     "title": "Money Jungle: Provocative in Blue",
+     "credit": "Terri Lyne Carrington",
+     "artists": [
+      {
+       "id": "7062af1b-b491-40a2-9d82-77dd63a33dcb",
+       "name": "Terri Lyne Carrington"
+      }
+     ],
+     "releases": 1,
+     "score": 70
+    },
+    {
+     "id": "19252a29-8df7-4260-af83-de9dd9f256a8",
+     "title": "More Money Jungle...Ellington Explorations",
+     "credit": "Rhythm & Brass",
+     "artists": [
+      {
+       "id": "698f8782-4a74-4ac6-87f9-6310c0b4ab7b",
+       "name": "Rhythm & Brass"
+      }
+     ],
+     "releases": 1,
+     "score": 70
+    },
+    {
+     "id": "e316fc6e-e34a-4faa-add3-fd3b8ff53ee5",
+     "title": "Money Jungle – Ellington Reorchestrated",
+     "credit": "hr‐Bigband | Frankfurt Radio Bigband, Jörg Achim Keller",
+     "artists": [
+      {
+       "id": "25ee55da-8730-4cbe-8f48-50d29139f1af",
+       "name": "hr‐Bigband"
+      },
+      {
+       "id": "ce92c35e-6531-46d4-b463-eb07d95a2e51",
+       "name": "Jörg Achim Keller"
+      }
+     ],
+     "releases": 1,
+     "score": 70
+    },
+    {
+     "id": "c39fe35b-1e62-3718-a058-adf63b03fdef",
+     "title": "Tales From the Money Jungle",
+     "credit": "Chris Klein",
+     "artists": [
+      {
+       "id": "76f7e963-3efe-4b4c-aa98-a4a44f15ca64",
+       "name": "Chris Klein"
+      }
+     ],
+     "releases": 1,
+     "score": 70
+    },
+    {
+     "id": "7aeb449b-8ba8-317c-85d8-c5a7fd8cb58b",
+     "title": "Jungle Owes Me Money",
+     "credit": "MC Det",
+     "artists": [
+      {
+       "id": "fc55bc24-549e-4655-966c-330d3d266295",
+       "name": "MC Det"
+      }
+     ],
+     "releases": 1,
+     "score": 29
+    }
+   ],
+   "artist_albums": []
+  },
+  {
+   "query": "forever changes",
+   "category": "pre-1970",
+   "expected": [
+    {
+     "mbid": "c7035bc6-6101-326f-992c-401d451c1716",
+     "title": "Forever Changes",
+     "artist": "Love"
+    }
+   ],
+   "fuzzy": false,
+   "artist_id": "0f67e1b3-5d21-4d7d-a225-7a29a51919dd",
+   "hits": [
+    {
+     "id": "a6b67dd1-f0e4-4359-86cf-d7107291c971",
+     "title": "Forever Changes",
+     "credit": "Forever Changes",
+     "artists": [
+      {
+       "id": "0f67e1b3-5d21-4d7d-a225-7a29a51919dd",
+       "name": "Forever Changes"
+      }
+     ],
+     "releases": 1,
+     "score": 100
+    },
+    {
+     "id": "c7035bc6-6101-326f-992c-401d451c1716",
+     "title": "Forever Changes",
+     "credit": "Love",
+     "artists": [
+      {
+       "id": "34ec9a8d-c65b-48fd-bcdd-aad2f72fdb47",
+       "name": "Love"
+      }
+     ],
+     "releases": 24,
+     "score": 56
+    }
+   ],
+   "artist_albums": [
+    {
+     "id": "a6b67dd1-f0e4-4359-86cf-d7107291c971",
+     "title": "Forever Changes",
+     "credit": "Forever Changes",
+     "artists": [
+      {
+       "id": "0f67e1b3-5d21-4d7d-a225-7a29a51919dd",
+       "name": "Forever Changes"
+      }
+     ],
+     "releases": 1,
+     "score": null
+    }
+   ],
+   "artist_albums_all": [
+    {
+     "id": "a6b67dd1-f0e4-4359-86cf-d7107291c971",
+     "title": "Forever Changes",
+     "credit": "Forever Changes",
+     "artists": [
+      {
+       "id": "0f67e1b3-5d21-4d7d-a225-7a29a51919dd",
+       "name": "Forever Changes"
+      }
+     ],
+     "releases": 1,
+     "score": null
+    }
+   ]
+  }
+ ]
+}

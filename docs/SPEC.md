@@ -269,6 +269,8 @@ create table albums (
   release_count      integer,           -- releases in the group (popularity); only search results report it
   has_cover          boolean,           -- Cover Art Archive has a front cover; null = not checked yet
   cover_checked_at   timestamptz,       -- when has_cover was set; "no cover" is rechecked after 30 days
+  listener_count     integer,           -- ListenBrainz listeners (popularity, ADR-012); 0 also = unknown to ListenBrainz
+  listeners_checked_at timestamptz,     -- when listener_count was fetched; null = never; refetched after 30 days
   search_text        text not null,     -- normalized in Java: lowercase, no diacritics, title + artist
   fetched_at         timestamptz not null
 );
@@ -317,6 +319,14 @@ create table processed_events (
 - Keep only release groups with primary type Album or EP. In search, also drop the excluded secondary types (`MusicBrainzQueryBuilder.EXCLUDED_SECONDARY_TYPES`) unless the title is exactly the query; lookups by id keep them.
 - Exact query syntax and `inc=` parameters: verify against the MusicBrainz API docs. Capture real responses once and keep them as WireMock fixtures.
 
+**ListenBrainz integration rules (ADR-012)**
+
+- One call per cold search: `POST https://api.listenbrainz.org/1/popularity/release-group` with `{"release_group_mbids": [...]}` (no token; at most 1000 MBIDs, we send ≤ 100). We read `total_user_count` (listeners); null means ListenBrainz doesn't know the album and is stored as 0.
+- Only for albums without a count fetched in the last 30 days (`crate.listenbrainz.refresh-after`); no call if every count is fresh.
+- **Rate limit: 1 call per second** (ListenBrainz's documented limit), with its own token bucket, separate from MusicBrainz's. Same User-Agent as MusicBrainz. Send the body with a `Content-Length`: ListenBrainz answers 400 to a chunked body.
+- **400 ms timeout, no retry.** On a timeout, an error status (429 included), a network error or a full rate-limit queue, search ranks with no listener counts at all, which is exactly the ranking from before ADR-012. A search never fails or waits longer because of ListenBrainz.
+- License: the ListenBrainz data dumps are CC0, and commercial use is allowed but MetaBrainz asks companies to pay as supporters. ADR-012 lists what is and isn't confirmed for the API.
+
 **Search algorithm (read-through cache of MusicBrainz's ranking, ADR-010)**
 
 1. Normalize the query: lowercase, strip diacritics (`java.text.Normalizer`), collapse whitespace.
@@ -325,10 +335,10 @@ create table processed_events (
    1. The query, 100 results: every word required in title or artist; compilations, live albums, remixes, DJ-mixes, mixtapes, demos etc. excluded unless the title is exactly the query (soundtracks stay).
    2. Only if that found nothing: the same query allowing misspellings (`word~` for words of 4+ letters).
    3. If the whole query is the name of an artist credited in the results ("radiohead", "beatles", "bjork"): that artist's albums.
-4. Rank: the artist's albums first, most releases first; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock). Check covers for the top 50 ranked albums not checked yet (see *Cover check*; about +0.4 s median on a cold search, nothing on a warm one). Then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing) and replace its `search_results`. Return them.
+4. Rank: the artist's albums first, most releases first; then the query's results by MusicBrainz score + 15 × ln(1 + release count) (`crate.catalog.search.popularity-weight`) + 2 × ln(1 + ListenBrainz listeners) (`listener-weight`, ADR-012; see *ListenBrainz integration rules* for when counts are missing). Upsert albums and artists (`INSERT … ON CONFLICT DO UPDATE`, in MBID order so concurrent searches can't deadlock). Check covers for the top 50 ranked albums not checked yet (see *Cover check*; about +0.4 s median on a cold search, nothing on a warm one). Store the listener counts just fetched. Then in one transaction record the query in `search_cache` (even when MusicBrainz found nothing, and also when ListenBrainz failed: that ranking is kept for the 7 days too) and replace its `search_results`. Return them.
 5. If MusicBrainz fails or times out → local fallback with `partial: true`: trigram **word similarity** on `search_text` (`query <% search_text`, ≥ 0.5, served by the GIN index), excluded secondary types left out, most releases first among equal matches. **Never fail a search because MusicBrainz is down.**
 
-Search quality is measured with `services/catalog-service/search-eval` (30 queries, hit@3); rerun it when changing anything above.
+Search quality is measured with `services/catalog-service/search-eval`: the main set (30 queries, used for tuning), a held-out set (25) and a niche set (9), scored by hit@1, hit@3, MRR and, for artist-name queries, nDCG@5. Rerun all three when changing anything above; held-out and niche must not get worse.
 
 **Album details:** works for every album, with or without a cover (the frontend shows the missing-cover sleeve). Local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
 

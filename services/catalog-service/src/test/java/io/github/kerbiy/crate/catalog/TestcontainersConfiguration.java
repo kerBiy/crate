@@ -32,7 +32,8 @@ public class TestcontainersConfiguration {
         return new KafkaContainer("apache/kafka:4.3.1").withEnv("KAFKA_AUTO_CREATE_TOPICS_ENABLE", "false");
     }
 
-    // Stands in for musicbrainz.org (under /ws/2) and coverartarchive.org (under /caa);
+    // Stands in for musicbrainz.org (under /ws/2), coverartarchive.org (under /caa) and
+    // api.listenbrainz.org (under /lb);
     // serves the recorded fixtures under src/test/resources/__files.
     @Bean(destroyMethod = "stop")
     WireMockServer musicBrainz() {
@@ -51,6 +52,8 @@ public class TestcontainersConfiguration {
             registry.add("crate.musicbrainz.retry.initial-backoff", () -> "1ms");
             registry.add("crate.catalog.cover-art.base-url", () -> musicBrainz.baseUrl() + "/caa");
             registry.add("crate.catalog.cover-art.timeout", () -> "500ms");
+            registry.add("crate.listenbrainz.base-url", () -> musicBrainz.baseUrl() + "/lb");
+            registry.add("crate.listenbrainz.rate-limit.interval", () -> "1ms");
         };
     }
 }

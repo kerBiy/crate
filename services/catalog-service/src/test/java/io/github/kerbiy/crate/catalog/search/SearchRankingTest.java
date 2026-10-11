@@ -6,12 +6,15 @@ import io.github.kerbiy.crate.catalog.musicbrainz.ArtistCredit;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
 import io.github.kerbiy.crate.catalog.musicbrainz.SearchHit;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
 class SearchRankingTest {
 
     private static final double WEIGHT = 15;
+    private static final double LISTENER_WEIGHT = 2;
+    private static final Map<UUID, Integer> NO_LISTENERS = Map.of();
     private static final ArtistCredit RADIOHEAD = artist("Radiohead");
     private static final ArtistCredit BJORK = artist("Björk");
     private static final ArtistCredit BEATLES = artist("The Beatles");
@@ -58,7 +61,7 @@ class SearchRankingTest {
         ReleaseGroup twin = album("Rumours", 1, artist("Rumours"));
         ReleaseGroup classic = album("Rumours", 81, artist("Fleetwood Mac"));
 
-        assertThat(SearchRanking.merge(List.of(), List.of(hit(twin, 100), hit(classic, 90)), WEIGHT))
+        assertThat(SearchRanking.merge(List.of(), List.of(hit(twin, 100), hit(classic, 90)), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
                 .containsExactly(classic, twin);
     }
 
@@ -67,7 +70,7 @@ class SearchRankingTest {
         ReleaseGroup exact = album("Kid A", 30, RADIOHEAD);
         ReleaseGroup partial = album("Kid A Mnesia", 40, RADIOHEAD);
 
-        assertThat(SearchRanking.merge(List.of(), List.of(hit(partial, 70), hit(exact, 100)), WEIGHT))
+        assertThat(SearchRanking.merge(List.of(), List.of(hit(partial, 70), hit(exact, 100)), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
                 .containsExactly(exact, partial);
     }
 
@@ -79,7 +82,7 @@ class SearchRankingTest {
         ReleaseGroup tribute = album("Radiohead", 1, artist("Wesley Willis"));
 
         List<ReleaseGroup> ranked = SearchRanking.merge(List.of(kidA, okComputer),
-                List.of(hit(selfTitledEp, 100), hit(kidA, 50), hit(tribute, 64)), WEIGHT);
+                List.of(hit(selfTitledEp, 100), hit(kidA, 50), hit(tribute, 64)), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS);
 
         assertThat(ranked).containsExactly(okComputer, kidA, selfTitledEp, tribute);
     }
@@ -89,8 +92,49 @@ class SearchRankingTest {
         ReleaseGroup unknown = new ReleaseGroup(UUID.randomUUID(), "X", "A", "Album", List.of(), null, null, List.of());
         ReleaseGroup one = album("Y", 1, artist("B"));
 
-        assertThat(SearchRanking.merge(List.of(), List.of(hit(unknown, 80), hit(one, 80)), WEIGHT))
+        assertThat(SearchRanking.merge(List.of(), List.of(hit(unknown, 80), hit(one, 80)), WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
                 .containsExactly(one, unknown);
+    }
+
+    // --- listener counts (ADR 012) ---
+
+    @Test
+    void listenersLiftTheAlbumPeoplePlay() {
+        // Same score; the old one has more editions (100 + 15·ln 11 ≈ 136.0 vs 100 + 15·ln 3 ≈ 116.5),
+        // but 2·ln(1 + 1 000 000) ≈ 27.6 is more than the gap.
+        ReleaseGroup pressed = album("Am", 10, artist("Old Band"));
+        ReleaseGroup played = album("AM", 2, artist("Arctic Monkeys"));
+        List<SearchHit> hits = List.of(hit(pressed, 100), hit(played, 100));
+
+        assertThat(SearchRanking.merge(List.of(), hits, WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
+                .containsExactly(pressed, played);
+        assertThat(SearchRanking.merge(List.of(), hits, WEIGHT, LISTENER_WEIGHT,
+                Map.of(pressed.id(), 0, played.id(), 1_000_000)))
+                .containsExactly(played, pressed);
+    }
+
+    @Test
+    void withoutListenerCountsTheRankingIsTheOldOne() {
+        ReleaseGroup a = album("A", 1, artist("X"));
+        ReleaseGroup b = album("B", 5, artist("Y"));
+        ReleaseGroup c = album("C", 30, artist("Z"));
+        List<SearchHit> hits = List.of(hit(a, 100), hit(b, 90), hit(c, 60));
+
+        assertThat(SearchRanking.merge(List.of(), hits, WEIGHT, LISTENER_WEIGHT, NO_LISTENERS))
+                .containsExactlyElementsOf(SearchRanking.merge(List.of(), hits, WEIGHT, 0, NO_LISTENERS));
+        // An album ListenBrainz doesn't know counts as no listeners, like an empty map.
+        assertThat(SearchRanking.merge(List.of(), hits, WEIGHT, LISTENER_WEIGHT, Map.of(a.id(), 0)))
+                .containsExactlyElementsOf(SearchRanking.merge(List.of(), hits, WEIGHT, 0, NO_LISTENERS));
+    }
+
+    @Test
+    void artistAlbumsStayOrderedByReleasesWhateverTheirListeners() {
+        ReleaseGroup okComputer = album("OK Computer", 39, RADIOHEAD);
+        ReleaseGroup inRainbows = album("In Rainbows", 20, RADIOHEAD);
+
+        assertThat(SearchRanking.merge(List.of(inRainbows, okComputer), List.of(), WEIGHT, LISTENER_WEIGHT,
+                Map.of(inRainbows.id(), 10_000_000, okComputer.id(), 1)))
+                .containsExactly(okComputer, inRainbows);
     }
 
     private static ArtistCredit artist(String name) {

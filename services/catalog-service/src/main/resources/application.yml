@@ -39,6 +39,9 @@ crate:
       musicbrainz-limit: 100
       # Tuned with search-eval (ADR 010): 15 is the smallest weight that reached the best hit@3.
       popularity-weight: 15
+      # ListenBrainz listener counts next to it (ADR 012). Tuned offline on search-eval's main set:
+      # 2 is the smallest weight that reached the best hit@3, hit@1 and MRR there.
+      listener-weight: 2
       # Cover checks per cold search: the top of the ranking, as many as the largest page (limit=50).
       cover-check-count: 50
     cover-art:
@@ -49,6 +52,16 @@ crate:
       # A whole batch gives up after this; unanswered albums stay "unknown" and are shown.
       deadline: 3s
       recheck-after: 30d
+  listenbrainz:
+    base-url: https://api.listenbrainz.org
+    # One batch call per cold search, answering in ~200 ms (median). Past this, rank without listeners.
+    timeout: 400ms
+    rate-limit:
+      # ListenBrainz's documented limit: one call per second. Shares nothing with the MusicBrainz limiter.
+      interval: 1s
+      # Cold searches already queue on MusicBrainz at 1/s, so this almost never waits.
+      max-wait: 1s
+    refresh-after: 30d
   musicbrainz:
     base-url: https://musicbrainz.org/ws/2
     # MusicBrainz blocks clients without a meaningful User-Agent. The contact email lives in .env.

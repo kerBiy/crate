@@ -1,0 +1,405 @@
+{
+ "mode": "endpoint",
+ "base": "http://localhost:8092",
+ "path": "/albums/search",
+ "match": "mbid",
+ "cases": "queries-niche.json",
+ "passes": [
+  {
+   "label": "cold",
+   "results": [
+    {
+     "query": "subcarpați pielea de găină",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 1620,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Pielea de găină — Subcarpați"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "vița de vie fenomental",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 1997,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Fenomental — Vița de vie"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "alexandru andrieș muzică de divorț",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 2001,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Muzică de divorț — Alexandru Andrieș"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "cindy lee diamond jubilee",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 2491,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Diamond Jubilee — Cindy Lee"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "deerhoof miracle-level",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 1653,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Miracle‐Level — Deerhoof"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "king gizzard flight b741",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 1966,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Flight b741 — King Gizzard & the Lizard Wizard"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "odessey and oracle",
+     "category": "pre-1970",
+     "rank": 1,
+     "ms": 2022,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Odessey and Oracle — The Zombies",
+      "Odessey & Oracle and the Casiotone Orchestra — Odessey & Oracle",
+      "Odessey and Oracle — Chrysanthemums",
+      "Speculatio — Odessey & Oracle",
+      "Crocorama — Odessey & Oracle",
+      "Technicolor — Odessey & Oracle"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "money jungle",
+     "category": "pre-1970",
+     "rank": 1,
+     "ms": 2087,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Money Jungle — Duke Ellington • Charlie Mingus • Max Roach",
+      "Money Jungle: Provocative in Blue — Terri Lyne Carrington",
+      "Money Jungle – Ellington Reorchestrated — hr‐Bigband | Frankfurt Radio Bigband, Jörg Achim Keller"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "forever changes",
+     "category": "pre-1970",
+     "rank": 2,
+     "ms": 3829,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Forever Changes — Forever Changes",
+      "Forever Changes — Love"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 9,
+     "hit@1": 8,
+     "hit@3": 9,
+     "hit@10": 9,
+     "mrr": 0.944
+    },
+    "by_category": {
+     "romanian": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0
+     },
+     "bandcamp": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0
+     },
+     "pre-1970": {
+      "n": 3,
+      "hit@1": 2,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.833
+     }
+    }
+   }
+  },
+  {
+   "label": "warm",
+   "results": [
+    {
+     "query": "subcarpați pielea de găină",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 33,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Pielea de găină — Subcarpați"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "vița de vie fenomental",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 20,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Fenomental — Vița de vie"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "alexandru andrieș muzică de divorț",
+     "category": "romanian",
+     "rank": 1,
+     "ms": 20,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Muzică de divorț — Alexandru Andrieș"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "cindy lee diamond jubilee",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 17,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Diamond Jubilee — Cindy Lee"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "deerhoof miracle-level",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 16,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Miracle‐Level — Deerhoof"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "king gizzard flight b741",
+     "category": "bandcamp",
+     "rank": 1,
+     "ms": 96,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Flight b741 — King Gizzard & the Lizard Wizard"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "odessey and oracle",
+     "category": "pre-1970",
+     "rank": 1,
+     "ms": 14,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Odessey and Oracle — The Zombies",
+      "Odessey & Oracle and the Casiotone Orchestra — Odessey & Oracle",
+      "Odessey and Oracle — Chrysanthemums",
+      "Speculatio — Odessey & Oracle",
+      "Crocorama — Odessey & Oracle",
+      "Technicolor — Odessey & Oracle"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "money jungle",
+     "category": "pre-1970",
+     "rank": 1,
+     "ms": 13,
+     "rank_mbid": 1,
+     "rank_title": 1,
+     "positions": [
+      1
+     ],
+     "partial": false,
+     "top": [
+      "Money Jungle — Duke Ellington • Charlie Mingus • Max Roach",
+      "Money Jungle: Provocative in Blue — Terri Lyne Carrington",
+      "Money Jungle – Ellington Reorchestrated — hr‐Bigband | Frankfurt Radio Bigband, Jörg Achim Keller"
+     ],
+     "no_cover": [],
+     "note": ""
+    },
+    {
+     "query": "forever changes",
+     "category": "pre-1970",
+     "rank": 2,
+     "ms": 12,
+     "rank_mbid": 2,
+     "rank_title": 2,
+     "positions": [
+      2
+     ],
+     "partial": false,
+     "top": [
+      "Forever Changes — Forever Changes",
+      "Forever Changes — Love"
+     ],
+     "no_cover": [],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "all": {
+     "n": 9,
+     "hit@1": 8,
+     "hit@3": 9,
+     "hit@10": 9,
+     "mrr": 0.944
+    },
+    "by_category": {
+     "romanian": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0
+     },
+     "bandcamp": {
+      "n": 3,
+      "hit@1": 3,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 1.0
+     },
+     "pre-1970": {
+      "n": 3,
+      "hit@1": 2,
+      "hit@3": 3,
+      "hit@10": 3,
+      "mrr": 0.833
+     }
+    }
+   }
+  }
+ ]
+}

@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -177,6 +178,38 @@ public class AlbumRepository {
                         update albums set has_cover = :hasCover, cover_checked_at = now() where id = :id
                         """)
                 .param("hasCover", hasCover.get(id))
+                .param("id", id)
+                .update());
+    }
+
+    /**
+     * ListenBrainz listener counts stored for these albums less than {@code refreshAfter} ago. Albums
+     * missing from the answer need asking: unknown here, never asked, or asked too long ago.
+     */
+    public Map<UUID, Integer> listenerCounts(Collection<UUID> ids, Duration refreshAfter) {
+        if (ids.isEmpty()) {
+            return Map.of();
+        }
+        return jdbc.sql("""
+                        select id, listener_count from albums
+                        where id in (:ids)
+                          and listeners_checked_at >= now() - make_interval(secs => :seconds)
+                        """)
+                .param("ids", ids)
+                .param("seconds", refreshAfter.toSeconds())
+                .query((rs, rowNum) -> Map.entry(rs.getObject("id", UUID.class), rs.getInt("listener_count")))
+                .list()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    /** Stores what ListenBrainz said. Rows are updated in id order, like {@link #upsertAll}. */
+    @Transactional
+    public void recordListeners(Map<UUID, Integer> listeners) {
+        listeners.keySet().stream().sorted().forEach(id -> jdbc.sql("""
+                        update albums set listener_count = :listeners, listeners_checked_at = now() where id = :id
+                        """)
+                .param("listeners", listeners.get(id))
                 .param("id", id)
                 .update());
     }

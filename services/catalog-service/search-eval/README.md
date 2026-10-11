@@ -26,10 +26,41 @@ original diagnosis, not as a score.
 
 `results/` holds the reports behind docs/adr/010-search-ranking.md: the baseline, the result after
 ADR-010, the run with cover checks, and the raw MusicBrainz diagnosis. The `2026-10-11-*` reports
-are behind docs/adr/011-deezer-rejected.md.
+are behind docs/adr/011-deezer-rejected.md; the ListenBrainz ones (`candidates-*`, `popularity-*`,
+`lb-baseline-*`, `listenbrainz*`, `step2-*`) are behind docs/adr/012-listenbrainz-popularity.md.
 
 `queries-niche.json`: 9 queries for coverage outside the mainstream (Romanian, Bandcamp-only,
 pre-1970), chosen before any tuning or comparison. Report it separately from `queries.json`.
+
+`queries-heldout.json`: 25 queries in the main set's categories, written before any ListenBrainz
+data was fetched. Never tune on it; report it next to the main set.
+
+Every report shows hit@1, hit@3, hit@10 and MRR. For artist-name queries (`artist`,
+`many-compilations`) it also shows top-5 (share of the expected albums in the top 5) and nDCG@5.
+
+**Offline re-ranking** (no catalog-service needed, results in `results/2026-10-11-listenbrainz.md`):
+
+```sh
+python3 eval.py candidates --cases queries.json --parity endpoint-report.json --out cand-main.json
+python3 eval.py artist-pages cand-main.json      # complete album lists, for formula G
+python3 eval.py popularity cand-main.json --out pop-main.json
+python3 eval.py rerank --tune main --set main:cand-main.json:pop-main.json --set heldout:…:… --out rerank.json
+```
+
+`candidates` is a Python mirror of the search pipeline (keep it in sync with `MusicBrainzQueryBuilder`,
+`MusicBrainzClient` and `SearchRanking`). `--parity` compares it with an `endpoint` report.
+`popularity` makes one ListenBrainz batch call per query. `rerank` tunes each formula on the `--tune` set,
+then scores every set with the frozen parameters. Cover answers are cached in `results/covers-cache.json`.
+
+**Before/after a ranking change**: run `endpoint` for all three sets on an empty database with the old
+code, then again with the new code (empty database again), and compare each pair:
+
+```sh
+python3 eval.py endpoint --base http://localhost:8092 --cases queries-heldout.json --out before-heldout.json
+# … restart on the new code, empty catalog_eval …
+python3 eval.py endpoint --base http://localhost:8092 --cases queries-heldout.json --out after-heldout.json
+python3 eval.py compare before-heldout.json after-heldout.json
+```
 
 `endpoint` options for other sets and sources:
 

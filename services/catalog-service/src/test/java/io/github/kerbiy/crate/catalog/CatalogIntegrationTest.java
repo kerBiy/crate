@@ -2,6 +2,7 @@ package io.github.kerbiy.crate.catalog;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.any;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
@@ -20,7 +21,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.test.web.servlet.client.RestTestClient;
 
-/** Base for catalog integration tests: real Postgres, WireMock as MusicBrainz, a clean slate per test. */
+/**
+ * Base for catalog integration tests: real Postgres, WireMock as MusicBrainz, the Cover Art Archive and
+ * ListenBrainz, a clean slate per test.
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestTestClient
 @Import(TestcontainersConfiguration.class)
@@ -28,6 +32,7 @@ public abstract class CatalogIntegrationTest {
 
     protected static final String MB_SEARCH = "/ws/2/release-group";
     protected static final String CAA = "/caa/release-group";
+    protected static final String LB_POPULARITY = "/lb/1/popularity/release-group";
 
     @Autowired
     protected RestTestClient client;
@@ -46,6 +51,13 @@ public abstract class CatalogIntegrationTest {
         jdbc.sql("truncate albums, artists, album_stats, processed_events, search_cache, search_results").update();
         musicBrainz.resetAll();
         stubCoversExist();
+        stubNoListeners();
+    }
+
+    /** Default answer of ListenBrainz: nobody listened to anything, so the ranking is the MusicBrainz one. */
+    protected void stubNoListeners() {
+        musicBrainz.stubFor(post(urlPathEqualTo(LB_POPULARITY)).atPriority(10)
+                .willReturn(aResponse().withStatus(200).withHeader("Content-Type", "application/json").withBody("[]")));
     }
 
     /** Default answer of the Cover Art Archive: every album has a cover (a redirect to the image). */

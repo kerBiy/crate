@@ -33,8 +33,11 @@ export type AlbumDetails = AlbumSummary & {
   ratingDistribution: number[]
 }
 
-/** catalog-service SearchResponse. partial: MusicBrainz couldn't be asked, results may be missing. */
-export type SearchResponse = { items: AlbumSummary[]; partial: boolean }
+/**
+ * catalog-service SearchResponse, one page of a search. partial: MusicBrainz couldn't be asked,
+ * results may be missing (always a single page).
+ */
+export type SearchResponse = Page<AlbumSummary> & { partial: boolean }
 
 /** review-service ReviewResponse. rating is in half stars: 1 = ½ star, 10 = 5 stars. */
 export type Review = {

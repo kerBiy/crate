@@ -26,13 +26,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class AlbumRepository {
 
     // Album columns plus the rating aggregate; albums nobody rated have no album_stats row.
-    private static final String SELECT_ALBUMS = """
-            select a.id, a.title, a.artist_credit, a.primary_artist_id, a.primary_type, a.first_release_date,
+    private static final String ALBUM_COLUMNS = """
+            a.id, a.title, a.artist_credit, a.primary_artist_id, a.primary_type, a.first_release_date,
                    coalesce(s.rating_count, 0) as rating_count, coalesce(s.rating_sum, 0) as rating_sum,
                    s.rating_distribution
+            """;
+    private static final String FROM_ALBUMS = """
             from albums a
             left join album_stats s on s.album_id = a.id
             """;
+    private static final String SELECT_ALBUMS = "select " + ALBUM_COLUMNS + FROM_ALBUMS;
 
     private final JdbcClient jdbc;
 
@@ -99,20 +102,23 @@ public class AlbumRepository {
     }
 
     /**
-     * The albums MusicBrainz ranked for this query (see SearchCacheRepository#store), best first.
-     * Albums confirmed to have no cover are left out; unchecked ones stay.
+     * The albums MusicBrainz ranked for this query (see SearchCacheRepository#store), best first,
+     * starting after {@code afterRank} (0 for the first page). Albums confirmed to have no cover are
+     * left out; unchecked ones stay, so ranks can have gaps.
      */
-    public List<AlbumRow> findRanked(String normalizedQuery, int limit) {
-        return jdbc.sql(SELECT_ALBUMS + """
+    public List<RankedAlbum> findRanked(String normalizedQuery, int afterRank, int limit) {
+        return jdbc.sql("select r.rank, " + ALBUM_COLUMNS + FROM_ALBUMS + """
                         join search_results r on r.album_id = a.id
                         where r.normalized_query = :q
+                          and r.rank > :after
                           and a.has_cover is not false
                         order by r.rank
                         limit :limit
                         """)
                 .param("q", normalizedQuery)
+                .param("after", afterRank)
                 .param("limit", limit)
-                .query(AlbumRepository::mapRow)
+                .query((rs, rowNum) -> new RankedAlbum(mapRow(rs, rowNum), rs.getInt("rank")))
                 .list();
     }
 

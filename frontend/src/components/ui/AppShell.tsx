@@ -1,6 +1,6 @@
 import { House, MagnifyingGlass, User, type Icon } from '@phosphor-icons/react'
 import { useState, type ReactNode } from 'react'
-import { Link, Outlet, useLocation } from 'react-router'
+import { Link, Outlet, ScrollRestoration, useLocation } from 'react-router'
 import { useMe } from '../../api/queries.ts'
 import { Avatar } from './Avatar.tsx'
 
@@ -70,6 +70,8 @@ export function AppShellLayout() {
   return (
     <AppShell current={current} userName={me.data?.username}>
       <Outlet />
+      {/* A new page starts at the top; Back returns to where you were (e.g. deep in search results). */}
+      <ScrollRestoration />
     </AppShell>
   )
 }

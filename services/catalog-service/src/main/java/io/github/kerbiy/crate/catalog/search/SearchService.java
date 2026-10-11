@@ -1,8 +1,8 @@
 package io.github.kerbiy.crate.catalog.search;
 
 import io.github.kerbiy.crate.catalog.album.AlbumRepository;
-import io.github.kerbiy.crate.catalog.album.AlbumRow;
 import io.github.kerbiy.crate.catalog.album.AlbumSummary;
+import io.github.kerbiy.crate.catalog.album.RankedAlbum;
 import io.github.kerbiy.crate.catalog.coverart.CoverArtProperties;
 import io.github.kerbiy.crate.catalog.coverart.CoverChecker;
 import io.github.kerbiy.crate.catalog.listenbrainz.ListenBrainzClient;
@@ -56,16 +56,23 @@ class SearchService {
         this.listenBrainzProperties = listenBrainzProperties;
     }
 
-    SearchResponse search(String query, int limit) {
+    /**
+     * @param cursor null for the first page. A next page only reads the stored ranking: no freshness
+     *               check, no MusicBrainz, so it continues the ranking the first page came from.
+     */
+    SearchResponse search(String query, SearchCursor cursor, int limit) {
         // 1. Same normalization as albums.search_text, so "Björk" and "bjork" share a cache entry.
         String normalized = SearchText.normalize(query);
         if (normalized.isEmpty()) {
             throw Problems.invalidField("q", "must contain letters or digits");
         }
+        if (cursor != null) {
+            return page(normalized, cursor.afterRank(), limit);
+        }
 
         // 2. MusicBrainz answered this query recently: replay its ranking.
         if (searchCache.isFresh(normalized, properties.cacheTtl(), properties.cacheTtlWithoutListeners())) {
-            return response(albums.findRanked(normalized, limit), false);
+            return page(normalized, 0, limit);
         }
 
         // 3. Ask MusicBrainz (outside any transaction).
@@ -75,7 +82,11 @@ class SearchService {
         } catch (MusicBrainzException e) {
             // 4. Never fail a search because MusicBrainz is down: serve what we have, flagged.
             log.warn("MusicBrainz search for '{}' failed, returning local results: {}", normalized, e.getMessage());
-            return response(albums.search(normalized, properties.matchThreshold(), limit), true);
+            // One page only: these results aren't stored, so there is no ranking to page through.
+            List<AlbumSummary> items = albums.search(normalized, properties.matchThreshold(), limit).stream()
+                    .map(AlbumSummary::from)
+                    .toList();
+            return new SearchResponse(items, null, true);
         }
 
         // 5. Rank with listener counts, store the albums, their counts and the ranking.
@@ -89,7 +100,7 @@ class SearchService {
         // Recorded even when MusicBrainz found nothing, so a nonsense query doesn't hit it every time.
         // Ranked without listener counts (ListenBrainz failed): kept for a day, not a week.
         searchCache.store(normalized, ranked.stream().map(ReleaseGroup::id).toList(), listeners.failed());
-        return response(albums.findRanked(normalized, limit), false);
+        return page(normalized, 0, limit);
     }
 
     /**
@@ -161,7 +172,15 @@ class SearchService {
     private record Listeners(Map<UUID, Integer> all, Map<UUID, Integer> fetched, boolean failed) {
     }
 
-    private static SearchResponse response(List<AlbumRow> albums, boolean partial) {
-        return new SearchResponse(albums.stream().map(AlbumSummary::from).toList(), partial);
+    /**
+     * One page of the stored ranking, after {@code afterRank}. Asks for one album more than the page
+     * holds: if it comes back, there is a next page, without a separate count query.
+     */
+    private SearchResponse page(String normalized, int afterRank, int limit) {
+        List<RankedAlbum> found = albums.findRanked(normalized, afterRank, limit + 1);
+        List<RankedAlbum> page = found.subList(0, Math.min(limit, found.size()));
+        String nextCursor = found.size() > limit ? new SearchCursor(page.getLast().rank()).encode() : null;
+        return new SearchResponse(page.stream().map(ranked -> AlbumSummary.from(ranked.album())).toList(),
+                nextCursor, false);
     }
 }

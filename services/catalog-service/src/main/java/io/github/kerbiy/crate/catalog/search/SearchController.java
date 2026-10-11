@@ -1,5 +1,6 @@
 package io.github.kerbiy.crate.catalog.search;
 
+import io.github.kerbiy.crate.catalog.web.Problems;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -21,7 +22,19 @@ class SearchController {
     @GetMapping("/albums/search")
     SearchResponse search(
             @RequestParam @NotBlank @Size(max = 100) String q,
-            @RequestParam(defaultValue = "20") @Min(1) @Max(50) int limit) {
-        return search.search(q, limit);
+            @RequestParam(required = false) String cursor,
+            @RequestParam(defaultValue = "12") @Min(1) @Max(50) int limit) {
+        return search.search(q, parse(cursor), limit);
+    }
+
+    private static SearchCursor parse(String cursor) {
+        if (cursor == null || cursor.isEmpty()) {
+            return null;
+        }
+        try {
+            return SearchCursor.decode(cursor);
+        } catch (IllegalArgumentException e) {
+            throw Problems.invalidField("cursor", "is not a valid cursor");
+        }
     }
 }

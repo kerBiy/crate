@@ -3,6 +3,7 @@ package io.github.kerbiy.crate.catalog.search;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.any;
 import static com.github.tomakehurst.wiremock.client.WireMock.anyRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.anyUrl;
 import static com.github.tomakehurst.wiremock.client.WireMock.containing;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -170,6 +171,87 @@ class SearchIntegrationTests extends CatalogIntegrationTest {
         stubArtistQuery();
 
         search("radiohead", "2").expectStatus().isOk().expectBody().jsonPath("$.items.length()").isEqualTo(2);
+    }
+
+    // --- pages (cursor over the stored ranking) ---
+
+    @Test
+    void firstPageHasTwelveResultsAndACursor() {
+        stubArtistQuery();
+
+        search("radiohead").expectStatus().isOk().expectBody()
+                .jsonPath("$.items.length()").isEqualTo(12)
+                .jsonPath("$.nextCursor").isNotEmpty();
+    }
+
+    @Test
+    void nextPagesContinueTheRankingWithoutAskingMusicBrainz() {
+        stubArtistQuery();
+        List<?> all = titles("radiohead");
+        musicBrainz.resetRequests();
+
+        List<Object> paged = new ArrayList<>();
+        String cursor = null;
+        int pages = 0;
+        do {
+            Map<String, Object> page = page("radiohead", cursor, "5");
+            paged.addAll(titles(page));
+            cursor = (String) page.get("nextCursor");
+            pages++;
+        } while (cursor != null);
+
+        assertThat(all).hasSizeGreaterThan(12);
+        assertThat(paged).isEqualTo(all);
+        assertThat(pages).isEqualTo((all.size() + 4) / 5);
+        musicBrainz.verify(0, anyRequestedFor(anyUrl()));
+    }
+
+    @Test
+    void pageThatEndsTheRankingExactlyHasNoCursor() {
+        stubArtistQuery();
+        int total = titles("radiohead").size();
+
+        Map<String, Object> first = page("radiohead", null, "10");
+        Map<String, Object> last = page("radiohead", (String) first.get("nextCursor"), String.valueOf(total - 10));
+
+        assertThat(titles(last)).hasSize(total - 10);
+        assertThat(last.get("nextCursor")).isNull();
+    }
+
+    @Test
+    void cursorReadsTheStoredRankingEvenAfterTheCacheExpired() {
+        stubArtistQuery();
+        List<?> all = titles("radiohead");
+        String cursor = (String) page("radiohead", null, "12").get("nextCursor");
+        jdbc.sql("update search_cache set fetched_at = now() - interval '8 days'").update();
+        musicBrainz.resetRequests();
+
+        Map<String, Object> next = page("radiohead", cursor, "12");
+
+        assertThat(titles(next)).isEqualTo(all.subList(12, Math.min(24, all.size())));
+        musicBrainz.verify(0, anyRequestedFor(anyUrl()));
+    }
+
+    @Test
+    void cursorForAQueryNeverSearchedIsAnEmptyLastPage() {
+        searchAfter("radiohead", new SearchCursor(12).encode()).expectStatus().isOk().expectBody()
+                .jsonPath("$.items.length()").isEqualTo(0)
+                .jsonPath("$.nextCursor").isEmpty();
+
+        musicBrainz.verify(0, anyRequestedFor(anyUrl()));
+    }
+
+    @Test
+    void fallbackIsASinglePage() {
+        for (int i = 1; i <= 15; i++) {
+            seed("Radiohead Session " + i, "Radiohead");
+        }
+        musicBrainz.stubFor(get(urlPathEqualTo(MB_SEARCH)).willReturn(serverError()));
+
+        search("radiohead").expectStatus().isOk().expectBody()
+                .jsonPath("$.partial").isEqualTo(true)
+                .jsonPath("$.items.length()").isEqualTo(12)
+                .jsonPath("$.nextCursor").isEmpty();
     }
 
     // --- covers (Cover Art Archive) ---
@@ -410,6 +492,12 @@ class SearchIntegrationTests extends CatalogIntegrationTest {
         expectInvalid(search("radiohead", "abc"), "limit");
     }
 
+    @Test
+    void invalidCursorIsRejected() {
+        expectInvalid(searchAfter("radiohead", "nope!"), "cursor");
+        expectInvalid(searchAfter("radiohead", "LTE"), "cursor"); // base64 of "-1"
+    }
+
     private void expectInvalid(RestTestClient.ResponseSpec response, String field) {
         Map<String, Object> body = response.expectStatus().isBadRequest()
                 .expectBody(new ParameterizedTypeReference<Map<String, Object>>() {})
@@ -429,11 +517,38 @@ class SearchIntegrationTests extends CatalogIntegrationTest {
                 .exchange();
     }
 
+    /** Every result's title, on one page. */
     private List<?> titles(String q) {
-        return search(q).expectStatus().isOk().expectBody(new ParameterizedTypeReference<Map<String, Object>>() {})
-                .returnResult().getResponseBody().get("items") instanceof List<?> items
+        return titles(page(q, null, "50"));
+    }
+
+    private static List<?> titles(Map<String, Object> page) {
+        return page.get("items") instanceof List<?> items
                 ? items.stream().map(item -> ((Map<?, ?>) item).get("title")).toList()
                 : List.of();
+    }
+
+    /** One page of results, as JSON; {@code cursor} null for the first. */
+    private Map<String, Object> page(String q, String cursor, String limit) {
+        return client.get()
+                .uri(uri -> {
+                    uri.path("/albums/search").queryParam("q", "{q}").queryParam("limit", "{limit}");
+                    if (cursor != null) {
+                        uri.queryParam("cursor", "{cursor}");
+                    }
+                    return uri.build(q, limit, cursor);
+                })
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(new ParameterizedTypeReference<Map<String, Object>>() {})
+                .returnResult().getResponseBody();
+    }
+
+    private RestTestClient.ResponseSpec searchAfter(String q, String cursor) {
+        return client.get()
+                .uri(uri -> uri.path("/albums/search").queryParam("q", "{q}").queryParam("cursor", "{cursor}")
+                        .build(q, cursor))
+                .exchange();
     }
 
     /** "radiohead": the query's own answer, and Radiohead's albums for the artist request. */

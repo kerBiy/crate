@@ -17,7 +17,8 @@ import type {
   UserSummary,
 } from './types.ts'
 
-export const searchLimit = 24
+/** Results per page: one screen of covers, so the first one loads fast. */
+export const searchLimit = 12
 /** Shorter queries match too much to be useful, and each new query can cost several MusicBrainz calls. */
 export const minSearchLength = 2
 
@@ -25,12 +26,21 @@ export function useMe() {
   return useQuery({ queryKey: ['me'], queryFn: () => api<Me>('/users/me'), staleTime: Infinity })
 }
 
+/**
+ * Album search, a page at a time. Next pages read the ranking catalog-service stored for the query,
+ * so only the first page can cost MusicBrainz calls.
+ */
 export function useAlbumSearch(query: string) {
   const q = query.trim()
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['albums', 'search', q],
-    queryFn: ({ signal }) =>
-      api<SearchResponse>(`/albums/search?${new URLSearchParams({ q, limit: String(searchLimit) })}`, { signal }),
+    initialPageParam: null as string | null,
+    getNextPageParam: (last: SearchResponse) => last.nextCursor,
+    queryFn: ({ pageParam, signal }) => {
+      const params = new URLSearchParams({ q, limit: String(searchLimit) })
+      if (pageParam) params.set('cursor', pageParam)
+      return api<SearchResponse>(`/albums/search?${params}`, { signal })
+    },
     enabled: q.length >= minSearchLength,
     staleTime: 5 * 60_000,
     // A new query keeps the last results on screen (dimmed) instead of flashing the skeleton grid.

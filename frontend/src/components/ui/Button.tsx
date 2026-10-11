@@ -6,7 +6,11 @@ export type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 type ButtonProps = ComponentProps<'button'> & {
   variant?: ButtonVariant
   icon?: ReactNode
-  /** Shows a spinner in place of the icon and blocks clicks; the label stays so the width holds. */
+  /**
+   * Shows a spinner in place of the icon and blocks clicks; the label stays so the width holds.
+   * The button stays focusable (aria-disabled, not disabled): a keyboard user who pressed it keeps
+   * their place instead of being sent back to the top of the page.
+   */
   loading?: boolean
 }
 
@@ -33,14 +37,17 @@ export function Button({
   disabled,
   children,
   className = '',
+  onClick,
   ...rest
 }: ButtonProps) {
   return (
     <button
       type="button"
-      disabled={disabled || loading}
+      disabled={disabled}
+      aria-disabled={loading || undefined}
       aria-busy={loading || undefined}
       className={`${disabled && !loading ? disabledLook : buttonStyles(variant)} ${className}`}
+      onClick={loading ? (event) => event.preventDefault() : onClick}
       {...rest}
     >
       {loading ? <CircleNotch size="1.25em" className="spinner" aria-hidden="true" /> : icon}

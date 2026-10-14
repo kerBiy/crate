@@ -135,6 +135,7 @@ Phase 2 adds `activity-service` (consumes `review.events` and user events, owns 
 | One long-lived access token in `localStorage` | XSS could steal it; no revocation | Phase 2: short access token + rotating refresh token in an httpOnly cookie |
 | Sync call review → catalog without circuit breaker | Catalog down = nobody can rate | Phase 2: Resilience4j |
 | Single instance of everything, Kafka replication factor 1 | No high availability | Accepted (friends app). Documented in an ADR. |
+| The album page's release is chosen from the group's first 100 releases (one browse page, ADR-013) | For groups with more, a different release (label, tracklist) than the full list would give | Accepted; page through all releases if a wrong pick shows up |
 
 ---
 
@@ -270,11 +271,32 @@ create table albums (
   has_cover          boolean,           -- Cover Art Archive has a front cover; null = not checked yet
   cover_checked_at   timestamptz,       -- when has_cover was set; "no cover" is rechecked after 30 days
   listener_count     integer,           -- ListenBrainz listeners (popularity, ADR-012); 0 also = unknown to ListenBrainz
-  listeners_checked_at timestamptz,     -- when listener_count was fetched; null = never; refetched after 30 days
+  listen_count       bigint,            -- ListenBrainz total listens (album page); null = not fetched since V8
+  listeners_checked_at timestamptz,     -- when both were fetched; null = never; refetched after 30 days
   search_text        text not null,     -- normalized in Java: lowercase, no diacritics, title + artist
   fetched_at         timestamptz not null
 );
 create index albums_search_trgm on albums using gin (search_text gin_trgm_ops);
+
+-- The one release the album page reads length, label and tracklist from (ADR-013), fetched lazily.
+create table album_releases (
+  album_id    uuid primary key references albums on delete cascade,
+  release_id  uuid,                    -- null: MusicBrainz has no release with tracks (asked again after 30 days)
+  label       text,
+  track_count integer,
+  length_ms   bigint,                  -- null when a track has no length
+  genres      text[] not null default '{}',  -- the release group's, most votes first, at most 5
+  fetched_at  timestamptz not null
+);
+create table album_tracks (
+  album_id  uuid     not null references album_releases on delete cascade,
+  disc      smallint not null,         -- 1-based
+  position  smallint not null,         -- within the disc, 1-based
+  number    text,                      -- as printed: "1", "A1"
+  title     text     not null,
+  length_ms integer,
+  primary key (album_id, disc, position)
+);
 
 -- No FK to albums on purpose: events may arrive before the album row exists.
 create table album_stats (
@@ -322,7 +344,8 @@ create table processed_events (
 
 **ListenBrainz integration rules (ADR-012)**
 
-- One call per cold search: `POST https://api.listenbrainz.org/1/popularity/release-group` with `{"release_group_mbids": [...]}` (no token; at most 1000 MBIDs, we send ≤ 100). We read `total_user_count` (listeners); null means ListenBrainz doesn't know the album and is stored as 0.
+- One call per cold search: `POST https://api.listenbrainz.org/1/popularity/release-group` with `{"release_group_mbids": [...]}` (no token; at most 1000 MBIDs, we send ≤ 100). We read `total_user_count` (listeners, used for ranking) and `total_listen_count` (listens, shown on the album page); null means ListenBrainz doesn't know the album and is stored as 0.
+- **Album page:** `GET /albums/{id}` refreshes the album's counts **in the background** when they are missing or older than 30 days: one call for that MBID on a virtual thread, at most one in flight per album. The response never waits for it (it is also review-service's existence check); it carries what is stored plus `listenBrainzRefreshing: true`, and the page asks again once 1.5 s later. A failure stores nothing; the next view tries again. `GET /albums?ids=` never triggers it.
 - Only for albums without a count fetched in the last 30 days (`crate.listenbrainz.refresh-after`); no call if every count is fresh.
 - **Rate limit: 1 call per second** (ListenBrainz's documented limit), with its own token bucket, separate from MusicBrainz's. Same User-Agent as MusicBrainz. Send the body with a `Content-Length`: ListenBrainz answers 400 to a chunked body.
 - **400 ms timeout, no retry.** On a timeout, an error status (429 included), a network error or a full rate-limit queue, search ranks with no listener counts at all, which is exactly the ranking from before ADR-012. A search never fails or waits longer because of ListenBrainz.
@@ -341,14 +364,17 @@ create table processed_events (
 
 Search quality is measured with `services/catalog-service/search-eval`: the main set (30 queries, used for tuning), a held-out set (25) and a niche set (9), scored by hit@1, hit@3, MRR and, for artist-name queries, nDCG@5. Rerun all three when changing anything above; held-out and niche must not get worse.
 
-**Album details:** works for every album, with or without a cover (the frontend shows the missing-cover sleeve). Local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.)
+**Album details:** works for every album, with or without a cover (the frontend shows the missing-cover sleeve). Local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.) It also carries ListenBrainz's numbers (see above; null when unknown or 0 listeners) and, once the tracklist was fetched, the chosen release's `label`, `trackCount`, `lengthMs` and the group's `genres`.
+
+**Tracklist (ADR-013):** `GET /albums/{id}/tracks`, fetched by the album page on its own, so the page never waits for it. Resolve the album as above (404/503 the same), then serve `album_releases` + `album_tracks` if stored. Otherwise, outside any transaction, two rate-limited MusicBrainz requests: browse the group's releases (`status=official`, `inc=labels+media`, 100, one page; all statuses if none is official), pick one with `ReleaseChoice` (most common track count, then most common label, then earliest date, then MBID), look it up (`inc=recordings+labels+release-groups+genres`). Store the release and its tracks in one transaction (upsert + replace, so concurrent first requests are safe). No release with tracks → stored as empty, asked again after 30 days (`crate.catalog.album.recheck-empty-tracks-after`). MusicBrainz failing → **503** `tracks-unavailable` for this endpoint only, nothing stored.
 
 **Endpoints**
 
 | Method & path | Result |
 |---|---|
 | `GET /albums/search?q=&limit=20` | `{items: [{id, title, artistCredit, year, coverUrl, avgRating, ratingCount}], partial}`; `q` 1–100 chars, `limit` 1–50 |
-| `GET /albums/{id}` | album details + stats: `avgRating` (stars, one decimal, null without ratings), `ratingCount`, `ratingDistribution` (10 counts, ½★ first) |
+| `GET /albums/{id}` | album details + stats: `avgRating` (stars, one decimal, null without ratings), `ratingCount`, `ratingDistribution` (10 counts, ½★ first); `listenBrainz: {listeners, listens}` or null, `listenBrainzRefreshing`; `release: {label, trackCount, lengthMs}` or null, `genres` |
+| `GET /albums/{id}/tracks` | `{releaseId, label, trackCount, lengthMs, genres, discs: [{position, tracks: [{position, number, title, lengthMs}]}]}`; `discs` empty when MusicBrainz has no release; 503 `tracks-unavailable` |
 | `GET /albums?ids=a,b,c` | `{items: [...]}`, max 100, stored albums only, request order (used to render feeds) |
 | `GET /albums/top?limit=50` | ranked by Bayesian average (nice-to-have) |
 
@@ -829,6 +855,9 @@ Date: YYYY-MM-DD · Status: accepted | superseded by ADR-XXX
 | 008 | Same-origin deployment behind Caddy, so no CORS in production. |
 | 009 | Hosting on Oracle Always Free (ARM), with fallbacks. |
 | 010 | Search ranking: MusicBrainz ranks (AND query, secondary types excluded, artist's albums first, score + popularity); we cache the ranking per query. Measured with a 30-query eval set. |
+| 011 | Deezer evaluated as album source and rejected; MusicBrainz stays the only source. |
+| 012 | ListenBrainz listener counts in the search ranking; listeners and listens on the album page, refreshed in the background. |
+| 013 | One release per album for length, label and tracklist: standard edition, usual label, earliest. Tested on 10 albums. |
 
 ---
 

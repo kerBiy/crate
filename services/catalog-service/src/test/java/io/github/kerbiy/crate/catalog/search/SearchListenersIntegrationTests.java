@@ -47,6 +47,8 @@ class SearchListenersIntegrationTests extends CatalogIntegrationTest {
         musicBrainz.verify(1, getRequestedFor(urlPathEqualTo(MB_SEARCH)));
         assertThat(listeners(LOS_TIGRES)).isEqualTo(1000);
         assertThat(listeners(JOHNNY_CASH)).isZero();
+        // Total listens are stored next to them, for the album page.
+        assertThat(listens(LOS_TIGRES)).isEqualTo(10000);
     }
 
     @Test
@@ -167,6 +169,11 @@ class SearchListenersIntegrationTests extends CatalogIntegrationTest {
                 [{"release_group_mbid": "%s", "total_listen_count": %d, "total_user_count": %d},
                  {"release_group_mbid": "%s", "total_listen_count": %d, "total_user_count": %d}]
                 """.formatted(id1, listeners1 * 10, listeners1, id2, listeners2 * 10, listeners2));
+    }
+
+    private long listens(String id) {
+        return jdbc.sql("select listen_count from albums where id = cast(:id as uuid)")
+                .param("id", id).query(Long.class).single();
     }
 
     private int listeners(String id) {

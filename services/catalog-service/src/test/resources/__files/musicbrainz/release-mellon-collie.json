@@ -1,0 +1,1426 @@
+{
+    "label-info": [
+        {
+            "catalog-number": "7243 8 40864 2 8",
+            "label": {
+                "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                "label-code": 3098,
+                "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                "genres": [
+                    {
+                        "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                        "count": 1,
+                        "disambiguation": "",
+                        "name": "alternative rock"
+                    },
+                    {
+                        "count": 1,
+                        "id": "31aee5bc-c1e8-43d7-a7bc-902df802ccbb",
+                        "disambiguation": "",
+                        "name": "christmas music"
+                    },
+                    {
+                        "id": "89255676-1f14-4dd8-bbad-fca839d6aff4",
+                        "count": 1,
+                        "disambiguation": "",
+                        "name": "electronic"
+                    },
+                    {
+                        "name": "piano rock",
+                        "id": "34cd43be-4711-4e77-a25c-c6d6a4bf3cb4",
+                        "count": 1,
+                        "disambiguation": ""
+                    }
+                ],
+                "type": "Imprint",
+                "name": "Virgin",
+                "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                "sort-name": "Virgin"
+            }
+        },
+        {
+            "label": {
+                "genres": [
+                    {
+                        "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                        "count": 1,
+                        "disambiguation": "",
+                        "name": "alternative rock"
+                    },
+                    {
+                        "count": 1,
+                        "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                        "disambiguation": "",
+                        "name": "indie rock"
+                    }
+                ],
+                "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
+                "disambiguation": "",
+                "label-code": 3098,
+                "name": "Hut Recordings",
+                "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+                "sort-name": "Hut Recordings",
+                "type": "Original Production"
+            },
+            "catalog-number": "CDHUTD 30"
+        }
+    ],
+    "cover-art-archive": {
+        "artwork": true,
+        "front": true,
+        "count": 19,
+        "darkened": false,
+        "back": true
+    },
+    "status": "Official",
+    "quality": "normal",
+    "genres": [],
+    "id": "15cf95c2-bbe6-37cc-8a61-c5d5116b267a",
+    "media": [
+        {
+            "tracks": [
+                {
+                    "length": 172266,
+                    "recording": {
+                        "length": 172093,
+                        "title": "Mellon Collie and the Infinite Sadness",
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "count": 5
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "name": "instrumental",
+                                "id": "4ae63770-68af-4fae-b0f1-5e53f372c743",
+                                "count": 3,
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": "",
+                                "name": "post-grunge"
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 1,
+                                "disambiguation": ""
+                            }
+                        ],
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "disambiguation": "",
+                        "id": "d5165d2d-be7c-4555-8bd8-630e2085c090"
+                    },
+                    "title": "Mellon Collie and the Infinite Sadness",
+                    "number": "1",
+                    "position": 1,
+                    "id": "3156139c-28ea-35a1-9ab5-9e36204480f5"
+                },
+                {
+                    "length": 254626,
+                    "title": "Tonight, Tonight",
+                    "recording": {
+                        "id": "d07057c1-312b-4a7e-b129-dd7383539f57",
+                        "disambiguation": "",
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "genres": [
+                            {
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 13,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "art rock",
+                                "id": "b7ef058e-6d83-4ca4-8123-9724bff4648b",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "6242615b-5620-465b-b6fb-2e593e90cbad",
+                                "count": 1,
+                                "name": "dream pop"
+                            },
+                            {
+                                "count": 1,
+                                "id": "e85a2565-d33d-4697-b55b-82803901d1a0",
+                                "disambiguation": "",
+                                "name": "midwest emo"
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 4
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "f729e6f8-30dc-4b81-9ff4-f4e7de82225d",
+                                "count": 3,
+                                "name": "symphonic rock"
+                            }
+                        ],
+                        "title": "Tonight, Tonight",
+                        "length": 254920
+                    },
+                    "number": "2",
+                    "position": 2,
+                    "id": "2c2e5be0-0720-3632-a900-8d613db580ec"
+                },
+                {
+                    "length": 181466,
+                    "title": "Jellybelly",
+                    "recording": {
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "disambiguation": "",
+                        "id": "cf34c057-17d0-4a0d-832a-cf3480538f46",
+                        "genres": [
+                            {
+                                "count": 7,
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 3,
+                                "name": "rock"
+                            }
+                        ],
+                        "title": "Jellybelly",
+                        "length": 181466
+                    },
+                    "number": "3",
+                    "id": "6fcad84c-a899-3d39-b073-11a182d4a89e",
+                    "position": 3
+                },
+                {
+                    "id": "d93a95bf-9df4-3fbc-89cc-8c0f8af53dad",
+                    "position": 4,
+                    "number": "4",
+                    "title": "Zero",
+                    "recording": {
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "id": "239e517c-03e8-4291-9478-66c2cc936f0c",
+                        "disambiguation": "",
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 10,
+                                "disambiguation": ""
+                            },
+                            {
+                                "count": 1,
+                                "id": "3f08faa9-6c3e-4b6d-b4b8-08eea45954e2",
+                                "disambiguation": "",
+                                "name": "grunge"
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "count": 5,
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "name": "rock"
+                            }
+                        ],
+                        "title": "Zero",
+                        "length": 160466
+                    },
+                    "length": 160466
+                },
+                {
+                    "recording": {
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": "",
+                                "name": "post-grunge"
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3
+                            }
+                        ],
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "disambiguation": "",
+                        "id": "65699ede-02ff-4b42-ad32-708201145f96",
+                        "length": 225000,
+                        "title": "Here Is No Why"
+                    },
+                    "title": "Here Is No Why",
+                    "length": 224733,
+                    "id": "8064ffa9-6b5f-3281-9c73-a9d4d26232b7",
+                    "position": 5,
+                    "number": "5"
+                },
+                {
+                    "recording": {
+                        "length": 257973,
+                        "title": "Bullet With Butterfly Wings",
+                        "genres": [
+                            {
+                                "disambiguation": "",
+                                "id": "7983ff25-ddf9-411e-a7f9-6cca238bff79",
+                                "count": 1,
+                                "name": "alternative metal"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 13,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "grunge",
+                                "disambiguation": "",
+                                "id": "3f08faa9-6c3e-4b6d-b4b8-08eea45954e2",
+                                "count": 3
+                            },
+                            {
+                                "name": "post-grunge",
+                                "count": 2,
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 5
+                            }
+                        ],
+                        "id": "7c1f143a-f016-4cb0-be79-c4467dd800e0",
+                        "disambiguation": "",
+                        "first-release-date": "1995-10-23",
+                        "video": false
+                    },
+                    "title": "Bullet With Butterfly Wings",
+                    "length": 257973,
+                    "position": 6,
+                    "id": "ee081870-cd84-39ce-8829-86590aebe05d",
+                    "number": "6"
+                },
+                {
+                    "recording": {
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": "",
+                                "count": 1,
+                                "name": "indie rock"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3,
+                                "name": "rock"
+                            }
+                        ],
+                        "disambiguation": "",
+                        "id": "c6c704b1-4043-4f2e-828a-0af5e5f34233",
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "length": 256733,
+                        "title": "To Forgive"
+                    },
+                    "title": "To Forgive",
+                    "length": 256666,
+                    "id": "a8649d76-c947-3585-9bfb-68b13cd0b7df",
+                    "position": 7,
+                    "number": "7"
+                },
+                {
+                    "number": "8",
+                    "id": "1a085e3a-ccce-3f4b-9e21-3e11d80b3717",
+                    "position": 8,
+                    "length": 291000,
+                    "title": "Fuck You (An Ode to No One)",
+                    "recording": {
+                        "disambiguation": "",
+                        "id": "65f85046-d1d0-4d5e-94fe-9d0eb5a54aa4",
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7,
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "indie rock",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "count": 2,
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "name": "post-grunge"
+                            },
+                            {
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3,
+                                "disambiguation": "",
+                                "name": "rock"
+                            }
+                        ],
+                        "title": "Fuck You (An Ode to No One)",
+                        "length": 291000
+                    }
+                },
+                {
+                    "number": "9",
+                    "id": "cf282c74-1d93-3b12-9f69-ffd4d56bfeaf",
+                    "position": 9,
+                    "length": 261533,
+                    "title": "Love",
+                    "recording": {
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "count": 7,
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": "",
+                                "count": 1,
+                                "name": "indie rock"
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": ""
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3,
+                                "name": "rock"
+                            }
+                        ],
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "id": "ea2a3417-5640-469c-a0a0-89d96bfbd1f0",
+                        "disambiguation": "",
+                        "length": 261533,
+                        "title": "Love"
+                    }
+                },
+                {
+                    "id": "8655f420-877e-39d8-96ae-e1dc1c9400e5",
+                    "position": 10,
+                    "number": "10",
+                    "recording": {
+                        "title": "Cupid de Locke",
+                        "length": 170226,
+                        "id": "537050f2-7407-4c44-8031-cbc20156af7d",
+                        "disambiguation": "",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "genres": [
+                            {
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": "",
+                                "name": "post-grunge"
+                            },
+                            {
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3,
+                                "disambiguation": "",
+                                "name": "rock"
+                            }
+                        ]
+                    },
+                    "title": "Cupid de Locke",
+                    "length": 170200
+                },
+                {
+                    "recording": {
+                        "title": "Galapogos",
+                        "length": 286333,
+                        "id": "f742a49d-e6d2-4760-9bd4-77b32ccb54ea",
+                        "disambiguation": "",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "count": 7
+                            },
+                            {
+                                "name": "indie rock",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3,
+                                "disambiguation": ""
+                            }
+                        ]
+                    },
+                    "title": "Galapogos",
+                    "length": 286333,
+                    "id": "4cd54b69-bedf-33ce-b6a9-4530483c9d65",
+                    "position": 11,
+                    "number": "11"
+                },
+                {
+                    "id": "59c9e938-e6d3-3935-b12c-a760e4ee659b",
+                    "position": 12,
+                    "number": "12",
+                    "recording": {
+                        "genres": [
+                            {
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1
+                            },
+                            {
+                                "name": "post-grunge",
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3
+                            }
+                        ],
+                        "first-release-date": "1995-08",
+                        "video": false,
+                        "id": "bd866229-2880-4693-94a3-f1e39154f973",
+                        "disambiguation": "",
+                        "length": 224000,
+                        "title": "Muzzle"
+                    },
+                    "title": "Muzzle",
+                    "length": 224066
+                },
+                {
+                    "length": 561333,
+                    "recording": {
+                        "title": "Porcelina of the Vast Oceans",
+                        "length": 561333,
+                        "disambiguation": "",
+                        "id": "7a5db67e-1882-431f-9535-a401c6d6c03a",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "genres": [
+                            {
+                                "count": 6,
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "name": "indie rock"
+                            },
+                            {
+                                "name": "post-grunge",
+                                "count": 2,
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3
+                            }
+                        ]
+                    },
+                    "title": "Porcelina of the Vast Oceans",
+                    "number": "13",
+                    "id": "50a74e18-dd7a-3131-8fd2-450152669ef4",
+                    "position": 13
+                },
+                {
+                    "id": "41c20460-56f2-37d0-b674-e9a273113ce5",
+                    "position": 14,
+                    "number": "14",
+                    "title": "Take Me Down",
+                    "recording": {
+                        "genres": [
+                            {
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "count": 6,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 3,
+                                "name": "rock"
+                            }
+                        ],
+                        "disambiguation": "",
+                        "id": "d19ee9ba-98ca-41e5-a394-d7af59cf70c9",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "length": 172293,
+                        "title": "Take Me Down"
+                    },
+                    "length": 172666
+                }
+            ],
+            "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+            "title": "Dawn to Dusk",
+            "track-offset": 0,
+            "track-count": 14,
+            "format": "CD",
+            "id": "e1ad8522-efab-3970-8e0b-602367b25697",
+            "position": 1
+        },
+        {
+            "title": "Twilight to Starlight",
+            "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+            "tracks": [
+                {
+                    "length": 263106,
+                    "title": "Where Boys Fear to Tread",
+                    "recording": {
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": "",
+                                "count": 1,
+                                "name": "indie rock"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 2,
+                                "name": "rock"
+                            }
+                        ],
+                        "id": "7e79c16d-ba7d-46b8-81c3-17d2c1f11a44",
+                        "disambiguation": "",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "length": 263106,
+                        "title": "Where Boys Fear to Tread"
+                    },
+                    "number": "1",
+                    "position": 1,
+                    "id": "80cd7dd5-0264-30ea-a513-72c3c00f362a"
+                },
+                {
+                    "length": 252266,
+                    "recording": {
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "id": "748f207b-0b82-4707-b236-230ab36dc8a9",
+                        "disambiguation": "",
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6
+                            },
+                            {
+                                "name": "grunge",
+                                "id": "3f08faa9-6c3e-4b6d-b4b8-08eea45954e2",
+                                "disambiguation": "",
+                                "count": 1
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "name": "indie rock"
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "name": "punk",
+                                "id": "8cc9b280-230b-4a3a-b1e2-8acab0744dd3",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 3
+                            }
+                        ],
+                        "title": "Bodies",
+                        "length": 252266
+                    },
+                    "title": "Bodies",
+                    "number": "2",
+                    "position": 2,
+                    "id": "d4a7ee03-4c13-3150-adc0-4eb78a1a4b03"
+                },
+                {
+                    "position": 3,
+                    "id": "f1a307a0-5759-358b-9083-1cfd892afc25",
+                    "number": "3",
+                    "recording": {
+                        "genres": [
+                            {
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "count": 8,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 4
+                            }
+                        ],
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "id": "0fb5b80f-7132-418c-88fd-0b34a01bac03",
+                        "disambiguation": "",
+                        "length": 250533,
+                        "title": "Thirty‐Three"
+                    },
+                    "title": "Thirty‐Three",
+                    "length": 250533
+                },
+                {
+                    "id": "12a1d3c7-7a0f-336d-a4b3-43fe397077fc",
+                    "position": 4,
+                    "number": "4",
+                    "title": "In the Arms of Sleep",
+                    "recording": {
+                        "id": "f64253e0-f732-4c8f-af26-1bdbb57319c8",
+                        "disambiguation": "",
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "genres": [
+                            {
+                                "count": 7,
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 2,
+                                "name": "rock"
+                            }
+                        ],
+                        "title": "In the Arms of Sleep",
+                        "length": 252544
+                    },
+                    "length": 252560
+                },
+                {
+                    "position": 5,
+                    "id": "becb6edb-4860-3a33-ad37-60d3515179d9",
+                    "number": "5",
+                    "recording": {
+                        "disambiguation": "",
+                        "id": "b4486e7a-2688-4b1d-a1fb-32244a6ab902",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "genres": [
+                            {
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "count": 12,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "6242615b-5620-465b-b6fb-2e593e90cbad",
+                                "count": 1,
+                                "name": "dream pop"
+                            },
+                            {
+                                "count": 1,
+                                "id": "cd99451c-f6d5-47c7-8d49-6c08b51e61aa",
+                                "disambiguation": "",
+                                "name": "neo-psychedelia"
+                            },
+                            {
+                                "name": "paisley underground",
+                                "count": 1,
+                                "id": "77f67575-46ed-4447-afc1-ebcd2ab36b66",
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "911c7bbb-172d-4df8-9478-dbff4296e791",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "pop"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "count": 1,
+                                "id": "d698ece0-6fed-4262-b446-42c98b73b65a",
+                                "disambiguation": "",
+                                "name": "psychedelic"
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 5,
+                                "disambiguation": ""
+                            }
+                        ],
+                        "title": "1979",
+                        "length": 266197
+                    },
+                    "title": "1979",
+                    "length": 265973
+                },
+                {
+                    "number": "6",
+                    "id": "81edf0c7-b96f-3df8-803b-3c6da4accf23",
+                    "position": 6,
+                    "length": 225893,
+                    "title": "Tales of a Scorched Earth",
+                    "recording": {
+                        "genres": [
+                            {
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7,
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "name": "rock",
+                                "count": 2,
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": ""
+                            }
+                        ],
+                        "id": "2637cf59-01f8-4536-a1c0-d6efb8c0137f",
+                        "disambiguation": "",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "length": 225893,
+                        "title": "Tales of a Scorched Earth"
+                    }
+                },
+                {
+                    "id": "b703e77b-4917-31cf-a14d-242fe42be679",
+                    "position": 7,
+                    "number": "7",
+                    "recording": {
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7,
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "indie rock",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": ""
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 2
+                            }
+                        ],
+                        "id": "1bfde122-c2f0-4c36-882a-f3aba35427b4",
+                        "disambiguation": "",
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "length": 458200,
+                        "title": "Thru the Eyes of Ruby"
+                    },
+                    "title": "Thru the Eyes of Ruby",
+                    "length": 458200
+                },
+                {
+                    "position": 8,
+                    "id": "c6af09d6-36f2-3f2d-bfb1-275df7d9f248",
+                    "number": "8",
+                    "title": "Stumbleine",
+                    "recording": {
+                        "first-release-date": "1994",
+                        "video": false,
+                        "id": "281835ce-8536-4fb1-af81-914d4fe6550d",
+                        "disambiguation": "",
+                        "genres": [
+                            {
+                                "count": 7,
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "count": 1,
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "post-grunge",
+                                "count": 2,
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 3
+                            }
+                        ],
+                        "title": "Stumbleine",
+                        "length": 174413
+                    },
+                    "length": 174506
+                },
+                {
+                    "length": 427160,
+                    "title": "X.Y.U.",
+                    "recording": {
+                        "title": "X.Y.U.",
+                        "length": 427093,
+                        "disambiguation": "",
+                        "id": "d69fcf8f-340d-45a4-8ae1-8dd813958d9d",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6
+                            },
+                            {
+                                "name": "indie rock",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": "",
+                                "count": 1
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "name": "rock",
+                                "count": 3,
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": ""
+                            }
+                        ]
+                    },
+                    "number": "9",
+                    "position": 9,
+                    "id": "ea838322-fd24-3a67-8792-35b602d12b34"
+                },
+                {
+                    "recording": {
+                        "genres": [
+                            {
+                                "count": 6,
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2
+                            },
+                            {
+                                "count": 2,
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "name": "rock"
+                            }
+                        ],
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "disambiguation": "",
+                        "id": "a8384c0f-a3f6-4e6a-a2d7-2f7a9dca90b1",
+                        "length": 245253,
+                        "title": "We Only Come Out at Night"
+                    },
+                    "title": "We Only Come Out at Night",
+                    "length": 245440,
+                    "id": "4d2a2e29-f6ea-3ad6-96ca-de325212d543",
+                    "position": 10,
+                    "number": "10"
+                },
+                {
+                    "title": "Beautiful",
+                    "recording": {
+                        "title": "Beautiful",
+                        "length": 258386,
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "disambiguation": "",
+                        "id": "e8c0736a-3f73-4e46-8b6a-5d4e04070188",
+                        "genres": [
+                            {
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 7,
+                                "name": "alternative rock"
+                            },
+                            {
+                                "name": "indie rock",
+                                "count": 1,
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "disambiguation": "",
+                                "name": "post-grunge"
+                            },
+                            {
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "count": 3,
+                                "name": "rock"
+                            }
+                        ]
+                    },
+                    "length": 258360,
+                    "position": 11,
+                    "id": "2e7f6660-cd9e-37a3-9c84-02eef28118d0",
+                    "number": "11"
+                },
+                {
+                    "position": 12,
+                    "id": "935c3bd1-4c22-329d-83da-8df5d2aa5fc6",
+                    "number": "12",
+                    "title": "Lily (My One and Only)",
+                    "recording": {
+                        "id": "446b20dc-f1bc-45a5-b399-9a5f1843ca04",
+                        "disambiguation": "",
+                        "first-release-date": "1995-10-23",
+                        "video": false,
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "disambiguation": "",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6
+                            },
+                            {
+                                "name": "indie rock",
+                                "disambiguation": "",
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1
+                            },
+                            {
+                                "name": "post-grunge",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": "",
+                                "count": 2
+                            },
+                            {
+                                "name": "rock",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 2,
+                                "disambiguation": ""
+                            }
+                        ],
+                        "title": "Lily (My One and Only)",
+                        "length": 211906
+                    },
+                    "length": 211866
+                },
+                {
+                    "id": "c68e6e75-a257-3470-94bf-2b1ace523989",
+                    "position": 13,
+                    "number": "13",
+                    "title": "By Starlight",
+                    "recording": {
+                        "disambiguation": "",
+                        "id": "68f10b6e-2627-441a-9730-3403db57a6e9",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "genres": [
+                            {
+                                "name": "alternative rock",
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6,
+                                "disambiguation": ""
+                            },
+                            {
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "count": 1,
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "disambiguation": "",
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "count": 2,
+                                "name": "post-grunge"
+                            },
+                            {
+                                "count": 3,
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "disambiguation": "",
+                                "name": "rock"
+                            }
+                        ],
+                        "title": "By Starlight",
+                        "length": 288120
+                    },
+                    "length": 288200
+                },
+                {
+                    "number": "14",
+                    "position": 14,
+                    "id": "51c7532e-8bab-3a1a-939d-c4a85c42271e",
+                    "length": 262933,
+                    "title": "Farewell and Goodnight",
+                    "recording": {
+                        "genres": [
+                            {
+                                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                                "count": 6,
+                                "disambiguation": "",
+                                "name": "alternative rock"
+                            },
+                            {
+                                "count": 1,
+                                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                                "disambiguation": "",
+                                "name": "indie rock"
+                            },
+                            {
+                                "name": "post-grunge",
+                                "count": 2,
+                                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                                "disambiguation": ""
+                            },
+                            {
+                                "name": "rock",
+                                "disambiguation": "",
+                                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                                "count": 2
+                            }
+                        ],
+                        "id": "5331d2f4-2899-4046-a7cf-e39ce3bf0783",
+                        "disambiguation": "",
+                        "video": false,
+                        "first-release-date": "1995-10-23",
+                        "length": 262933,
+                        "title": "Farewell and Goodnight"
+                    }
+                }
+            ],
+            "position": 2,
+            "format": "CD",
+            "id": "36126d3c-92cc-347d-9a62-b091854b3745",
+            "track-count": 14,
+            "track-offset": 0
+        }
+    ],
+    "release-events": [
+        {
+            "date": "1995-10-23",
+            "area": {
+                "type": null,
+                "name": "United Kingdom",
+                "sort-name": "United Kingdom",
+                "type-id": null,
+                "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                "disambiguation": "",
+                "iso-3166-1-codes": [
+                    "GB"
+                ]
+            }
+        },
+        {
+            "date": "1995-10",
+            "area": {
+                "type": null,
+                "sort-name": "Europe",
+                "type-id": null,
+                "name": "Europe",
+                "iso-3166-1-codes": [
+                    "XE"
+                ],
+                "disambiguation": "",
+                "id": "89a675c2-3e37-3518-b83c-418bad59a85a"
+            }
+        }
+    ],
+    "date": "1995-10-23",
+    "title": "Mellon Collie and the Infinite Sadness",
+    "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+    "release-group": {
+        "title": "Mellon Collie and the Infinite Sadness",
+        "secondary-types": [],
+        "secondary-type-ids": [],
+        "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+        "first-release-date": "1995-10-23",
+        "disambiguation": "",
+        "id": "1af599c9-0b44-3a5a-a06b-39e8db6b2b4e",
+        "genres": [
+            {
+                "disambiguation": "",
+                "id": "7983ff25-ddf9-411e-a7f9-6cca238bff79",
+                "count": 2,
+                "name": "alternative metal"
+            },
+            {
+                "name": "alternative rock",
+                "disambiguation": "",
+                "id": "ceeaa283-5d7b-4202-8d1d-e25d116b2a18",
+                "count": 17
+            },
+            {
+                "name": "art rock",
+                "id": "b7ef058e-6d83-4ca4-8123-9724bff4648b",
+                "count": 2,
+                "disambiguation": ""
+            },
+            {
+                "name": "dream pop",
+                "id": "6242615b-5620-465b-b6fb-2e593e90cbad",
+                "disambiguation": "",
+                "count": 3
+            },
+            {
+                "disambiguation": "",
+                "id": "3f08faa9-6c3e-4b6d-b4b8-08eea45954e2",
+                "count": 7,
+                "name": "grunge"
+            },
+            {
+                "name": "hard rock",
+                "id": "51cb9f91-e6a2-41bf-891f-e78e3f1e52ab",
+                "count": 4,
+                "disambiguation": ""
+            },
+            {
+                "name": "indie rock",
+                "id": "ccd19ebf-052c-4afe-8ad9-fbb0a73f94a7",
+                "disambiguation": "",
+                "count": 3
+            },
+            {
+                "disambiguation": "",
+                "id": "bbb1310c-24cb-4fc9-97c4-f93e4549f1e2",
+                "count": 3,
+                "name": "post-grunge"
+            },
+            {
+                "id": "0e3fc579-2d24-4f20-9dae-736e1ec78798",
+                "count": 10,
+                "disambiguation": "",
+                "name": "rock"
+            }
+        ],
+        "primary-type": "Album"
+    },
+    "asin": "B000024JHZ",
+    "disambiguation": "",
+    "country": "GB",
+    "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+    "packaging": "Jewel Case",
+    "barcode": "724384086428",
+    "text-representation": {
+        "language": "eng",
+        "script": "Latn"
+    }
+}

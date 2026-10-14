@@ -1,10 +1,21 @@
 package io.github.kerbiy.crate.catalog.album;
 
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-/** An album as stored in catalog_db, with its rating aggregate (zeros when nobody rated it yet). */
+/**
+ * An album as stored in catalog_db, with its rating aggregate (zeros when nobody rated it yet), what
+ * ListenBrainz said about it, and the facts of its chosen release (ADR 013) once the tracklist was fetched.
+ *
+ * @param listenerCount      ListenBrainz listeners; null = never fetched, 0 also = unknown to ListenBrainz
+ * @param listenCount        ListenBrainz total listens; null = not fetched since listens were stored
+ * @param listenersCheckedAt when ListenBrainz was last asked; null = never
+ * @param releaseId          the chosen release; null before the tracklist was fetched, or when MusicBrainz
+ *                           has no release with tracks
+ * @param genres             the release group's genres, most votes first; empty until the tracklist was fetched
+ */
 public record AlbumRow(
         UUID id,
         String title,
@@ -14,7 +25,15 @@ public record AlbumRow(
         String firstReleaseDate,
         int ratingCount,
         int ratingSum,
-        List<Integer> ratingDistribution) {
+        List<Integer> ratingDistribution,
+        Integer listenerCount,
+        Long listenCount,
+        Instant listenersCheckedAt,
+        UUID releaseId,
+        String label,
+        Integer trackCount,
+        Long lengthMs,
+        List<String> genres) {
 
     /** The distribution of an album nobody rated. */
     public static final List<Integer> NO_RATINGS = Collections.nCopies(10, 0);

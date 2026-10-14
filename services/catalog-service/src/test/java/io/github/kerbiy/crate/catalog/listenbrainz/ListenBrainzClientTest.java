@@ -49,8 +49,8 @@ class ListenBrainzClientTest {
                  {"release_group_mbid": "%s", "total_listen_count": null, "total_user_count": null}]
                 """.formatted(OK_COMPUTER, UNKNOWN))));
 
-        assertThat(client(noLimit).listeners(List.of(OK_COMPUTER, UNKNOWN, OK_COMPUTER)))
-                .containsOnly(Map.entry(OK_COMPUTER, 61402), Map.entry(UNKNOWN, 0));
+        assertThat(client(noLimit).popularity(List.of(OK_COMPUTER, UNKNOWN, OK_COMPUTER)))
+                .containsOnly(Map.entry(OK_COMPUTER, new Popularity(61402, 9542817)), Map.entry(UNKNOWN, Popularity.UNKNOWN));
 
         // One call, each MBID once, with our User-Agent. Not chunked: ListenBrainz answers 400 to that.
         listenBrainz.verify(1, postRequestedFor(urlPathEqualTo(POPULARITY))
@@ -66,12 +66,22 @@ class ListenBrainzClientTest {
     void anAlbumMissingFromTheAnswerCountsAsNoListeners() {
         listenBrainz.stubFor(post(urlPathEqualTo(POPULARITY)).willReturn(json("[]")));
 
-        assertThat(client(noLimit).listeners(List.of(OK_COMPUTER))).containsEntry(OK_COMPUTER, 0);
+        assertThat(client(noLimit).popularity(List.of(OK_COMPUTER))).containsEntry(OK_COMPUTER, Popularity.UNKNOWN);
+    }
+
+    @Test
+    void readsTheRecordedAnswer() {
+        listenBrainz.stubFor(post(urlPathEqualTo(POPULARITY)).willReturn(aResponse().withStatus(200)
+                .withHeader("Content-Type", "application/json")
+                .withBodyFile("listenbrainz/popularity-ok-computer.json")));
+
+        assertThat(client(noLimit).popularity(List.of(OK_COMPUTER, UNKNOWN)))
+                .containsOnly(Map.entry(OK_COMPUTER, new Popularity(25280, 1781830)), Map.entry(UNKNOWN, Popularity.UNKNOWN));
     }
 
     @Test
     void noAlbumsNoRequest() {
-        assertThat(client(noLimit).listeners(List.of())).isEmpty();
+        assertThat(client(noLimit).popularity(List.of())).isEmpty();
 
         listenBrainz.verify(0, anyRequestedFor(anyUrl()));
     }
@@ -81,7 +91,7 @@ class ListenBrainzClientTest {
         listenBrainz.stubFor(post(urlPathEqualTo(POPULARITY)).willReturn(json("[]").withFixedDelay(3000)));
 
         long start = System.nanoTime();
-        assertThatThrownBy(() -> client(noLimit).listeners(List.of(OK_COMPUTER)))
+        assertThatThrownBy(() -> client(noLimit).popularity(List.of(OK_COMPUTER)))
                 .isInstanceOf(ListenBrainzException.class);
         assertThat(Duration.ofNanos(System.nanoTime() - start)).isLessThan(Duration.ofMillis(1500));
     }
@@ -90,7 +100,7 @@ class ListenBrainzClientTest {
     void serverErrorIsAFailure() {
         listenBrainz.stubFor(post(urlPathEqualTo(POPULARITY)).willReturn(serverError()));
 
-        assertThatThrownBy(() -> client(noLimit).listeners(List.of(OK_COMPUTER)))
+        assertThatThrownBy(() -> client(noLimit).popularity(List.of(OK_COMPUTER)))
                 .isInstanceOf(ListenBrainzException.class);
         // No retry: search is waiting.
         listenBrainz.verify(1, postRequestedFor(urlPathEqualTo(POPULARITY)));
@@ -101,7 +111,7 @@ class ListenBrainzClientTest {
         listenBrainz.stubFor(post(urlPathEqualTo(POPULARITY)).willReturn(aResponse().withStatus(429)
                 .withHeader("X-RateLimit-Reset-In", "7")));
 
-        assertThatThrownBy(() -> client(noLimit).listeners(List.of(OK_COMPUTER)))
+        assertThatThrownBy(() -> client(noLimit).popularity(List.of(OK_COMPUTER)))
                 .isInstanceOf(ListenBrainzException.class);
     }
 
@@ -110,7 +120,7 @@ class ListenBrainzClientTest {
         listenBrainz.stubFor(post(urlPathEqualTo(POPULARITY))
                 .willReturn(aResponse().withFault(Fault.CONNECTION_RESET_BY_PEER)));
 
-        assertThatThrownBy(() -> client(noLimit).listeners(List.of(OK_COMPUTER)))
+        assertThatThrownBy(() -> client(noLimit).popularity(List.of(OK_COMPUTER)))
                 .isInstanceOf(ListenBrainzException.class);
     }
 
@@ -120,7 +130,7 @@ class ListenBrainzClientTest {
             throw new MusicBrainzException("rate limit queue is full");
         };
 
-        assertThatThrownBy(() -> client(full).listeners(List.of(OK_COMPUTER)))
+        assertThatThrownBy(() -> client(full).popularity(List.of(OK_COMPUTER)))
                 .isInstanceOf(ListenBrainzException.class);
         listenBrainz.verify(0, anyRequestedFor(anyUrl()));
     }

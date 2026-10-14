@@ -1,14 +1,23 @@
 package io.github.kerbiy.crate.catalog.album;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.notFound;
 import static com.github.tomakehurst.wiremock.client.WireMock.serverError;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 
+import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
+import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
 import io.github.kerbiy.crate.catalog.CatalogIntegrationTest;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
+import java.time.Duration;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -159,5 +168,157 @@ class AlbumIntegrationTests extends CatalogIntegrationTest {
                 .expectBody().jsonPath("$.errors[0].field").isEqualTo("ids");
         client.get().uri("/albums?ids=nope").exchange().expectStatus().isBadRequest()
                 .expectBody().jsonPath("$.errors[0].field").isEqualTo("ids");
+    }
+
+    // --- ListenBrainz numbers on the album page: refreshed in the background (ADR 012) ---
+
+    @Test
+    void missingNumbersAreFetchedInTheBackground() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        stubPopularity(album.id(), 25280, 1781830, 300);
+
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.listenBrainz").doesNotExist()
+                .jsonPath("$.listenBrainzRefreshing").isEqualTo(true);
+
+        await().atMost(Duration.ofSeconds(5)).until(() -> listens(album.id()) != null);
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.listenBrainz.listeners").isEqualTo(25280)
+                .jsonPath("$.listenBrainz.listens").isEqualTo(1781830)
+                .jsonPath("$.listenBrainzRefreshing").isEqualTo(false);
+        assertThat(listenBrainzCalls(album.id())).isEqualTo(1);
+    }
+
+    @Test
+    void albumNeverWaitsForListenBrainz() {
+        // review-service checks that an album exists with this request before saving a rating.
+        // ListenBrainz takes 2 s here; the album answers before even the client's 400 ms timeout.
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        stubPopularity(album.id(), 25280, 1781830, 2000);
+        client.get().uri("/albums/{id}", seed("Warm-up", "Nobody").id()).exchange().expectStatus().isOk();
+
+        long start = System.nanoTime();
+        client.get().uri("/albums/{id}", album.id()).exchange().expectStatus().isOk();
+
+        assertThat(Duration.ofNanos(System.nanoTime() - start)).isLessThan(Duration.ofMillis(400));
+    }
+
+    @Test
+    void freshNumbersAreNotAskedAgain() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        storeNumbers(album.id(), 25280, 1781830, "1 day");
+
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.listenBrainz.listeners").isEqualTo(25280)
+                .jsonPath("$.listenBrainzRefreshing").isEqualTo(false);
+
+        await().during(Duration.ofMillis(300)).atMost(Duration.ofSeconds(1)).until(() -> listenBrainzCalls(album.id()) == 0);
+    }
+
+    @Test
+    void numbersOlderThanThirtyDaysAreShownThenRefreshed() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        storeNumbers(album.id(), 20000, 1500000, "31 days");
+        stubPopularity(album.id(), 25280, 1781830, 0);
+
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.listenBrainz.listeners").isEqualTo(20000)
+                .jsonPath("$.listenBrainzRefreshing").isEqualTo(true);
+
+        await().atMost(Duration.ofSeconds(5)).until(() -> Long.valueOf(1781830).equals(listens(album.id())));
+    }
+
+    @Test
+    void listenBrainzFailingStoresNothingAndIsAskedAgainNextTime() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        musicBrainz.stubFor(post(urlPathEqualTo(LB_POPULARITY)).atPriority(1).willReturn(serverError()));
+
+        client.get().uri("/albums/{id}", album.id()).exchange().expectStatus().isOk();
+        await().atMost(Duration.ofSeconds(5)).until(() -> listenBrainzCalls(album.id()) == 1);
+
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.listenBrainz").doesNotExist()
+                .jsonPath("$.listenBrainzRefreshing").isEqualTo(true);
+        await().atMost(Duration.ofSeconds(5)).until(() -> listenBrainzCalls(album.id()) == 2);
+        assertThat(listens(album.id())).isNull();
+    }
+
+    @Test
+    void viewsWhileARefreshIsRunningJoinIt() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        stubPopularity(album.id(), 25280, 1781830, 300);
+
+        client.get().uri("/albums/{id}", album.id()).exchange().expectStatus().isOk();
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody().jsonPath("$.listenBrainzRefreshing").isEqualTo(true);
+
+        await().atMost(Duration.ofSeconds(5)).until(() -> listens(album.id()) != null);
+        assertThat(listenBrainzCalls(album.id())).isEqualTo(1);
+    }
+
+    @Test
+    void anAlbumListenBrainzDoesNotKnowShowsNoNumbers() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+        storeNumbers(album.id(), 0, 0, "1 day");
+
+        client.get().uri("/albums/{id}", album.id()).exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.listenBrainz").doesNotExist()
+                .jsonPath("$.listenBrainzRefreshing").isEqualTo(false);
+    }
+
+    @Test
+    void batchNeverAsksListenBrainz() {
+        ReleaseGroup album = seed("OK Computer", "Radiohead");
+
+        client.get().uri("/albums?ids={ids}", album.id()).exchange().expectStatus().isOk();
+
+        await().during(Duration.ofMillis(300)).atMost(Duration.ofSeconds(1)).until(() -> listenBrainzCalls(album.id()) == 0);
+    }
+
+    /** ListenBrainz's answer for this album, after {@code delayMs}. */
+    private void stubPopularity(UUID id, int listeners, long listens, int delayMs) {
+        ResponseDefinitionBuilder answer = aResponse().withStatus(200).withHeader("Content-Type", "application/json")
+                .withBody("""
+                        [{"release_group_mbid": "%s", "total_listen_count": %d, "total_user_count": %d}]
+                        """.formatted(id, listens, listeners))
+                .withFixedDelay(delayMs);
+        musicBrainz.stubFor(post(urlPathEqualTo(LB_POPULARITY)).atPriority(1)
+                .withRequestBody(matchingJsonPath("$.release_group_mbids[?(@ == '" + id + "')]"))
+                .willReturn(answer));
+    }
+
+    private void storeNumbers(UUID id, int listeners, long listens, String age) {
+        jdbc.sql("""
+                        update albums set listener_count = :listeners, listen_count = :listens,
+                                          listeners_checked_at = now() - cast(:age as interval)
+                        where id = :id
+                        """)
+                .param("listeners", listeners).param("listens", listens).param("age", age).param("id", id)
+                .update();
+    }
+
+    /** Calls about this album only: a previous test's background call may still land after the reset. */
+    private int listenBrainzCalls(UUID id) {
+        RequestPatternBuilder calls = postRequestedFor(urlPathEqualTo(LB_POPULARITY))
+                .withRequestBody(matchingJsonPath("$.release_group_mbids[?(@ == '" + id + "')]"));
+        return musicBrainz.countRequestsMatching(calls.build()).getCount();
+    }
+
+    private Long listens(UUID id) {
+        return jdbc.sql("select listen_count from albums where id = :id").param("id", id)
+                .query((rs, rowNum) -> rs.getObject("listen_count", Long.class)).list().getFirst();
     }
 }

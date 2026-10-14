@@ -8,6 +8,7 @@ import io.github.kerbiy.crate.catalog.coverart.CoverChecker;
 import io.github.kerbiy.crate.catalog.listenbrainz.ListenBrainzClient;
 import io.github.kerbiy.crate.catalog.listenbrainz.ListenBrainzException;
 import io.github.kerbiy.crate.catalog.listenbrainz.ListenBrainzProperties;
+import io.github.kerbiy.crate.catalog.listenbrainz.Popularity;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzClient;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzException;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
@@ -84,7 +85,7 @@ class SearchService {
         List<ReleaseGroup> ranked = SearchRanking.merge(found.artistAlbums(), found.hits(),
                 properties.popularityWeight(), properties.listenerWeight(), listeners.all());
         albums.upsertAll(ranked);
-        albums.recordListeners(listeners.fetched());
+        albums.recordPopularity(listeners.fetched());
         checkCovers(ranked);
         // Recorded even when MusicBrainz found nothing, so a nonsense query doesn't hit it every time.
         // Ranked without listener counts (ListenBrainz failed): kept for a day, not a week.
@@ -122,10 +123,10 @@ class SearchService {
         }
         try {
             long start = System.nanoTime();
-            Map<UUID, Integer> fetched = listenBrainz.listeners(missing);
+            Map<UUID, Popularity> fetched = listenBrainz.popularity(missing);
             log.debug("Fetched {} listener counts in {} ms", fetched.size(), (System.nanoTime() - start) / 1_000_000);
             Map<UUID, Integer> all = new HashMap<>(stored);
-            all.putAll(fetched);
+            fetched.forEach((id, popularity) -> all.put(id, popularity.listeners()));
             return new Listeners(all, fetched, false);
         } catch (ListenBrainzException e) {
             log.warn("ListenBrainz failed for '{}', ranking without listener counts: {}", normalized, e.getMessage());
@@ -155,10 +156,10 @@ class SearchService {
     }
 
     /**
-     * Counts to rank with ({@code all}), the ones ListenBrainz just sent, to store ({@code fetched}), and
-     * whether ListenBrainz failed, so the ranking has no counts at all ({@code failed}).
+     * Listener counts to rank with ({@code all}), what ListenBrainz just sent, to store ({@code fetched}),
+     * and whether ListenBrainz failed, so the ranking has no counts at all ({@code failed}).
      */
-    private record Listeners(Map<UUID, Integer> all, Map<UUID, Integer> fetched, boolean failed) {
+    private record Listeners(Map<UUID, Integer> all, Map<UUID, Popularity> fetched, boolean failed) {
     }
 
     private static SearchResponse response(List<AlbumRow> albums, boolean partial) {

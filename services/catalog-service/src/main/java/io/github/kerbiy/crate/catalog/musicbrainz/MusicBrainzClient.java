@@ -1,12 +1,20 @@
 package io.github.kerbiy.crate.catalog.musicbrainz;
 
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.CreditJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.GenreJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.LabelInfoJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.LabelJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.MediumJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseBrowseJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseGroupJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.SearchResponse;
 import io.github.kerbiy.crate.catalog.search.SearchText;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,6 +43,9 @@ public class MusicBrainzClient {
     private static final Set<String> ALBUM_TYPES = Set.of("Album", "EP");
     private static final int SERVICE_UNAVAILABLE = 503;
     private static final int NOT_FOUND = 404;
+    private static final String NO_LABEL = "[no label]";
+    /** One browse page, MusicBrainz's maximum. Groups with more releases are judged on their first 100 (ADR 013). */
+    static final int RELEASE_BROWSE_LIMIT = 100;
 
     private final RestClient restClient;
     private final RateLimiter rateLimiter;
@@ -125,6 +136,50 @@ public class MusicBrainzClient {
     }
 
     /**
+     * The release group's official releases (at most {@link #RELEASE_BROWSE_LIMIT}, one page, in no
+     * useful order), with their labels and track counts. A group with no official release (only
+     * bootlegs or promos) gets one more request for all of them. Empty when MusicBrainz knows none.
+     */
+    public List<ReleaseSummary> releases(UUID releaseGroupId) {
+        List<ReleaseSummary> official = browseReleases(releaseGroupId, true);
+        return official.isEmpty() ? browseReleases(releaseGroupId, false) : official;
+    }
+
+    private List<ReleaseSummary> browseReleases(UUID releaseGroupId, boolean officialOnly) {
+        ReleaseBrowseJson browse = get(uri -> {
+                    uri.path("/release")
+                            .queryParam("release-group", releaseGroupId)
+                            .queryParam("inc", "labels+media")
+                            .queryParam("limit", RELEASE_BROWSE_LIMIT)
+                            .queryParam("fmt", "json");
+                    if (officialOnly) {
+                        uri.queryParam("status", "official");
+                    }
+                    return uri.build();
+                },
+                ReleaseBrowseJson.class)
+                .orElse(null);
+        if (browse == null || browse.releases() == null) {
+            return List.of();
+        }
+        return browse.releases().stream()
+                .map(json -> new ReleaseSummary(json.id(), blankToNull(json.date()), blankToNull(json.country()),
+                        media(json).stream().mapToInt(m -> m.trackCount() == null ? 0 : m.trackCount()).sum(),
+                        labels(json)))
+                .toList();
+    }
+
+    /** One release with its tracks, labels and the release group's genres. Empty when MusicBrainz doesn't know it. */
+    public Optional<Release> release(UUID releaseId) {
+        return get(uri -> uri.path("/release/{id}")
+                        .queryParam("inc", "recordings+labels+release-groups+genres")
+                        .queryParam("fmt", "json")
+                        .build(releaseId),
+                ReleaseJson.class)
+                .map(MusicBrainzClient::toRelease);
+    }
+
+    /**
      * One logical request: every attempt waits for the rate limiter, 503 is retried with jittered
      * backoff, 404 is empty, anything else that isn't 2xx is an error.
      */
@@ -204,6 +259,52 @@ public class MusicBrainzClient {
         List<String> secondaryTypes = json.secondaryTypes() == null ? List.of() : json.secondaryTypes();
         return new ReleaseGroup(json.id(), json.title(), artistCredit, json.primaryType(), secondaryTypes, date,
                 json.count(), artists);
+    }
+
+    private static Release toRelease(ReleaseJson json) {
+        List<String> labels = labels(json);
+        List<MediumJson> withTracks = media(json).stream()
+                .filter(medium -> medium.tracks() != null && !medium.tracks().isEmpty())
+                .sorted(Comparator.comparing(medium -> medium.position() == null ? Integer.MAX_VALUE : medium.position()))
+                .toList();
+        // Numbered 1, 2, … after leaving out empty media, so "Disc 2" is the second one shown.
+        List<Release.Disc> discs = new ArrayList<>();
+        for (MediumJson medium : withTracks) {
+            discs.add(new Release.Disc(discs.size() + 1, medium.tracks().stream()
+                    .map(track -> new Release.Track(track.position(), blankToNull(track.number()),
+                            track.title(), track.length()))
+                    .toList()));
+        }
+        List<GenreJson> genres = json.releaseGroup() == null || json.releaseGroup().genres() == null
+                ? List.of() : json.releaseGroup().genres();
+        List<String> topGenres = genres.stream()
+                .filter(genre -> genre.name() != null && genre.count() != null && genre.count() > 0)
+                .sorted(Comparator.comparing(GenreJson::count).reversed().thenComparing(GenreJson::name))
+                .map(GenreJson::name)
+                .limit(Release.MAX_GENRES)
+                .toList();
+        return new Release(json.id(), labels.isEmpty() ? null : labels.getFirst(), discs, topGenres);
+    }
+
+    private static List<MediumJson> media(ReleaseJson json) {
+        return json.media() == null ? List.of() : json.media();
+    }
+
+    /** Label names in credit order, each once. "[no label]" is MusicBrainz's way of saying there is none. */
+    private static List<String> labels(ReleaseJson json) {
+        if (json.labelInfo() == null) {
+            return List.of();
+        }
+        return json.labelInfo().stream()
+                .map(LabelInfoJson::label)
+                .filter(label -> label != null && label.name() != null && !label.name().equals(NO_LABEL))
+                .map(LabelJson::name)
+                .distinct()
+                .toList();
+    }
+
+    private static String blankToNull(String value) {
+        return value == null || value.isBlank() ? null : value;
     }
 
     /** What one HTTP attempt produced: the status, and the body when it was 2xx. */

@@ -34,4 +34,42 @@ final class MusicBrainzResponses {
 
     record ArtistJson(UUID id, String name, @JsonProperty("sort-name") String sortName) {
     }
+
+    /** A browse of a release group's releases: one page, in no useful order. */
+    record ReleaseBrowseJson(@JsonProperty("release-count") Integer releaseCount, List<ReleaseJson> releases) {
+    }
+
+    /**
+     * One release. A browse with {@code inc=labels+media} fills {@code labelInfo} and {@code media} (track
+     * counts only); a lookup with {@code inc=recordings+labels+release-groups+genres} also fills the
+     * tracks and the release group with its genres.
+     */
+    record ReleaseJson(
+            UUID id,
+            String date,
+            String country,
+            @JsonProperty("label-info") List<LabelInfoJson> labelInfo,
+            List<MediumJson> media,
+            @JsonProperty("release-group") ReleaseGroupGenresJson releaseGroup) {
+    }
+
+    record LabelInfoJson(LabelJson label) {
+    }
+
+    record LabelJson(String name) {
+    }
+
+    record MediumJson(Integer position, @JsonProperty("track-count") Integer trackCount, List<TrackJson> tracks) {
+    }
+
+    /** {@code length} in milliseconds, null when unknown; {@code number} as printed ("A1"). */
+    record TrackJson(Integer position, String number, String title, Integer length) {
+    }
+
+    record ReleaseGroupGenresJson(List<GenreJson> genres) {
+    }
+
+    /** {@code count}: how many MusicBrainz users voted for this genre. */
+    record GenreJson(String name, Integer count) {
+    }
 }

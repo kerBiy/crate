@@ -88,6 +88,25 @@ back to back, each on an empty database:
 - **A relevance floor (F: only boost when score ≥ s).** Worse on main (hit@3 27/30) and held-out (21/25), equal on niche.
 - **Deezer.** Rejected in ADR-011 (niche coverage 5/9, terms).
 
+## Addendum 2026-10-14: the numbers on the album page
+
+The album page shows listeners and total listens ("25.3k listeners, 1.8m listens on ListenBrainz").
+Same client, same 400 ms timeout, no retry, same limiter; `listen_count` is stored next to
+`listener_count` (V8), by search too.
+
+On the album page the refresh runs **in the background**:
+- `GET /albums/{id}` is also review-service's "does this album exist?" check before a rating is saved,
+  so it must never wait on optional data.
+- When the numbers are missing or older than 30 days, catalog starts one call on a virtual thread and
+  answers at once with what it has, plus `listenBrainzRefreshing: true`. The page asks again once,
+  1.5 s later.
+- A set of albums in flight makes concurrent views join the running call instead of starting another.
+- A failure stores nothing; the next view tries again. The page shows no numbers meanwhile.
+- `GET /albums?ids=` and search never trigger it.
+
+Rejected: a separate "lite" existence path for review-service. It would only protect callers that
+remember to use it, and would change review-service's contract.
+
 ## Deferred: pre-warming from sitewide top lists
 
 The idea:

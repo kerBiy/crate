@@ -38,6 +38,10 @@ class MusicBrainzClientTest {
     private static final UUID OK_COMPUTER = UUID.fromString("b1392450-e666-3926-a536-22c65f834433");
     private static final UUID CREEP_SINGLE = UUID.fromString("c5bc370b-95c2-3634-bb89-51bb2dce97c3");
     private static final UUID RADIOHEAD = UUID.fromString("a74b1b7f-71a5-4011-9441-d0b5e4122711");
+    private static final String RELEASES = "/ws/2/release";
+    private static final UUID DISCOVERY = UUID.fromString("48117b90-a16e-34ca-a514-19c702df1158");
+    private static final UUID OK_COMPUTER_EUROPE = UUID.fromString("425d8db9-88a3-31e2-bd23-b1a967626dd5");
+    private static final UUID MELLON_COLLIE_UK = UUID.fromString("15cf95c2-bbe6-37cc-8a61-c5d5116b267a");
     private static final Duration READ_TIMEOUT = Duration.ofMillis(300);
 
     @RegisterExtension
@@ -291,6 +295,98 @@ class MusicBrainzClientTest {
 
         assertThatThrownBy(() -> refused.searchReleaseGroups("Radiohead", false, 5)).isInstanceOf(MusicBrainzException.class);
         assertThat(musicBrainz.getAllServeEvents()).isEmpty();
+    }
+
+    // --- releases (ADR 013) ---
+
+    @Test
+    void releasesBrowsesOfficialReleasesWithLabelsAndTrackCounts() {
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES)).willReturn(fixture("browse-releases-ok-computer.json")));
+
+        List<ReleaseSummary> releases = client.releases(OK_COMPUTER);
+
+        assertThat(releases).hasSize(39);
+        assertThat(releases).filteredOn(release -> release.id().equals(OK_COMPUTER_EUROPE)).singleElement()
+                .isEqualTo(new ReleaseSummary(OK_COMPUTER_EUROPE, "1997-06-16", "XE", 12, List.of("Parlophone")));
+        musicBrainz.verify(1, getRequestedFor(urlPathEqualTo(RELEASES))
+                .withHeader("User-Agent", equalTo(USER_AGENT))
+                .withQueryParam("release-group", equalTo(OK_COMPUTER.toString()))
+                .withQueryParam("status", equalTo("official"))
+                .withQueryParam("inc", equalTo("labels media"))
+                .withQueryParam("limit", equalTo("100"))
+                .withQueryParam("fmt", equalTo("json")));
+    }
+
+    @Test
+    void theRulePicksTheUsualLabelsEarliestStandardEdition() {
+        // Measured for ADR 013: OK Computer's earliest is a Japanese EMI CD, Discovery's an Australian
+        // Parlophone CD, both on the same 12 or 14 tracks as the European/French originals.
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES)).withQueryParam("release-group", equalTo(OK_COMPUTER.toString()))
+                .willReturn(fixture("browse-releases-ok-computer.json")));
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES)).withQueryParam("release-group", equalTo(DISCOVERY.toString()))
+                .willReturn(fixture("browse-releases-discovery.json")));
+
+        assertThat(ReleaseChoice.choose(client.releases(OK_COMPUTER))).get()
+                .extracting(ReleaseSummary::id, ReleaseSummary::country, ReleaseSummary::labels)
+                .containsExactly(OK_COMPUTER_EUROPE, "XE", List.of("Parlophone"));
+        assertThat(ReleaseChoice.choose(client.releases(DISCOVERY))).get()
+                .extracting(ReleaseSummary::date, ReleaseSummary::country, ReleaseSummary::labels)
+                .containsExactly("2001-02-26", "FR", List.of("Virgin"));
+    }
+
+    @Test
+    void withoutOfficialReleasesAllStatusesAreBrowsed() {
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES)).withQueryParam("status", equalTo("official"))
+                .willReturn(aResponse().withStatus(200).withHeader("Content-Type", "application/json")
+                        .withBody("{\"release-count\": 0, \"releases\": []}")));
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES)).atPriority(10)
+                .willReturn(fixture("browse-releases-mellon-collie.json")));
+
+        assertThat(client.releases(OK_COMPUTER)).isNotEmpty();
+        musicBrainz.verify(2, getRequestedFor(urlPathEqualTo(RELEASES)));
+    }
+
+    @Test
+    void releaseMapsTracksLabelLengthAndTheGroupsTopGenres() {
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES + "/" + OK_COMPUTER_EUROPE))
+                .willReturn(fixture("release-ok-computer.json")));
+
+        Release release = client.release(OK_COMPUTER_EUROPE).orElseThrow();
+
+        assertThat(release.label()).isEqualTo("Parlophone");
+        assertThat(release.trackCount()).isEqualTo(12);
+        assertThat(release.lengthMs()).isEqualTo(3_207_156L);
+        assertThat(release.discs()).singleElement().satisfies(disc -> {
+            assertThat(disc.position()).isEqualTo(1);
+            assertThat(disc.tracks().getFirst()).isEqualTo(new Release.Track(1, "1", "Airbag", 284_400));
+            assertThat(disc.tracks().get(1).title()).isEqualTo("Paranoid Android");
+        });
+        // The release group's genres, most votes first; "experimental" and "space rock revival" tie at 3.
+        assertThat(release.genres())
+                .containsExactly("alternative rock", "art rock", "rock", "post-britpop", "experimental");
+        musicBrainz.verify(getRequestedFor(urlPathEqualTo(RELEASES + "/" + OK_COMPUTER_EUROPE))
+                .withQueryParam("inc", equalTo("recordings labels release-groups genres")));
+    }
+
+    @Test
+    void releaseKeepsEveryDiscInOrder() {
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES + "/" + MELLON_COLLIE_UK))
+                .willReturn(fixture("release-mellon-collie.json")));
+
+        Release release = client.release(MELLON_COLLIE_UK).orElseThrow();
+
+        assertThat(release.label()).isEqualTo("Virgin");
+        assertThat(release.discs()).extracting(Release.Disc::position).containsExactly(1, 2);
+        assertThat(release.discs()).allSatisfy(disc -> assertThat(disc.tracks()).hasSize(14));
+        assertThat(release.discs().get(1).tracks().getFirst().title()).isEqualTo("Where Boys Fear to Tread");
+        assertThat(release.trackCount()).isEqualTo(28);
+    }
+
+    @Test
+    void releaseMusicBrainzDoesNotKnowIsEmpty() {
+        musicBrainz.stubFor(get(urlPathMatching(RELEASES + "/.+")).willReturn(notFound()));
+
+        assertThat(client.release(UUID.randomUUID())).isEmpty();
     }
 
     // --- other failures ---

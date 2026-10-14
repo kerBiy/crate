@@ -18,8 +18,8 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
 /**
- * Listener counts from ListenBrainz (docs/adr/012-listenbrainz-popularity.md): how many ListenBrainz
- * users listened to each release group, keyed by the same MBIDs MusicBrainz uses.
+ * Popularity from ListenBrainz (docs/adr/012-listenbrainz-popularity.md): how many ListenBrainz users
+ * listened to each release group, and how often, keyed by the same MBIDs MusicBrainz uses.
  *
  * <p>One call, no retry: search is waiting, and without counts it simply ranks as before. Blocking
  * and rate-limited like {@code MusicBrainzClient}; never call it inside a DB transaction.
@@ -60,12 +60,12 @@ public class ListenBrainzClient {
     }
 
     /**
-     * Listener count per release group. Every requested id is in the answer; 0 also means
-     * "ListenBrainz doesn't know it" (it answers null then).
+     * Listeners and listens per release group. Every requested id is in the answer; zeros also mean
+     * "ListenBrainz doesn't know it" (it answers nulls then).
      *
      * @throws ListenBrainzException on any failure, including a full rate-limit queue
      */
-    public Map<UUID, Integer> listeners(Collection<UUID> releaseGroupIds) {
+    public Map<UUID, Popularity> popularity(Collection<UUID> releaseGroupIds) {
         List<UUID> ids = releaseGroupIds.stream().distinct().toList();
         if (ids.isEmpty()) {
             return Map.of();
@@ -93,13 +93,14 @@ public class ListenBrainzClient {
             throw new ListenBrainzException("ListenBrainz request failed: " + e.getMessage(), e);
         }
 
-        Map<UUID, Integer> counts = new HashMap<>();
-        ids.forEach(id -> counts.put(id, 0));
+        Map<UUID, Popularity> counts = new HashMap<>();
+        ids.forEach(id -> counts.put(id, Popularity.UNKNOWN));
         if (answer != null) {
             answer.stream()
                     .filter(json -> json.releaseGroupMbid() != null && counts.containsKey(json.releaseGroupMbid()))
-                    .forEach(json -> counts.put(json.releaseGroupMbid(),
-                            json.totalUserCount() == null ? 0 : json.totalUserCount()));
+                    .forEach(json -> counts.put(json.releaseGroupMbid(), new Popularity(
+                            json.totalUserCount() == null ? 0 : json.totalUserCount(),
+                            json.totalListenCount() == null ? 0 : json.totalListenCount())));
         }
         return Map.copyOf(counts);
     }

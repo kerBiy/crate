@@ -48,7 +48,8 @@ public abstract class CatalogIntegrationTest {
 
     @BeforeEach
     void resetState() {
-        jdbc.sql("truncate albums, artists, album_stats, processed_events, search_cache, search_results").update();
+        jdbc.sql("truncate albums, artists, album_stats, album_releases, album_tracks, processed_events, search_cache, search_results")
+                .update();
         musicBrainz.resetAll();
         stubCoversExist();
         stubNoListeners();

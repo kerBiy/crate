@@ -15,14 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 class AlbumController {
 
     private final AlbumService albums;
+    private final AlbumTracksService tracks;
+    private final ListenBrainzRefresher listenBrainz;
 
-    AlbumController(AlbumService albums) {
+    AlbumController(AlbumService albums, AlbumTracksService tracks, ListenBrainzRefresher listenBrainz) {
         this.albums = albums;
+        this.tracks = tracks;
+        this.listenBrainz = listenBrainz;
     }
 
+    /** The album page, and review-service's existence check: never waits on ListenBrainz. */
     @GetMapping("/{id}")
     AlbumDetails get(@PathVariable UUID id) {
-        return AlbumDetails.from(albums.get(id));
+        AlbumRow album = albums.get(id);
+        return AlbumDetails.from(album, listenBrainz.refreshIfStale(album));
+    }
+
+    /** Fetched lazily by the album page; may take a couple of seconds the first time (MusicBrainz). */
+    @GetMapping("/{id}/tracks")
+    AlbumTracks tracks(@PathVariable UUID id) {
+        return tracks.get(id);
     }
 
     /** {@code GET /albums?ids=a,b,c}: used to render feeds. Spring splits the comma-separated list. */

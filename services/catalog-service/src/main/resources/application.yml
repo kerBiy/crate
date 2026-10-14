@@ -46,6 +46,9 @@ crate:
       listener-weight: 2
       # Cover checks per cold search: the top of the ranking, as many as the largest page (limit=50).
       cover-check-count: 50
+    album:
+      # A tracklist MusicBrainz had no release for is asked for again after this (ADR 013).
+      recheck-empty-tracks-after: 30d
     cover-art:
       base-url: https://coverartarchive.org
       # HEAD requests in flight at once. 8 checks 50 albums in about 1.5 s.
@@ -63,6 +66,7 @@ crate:
       interval: 1s
       # Cold searches already queue on MusicBrainz at 1/s, so this almost never waits.
       max-wait: 1s
+    # Stored counts are asked for again after this: by search, and in the background by the album page.
     refresh-after: 30d
   musicbrainz:
     base-url: https://musicbrainz.org/ws/2

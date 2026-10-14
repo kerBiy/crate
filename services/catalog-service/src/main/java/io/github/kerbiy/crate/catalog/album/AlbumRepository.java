@@ -1,5 +1,6 @@
 package io.github.kerbiy.crate.catalog.album;
 
+import io.github.kerbiy.crate.catalog.listenbrainz.Popularity;
 import io.github.kerbiy.crate.catalog.musicbrainz.ArtistCredit;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzQueryBuilder;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
@@ -8,6 +9,8 @@ import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -25,13 +28,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class AlbumRepository {
 
-    // Album columns plus the rating aggregate; albums nobody rated have no album_stats row.
+    // Album columns plus the rating aggregate and the chosen release's facts. Albums nobody rated have
+    // no album_stats row; albums whose tracklist nobody opened yet have no album_releases row.
     private static final String SELECT_ALBUMS = """
             select a.id, a.title, a.artist_credit, a.primary_artist_id, a.primary_type, a.first_release_date,
                    coalesce(s.rating_count, 0) as rating_count, coalesce(s.rating_sum, 0) as rating_sum,
-                   s.rating_distribution
+                   s.rating_distribution, a.listener_count, a.listen_count, a.listeners_checked_at,
+                   rel.release_id, rel.label, rel.track_count, rel.length_ms, rel.genres
             from albums a
             left join album_stats s on s.album_id = a.id
+            left join album_releases rel on rel.album_id = a.id
             """;
 
     private final JdbcClient jdbc;
@@ -205,11 +211,14 @@ public class AlbumRepository {
 
     /** Stores what ListenBrainz said. Rows are updated in id order, like {@link #upsertAll}. */
     @Transactional
-    public void recordListeners(Map<UUID, Integer> listeners) {
-        listeners.keySet().stream().sorted().forEach(id -> jdbc.sql("""
-                        update albums set listener_count = :listeners, listeners_checked_at = now() where id = :id
+    public void recordPopularity(Map<UUID, Popularity> popularity) {
+        popularity.keySet().stream().sorted().forEach(id -> jdbc.sql("""
+                        update albums set listener_count = :listeners, listen_count = :listens,
+                                          listeners_checked_at = now()
+                        where id = :id
                         """)
-                .param("listeners", listeners.get(id))
+                .param("listeners", popularity.get(id).listeners())
+                .param("listens", popularity.get(id).listens())
                 .param("id", id)
                 .update());
     }
@@ -250,7 +259,27 @@ public class AlbumRepository {
                 rs.getString("first_release_date"),
                 rs.getInt("rating_count"),
                 rs.getInt("rating_sum"),
-                distribution(rs.getArray("rating_distribution")));
+                distribution(rs.getArray("rating_distribution")),
+                rs.getObject("listener_count", Integer.class),
+                rs.getObject("listen_count", Long.class),
+                instant(rs.getObject("listeners_checked_at", OffsetDateTime.class)),
+                rs.getObject("release_id", UUID.class),
+                rs.getString("label"),
+                rs.getObject("track_count", Integer.class),
+                rs.getObject("length_ms", Long.class),
+                texts(rs.getArray("genres")));
+    }
+
+    private static Instant instant(OffsetDateTime time) {
+        return time == null ? null : time.toInstant();
+    }
+
+    /** A text[] column as a list; empty when the column is null (no album_releases row). */
+    static List<String> texts(Array array) throws SQLException {
+        if (array == null) {
+            return List.of();
+        }
+        return List.of((String[]) array.getArray());
     }
 
     /** Ratings per half-star value, ½ star first; ten zeros when the album has no album_stats row. */

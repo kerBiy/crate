@@ -155,7 +155,7 @@ This is *the* memorable element. Nothing else competes with it.
 
 - A stylized **SVG record**: dark disc, a few subtle grooves, a center label tinted with the album's color.
 - **Desktop (pointer: fine):** on hover or keyboard focus over a cover in a grid, the sleeve **slides ~30% to the left while the record emerges on the right** (≈480 ms, `vinyl` token, `standard` ease-out) and both slide back on leave. Everything is clipped to the cover's own square: the record never overlaps neighbouring covers or the title text.
-- **Album page:** the record rests **~⅓ out** of the sleeve (`cover-lg` 360 px on desktop, up to 280 px on mobile), clearly visible as an object. On desktop the sleeve stays pinned in its column while the details scroll past it, like a record hung on the shop wall.
+- **Album page:** the record rests **~⅓ out** of the sleeve (`cover-lg` 360 px on desktop, up to 280 px on mobile), clearly visible as an object. On desktop the left column (sleeve, genres, tracks) stays pinned while the right column scrolls past it, like a record hung on the shop wall, as long as the whole column fits the window; otherwise it scrolls with the page (section 8).
 - **Mobile (no hover):** no hover effect in grids. On the album page, the record slides out **once** when the page opens.
 - Only on covers ≥ ~96 px. Never on small thumbnails (feed rows, lists).
 - `prefers-reduced-motion`: no sliding. The record is not shown in grids, and on the album page it is static at its resting position.
@@ -187,7 +187,7 @@ At rest: nothing moves. **No fade-in on every section, and no hover effects on e
 
 **Toasts enter and leave along the same path:** up `8px` and in over `base` / `standard`, then back down and out the same way. Reduced motion: fade only. A toast is a reaction to your action, so it isn't motion at rest.
 
-**Loading is the one exception** (section 10): skeletons pulse in place between `skeleton` and `skeleton-highlight`, all in step. A pulse changes color only: no gradient sweep, nothing slides. Each cover fades in over `base` once its own image has loaded; that's the only fade-in in the app.
+**Loading is the one exception** (section 10): skeletons pulse in place between `skeleton` and `skeleton-highlight`, all in step. A pulse changes color only: no gradient sweep, nothing slides. Each cover fades in over `base` once its own image has loaded. The only other fade-in: the ListenBrainz line under the tracklist, when its numbers arrive after the page (a background refresh), fades into the space kept for it, opacity only, `base` (`fast` with reduced motion).
 
 **The pop moments (only these):**
 
@@ -228,35 +228,47 @@ All of these respect `prefers-reduced-motion` (instant state change, no movement
 
 ### Album page (desktop)
 
+Like Apple Music's album view: the left column is **about the album**, the right column is **what people think of it**.
+
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│  [ cover-color wash fading into the background ]                 │
-│  ┌──────────────┐◐        OK Computer            (display, 64)    │
-│  │              │         Radiohead               (h3)             │
-│  │    cover     │ record  Album, 21 May 1997      (muted)          │
-│  │    360px     │         ───────────────────────────────          │
-│  │   (pinned)   │         Your rating                              │
-│  └──────────────┘         ★ ★ ★ ★ ½   Edit review  Remove rating   │
-│                                                                  │
-│                           Ratings                                │
-│                           4.3        ▁▂▃▅▇█▅▂  (tall histogram)    │
-│                           ★★★★½      ½★              ★★★★★          │
-│                           128 ratings                            │
-│                                                                  │
-│                           Reviews                                │
-│                           (o) Ana                      8 Oct 2026 │
-│                               ★★★★★                               │
-│                               The best one, no debate.  (lead)    │
-│                               ─────────────────── (inset rule)    │
-└──────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│  [ cover-color wash fading into the background ]                     │
+│  ┌──────────────┐◐       In Rainbows                  (display, 64)    │
+│  │    cover     │ record Radiohead                    (h3)             │
+│  │    360px     │        Album · 2007                 (body, muted)    │
+│  └──────────────┘        [ later: a short description, 3 lines, More ] │
+│  (Alternative rock) (Art rock)  tags  ──────────────────────────────    │
+│                          Your rating                                   │
+│  Tracks          (h3)    ★ ★ ★ ★ ½   Edit review  Remove rating        │
+│   1  15 Step       3:58                                                │
+│      ────────────────    Ratings                                       │
+│   2  Bodysnatchers 4:02  4.3        ▁▂▃▅▇█▅▂  (tall histogram)          │
+│   …  (5 rows)            ★★★★½      ½★              ★★★★★               │
+│  [ Show all 10 tracks ]  128 ratings                                   │
+│                                                                        │
+│  10 October 2007         Reviews                                       │
+│  10 songs, 42 minutes    (o) Ana                          8 Oct 2026   │
+│  XL Recordings               ★★★★★                                      │
+│  18.2k listeners and 1.4m    The best one, no debate.  (lead)          │
+│  listens on ListenBrainz                                               │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
-- Two columns: the sleeve on the left, pinned below the header; everything else in one column on the right, so the reading line never jumps.
-- The facts are one quiet line, joined by a comma: "Album, 21 May 1997".
+- **Left column, about the album:** the sleeve; the genres as tags, `24` below; Tracks; and a quiet footer under the tracklist, `24` below it, in `meta` `muted`, one fact per line, Apple Music style:
+    - the full release date ("10 October 2007")
+    - "10 songs, 42 minutes" ("songs" only here, as Apple Music writes it; the section and its button say tracks)
+    - the label ("XL Recordings")
+    - "18.2k listeners and 1.4m listens on ListenBrainz", tabular figures, "ListenBrainz" linked to the album there. ListenBrainz's numbers, never Crate's: they live with the album's facts, never near the ratings, and always say whose they are. While they're on their way (background refresh) the line keeps its space and fades in; with no numbers there is no line.
+
+  A fact that isn't known is left out, never shown as "—". Length, songs and label come from the release the tracklist is read from (ADR-013): until it has loaded once, their lines hold their place with skeleton lines.
+- **Right column, what people think:** title (`display`) and artist (`h3`); one meta line, "Album · 2007" (type and year, `body` `muted`; with one of them unknown, just the other); then Your rating, Ratings and Reviews.
+- **Room for a description:** the slot under the meta line, `24` below it, is kept for a short introduction to the album (a Wikipedia intro, later): `body` in `text`, `max-w-prose`, clamped to 3 lines with "More" to expand it in place, credited "From Wikipedia" with its license. Nothing is shown there until it exists: no placeholder.
+- **The pin:** the left column is pinned under the header as a whole, **only while all of it fits the window**; otherwise it scrolls with the page like the rest. With the cover, five tracks and the footer it is about 940 px tall, so it pins on tall windows (from about 1100 px) and scrolls on a 900 px laptop. Pressing "Show all" or "Show fewer" never makes the column jump, even when it switches it from pinned to scrolling: "Show all" keeps the list where it is on the screen and grows it downward from the fifth track; "Show fewer" keeps the button under your finger while the rows above it go.
 - "Your rating" is the main action: its own strip under a hairline, `h2` stars.
 - Ratings: the average in `h1` with tabular figures, its stars and the count under it; the histogram next to it, taller (`80`), with the scale's ends (½ star, 5 stars) under the bars.
+- Tracks show the first 5, then "Show all 12 tracks", which expands in place and becomes "Show fewer". Albums with 7 tracks or fewer show all of them, no button. Tracks count across discs. Each row: the track's position (1 to n per disc, never the sleeve's printed "A1" or "ONE 1") in its own right-aligned column (`muted`, tabular), the title (`body`, truncated), the length at the end (`muted`, tabular); the inset rule starts at the title. "Disc 1", "Disc 2" headings only when there is more than one disc.
 
-On mobile everything stacks in the same order: cover (record ⅓ out, up to 280 px), title (`h1`), artist (`h4`), facts, then the rest.
+On mobile everything stacks in one column, in this order: cover (record ⅓ out, up to 280 px), title (`h1`), artist (`h4`), the meta line, Your rating, genres, Tracks with its footer, Ratings, Reviews.
 
 ---
 
@@ -270,6 +282,7 @@ On mobile everything stacks in the same order: cover (record ⅓ out, up to 280 
     - Empty listen-later: "Your crate is empty. Save albums to listen to later."
     - No search results: "No records in this crate. Try another name."
 - **Errors are plain and useful, never cute:** "Couldn't load reviews. Try again."
+- **Say whose data it is.** Crate's own numbers (ratings) need no credit; anything from another service names it: "on ListenBrainz", "No tracklist on MusicBrainz yet."
 - **Undo beats "Are you sure?"** Removing something you made (a rating and its review) happens at once, with "Rating removed" and **Undo** in the toast. Confirmation dialogs only for what can't be undone.
 - No "Welcome to Crate!", no taglines, no marketing copy.
 
@@ -314,6 +327,7 @@ On mobile everything stacks in the same order: cover (record ⅓ out, up to 280 
 - Generic hero sections, "Welcome to…" copy, taglines, lorem ipsum
 - More than one accent color; neon; terracotta/clay oranges
 - ALL-CAPS eyebrow labels, metadata joined with middle dots (`A · B · C`), monospace for data labels, arrows appended to button text (`Next →`)
+    - One exception: the album page's meta line, "Album · 2007" (type · year). Two short facts, Apple Music's own pattern. Nowhere else; every other list of facts is joined by commas or set one per line.
 - Fade-in animations on every section; hover effects on everything
 - Inter / Roboto / Geist / Space Grotesk / system-only fonts
 - Anything from Letterboxd's brand (logo, colors, dots)
@@ -351,10 +365,13 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
 - **RatingInput**: giving a rating. `size="lg"` on the album page, where it is the main action (`h2` stars, same 44 px cells). Hover previews, press-and-drag scrubs, release commits; half-star steps with the arrow keys, Enter confirms. On the album page it sits under a label that says what it is ("Rate this album", then "Your rating"), with its review and remove actions right below it.
 - **Cover**: album art at any size, in a square that never changes size. Pulses until its image loads, then fades in with its `cover-edge` hairline; falls back to a neutral sleeve with initials when the image is missing. `eager` for covers visible on arrival. `size`: `sm` in rows, `md` in grids, `lg` on the album page (`cover-lg` corners, bigger initials).
-- **Sleeve**: the album page cover with its record. `pinned` keeps it in place while its column scrolls (desktop).
+- **Sleeve**: the album page cover with its record. It doesn't pin itself: on desktop the album page pins the whole left column, while it fits the window (section 8).
 - **Vinyl**: the record, label tinted with the album color. Only with covers of 96 px or more.
 - **AlbumTile**: one album in a cover grid; the record slides out on hover or focus, once the cover is in. Caption: title, then "Artist, year". **AlbumTileSkeleton**: the same tile while the list loads.
 - **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar. Bars in `muted`, the most common rating in `text`, the one being read in `accent`. `size="lg"`: taller bars with the scale's ends under them.
+- **Tracklist**: the album page's tracks, in rows like Apple Music's album view (number column, title, length at the end, inset rules). The first 5, then "Show all N tracks" / "Show fewer" (`aria-expanded`), which never makes the list jump (Show all grows it downward in place; Show fewer keeps the button where it was); all of them when there are 7 or fewer. Disc headings only for more than one disc. Its own loading (skeleton rows of the same height, in the collapsed shape), empty ("No tracklist on MusicBrainz yet.") and error ("Couldn't load the tracklist." + Try again) states.
+- **AlbumFooter**: the quiet facts under the tracklist (release date; songs and length; label; ListenBrainz's listeners and listens, linked). Skeleton lines while the tracklist loads; unknown facts left out; the ListenBrainz line keeps its space while its numbers load and fades them in.
+- **Tag**: a fact about something that isn't a control: genres. `meta` in `muted` on `surface`, a `border` hairline, `full` radius. No hover, no pressed state, not focusable: nothing that looks pressable may do nothing. Once tags lead somewhere (a genre page), they become links with the `pressed` state, a focus ring and a `tap`-sized target.
 - **Avatar**: a person next to their name. `sm` in dense rows.
 - **AvatarStack**: a group of people in one line, such as friends who listened, with "+N" for the rest.
 - **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content; `text` sits inside a line of text so the line keeps its height. Pulses in place.

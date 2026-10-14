@@ -1,54 +1,83 @@
-import type { AlbumDetails } from '../../api/types.ts'
+import type { AlbumDetails as Album } from '../../api/types.ts'
+import { useAlbumTracks } from '../../api/queries.ts'
+import { useElementHeight, useMediaQuery, useWindowHeight } from '../../hooks.ts'
 import { Histogram } from '../ui/Histogram.tsx'
 import { RatingStars } from '../ui/RatingStars.tsx'
 import { SectionHeading } from '../ui/SectionHeading.tsx'
 import { EmptyState } from '../ui/States.tsx'
+import { TagList, TagListSkeleton } from '../ui/Tag.tsx'
 import { ToastRegion, useToast } from '../ui/Toast.tsx'
+import { AlbumFooter } from './AlbumFooter.tsx'
 import { AlbumReviews } from './AlbumReviews.tsx'
 import { MyRating } from './MyRating.tsx'
 import { Sleeve } from './Sleeve.tsx'
+import { sentence } from './text.ts'
+import { AlbumTracklist } from './Tracklist.tsx'
 import { useOneShot } from './useAlbumPage.ts'
 
+/** Where the pinned column sits (the .album-aside rule): below the 64 px header, plus 32. */
+const pinTop = 96
+/** Room kept under a pinned column, so its last line never touches the window's edge. */
+const pinBottom = 32
+
 /**
- * Album page, filled from GET /api/albums/{id}. Two columns on desktop: the sleeve hangs on the left
- * and stays put while the right column (title, my rating, the ratings, reviews) scrolls past it. On
- * mobile everything stacks in the same order (DESIGN.md section 8).
+ * Album page, filled from GET /api/albums/{id} (DESIGN.md section 8), laid out like Apple Music's album
+ * view: on desktop the left column is about the album (sleeve, genres, tracks, the facts under them),
+ * the right column is what people think (title, artist, Your rating, Ratings, Reviews). On mobile it is
+ * one column, with the album part after Your rating. The album part is mounted once, wherever the
+ * breakpoint puts it, so the reading and Tab order always match what you see.
+ *
+ * The left column is pinned only while all of it fits the window; otherwise it scrolls with the page.
  * No dominant color stored yet, so the header has no wash and the record label uses the accent.
- * Rating and reviews are live. The average, count and histogram are built by catalog-service from
- * rating events; after I rate, they update at once and then settle on the server's numbers
- * (see showRatingChange in api/queries.ts). "Friends who listened" (FriendRatings) comes back once
- * friends' ratings of an album are served; until then the section would only ever say "none".
+ * Rating and reviews are live; after I rate, the stats update at once and then settle on the server's
+ * numbers (see showRatingChange in api/queries.ts).
  */
-export function AlbumView({ album }: { album: AlbumDetails }) {
+export function AlbumView({ album }: { album: Album }) {
   const toast = useToast()
   const spin = useOneShot()
   // Only rating moves the record here; sending and listen later aren't built yet.
   const idle = useOneShot()
-  const date = releaseDate(album.firstReleaseDate)
-  const facts = [album.primaryType, date].filter(Boolean).join(', ')
+  const desktop = useMediaQuery('(min-width: 64rem)')
+  const [asideRef, asideHeight] = useElementHeight<HTMLElement>()
+  const windowHeight = useWindowHeight()
+  const pinned = desktop && asideHeight > 0 && asideHeight <= windowHeight - pinTop - pinBottom
+  const meta = [album.primaryType, album.year].filter(Boolean).join(' · ')
+
+  const about = (
+    <div className="mt-12 flex flex-col gap-12">
+      <Genres album={album} />
+      <section>
+        <SectionHeading>Tracks</SectionHeading>
+        <AlbumTracklist albumId={album.id} trackCount={album.release?.trackCount} />
+        <div className="mt-6">
+          <AlbumFooter album={album} />
+        </div>
+      </section>
+    </div>
+  )
 
   return (
     <>
       <main className="mx-auto flex max-w-content flex-col gap-8 px-4 pt-6 pb-16 lg:flex-row lg:items-start lg:gap-16 lg:px-6 lg:pt-12">
-        <Sleeve
-          pinned
-          title={album.title}
-          artist={album.artistCredit}
-          src={album.coverUrl}
-          motion={{ spin, send: idle, nudge: idle }}
-        />
+        <aside ref={asideRef} aria-label="About the album" className="album-aside shrink-0" data-pinned={pinned || undefined}>
+          <Sleeve title={album.title} artist={album.artistCredit} src={album.coverUrl} motion={{ spin, send: idle, nudge: idle }} />
+          {desktop && about}
+        </aside>
         <div className="flex min-w-0 flex-1 flex-col">
           <header>
             <h1 className="font-narrow font-display text-h1 font-semibold text-balance text-text lg:text-display">
               {album.title}
             </h1>
             <p className="mt-3 font-display text-h4 font-medium text-text lg:mt-4 lg:text-h3">{album.artistCredit}</p>
-            {facts && <p className="mt-1 text-body text-muted">{facts}</p>}
+            {/* The only middle dot in the app (DESIGN.md section 12). A short description goes under it later. */}
+            {meta && <p className="mt-1 text-body text-muted">{meta}</p>}
           </header>
 
           <section aria-label="Your rating" className="mt-8 border-t border-border pt-6 lg:mt-12">
             <MyRating albumId={album.id} title={album.title} toast={toast} onRated={spin.play} size="lg" />
           </section>
+
+          {!desktop && about}
 
           <section className="mt-12 lg:mt-16">
             <SectionHeading>Ratings</SectionHeading>
@@ -66,7 +95,22 @@ export function AlbumView({ album }: { album: AlbumDetails }) {
   )
 }
 
-function RatingSummary({ album }: { album: AlbumDetails }) {
+/**
+ * The genres as tags: from the album once anyone opened its tracklist, otherwise from the tracklist
+ * request, holding their place with skeleton tags meanwhile. None known: nothing.
+ */
+function Genres({ album }: { album: Album }) {
+  const tracks = useAlbumTracks(album.id)
+  const genres = album.genres.length ? album.genres : (tracks.data?.genres ?? [])
+  if (genres.length) return <TagList label="Genres" tags={genres.map(sentence)} />
+  // Five pills, like most albums have, so they wrap like real tags do.
+  if (!album.release && tracks.isPending) {
+    return <TagListSkeleton widths={['Alternative rock', 'Art rock', 'Rock', 'Post-britpop', 'Experimental']} />
+  }
+  return null
+}
+
+function RatingSummary({ album }: { album: Album }) {
   if (album.ratingCount === 0 || album.avgRating === null) {
     return <EmptyState message="No ratings yet. Be the first to rate it." />
   }
@@ -90,15 +134,4 @@ function RatingSummary({ album }: { album: AlbumDetails }) {
       </div>
     </div>
   )
-}
-
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-/** MusicBrainz dates can be partial: "1997" → "1997", "1997-05" → "May 1997", "1997-05-21" → "21 May 1997". */
-export function releaseDate(date: string | null) {
-  if (!date) return null
-  const [year, month, day] = date.split('-')
-  const monthName = month ? months[Number(month) - 1] : undefined
-  if (!monthName) return year
-  return day ? `${Number(day)} ${monthName} ${year}` : `${monthName} ${year}`
 }

@@ -31,6 +31,32 @@ export type AlbumDetails = AlbumSummary & {
   firstReleaseDate: string | null
   /** Ratings per half-star value: 10 entries, ½ star first, 5 stars last. */
   ratingDistribution: number[]
+  /** ListenBrainz's numbers, not Crate's. Null when ListenBrainz doesn't know the album (or wasn't reached). */
+  listenBrainz: { listeners: number; listens: number } | null
+  /** The numbers are being fetched in the background: ask again in a moment. */
+  listenBrainzRefreshing: boolean
+  /** The release the tracklist comes from; null until the tracklist was loaded once (then see AlbumTracks). */
+  release: { label: string | null; trackCount: number; lengthMs: number | null } | null
+  /** MusicBrainz genres, most votes first, lowercase as MusicBrainz writes them. */
+  genres: string[]
+}
+
+/** catalog-service AlbumTracks: GET /albums/{id}/tracks. No discs when MusicBrainz has no release. */
+export type AlbumTracks = {
+  releaseId: string | null
+  label: string | null
+  trackCount: number | null
+  lengthMs: number | null
+  genres: string[]
+  discs: { position: number; tracks: Track[] }[]
+}
+
+export type Track = {
+  position: number
+  /** As printed on the sleeve: "1", or "A1" on vinyl. */
+  number: string | null
+  title: string
+  lengthMs: number | null
 }
 
 /** catalog-service SearchResponse. partial: MusicBrainz couldn't be asked, results may be missing. */

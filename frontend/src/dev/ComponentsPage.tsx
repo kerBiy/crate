@@ -5,6 +5,9 @@ import { AppShell, type Section as NavSection } from '../components/ui/AppShell.
 import { Avatar, AvatarStack } from '../components/ui/Avatar.tsx'
 import { Button, type ButtonVariant } from '../components/ui/Button.tsx'
 import { Sleeve } from '../components/album/Sleeve.tsx'
+import { Tracklist } from '../components/album/Tracklist.tsx'
+import { AlbumFacts } from '../components/album/AlbumFooter.tsx'
+import { TagList, TagListSkeleton } from '../components/ui/Tag.tsx'
 import { Cover } from '../components/ui/Cover.tsx'
 import { FeedRow, FeedRowSkeleton } from '../components/ui/FeedRow.tsx'
 import { FollowButton } from '../components/ui/FollowButton.tsx'
@@ -275,6 +278,76 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
+        <Block name="Tracklist" use="The album page's tracks, loaded on their own. Disc headings only for more than one disc.">
+          <Cell label="Twelve tracks: five, then Show all">
+            <div className="w-full">
+              <Tracklist discs={[{ position: 1, tracks: twelveTracks }]} state="ready" onRetry={() => {}} />
+            </div>
+          </Cell>
+          <Cell label="Four tracks: all, no button">
+            <div className="w-full">
+              <Tracklist discs={[{ position: 1, tracks: sampleTracks }]} state="ready" onRetry={() => {}} />
+            </div>
+          </Cell>
+          <Cell label="Two discs">
+            <div className="w-full">
+              <Tracklist
+                discs={[
+                  { position: 1, tracks: sampleTracks.slice(0, 2) },
+                  { position: 2, tracks: sampleTracks.slice(2, 4).map((track, i) => ({ ...track, position: i + 1, number: String(i + 1) })) },
+                ]}
+                state="ready"
+                onRetry={() => {}}
+              />
+            </div>
+          </Cell>
+          <Cell label="Loading">
+            <div className="w-full">
+              <Tracklist discs={[]} state="loading" onRetry={() => {}} />
+            </div>
+          </Cell>
+          <Cell label="Loading, four tracks expected">
+            <div className="w-full">
+              <Tracklist discs={[]} state="loading" onRetry={() => {}} expectedCount={4} />
+            </div>
+          </Cell>
+          <Cell label="Empty">
+            <Tracklist discs={[]} state="empty" onRetry={() => {}} />
+          </Cell>
+          <Cell label="Error">
+            <Tracklist discs={[]} state="error" onRetry={() => {}} />
+          </Cell>
+        </Block>
+
+        <Block name="AlbumFooter" use="The quiet facts under the album page's tracklist. Unknown facts are left out.">
+          <Cell label="Everything known">
+            <AlbumFacts
+              album={{ ...footerAlbum, listenBrainz: { listeners: 18_234, listens: 1_412_009 }, listenBrainzRefreshing: false }}
+              release={{ trackCount: 10, lengthMs: 2_543_000, label: 'XL Recordings' }}
+              waiting={false}
+            />
+          </Cell>
+          <Cell label="Tracklist loading, ListenBrainz on its way">
+            <AlbumFacts album={{ ...footerAlbum, listenBrainz: null, listenBrainzRefreshing: true }} release={null} waiting />
+          </Cell>
+          <Cell label="No ListenBrainz numbers, no label">
+            <AlbumFacts
+              album={{ ...footerAlbum, listenBrainz: null, listenBrainzRefreshing: false }}
+              release={{ trackCount: 1, lengthMs: 3_725_000, label: null }}
+              waiting={false}
+            />
+          </Cell>
+        </Block>
+
+        <Block name="Tag" use="A fact that isn't a control, such as a genre. Not pressable, not focusable.">
+          <Cell label="Genres">
+            <TagList label="Genres" tags={['Alternative rock', 'Art rock', 'Rock', 'Post-britpop', 'Experimental']} />
+          </Cell>
+          <Cell label="Loading">
+            <TagListSkeleton widths={['Alternative rock', 'Art rock', 'Rock']} />
+          </Cell>
+        </Block>
+
         <Block name="Avatar" use="A person next to their name. Small in dense rows.">
           <Cell label="Default">
             <Avatar name="Ana" />
@@ -484,6 +557,20 @@ function Cell({ label, children }: { label: string; children: ReactNode }) {
     </div>
   )
 }
+
+const sampleTracks = [
+  { position: 1, number: '1', title: 'Airbag', lengthMs: 284_400 },
+  { position: 2, number: '2', title: 'Paranoid Android', lengthMs: 383_493 },
+  { position: 3, number: '3', title: 'Subterranean Homesick Alien, a title long enough to be cut short', lengthMs: 267_160 },
+  { position: 4, number: '4', title: 'Exit Music (For a Film)', lengthMs: null },
+]
+
+const footerAlbum = { id: '00000000-0000-0000-0000-000000000000', firstReleaseDate: '2007-10-10' }
+
+const twelveTracks = [
+  'Airbag', 'Paranoid Android', 'Subterranean Homesick Alien', 'Exit Music (For a Film)', 'Let Down', 'Karma Police',
+  'Fitter Happier', 'Electioneering', 'Climbing Up the Walls', 'No Surprises', 'Lucky', 'The Tourist',
+].map((title, i) => ({ position: i + 1, number: String(i + 1), title, lengthMs: 200_000 + i * 9_000 }))
 
 /** Room above for the readout, width of the album page sidebar. */
 function HistogramFrame({ counts }: { counts: number[] }) {

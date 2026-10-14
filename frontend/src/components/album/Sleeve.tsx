@@ -11,15 +11,13 @@ type SleeveProps = {
   color?: string
   /** Action animations (spin on rate, travel on send, nudge on listen later). Omit for none. */
   motion?: Pick<AlbumPageState, 'spin' | 'send' | 'nudge'>
-  /** Desktop: stays in place while its column scrolls (the page's flex row needs items-start). */
-  pinned?: boolean
 }
 
 /**
  * Album page cover with the record: slides out once the cover has loaded, and reacts to actions
  * if given. 280px on mobile, 360px on desktop. The cover is above the fold, so it loads eagerly.
  */
-export function Sleeve({ title, artist, src, color, motion, pinned = false }: SleeveProps) {
+export function Sleeve({ title, artist, src, color, motion }: SleeveProps) {
   const [coverReady, setCoverReady] = useState(false)
   const [revealed, setRevealed] = useState(false)
 
@@ -30,7 +28,7 @@ export function Sleeve({ title, artist, src, color, motion, pinned = false }: Sl
   }
 
   return (
-    <div className={`sleeve shrink-0 ${pinned ? 'sleeve-pinned' : ''}`}>
+    <div className="sleeve shrink-0">
       <div
         className="sleeve-record"
         // The record stays in the sleeve until the cover is in, then slides out once.

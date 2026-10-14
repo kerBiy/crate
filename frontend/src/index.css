@@ -251,10 +251,30 @@
   .sleeve {
     --sleeve-size: min(var(--spacing-cover-lg), calc(100% / (1 + var(--sleeve-peek))));
   }
-  /* The art stays on the wall while its column scrolls past it. */
-  .sleeve-pinned {
+}
+
+/*
+ * Album page, desktop: the left column (sleeve, genres, tracks, facts) is as wide as the sleeve with
+ * its record, and pinned below the header only while all of it fits the window (data-pinned, set by
+ * AlbumView from the measured heights); otherwise it scrolls with the page (DESIGN.md section 8).
+ */
+@media (min-width: 64rem) {
+  .album-aside {
+    width: calc(var(--spacing-cover-lg) * 1.33);
+  }
+  .album-aside[data-pinned] {
     position: sticky;
     inset-block-start: calc(var(--spacing-16) + var(--spacing-8));
+  }
+}
+
+/* ListenBrainz's line under the tracklist fades into the space kept for it when its numbers arrive late (section 7). */
+.fade-in {
+  animation: fade-in var(--duration-base) var(--ease-standard) both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
 }
 
@@ -448,6 +468,9 @@
   .results,
   .toast {
     transition: opacity var(--duration-fast) linear !important;
+  }
+  .fade-in {
+    animation: fade-in var(--duration-fast) linear !important;
   }
   .toast {
     translate: none !important;

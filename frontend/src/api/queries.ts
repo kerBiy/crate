@@ -4,6 +4,7 @@ import { setSession } from '../auth/session.ts'
 import { api, ApiError } from './client.ts'
 import type {
   AlbumDetails,
+  AlbumTracks,
   AlbumSummary,
   FeedItem,
   Me,
@@ -42,10 +43,39 @@ const albumKey = (id: string) => ['albums', id] as const
 const fetchAlbum = (id: string, signal?: AbortSignal) => api<AlbumDetails>(`/albums/${encodeURIComponent(id)}`, { signal })
 
 export function useAlbum(id: string) {
-  return useQuery({
+  const album = useQuery({
     queryKey: albumKey(id),
     queryFn: ({ signal }) => fetchAlbum(id, signal),
     staleTime: 5 * 60_000,
+  })
+  // catalog fetches stale ListenBrainz numbers in the background and says so: ask once more, a moment
+  // later, to show them. Only once per album, so a ListenBrainz outage doesn't turn into polling.
+  const refreshing = album.data?.listenBrainzRefreshing === true
+  const asked = useRef<string | null>(null)
+  const { refetch } = album
+  useEffect(() => {
+    if (!refreshing || asked.current === id) return
+    asked.current = id
+    // Not while a rating is settling: that loop owns the album's data until the server catches up.
+    const timer = setTimeout(() => reconciling.has(id) || void refetch(), listenBrainzRetryMs)
+    return () => clearTimeout(timer)
+  }, [id, refreshing, refetch])
+  return album
+}
+
+const listenBrainzRetryMs = 1500
+
+/**
+ * The album's tracklist, loaded on its own so the page never waits for it: the first time, catalog
+ * asks MusicBrainz (a second or two). It never changes once loaded. One retry: a 503 means
+ * MusicBrainz is busy, and the section has its own Try again.
+ */
+export function useAlbumTracks(id: string) {
+  return useQuery({
+    queryKey: [...albumKey(id), 'tracks'],
+    queryFn: ({ signal }) => api<AlbumTracks>(`/albums/${encodeURIComponent(id)}/tracks`, { signal }),
+    staleTime: Infinity,
+    retry: 1,
   })
 }
 

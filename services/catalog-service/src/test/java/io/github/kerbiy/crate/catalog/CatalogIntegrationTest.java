@@ -22,8 +22,8 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.test.web.servlet.client.RestTestClient;
 
 /**
- * Base for catalog integration tests: real Postgres, WireMock as MusicBrainz, the Cover Art Archive and
- * ListenBrainz, a clean slate per test.
+ * Base for catalog integration tests: real Postgres, WireMock as MusicBrainz, the Cover Art Archive,
+ * ListenBrainz, Wikidata and Wikipedia, a clean slate per test.
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestTestClient
@@ -33,6 +33,8 @@ public abstract class CatalogIntegrationTest {
     protected static final String MB_SEARCH = "/ws/2/release-group";
     protected static final String CAA = "/caa/release-group";
     protected static final String LB_POPULARITY = "/lb/1/popularity/release-group";
+    protected static final String WIKIDATA = "/wd/w/api.php";
+    protected static final String WIKIPEDIA_SUMMARY = "/wp/api/rest_v1/page/summary/";
 
     @Autowired
     protected RestTestClient client;
@@ -48,7 +50,7 @@ public abstract class CatalogIntegrationTest {
 
     @BeforeEach
     void resetState() {
-        jdbc.sql("truncate albums, artists, album_stats, album_releases, album_tracks, processed_events, search_cache, search_results")
+        jdbc.sql("truncate albums, artists, album_stats, album_releases, album_tracks, album_listen_links, album_descriptions, processed_events, search_cache, search_results")
                 .update();
         musicBrainz.resetAll();
         stubCoversExist();
@@ -73,10 +75,15 @@ public abstract class CatalogIntegrationTest {
     }
 
     protected static ResponseDefinitionBuilder fixture(String name) {
+        return fixture("musicbrainz", name);
+    }
+
+    /** A recorded answer under src/test/resources/__files/{@code dir}. */
+    protected static ResponseDefinitionBuilder fixture(String dir, String name) {
         return aResponse()
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json; charset=utf-8")
-                .withBodyFile("musicbrainz/" + name);
+                .withBodyFile(dir + "/" + name);
     }
 
     protected static ResponseDefinitionBuilder emptySearch() {

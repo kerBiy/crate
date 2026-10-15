@@ -49,6 +49,14 @@ export type AlbumTracks = {
   lengthMs: number | null
   genres: string[]
   discs: { position: number; tracks: Track[] }[]
+  /** Where to listen (ADR-015): at most one link per platform, from MusicBrainz. Empty when it has none. */
+  listenLinks: ListenLink[]
+}
+
+/** A link that opens the album on a listening platform. The album page shows only the first three platforms. */
+export type ListenLink = {
+  platform: 'SPOTIFY' | 'APPLE_MUSIC' | 'YOUTUBE_MUSIC' | 'DEEZER' | 'TIDAL' | 'BANDCAMP' | 'SOUNDCLOUD'
+  url: string
 }
 
 export type Track = {
@@ -58,6 +66,12 @@ export type Track = {
   title: string
   lengthMs: number | null
 }
+
+/**
+ * catalog-service AlbumDescription: GET /albums/{id}/description. The intro of the album's English
+ * Wikipedia article, plain text; all null when there is no article. Shown with its credit (CC BY-SA).
+ */
+export type AlbumDescription = { text: string | null; articleUrl: string | null; articleTitle: string | null }
 
 /** catalog-service SearchResponse. partial: MusicBrainz couldn't be asked, results may be missing. */
 export type SearchResponse = { items: AlbumSummary[]; partial: boolean }

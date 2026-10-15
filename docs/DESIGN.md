@@ -147,6 +147,8 @@ Type scale (px): `13 · 15 · 17 · 20 · 24 · 32 · 44 · 64`
 
 One set only, **Phosphor**: regular weight at rest, fill weight for the active state (for example the active tab). No emoji anywhere in the UI.
 
+**One exception: third-party app icons, only in Where to listen** (section 8, ADR-015). Spotify, Apple Music and YouTube Music appear as their own app icons, in their own colors (Apple Music's is a gradient), unmodified, from each brand's official artwork. They aren't Phosphor and don't follow the one-accent rule, because a recognizable mark is the whole point of a link to another service. Nowhere else, and no other brand.
+
 ---
 
 ## 5. Signature: the vinyl in the sleeve
@@ -236,7 +238,9 @@ Like Apple Music's album view: the left column is **about the album**, the right
 │  ┌──────────────┐◐       In Rainbows                  (display, 64)    │
 │  │    cover     │ record Radiohead                    (h3)             │
 │  │    360px     │        Album · 2007                 (body, muted)    │
-│  └──────────────┘        [ later: a short description, 3 lines, More ] │
+│  └──────────────┘        OK Computer is the third studio album… (3 l.) │
+│  (S) (A) (Y)  app icons  More                                          │
+│                          From Wikipedia, CC BY-SA 4.0  (meta, muted)   │
 │  (Alternative rock) (Art rock)  tags  ──────────────────────────────    │
 │                          Your rating                                   │
 │  Tracks          (h3)    ★ ★ ★ ★ ½   Edit review  Remove rating        │
@@ -254,21 +258,22 @@ Like Apple Music's album view: the left column is **about the album**, the right
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-- **Left column, about the album:** the sleeve; the genres as tags, `24` below; Tracks; and a quiet footer under the tracklist, `24` below it, in `meta` `muted`, one fact per line, Apple Music style:
+- **Left column, about the album:** the sleeve; Where to listen, `24` below it; the genres as tags; Tracks; and a quiet footer under the tracklist, `24` below it, in `meta` `muted`, one fact per line, Apple Music style:
     - the full release date ("10 October 2007")
     - "10 songs, 42 minutes" ("songs" only here, as Apple Music writes it; the section and its button say tracks)
     - the label ("XL Recordings")
     - "18.2k listeners and 1.4m listens on ListenBrainz", tabular figures, "ListenBrainz" linked to the album there. ListenBrainz's numbers, never Crate's: they live with the album's facts, never near the ratings, and always say whose they are. While they're on their way (background refresh) the line keeps its space and fades in; with no numbers there is no line.
 
   A fact that isn't known is left out, never shown as "—". Length, songs and label come from the release the tracklist is read from (ADR-013): until it has loaded once, their lines hold their place with skeleton lines.
+- **Where to listen:** three icon links directly under the cover: Spotify, Apple Music, YouTube Music, always all three, always in that order. Each is the brand's app icon (section 4.5), all the same `avatar` size (32), `16` apart, in a `tap` target (44) whose pressed state shows behind the icon; they line up with the cover's left edge. No text on screen. The name is the link's accessible name and shows as a tooltip on hover and keyboard focus: "Open on Spotify" when MusicBrainz links the album there, otherwise the link is that platform's search for "artist title" and says "Search on Spotify". They open in a new tab. While the tracklist loads (the links come with it), three circles of the same size pulse in their place; if it fails, all three search. Other platforms MusicBrainz knows (Deezer, Tidal, Bandcamp…) are stored, not shown (ADR-015).
 - **Right column, what people think:** title (`display`) and artist (`h3`); one meta line, "Album · 2007" (type and year, `body` `muted`; with one of them unknown, just the other); then Your rating, Ratings and Reviews.
-- **Room for a description:** the slot under the meta line, `24` below it, is kept for a short introduction to the album (a Wikipedia intro, later): `body` in `text`, `max-w-prose`, clamped to 3 lines with "More" to expand it in place, credited "From Wikipedia" with its license. Nothing is shown there until it exists: no placeholder.
-- **The pin:** the left column is pinned under the header as a whole, **only while all of it fits the window**; otherwise it scrolls with the page like the rest. With the cover, five tracks and the footer it is about 940 px tall, so it pins on tall windows (from about 1100 px) and scrolls on a 900 px laptop. Pressing "Show all" or "Show fewer" never makes the column jump, even when it switches it from pinned to scrolling: "Show all" keeps the list where it is on the screen and grows it downward from the fifth track; "Show fewer" keeps the button under your finger while the rows above it go.
+- **The description:** under the meta line, `24` below it, the first paragraph of the album's English Wikipedia article (ADR-014): `body` in `text`, `max-w-prose`, clamped to 3 lines. "More" (a tight ghost button whose label lines up with the text, `aria-expanded`) shows only when the text is longer than that and expands it in place; "Less" folds it again and stays under the finger. Under it, in `meta` `muted`: "From Wikipedia, CC BY-SA 4.0", "Wikipedia" linked to the article and the license to its text, as the license asks. Three skeleton lines and a credit line while it loads; with no article, or when it can't be loaded, nothing at all: no gap, no error.
+- **The pin:** the left column is pinned under the header as a whole, **only while all of it fits the window**; otherwise it scrolls with the page like the rest. With the cover, Where to listen, five tracks and the footer it is about 1050 px tall, so it pins on tall windows (from about 1180 px) and scrolls on a 900 px laptop. Pressing "Show all" or "Show fewer" never makes the column jump, even when it switches it from pinned to scrolling: "Show all" keeps the list where it is on the screen and grows it downward from the fifth track; "Show fewer" keeps the button under your finger while the rows above it go.
 - "Your rating" is the main action: its own strip under a hairline, `h2` stars.
 - Ratings: the average in `h1` with tabular figures, its stars and the count under it; the histogram next to it, taller (`80`), with the scale's ends (½ star, 5 stars) under the bars.
 - Tracks show the first 5, then "Show all 12 tracks", which expands in place and becomes "Show fewer". Albums with 7 tracks or fewer show all of them, no button. Tracks count across discs. Each row: the track's position (1 to n per disc, never the sleeve's printed "A1" or "ONE 1") in its own right-aligned column (`muted`, tabular), the title (`body`, truncated), the length at the end (`muted`, tabular); the inset rule starts at the title. "Disc 1", "Disc 2" headings only when there is more than one disc.
 
-On mobile everything stacks in one column, in this order: cover (record ⅓ out, up to 280 px), title (`h1`), artist (`h4`), the meta line, Your rating, genres, Tracks with its footer, Ratings, Reviews.
+On mobile everything stacks in one column, in this order: cover (record ⅓ out, up to 280 px), Where to listen, title (`h1`), artist (`h4`), the meta line, Your rating, genres, Tracks with its footer, Ratings, Reviews.
 
 ---
 
@@ -282,6 +287,7 @@ On mobile everything stacks in one column, in this order: cover (record ⅓ out,
     - Empty listen-later: "Your crate is empty. Save albums to listen to later."
     - No search results: "No records in this crate. Try another name."
 - **Errors are plain and useful, never cute:** "Couldn't load reviews. Try again."
+- **Links to other services say what they do:** "Open on Spotify" when it opens the album, "Search on Spotify" when it only searches. Never call a search an album link.
 - **Say whose data it is.** Crate's own numbers (ratings) need no credit; anything from another service names it: "on ListenBrainz", "No tracklist on MusicBrainz yet."
 - **Undo beats "Are you sure?"** Removing something you made (a rating and its review) happens at once, with "Rating removed" and **Undo** in the toast. Confirmation dialogs only for what can't be undone.
 - No "Welcome to Crate!", no taglines, no marketing copy.
@@ -322,6 +328,7 @@ On mobile everything stacks in one column, in this order: cover (record ⅓ out,
 ## 12. Banned
 
 - Gradients (except the cover wash in section 6), glassmorphism, blur decorations
+    - The third-party app icons in Where to listen keep their own colors, Apple Music's gradient included (section 4.5). Only there.
 - Emoji as icons; stock illustrations; mascots
 - Shadows on cards and covers; the same rounded card used for everything
 - Generic hero sections, "Welcome to…" copy, taglines, lorem ipsum
@@ -360,7 +367,7 @@ On mobile everything stacks in one column, in this order: cover (record ⅓ out,
 
 Base components live in `frontend/src/components/ui/`. Every state of each one is on `/dev/components` (development only).
 
-- **Button**: any action. `primary` for the one main action in a view, `secondary` for the rest, `ghost` for low-key actions inside rows. `loading` while the action runs; `disabled` when it can't run yet. A link that acts as the main action uses `buttonStyles()`.
+- **Button**: any action. `primary` for the one main action in a view, `secondary` for the rest, `ghost` for low-key actions inside rows. `tight` (ghost only): half the side padding, pulled back by as much, so a text-like action (More) lines up with the paragraph above it and keeps its tap target. `loading` while the action runs; `disabled` when it can't run yet. A link that acts as the main action uses `buttonStyles()`.
 - **Input**: every text field, always with a visible label and a `border-strong` edge. `hint` for short help, `error` for what's wrong and how to fix it.
 - **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
 - **RatingInput**: giving a rating. `size="lg"` on the album page, where it is the main action (`h2` stars, same 44 px cells). Hover previews, press-and-drag scrubs, release commits; half-star steps with the arrow keys, Enter confirms. On the album page it sits under a label that says what it is ("Rate this album", then "Your rating"), with its review and remove actions right below it.
@@ -370,6 +377,9 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **AlbumTile**: one album in a cover grid; the record slides out on hover or focus, once the cover is in. Caption: title, then "Artist, year". **AlbumTileSkeleton**: the same tile while the list loads.
 - **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar. Bars in `muted`, the most common rating in `text`, the one being read in `accent`. `size="lg"`: taller bars with the scale's ends under them.
 - **Tracklist**: the album page's tracks, in rows like Apple Music's album view (number column, title, length at the end, inset rules). The first 5, then "Show all N tracks" / "Show fewer" (`aria-expanded`), which never makes the list jump (Show all grows it downward in place; Show fewer keeps the button where it was); all of them when there are 7 or fewer. Disc headings only for more than one disc. Its own loading (skeleton rows of the same height, in the collapsed shape), empty ("No tracklist on MusicBrainz yet.") and error ("Couldn't load the tracklist." + Try again) states.
+- **Description**: the album page's Wikipedia intro (section 8): the text clamped to 3 lines, More / Less in place, its credit and license under it. `DescriptionSkeleton` while it loads; nothing when there is none.
+- **ListenLinks**: Where to listen under the album page cover (section 8): Spotify, Apple Music, YouTube Music app icons, always all three, each opening the album or, without an exact link, that platform's search. Name and tooltip "Open on …" / "Search on …", 32 px icons in 44 px targets, new tab. Three pulsing circles while the tracklist loads; all search when it fails. `ListenIcons` is the same row without the request (for `/dev/components`).
+- **Tooltip**: names an icon-only control: under it, aligned to its start, `surface-raised` with a `border` edge and the floating shadow, `meta` text. On hover (pointer devices only) and keyboard focus, never on a tap; fades in over `fast`; Escape hides it. Its text is hidden from screen readers: the control carries the same name itself.
 - **AlbumFooter**: the quiet facts under the tracklist (release date; songs and length; label; ListenBrainz's listeners and listens, linked). Skeleton lines while the tracklist loads; unknown facts left out; the ListenBrainz line keeps its space while its numbers load and fades them in.
 - **Tag**: a fact about something that isn't a control: genres. `meta` in `muted` on `surface`, a `border` hairline, `full` radius. No hover, no pressed state, not focusable: nothing that looks pressable may do nothing. Once tags lead somewhere (a genre page), they become links with the `pressed` state, a focus ring and a `tap`-sized target.
 - **Avatar**: a person next to their name. `sm` in dense rows.

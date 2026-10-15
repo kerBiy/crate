@@ -14,7 +14,10 @@ import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseGroup;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
-/** {@code GET /albums/{id}/tracks}: fetched lazily from MusicBrainz, then stored (ADR 013). */
+/**
+ * {@code GET /albums/{id}/tracks}: fetched lazily from MusicBrainz, then stored (ADR 013), with the
+ * album's listening links from the same browse (ADR 015).
+ */
 class AlbumTracksIntegrationTests extends CatalogIntegrationTest {
 
     private static final String MB_RELEASES = "/ws/2/release";
@@ -44,8 +47,18 @@ class AlbumTracksIntegrationTests extends CatalogIntegrationTest {
                     .jsonPath("$.discs[0].tracks[0].number").isEqualTo("1")
                     .jsonPath("$.discs[0].tracks[0].title").isEqualTo("Airbag")
                     .jsonPath("$.discs[0].tracks[0].lengthMs").isEqualTo(284400)
-                    .jsonPath("$.discs[0].tracks[11].title").isEqualTo("The Tourist");
+                    .jsonPath("$.discs[0].tracks[11].title").isEqualTo("The Tourist")
+                    // The European CD has no streaming links; they come from its 12-track digital copy.
+                    .jsonPath("$.listenLinks.length()").isEqualTo(6)
+                    .jsonPath("$.listenLinks[0].platform").isEqualTo("SPOTIFY")
+                    .jsonPath("$.listenLinks[0].url").isEqualTo("https://open.spotify.com/album/6dVIqQ8qmQ5GBnJ9shOYGE")
+                    .jsonPath("$.listenLinks[1].platform").isEqualTo("APPLE_MUSIC")
+                    .jsonPath("$.listenLinks[2].platform").isEqualTo("YOUTUBE_MUSIC")
+                    .jsonPath("$.listenLinks[2].url")
+                    .isEqualTo("https://music.youtube.com/playlist?list=OLAK5uy_nc6afxSnmK8OFML8dF9q_0D1MBMXsGnL4")
+                    .jsonPath("$.listenLinks[5].platform").isEqualTo("BANDCAMP");
         }
+        assertThat(count("album_listen_links")).isEqualTo(6);
 
         // Two MusicBrainz requests the first time (browse, lookup), none the second.
         musicBrainz.verify(1, getRequestedFor(urlPathEqualTo(MB_RELEASES)));
@@ -89,7 +102,13 @@ class AlbumTracksIntegrationTests extends CatalogIntegrationTest {
                 .jsonPath("$.discs[1].position").isEqualTo(2)
                 .jsonPath("$.discs[1].tracks.length()").isEqualTo(14)
                 .jsonPath("$.discs[1].tracks[0].position").isEqualTo(1)
-                .jsonPath("$.discs[1].tracks[0].title").isEqualTo("Where Boys Fear to Tread");
+                .jsonPath("$.discs[1].tracks[0].title").isEqualTo("Where Boys Fear to Tread")
+                // Two 28-track digital releases on the same day: the lower MBID's Apple link, the other's
+                // Spotify, Deezer and Tidal. The 42-track 2025 deluxe edition's links lose.
+                .jsonPath("$.listenLinks[0].url").isEqualTo("https://open.spotify.com/album/4bPT6Q8ppaSNppk1kbEbLl")
+                .jsonPath("$.listenLinks[1].url").isEqualTo("https://music.apple.com/us/album/721224313")
+                .jsonPath("$.listenLinks[2].url").isEqualTo("https://www.deezer.com/album/6158273")
+                .jsonPath("$.listenLinks[3].url").isEqualTo("https://tidal.com/album/18306486");
     }
 
     @Test
@@ -117,7 +136,8 @@ class AlbumTracksIntegrationTests extends CatalogIntegrationTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .jsonPath("$.releaseId").doesNotExist()
-                .jsonPath("$.discs.length()").isEqualTo(0);
+                .jsonPath("$.discs.length()").isEqualTo(0)
+                .jsonPath("$.listenLinks.length()").isEqualTo(0);
         // Official first, then every status: two requests. Stored, so the next request asks nobody.
         musicBrainz.verify(2, getRequestedFor(urlPathEqualTo(MB_RELEASES)));
         client.get().uri("/albums/{id}/tracks", album.id()).exchange().expectStatus().isOk();

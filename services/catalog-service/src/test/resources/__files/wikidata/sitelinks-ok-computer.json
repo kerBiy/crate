@@ -1,0 +1,18 @@
+{
+    "entities": {
+        "Q202996": {
+            "type": "item",
+            "id": "Q202996",
+            "sitelinks": {
+                "enwiki": {
+                    "site": "enwiki",
+                    "title": "OK Computer",
+                    "badges": [
+                        "Q17437796"
+                    ]
+                }
+            }
+        }
+    },
+    "success": 1
+}

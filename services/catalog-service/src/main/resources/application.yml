@@ -49,6 +49,8 @@ crate:
     album:
       # A tracklist MusicBrainz had no release for is asked for again after this (ADR 013).
       recheck-empty-tracks-after: 30d
+      # The Wikipedia intro, and "no English article", are fetched again after this (ADR 014).
+      description-refresh-after: 30d
     cover-art:
       base-url: https://coverartarchive.org
       # HEAD requests in flight at once. 8 checks 50 albums in about 1.5 s.
@@ -68,6 +70,16 @@ crate:
       max-wait: 1s
     # Stored counts are asked for again after this: by search, and in the background by the album page.
     refresh-after: 30d
+  wikipedia:
+    wikidata-base-url: https://www.wikidata.org
+    wikipedia-base-url: https://en.wikipedia.org
+    # Nobody waits on a description (the page loads it on its own), so a little more room than ListenBrainz.
+    timeout: 3s
+    rate-limit:
+      # Wikimedia allows 200 requests a minute to a client with a proper User-Agent and asks for requests
+      # in series. One a second is well under that; a first view needs at most two (Wikidata, Wikipedia).
+      interval: 1s
+      max-wait: 5s
   musicbrainz:
     base-url: https://musicbrainz.org/ws/2
     # MusicBrainz blocks clients without a meaningful User-Agent. The contact email lives in .env.

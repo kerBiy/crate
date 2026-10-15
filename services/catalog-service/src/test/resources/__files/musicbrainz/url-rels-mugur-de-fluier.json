@@ -1,0 +1,102 @@
+{
+    "secondary-type-ids": [],
+    "id": "a860e82e-7fbe-3232-be6a-ee7d15244914",
+    "relations": [
+        {
+            "source-credit": "",
+            "type": "discogs",
+            "type-id": "99e550f3-5ab4-3110-b5b9-fe01d970b126",
+            "attribute-values": {},
+            "target-type": "url",
+            "end": null,
+            "attributes": [],
+            "url": {
+                "id": "91133658-b7e9-4d7e-891c-4ceb75e82f3f",
+                "resource": "https://www.discogs.com/master/187898"
+            },
+            "direction": "forward",
+            "begin": null,
+            "target-credit": "",
+            "ended": false,
+            "attribute-ids": {}
+        },
+        {
+            "type-id": "38320e40-9f4a-3ae7-8cb2-3f3c9c5d856d",
+            "attribute-values": {},
+            "target-type": "url",
+            "attributes": [],
+            "end": null,
+            "direction": "forward",
+            "url": {
+                "id": "15fb06c4-173e-4b73-81e6-8205eab89ca2",
+                "resource": "https://rateyourmusic.com/release/album/phoenix/mugur-de-fluier/"
+            },
+            "ended": false,
+            "target-credit": "",
+            "begin": null,
+            "attribute-ids": {},
+            "source-credit": "",
+            "type": "other databases"
+        },
+        {
+            "type": "other databases",
+            "source-credit": "",
+            "attribute-ids": {},
+            "target-credit": "",
+            "ended": false,
+            "begin": null,
+            "url": {
+                "resource": "https://www.musik-sammler.de/album/phoenix-mugur-de-fluier-263147/",
+                "id": "737da8eb-d92b-49a8-a67b-0c1dae231266"
+            },
+            "direction": "forward",
+            "end": null,
+            "attributes": [],
+            "target-type": "url",
+            "attribute-values": {},
+            "type-id": "38320e40-9f4a-3ae7-8cb2-3f3c9c5d856d"
+        },
+        {
+            "type": "other databases",
+            "source-credit": "",
+            "direction": "forward",
+            "url": {
+                "id": "817c94bd-2551-4ea7-a01a-9e4f385dcfb3",
+                "resource": "https://www.progarchives.com/album.asp?id=7400"
+            },
+            "attributes": [],
+            "end": null,
+            "attribute-ids": {},
+            "target-credit": "",
+            "begin": null,
+            "ended": false,
+            "attribute-values": {},
+            "type-id": "38320e40-9f4a-3ae7-8cb2-3f3c9c5d856d",
+            "target-type": "url"
+        },
+        {
+            "type": "wikidata",
+            "source-credit": "",
+            "target-credit": "",
+            "begin": null,
+            "ended": false,
+            "attribute-ids": {},
+            "end": null,
+            "attributes": [],
+            "url": {
+                "id": "22683d81-46bf-421e-8a66-d8a52d9c322f",
+                "resource": "https://www.wikidata.org/wiki/Q12735998"
+            },
+            "direction": "forward",
+            "target-type": "url",
+            "type-id": "b988d08c-5d86-4a57-9557-c83b399e3580",
+            "attribute-values": {}
+        }
+    ],
+    "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+    "disambiguation": "",
+    "title": "Mugur De Fluier",
+    "first-release-date": "1973",
+    "primary-type": "Album",
+    "secondary-types": []
+}

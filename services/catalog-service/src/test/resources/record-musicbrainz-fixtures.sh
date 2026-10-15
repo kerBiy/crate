@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Records the real MusicBrainz (and ListenBrainz) responses used as WireMock fixtures.
+# Records the real MusicBrainz (and ListenBrainz, Wikidata, Wikipedia) responses used as WireMock fixtures.
 # Run once (or when their JSON changes), never from tests:
 #   MUSICBRAINZ_CONTACT=you@example.com ./record-musicbrainz-fixtures.sh
 # Pass file names to record only those, e.g. ./record-musicbrainz-fixtures.sh release-ok-computer.json
@@ -24,7 +24,8 @@ fetch() { # <file> <path> [curl args...]
   local file=$1 path=$2; shift 2
   wanted "$file" || return 0
   curl -sSf -G -A "$USER_AGENT" -H 'Accept: application/json' \
-    --data-urlencode fmt=json "$@" "$BASE/$path" | python3 -m json.tool --no-ensure-ascii > "$OUT/$file"
+    --data-urlencode fmt=json "$@" "$BASE/$path" | python3 -m json.tool --no-ensure-ascii > "$OUT/$file.tmp"
+  mv "$OUT/$file.tmp" "$OUT/$file" # only once it's complete: a failed request keeps the old fixture
   echo "recorded $file"
   sleep 2 # MusicBrainz allows ~1 request/second; 1.1 s still got a 503 while recording
 }
@@ -54,20 +55,27 @@ fetch lookup-creep-single.json release-group/c5bc370b-95c2-3634-bb89-51bb2dce97c
   --data-urlencode inc=artist-credits
 
 # ADR 013: the album page's release. Browses come back in no particular order; the rule sorts them.
+# With url-rels: the releases' streaming links, for Where to listen (ADR 015).
 OK_COMPUTER=b1392450-e666-3926-a536-22c65f834433
 DISCOVERY=48117b90-a16e-34ca-a514-19c702df1158
 MELLON_COLLIE=1af599c9-0b44-3a5a-a06b-39e8db6b2b4e
 fetch browse-releases-ok-computer.json release --data-urlencode release-group=$OK_COMPUTER \
-  --data-urlencode status=official --data-urlencode inc=labels+media --data-urlencode limit=100
+  --data-urlencode status=official --data-urlencode inc=labels+media+url-rels --data-urlencode limit=100
 fetch browse-releases-discovery.json release --data-urlencode release-group=$DISCOVERY \
-  --data-urlencode status=official --data-urlencode inc=labels+media --data-urlencode limit=100
+  --data-urlencode status=official --data-urlencode inc=labels+media+url-rels --data-urlencode limit=100
 fetch browse-releases-mellon-collie.json release --data-urlencode release-group=$MELLON_COLLIE \
-  --data-urlencode status=official --data-urlencode inc=labels+media --data-urlencode limit=100
+  --data-urlencode status=official --data-urlencode inc=labels+media+url-rels --data-urlencode limit=100
 # The releases ReleaseChoice picks from those browses: XE Parlophone CD, GB Virgin 2 CDs.
 fetch release-ok-computer.json release/425d8db9-88a3-31e2-bd23-b1a967626dd5 \
   --data-urlencode inc=recordings+labels+release-groups+genres
 fetch release-mellon-collie.json release/15cf95c2-bbe6-37cc-8a61-c5d5116b267a \
   --data-urlencode inc=recordings+labels+release-groups+genres
+
+# ADR 014: the album's Wikipedia article, found through the release group's URL relationships.
+# Mugur de fluier has a Wikidata item but no English article.
+MUGUR_DE_FLUIER=a860e82e-7fbe-3232-be6a-ee7d15244914
+fetch url-rels-ok-computer.json release-group/$OK_COMPUTER --data-urlencode inc=url-rels
+fetch url-rels-mugur-de-fluier.json release-group/$MUGUR_DE_FLUIER --data-urlencode inc=url-rels
 
 # ListenBrainz popularity (ADR 012): OK Computer, and an MBID ListenBrainz doesn't know.
 LB_OUT="$(dirname "$0")/__files/listenbrainz"
@@ -78,3 +86,21 @@ if wanted popularity-ok-computer.json; then
     https://api.listenbrainz.org/1/popularity/release-group | python3 -m json.tool --no-ensure-ascii > "$LB_OUT/popularity-ok-computer.json"
   echo "recorded popularity-ok-computer.json"
 fi
+
+# Wikidata sitelinks and Wikipedia summaries (ADR 014). Same User-Agent: Wikimedia asks for one with a contact.
+wikimedia() { # <dir> <file> <url> [curl args...]
+  local dir=$1 file=$2 url=$3; shift 3
+  wanted "$file" || return 0
+  mkdir -p "$(dirname "$0")/__files/$dir"
+  curl -sSf -G -A "$USER_AGENT curl" -H 'Accept: application/json' "$@" "$url" \
+    | python3 -m json.tool --no-ensure-ascii > "$(dirname "$0")/__files/$dir/$file.tmp"
+  mv "$(dirname "$0")/__files/$dir/$file.tmp" "$(dirname "$0")/__files/$dir/$file"
+  echo "recorded $dir/$file"
+}
+WBGETENTITIES=(--data-urlencode action=wbgetentities --data-urlencode props=sitelinks \
+  --data-urlencode sitefilter=enwiki --data-urlencode format=json --data-urlencode formatversion=2)
+wikimedia wikidata sitelinks-ok-computer.json https://www.wikidata.org/w/api.php "${WBGETENTITIES[@]}" --data-urlencode ids=Q202996
+wikimedia wikidata sitelinks-mugur-de-fluier.json https://www.wikidata.org/w/api.php "${WBGETENTITIES[@]}" --data-urlencode ids=Q12735998
+wikimedia wikipedia summary-ok-computer.json https://en.wikipedia.org/api/rest_v1/page/summary/OK_Computer
+# A disambiguation page: not an article about one album.
+wikimedia wikipedia summary-mercury.json https://en.wikipedia.org/api/rest_v1/page/summary/Mercury

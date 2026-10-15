@@ -1,220 +1,373 @@
 {
-    "release-offset": 0,
     "releases": [
         {
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "quality": "normal",
+            "country": "JP",
+            "cover-art-archive": {
+                "back": true,
+                "artwork": true,
+                "front": true,
+                "darkened": false,
+                "count": 2
+            },
+            "id": "02fe9635-e8c7-471d-980b-d7c395230586",
+            "packaging": "Gatefold Cover",
             "label-info": [
                 {
                     "catalog-number": "UICY-16355/8",
                     "label": {
+                        "disambiguation": "imprint of Capitol Records, Inc.",
                         "type": "Imprint",
-                        "name": "Capitol Records",
                         "label-code": 148,
                         "id": "abea2d3e-eabf-4480-ab24-9382dd642c73",
-                        "disambiguation": "imprint of Capitol Records, Inc.",
-                        "sort-name": "Capitol Records",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded"
+                        "name": "Capitol Records",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "sort-name": "Capitol Records"
                     }
                 },
                 {
                     "label": {
-                        "type": "Imprint",
-                        "name": "UMe",
-                        "label-code": null,
-                        "disambiguation": "imprint of Universal Music Enterprises",
-                        "id": "93ba13c1-5d3f-4618-a8e7-17aeffff1da6",
                         "sort-name": "UMe",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded"
+                        "name": "UMe",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "id": "93ba13c1-5d3f-4618-a8e7-17aeffff1da6",
+                        "type": "Imprint",
+                        "label-code": null,
+                        "disambiguation": "imprint of Universal Music Enterprises"
                     },
                     "catalog-number": "UICY-16355/8"
                 }
             ],
+            "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
+            "date": "2025-11-21",
             "status": "Official",
-            "id": "02fe9635-e8c7-471d-980b-d7c395230586",
+            "barcode": "4988031823378",
             "release-events": [
                 {
                     "date": "2025-11-21",
                     "area": {
-                        "name": "Japan",
+                        "disambiguation": "",
                         "type": null,
+                        "id": "2db42837-c832-3c27-b4a3-08198f75693c",
                         "sort-name": "Japan",
                         "type-id": null,
-                        "disambiguation": "",
-                        "id": "2db42837-c832-3c27-b4a3-08198f75693c",
+                        "name": "Japan",
                         "iso-3166-1-codes": [
                             "JP"
                         ]
                     }
                 }
             ],
-            "barcode": "4988031823378",
-            "cover-art-archive": {
-                "front": true,
-                "count": 2,
-                "artwork": true,
-                "back": true,
-                "darkened": false
-            },
-            "date": "2025-11-21",
-            "asin": null,
-            "country": "JP",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
             "disambiguation": "30th anniversary edition, remastered",
-            "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
+            "title": "Mellon Collie and the Infinite Sadness",
             "media": [
                 {
-                    "track-count": 14,
                     "format-id": "4856b1c6-674d-3f68-a1dd-8ae517e8b566",
                     "title": "Dawn to Dusk",
-                    "format": "SHM-CD",
                     "id": "3dd331b7-2071-44b5-97f3-f5348ed63903",
+                    "format": "SHM-CD",
+                    "track-count": 14,
                     "position": 1
                 },
                 {
-                    "format-id": "4856b1c6-674d-3f68-a1dd-8ae517e8b566",
                     "title": "Twilight to Starlight",
-                    "format": "SHM-CD",
                     "id": "9c0ce633-9170-44fb-9cdb-0ffa392369e5",
                     "position": 2,
-                    "track-count": 14
+                    "track-count": 14,
+                    "format": "SHM-CD",
+                    "format-id": "4856b1c6-674d-3f68-a1dd-8ae517e8b566"
                 },
                 {
-                    "format": "SHM-CD",
                     "position": 3,
-                    "id": "864e5b1f-c955-4dce-be52-b1f44d43c0c6",
-                    "format-id": "4856b1c6-674d-3f68-a1dd-8ae517e8b566",
+                    "track-count": 8,
+                    "format": "SHM-CD",
                     "title": "Live Infinite Sadness Tour (U.S. 1996)",
-                    "track-count": 8
+                    "id": "864e5b1f-c955-4dce-be52-b1f44d43c0c6",
+                    "format-id": "4856b1c6-674d-3f68-a1dd-8ae517e8b566"
                 },
                 {
-                    "track-count": 6,
                     "format-id": "4856b1c6-674d-3f68-a1dd-8ae517e8b566",
+                    "id": "c35ffc3a-0adf-4a44-b09e-b7b080f935e3",
                     "title": "Live Infinite Sadness Tour (U.S. 1996)",
                     "format": "SHM-CD",
-                    "id": "c35ffc3a-0adf-4a44-b09e-b7b080f935e3",
+                    "track-count": 6,
                     "position": 4
                 }
             ],
-            "quality": "normal",
-            "packaging": "Gatefold Cover"
-        },
-        {
-            "asin": "B000024JHZ",
-            "country": "GB",
+            "asin": null,
             "text-representation": {
-                "script": "Latn",
-                "language": "eng"
+                "language": "eng",
+                "script": "Latn"
             },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": "",
-            "media": [
+            "relations": [
                 {
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "position": 1,
-                    "id": "e1ad8522-efab-3970-8e0b-602367b25697",
-                    "format": "CD",
-                    "track-count": 14
+                    "source-credit": "",
+                    "type": "discogs",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "3ae5e454-4f8d-4c89-a620-ce8599e3cec8",
+                        "resource": "https://www.discogs.com/release/35785036"
+                    },
+                    "attributes": [],
+                    "end": null
                 },
                 {
-                    "track-count": 14,
-                    "title": "Twilight to Starlight",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "position": 2,
-                    "id": "36126d3c-92cc-347d-9a62-b091854b3745",
-                    "format": "CD"
+                    "source-credit": "",
+                    "type": "purchase for mail-order",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "3ee51e05-a06a-415e-b40c-b3f740dedfd7",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "76f2a1da-c2f4-480d-b83a-edfcf30d59ee",
+                        "resource": "https://tower.jp/item/7240551"
+                    },
+                    "attributes": [],
+                    "end": null
+                },
+                {
+                    "type": "purchase for mail-order",
+                    "source-credit": "",
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "aadc3323-14be-4cb2-abcc-daff53e982bf",
+                        "resource": "https://www.cdjapan.co.jp/product/UICY-16355"
+                    },
+                    "target-type": "url",
+                    "type-id": "3ee51e05-a06a-415e-b40c-b3f740dedfd7",
+                    "attribute-values": {}
                 }
-            ],
+            ]
+        },
+        {
+            "country": "GB",
             "quality": "normal",
-            "packaging": "Jewel Case",
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "cover-art-archive": {
+                "back": true,
+                "front": true,
+                "artwork": true,
+                "darkened": false,
+                "count": 19
+            },
+            "packaging": "Jewel Case",
             "label-info": [
                 {
                     "catalog-number": "7243 8 40864 2 8",
                     "label": {
-                        "type": "Imprint",
-                        "name": "Virgin",
                         "sort-name": "Virgin",
+                        "name": "Virgin",
                         "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "label-code": 3098,
                         "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "type": "Imprint",
+                        "label-code": 3098,
                         "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries"
                     }
                 },
                 {
-                    "catalog-number": "CDHUTD 30",
                     "label": {
-                        "name": "Hut Recordings",
                         "type": "Original Production",
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
-                        "disambiguation": "",
                         "label-code": 3098,
+                        "disambiguation": "",
+                        "name": "Hut Recordings",
+                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
                         "sort-name": "Hut Recordings",
-                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d"
-                    }
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91"
+                    },
+                    "catalog-number": "CDHUTD 30"
                 }
             ],
             "id": "15cf95c2-bbe6-37cc-8a61-c5d5116b267a",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "date": "1995-10-23",
             "status": "Official",
-            "barcode": "724384086428",
             "release-events": [
                 {
                     "date": "1995-10-23",
                     "area": {
-                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                        "type": null,
                         "disambiguation": "",
+                        "sort-name": "United Kingdom",
+                        "name": "United Kingdom",
                         "iso-3166-1-codes": [
                             "GB"
                         ],
                         "type-id": null,
-                        "sort-name": "United Kingdom",
-                        "name": "United Kingdom",
-                        "type": null
+                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed"
                     }
                 },
                 {
-                    "date": "1995-10",
                     "area": {
-                        "name": "Europe",
+                        "disambiguation": "",
                         "type": null,
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                        "sort-name": "Europe",
+                        "type-id": null,
+                        "name": "Europe",
                         "iso-3166-1-codes": [
                             "XE"
+                        ]
+                    },
+                    "date": "1995-10"
+                }
+            ],
+            "barcode": "724384086428",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "",
+            "media": [
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "track-count": 14,
+                    "position": 1,
+                    "format": "CD",
+                    "title": "Dawn to Dusk",
+                    "id": "e1ad8522-efab-3970-8e0b-602367b25697"
+                },
+                {
+                    "title": "Twilight to Starlight",
+                    "id": "36126d3c-92cc-347d-9a62-b091854b3745",
+                    "format": "CD",
+                    "track-count": 14,
+                    "position": 2,
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                }
+            ],
+            "asin": "B000024JHZ",
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "relations": [
+                {
+                    "type": "amazon asin",
+                    "source-credit": "",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.amazon.co.uk/gp/product/B000024JHZ",
+                        "id": "ebc0ac3b-d5e4-4cda-be7c-9abbf822889f"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87"
+                },
+                {
+                    "type": "discogs",
+                    "source-credit": "",
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null,
+                    "url": {
+                        "id": "a67c6460-974f-4000-9670-b00cdfac1ecc",
+                        "resource": "https://www.discogs.com/release/367837"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc"
+                }
+            ]
+        },
+        {
+            "text-representation": {
+                "language": "eng",
+                "script": "Latn"
+            },
+            "relations": [
+                {
+                    "source-credit": "",
+                    "type": "amazon asin",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "url": {
+                        "resource": "https://www.amazon.com/gp/product/B000000WA5",
+                        "id": "b47cd461-7727-428d-9e78-fd557baa6c5f"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": []
+                }
+            ],
+            "release-events": [
+                {
+                    "date": "1995",
+                    "area": {
+                        "id": "489ce91b-6658-3307-9877-795b68554c98",
+                        "sort-name": "United States",
+                        "name": "United States",
+                        "iso-3166-1-codes": [
+                            "US"
                         ],
-                        "disambiguation": "",
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
                         "type-id": null,
-                        "sort-name": "Europe"
+                        "disambiguation": "",
+                        "type": null
                     }
                 }
             ],
-            "cover-art-archive": {
-                "darkened": false,
-                "artwork": true,
-                "front": true,
-                "count": 19,
-                "back": true
-            },
-            "date": "1995-10-23"
-        },
-        {
-            "status": "Official",
-            "id": "17998116-379e-488c-b1c5-ef3b386294fa",
+            "barcode": "724384086145",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "",
+            "media": [
+                {
+                    "title": "Dawn to Dusk",
+                    "id": "be6fd39b-5466-3b78-924a-92f6c7cbcb5f",
+                    "position": 1,
+                    "track-count": 14,
+                    "format": "Cassette",
+                    "format-id": "f5e6e254-8f39-331c-936b-9c69d686dc47"
+                },
+                {
+                    "format-id": "f5e6e254-8f39-331c-936b-9c69d686dc47",
+                    "track-count": 14,
+                    "position": 2,
+                    "format": "Cassette",
+                    "id": "729d4010-e2e4-3fbd-a4e6-912821ba320c",
+                    "title": "Twilight to Starlight"
+                }
+            ],
+            "asin": "B000000WA5",
             "label-info": [
                 {
                     "catalog-number": "7243 8 40861 4 5",
                     "label": {
-                        "sort-name": "Virgin Records America, Inc.",
-                        "type-id": null,
-                        "label-code": null,
                         "disambiguation": "for copyrights use only; for release labels, please refer to either “Virgin” or “Virgin America”",
+                        "label-code": null,
+                        "type": null,
                         "id": "1644d8bc-b558-447f-82eb-5d6829988156",
+                        "type-id": null,
                         "name": "Virgin Records America, Inc.",
-                        "type": null
+                        "sort-name": "Virgin Records America, Inc."
                     }
                 },
                 {
@@ -222,1399 +375,1040 @@
                     "label": null
                 },
                 {
-                    "label": null,
-                    "catalog-number": "7243 8 40863 4 3"
+                    "catalog-number": "7243 8 40863 4 3",
+                    "label": null
                 }
             ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "date": "1995",
-            "cover-art-archive": {
-                "artwork": false,
-                "front": false,
-                "count": 0,
-                "back": false,
-                "darkened": false
-            },
-            "barcode": "724384086145",
-            "release-events": [
-                {
-                    "area": {
-                        "name": "United States",
-                        "type": null,
-                        "sort-name": "United States",
-                        "type-id": null,
-                        "disambiguation": "",
-                        "id": "489ce91b-6658-3307-9877-795b68554c98",
-                        "iso-3166-1-codes": [
-                            "US"
-                        ]
-                    },
-                    "date": "1995"
-                }
-            ],
-            "packaging-id": "c70b737a-0114-39a9-88f7-82843e54f906",
-            "disambiguation": "",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
-            "country": "US",
-            "asin": "B000000WA5",
             "packaging": "Cassette Case",
+            "id": "17998116-379e-488c-b1c5-ef3b386294fa",
+            "date": "1995",
+            "packaging-id": "c70b737a-0114-39a9-88f7-82843e54f906",
+            "status": "Official",
+            "country": "US",
             "quality": "normal",
-            "media": [
-                {
-                    "track-count": 14,
-                    "id": "be6fd39b-5466-3b78-924a-92f6c7cbcb5f",
-                    "position": 1,
-                    "format": "Cassette",
-                    "title": "Dawn to Dusk",
-                    "format-id": "f5e6e254-8f39-331c-936b-9c69d686dc47"
-                },
-                {
-                    "format-id": "f5e6e254-8f39-331c-936b-9c69d686dc47",
-                    "title": "Twilight to Starlight",
-                    "format": "Cassette",
-                    "id": "729d4010-e2e4-3fbd-a4e6-912821ba320c",
-                    "position": 2,
-                    "track-count": 14
-                }
-            ]
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "cover-art-archive": {
+                "count": 0,
+                "darkened": false,
+                "front": false,
+                "back": false,
+                "artwork": false
+            }
         },
         {
+            "quality": "normal",
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "JP",
+            "cover-art-archive": {
+                "count": 0,
+                "darkened": false,
+                "artwork": false,
+                "back": false,
+                "front": false
+            },
+            "id": "2df96f3a-82e1-3504-b72a-ab6502697929",
+            "packaging": null,
             "label-info": [
                 {
-                    "catalog-number": "VJCP-25203/4",
                     "label": {
-                        "name": "東芝EMI 株式会社",
-                        "type": "Holding",
-                        "type-id": "43f31a62-97e4-36f6-9752-453c131b71ed",
                         "sort-name": "東芝EMI 株式会社",
-                        "disambiguation": "record company, do not use as release label – check obi, back or disc for imprint! Ended 2007‐06‐29",
+                        "name": "東芝EMI 株式会社",
+                        "type-id": "43f31a62-97e4-36f6-9752-453c131b71ed",
                         "id": "d5a60c75-26e2-4363-a5db-58c12b578cd5",
-                        "label-code": null
-                    }
+                        "type": "Holding",
+                        "label-code": null,
+                        "disambiguation": "record company, do not use as release label – check obi, back or disc for imprint! Ended 2007‐06‐29"
+                    },
+                    "catalog-number": "VJCP-25203/4"
                 }
             ],
-            "id": "2df96f3a-82e1-3504-b72a-ab6502697929",
+            "packaging-id": null,
+            "date": "1995-10-25",
             "status": "Official",
             "barcode": "4988006712362",
             "release-events": [
                 {
+                    "date": "1995-10-25",
                     "area": {
-                        "iso-3166-1-codes": [
-                            "JP"
-                        ],
+                        "type": null,
                         "disambiguation": "",
-                        "id": "2db42837-c832-3c27-b4a3-08198f75693c",
                         "sort-name": "Japan",
                         "type-id": null,
                         "name": "Japan",
-                        "type": null
-                    },
-                    "date": "1995-10-25"
+                        "iso-3166-1-codes": [
+                            "JP"
+                        ],
+                        "id": "2db42837-c832-3c27-b4a3-08198f75693c"
+                    }
                 }
             ],
-            "cover-art-archive": {
-                "darkened": false,
-                "back": false,
-                "artwork": false,
-                "front": false,
-                "count": 0
-            },
-            "date": "1995-10-25",
-            "asin": "B00005GOF3",
-            "country": "JP",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "packaging-id": null,
             "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness",
             "media": [
                 {
-                    "track-count": 14,
-                    "id": "253f12a8-6f00-3cf0-85f0-1d5a3fd25b4d",
-                    "position": 1,
-                    "format": "CD",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
                     "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                    "id": "253f12a8-6f00-3cf0-85f0-1d5a3fd25b4d",
+                    "format": "CD",
+                    "track-count": 14,
+                    "position": 1
                 },
                 {
+                    "format": "CD",
                     "track-count": 14,
-                    "title": "Twilight to Starlight",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
                     "position": 2,
                     "id": "3cfa0779-2be4-3f79-b496-6ef828651c59",
-                    "format": "CD"
+                    "title": "Twilight to Starlight",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 }
             ],
-            "quality": "normal",
-            "packaging": null
-        },
-        {
-            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
-            "disambiguation": "",
-            "asin": null,
-            "country": "XW",
+            "asin": "B00005GOF3",
             "text-representation": {
                 "script": "Latn",
                 "language": "eng"
             },
-            "title": "Mellon Collie and the Infinite Sadness (30th anniversary edition)",
-            "packaging": "None",
-            "media": [
+            "relations": [
                 {
-                    "track-count": 42,
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "title": "",
-                    "format": "Digital Media",
-                    "id": "e75622a9-1d13-4771-bec4-40255213affb",
-                    "position": 1
+                    "type": "amazon asin",
+                    "source-credit": "",
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.amazon.co.jp/gp/product/B00005GOF3",
+                        "id": "91ffad5f-e8ab-4fb8-92f2-b06ab53d4c84"
+                    },
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "attribute-values": {},
+                    "target-type": "url"
                 }
-            ],
-            "quality": "normal",
+            ]
+        },
+        {
+            "id": "37b2e3a2-5747-406c-9ed0-edb7eb0aad2a",
+            "packaging": "None",
             "label-info": [
                 {
+                    "catalog-number": null,
                     "label": {
-                        "type-id": null,
-                        "sort-name": "Smashing Pumpkins - Deal #2 Physical",
-                        "id": "0735b34d-51a4-4b67-a105-3c6a13b6669b",
-                        "disambiguation": "",
+                        "type": null,
                         "label-code": null,
+                        "disambiguation": "",
+                        "sort-name": "Smashing Pumpkins - Deal #2 Physical",
                         "name": "Smashing Pumpkins - Deal #2 Physical",
-                        "type": null
-                    },
-                    "catalog-number": null
+                        "type-id": null,
+                        "id": "0735b34d-51a4-4b67-a105-3c6a13b6669b"
+                    }
                 }
             ],
-            "id": "37b2e3a2-5747-406c-9ed0-edb7eb0aad2a",
             "status": "Official",
+            "date": "2025-11-21",
+            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "quality": "normal",
+            "country": "XW",
+            "cover-art-archive": {
+                "front": true,
+                "back": false,
+                "artwork": true,
+                "count": 1,
+                "darkened": false
+            },
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "relations": [
+                {
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://open.spotify.com/album/6nrppjPtyFRWoZbVJyQqgk",
+                        "id": "9dc01120-904a-4ca0-9514-9b0493742360"
+                    },
+                    "direction": "forward",
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-ids": {},
+                    "type-id": "08445ccf-7b99-4438-9f9a-fb9ac18099ee",
+                    "attribute-values": {},
+                    "target-type": "url",
+                    "type": "free streaming",
+                    "source-credit": ""
+                },
+                {
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.hdtracks.com/#/album/691b3c717377cb63535e0751",
+                        "id": "9adcac17-ff7e-464e-acd2-95b9c67ec89e"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-values": {},
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "target-type": "url",
+                    "type": "purchase for download",
+                    "source-credit": ""
+                },
+                {
+                    "source-credit": "",
+                    "type": "purchase for download",
+                    "attribute-values": {},
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "target-type": "url",
+                    "direction": "forward",
+                    "url": {
+                        "id": "482ec603-c23b-4c2d-803d-7b0661eabc8b",
+                        "resource": "https://www.qobuz.com/us-en/album/mellon-collie-and-the-infinite-sadness-the-smashing-pumpkins/eft60p90xk8ha"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null
+                },
+                {
+                    "type": "streaming",
+                    "source-credit": "",
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://music.apple.com/gb/album/1841436650",
+                        "id": "9de67421-018c-4e40-b41c-77d3b582b130"
+                    },
+                    "target-type": "url",
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-values": {}
+                },
+                {
+                    "source-credit": "",
+                    "type": "streaming",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "url": {
+                        "resource": "https://tidal.com/album/473823975",
+                        "id": "ade2719e-ebce-4fe5-a5ae-6e5a7b2e6554"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": []
+                },
+                {
+                    "attribute-values": {},
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "target-type": "url",
+                    "url": {
+                        "id": "482ec603-c23b-4c2d-803d-7b0661eabc8b",
+                        "resource": "https://www.qobuz.com/us-en/album/mellon-collie-and-the-infinite-sadness-the-smashing-pumpkins/eft60p90xk8ha"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "source-credit": "",
+                    "type": "streaming"
+                }
+            ],
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness (30th anniversary edition)",
             "barcode": "00602478787553",
             "release-events": [
                 {
-                    "date": "2025-11-21",
                     "area": {
-                        "type": null,
+                        "type-id": null,
                         "name": "[Worldwide]",
                         "iso-3166-1-codes": [
                             "XW"
                         ],
+                        "sort-name": "[Worldwide]",
                         "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
-                        "disambiguation": "",
-                        "type-id": null,
-                        "sort-name": "[Worldwide]"
-                    }
+                        "type": null,
+                        "disambiguation": ""
+                    },
+                    "date": "2025-11-21"
                 }
             ],
-            "cover-art-archive": {
-                "back": false,
-                "artwork": true,
-                "front": true,
-                "count": 1,
-                "darkened": false
-            },
-            "date": "2025-11-21"
+            "asin": null,
+            "media": [
+                {
+                    "title": "",
+                    "id": "e75622a9-1d13-4771-bec4-40255213affb",
+                    "track-count": 42,
+                    "position": 1,
+                    "format": "Digital Media",
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+                }
+            ]
         },
         {
+            "country": null,
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "status": "Official",
-            "id": "4760b515-1215-41c6-84e6-07a90261805a",
-            "label-info": [],
-            "date": "2025",
+            "quality": "normal",
             "cover-art-archive": {
-                "count": 0,
+                "back": false,
                 "front": false,
                 "artwork": false,
-                "back": false,
-                "darkened": false
+                "darkened": false,
+                "count": 0
             },
+            "label-info": [],
+            "packaging": null,
+            "id": "4760b515-1215-41c6-84e6-07a90261805a",
+            "date": "2025",
+            "packaging-id": null,
+            "status": "Official",
             "release-events": [
                 {
-                    "area": null,
-                    "date": "2025"
+                    "date": "2025",
+                    "area": null
                 }
             ],
             "barcode": null,
-            "text-representation": {
-                "script": null,
-                "language": null
-            },
             "title": "Live Infinite Sadness Tour",
-            "country": null,
-            "asin": null,
             "disambiguation": "",
-            "packaging-id": null,
-            "quality": "normal",
             "media": [
                 {
                     "track-count": 8,
-                    "id": "b9b9bdda-8c38-4633-8d90-18f6e37da2d0",
                     "position": 1,
                     "format": "CD",
+                    "id": "b9b9bdda-8c38-4633-8d90-18f6e37da2d0",
                     "title": "",
                     "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 },
                 {
-                    "format": "CD",
-                    "position": 2,
-                    "id": "041662ec-f949-43fe-9e29-c5f93cb1e72a",
                     "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
                     "title": "",
-                    "track-count": 6
+                    "id": "041662ec-f949-43fe-9e29-c5f93cb1e72a",
+                    "format": "CD",
+                    "track-count": 6,
+                    "position": 2
                 }
             ],
-            "packaging": null
+            "asin": null,
+            "text-representation": {
+                "language": null,
+                "script": null
+            },
+            "relations": []
         },
         {
-            "packaging": "Jewel Case",
-            "media": [
-                {
-                    "track-count": 14,
-                    "format": "CD",
-                    "position": 1,
-                    "id": "3bb45242-ff2c-335b-af18-bcd8913c4183",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Dawn to Dusk"
-                },
-                {
-                    "track-count": 14,
-                    "title": "Twilight to Starlight",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "id": "f59ed970-9547-3db4-adec-c0d145f54ea5",
-                    "position": 2,
-                    "format": "CD"
-                }
-            ],
-            "quality": "normal",
-            "disambiguation": "",
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "asin": null,
-            "country": "XE",
             "text-representation": {
                 "script": "Latn",
                 "language": "eng"
             },
+            "relations": [
+                {
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.discogs.com/release/15079960",
+                        "id": "e1e69481-bf16-4a0d-a7d1-c466f5c5837e"
+                    },
+                    "source-credit": "",
+                    "type": "discogs"
+                }
+            ],
+            "disambiguation": "",
             "title": "Mellon Collie and the Infinite Sadness",
+            "barcode": "724384086428",
             "release-events": [
                 {
                     "date": "",
                     "area": {
+                        "type": null,
+                        "disambiguation": "",
                         "sort-name": "Europe",
-                        "type-id": null,
                         "iso-3166-1-codes": [
                             "XE"
                         ],
-                        "disambiguation": "",
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
                         "name": "Europe",
-                        "type": null
+                        "type-id": null,
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a"
                     }
                 }
             ],
-            "barcode": "724384086428",
-            "date": "",
-            "cover-art-archive": {
-                "darkened": false,
-                "front": true,
-                "count": 2,
-                "artwork": true,
-                "back": true
-            },
-            "label-info": [
+            "asin": null,
+            "media": [
                 {
-                    "catalog-number": "7243 8 40864 2 8",
-                    "label": {
-                        "name": "Virgin",
-                        "type": "Imprint",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "label-code": 3098,
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Virgin"
-                    }
+                    "format": "CD",
+                    "track-count": 14,
+                    "position": 1,
+                    "title": "Dawn to Dusk",
+                    "id": "3bb45242-ff2c-335b-af18-bcd8913c4183",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 },
                 {
-                    "catalog-number": "CDHUTD 30",
-                    "label": {
-                        "type": "Original Production",
-                        "name": "Hut Recordings",
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
-                        "disambiguation": "",
-                        "label-code": 3098,
-                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "sort-name": "Hut Recordings"
-                    }
+                    "id": "f59ed970-9547-3db4-adec-c0d145f54ea5",
+                    "title": "Twilight to Starlight",
+                    "track-count": 14,
+                    "position": 2,
+                    "format": "CD",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 }
             ],
             "id": "4a936087-ef9e-4c72-a19f-f2b13905bb69",
-            "status": "Official",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe"
-        },
-        {
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
             "label-info": [
                 {
                     "label": {
                         "sort-name": "Virgin",
                         "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "label-code": 3098,
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
                         "name": "Virgin",
-                        "type": "Imprint"
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "label-code": 3098,
+                        "type": "Imprint",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries"
                     },
-                    "catalog-number": "5099997855323"
+                    "catalog-number": "7243 8 40864 2 8"
+                },
+                {
+                    "catalog-number": "CDHUTD 30",
+                    "label": {
+                        "disambiguation": "",
+                        "label-code": 3098,
+                        "type": "Original Production",
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
+                        "sort-name": "Hut Recordings",
+                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+                        "name": "Hut Recordings"
+                    }
                 }
             ],
-            "id": "51367f4f-20ee-4624-a204-416492170e5a",
+            "packaging": "Jewel Case",
             "status": "Official",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "date": "",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "XE",
+            "cover-art-archive": {
+                "front": true,
+                "back": true,
+                "artwork": true,
+                "count": 2,
+                "darkened": false
+            }
+        },
+        {
+            "media": [
+                {
+                    "id": "8f5742cb-09e3-397f-a82c-0f648edb242b",
+                    "title": "Dawn to Dusk",
+                    "track-count": 14,
+                    "format": "CD",
+                    "position": 1,
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "id": "098c6604-76fe-3625-b801-ad98fa79e5d0",
+                    "title": "Twilight to Starlight",
+                    "track-count": 14,
+                    "position": 2,
+                    "format": "CD"
+                }
+            ],
+            "asin": null,
             "barcode": "5099997855323",
             "release-events": [
                 {
                     "date": "2012-12-03",
                     "area": {
                         "type": null,
-                        "name": "United Kingdom",
+                        "disambiguation": "",
                         "sort-name": "United Kingdom",
                         "type-id": null,
+                        "name": "United Kingdom",
                         "iso-3166-1-codes": [
                             "GB"
                         ],
-                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
-                        "disambiguation": ""
+                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed"
                     }
                 },
                 {
                     "area": {
-                        "name": "Europe",
-                        "type": null,
-                        "type-id": null,
-                        "sort-name": "Europe",
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
                         "disambiguation": "",
+                        "type": null,
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                        "type-id": null,
+                        "name": "Europe",
                         "iso-3166-1-codes": [
                             "XE"
-                        ]
+                        ],
+                        "sort-name": "Europe"
                     },
                     "date": "2012"
                 }
             ],
-            "cover-art-archive": {
-                "darkened": false,
-                "count": 1,
-                "front": true,
-                "artwork": true,
-                "back": false
-            },
-            "date": "2012-12-03",
-            "asin": null,
-            "country": "GB",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
             "disambiguation": "",
-            "media": [
+            "title": "Mellon Collie and the Infinite Sadness",
+            "relations": [
                 {
-                    "position": 1,
-                    "id": "8f5742cb-09e3-397f-a82c-0f648edb242b",
-                    "format": "CD",
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 14
-                },
-                {
-                    "track-count": 14,
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight",
-                    "format": "CD",
-                    "position": 2,
-                    "id": "098c6604-76fe-3625-b801-ad98fa79e5d0"
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.discogs.com/release/4133992",
+                        "id": "6b0e0582-e317-4138-bbb5-689f1ea4f3e2"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "source-credit": "",
+                    "type": "discogs"
                 }
             ],
-            "quality": "normal",
-            "packaging": "Jewel Case"
-        },
-        {
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": "",
-            "asin": null,
-            "country": "AU",
-            "title": "Mellon Collie and the Infinite Sadness",
             "text-representation": {
                 "script": "Latn",
                 "language": "eng"
             },
+            "cover-art-archive": {
+                "count": 1,
+                "darkened": false,
+                "back": false,
+                "front": true,
+                "artwork": true
+            },
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "GB",
+            "date": "2012-12-03",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "status": "Official",
+            "id": "51367f4f-20ee-4624-a204-416492170e5a",
             "packaging": "Jewel Case",
-            "media": [
+            "label-info": [
                 {
-                    "position": 1,
-                    "id": "41f34ac5-01f2-3004-9e4a-b214a5e2ba18",
-                    "format": "CD",
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 14
-                },
+                    "catalog-number": "5099997855323",
+                    "label": {
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "label-code": 3098,
+                        "type": "Imprint",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "name": "Virgin",
+                        "sort-name": "Virgin"
+                    }
+                }
+            ]
+        },
+        {
+            "relations": [
                 {
-                    "track-count": 14,
-                    "format": "CD",
-                    "id": "3866bcf2-d147-3587-a733-db1983ea584c",
-                    "position": 2,
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight"
+                    "type": "discogs",
+                    "source-credit": "",
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "id": "d751f254-d948-4b15-963a-b70d69f71107",
+                        "resource": "https://www.discogs.com/release/1227178"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {}
                 }
             ],
-            "quality": "normal",
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "media": [
+                {
+                    "format": "CD",
+                    "track-count": 14,
+                    "position": 1,
+                    "title": "Dawn to Dusk",
+                    "id": "41f34ac5-01f2-3004-9e4a-b214a5e2ba18",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "title": "Twilight to Starlight",
+                    "id": "3866bcf2-d147-3587-a733-db1983ea584c",
+                    "track-count": 14,
+                    "position": 2,
+                    "format": "CD",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                }
+            ],
+            "asin": null,
+            "release-events": [
+                {
+                    "date": "1995-10-24",
+                    "area": {
+                        "type": null,
+                        "disambiguation": "",
+                        "sort-name": "Australia",
+                        "iso-3166-1-codes": [
+                            "AU"
+                        ],
+                        "name": "Australia",
+                        "type-id": null,
+                        "id": "106e0bec-b638-3b37-b731-f53d507dc00e"
+                    }
+                }
+            ],
+            "barcode": "724384086428",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "",
+            "date": "1995-10-24",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "status": "Official",
+            "packaging": "Jewel Case",
             "label-info": [
                 {
                     "catalog-number": "7243 8 40864 2 8",
                     "label": {
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
                         "label-code": 3098,
+                        "type": "Imprint",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
                         "sort-name": "Virgin",
                         "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
                         "name": "Virgin",
-                        "type": "Imprint"
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
                     }
                 }
             ],
             "id": "5bc55bab-b2be-4566-8983-00108b1d5d8f",
-            "status": "Official",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "barcode": "724384086428",
-            "release-events": [
-                {
-                    "area": {
-                        "iso-3166-1-codes": [
-                            "AU"
-                        ],
-                        "disambiguation": "",
-                        "id": "106e0bec-b638-3b37-b731-f53d507dc00e",
-                        "type-id": null,
-                        "sort-name": "Australia",
-                        "type": null,
-                        "name": "Australia"
-                    },
-                    "date": "1995-10-24"
-                }
-            ],
             "cover-art-archive": {
                 "darkened": false,
-                "back": false,
                 "count": 1,
-                "front": true,
-                "artwork": true
-            },
-            "date": "1995-10-24"
-        },
-        {
-            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
-            "disambiguation": "",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "asin": null,
-            "country": "XW",
-            "packaging": "None",
-            "quality": "normal",
-            "media": [
-                {
-                    "track-count": 14,
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "title": "",
-                    "format": "Digital Media",
-                    "position": 1,
-                    "id": "140118ac-ea33-3153-94b4-ea4d466f3d3a"
-                },
-                {
-                    "format": "Digital Media",
-                    "id": "81235fa4-cc47-3cc2-9a9c-1e482552447e",
-                    "position": 2,
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "title": "",
-                    "track-count": 14
-                }
-            ],
-            "id": "61a93f13-72ff-4aea-97e6-9b0954cb36b0",
-            "status": "Official",
-            "label-info": [
-                {
-                    "catalog-number": null,
-                    "label": {
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Virgin",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "label-code": 3098,
-                        "name": "Virgin",
-                        "type": "Imprint"
-                    }
-                }
-            ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "date": "2012-11-30",
-            "cover-art-archive": {
                 "back": false,
                 "artwork": true,
-                "front": true,
-                "count": 1,
-                "darkened": false
+                "front": true
             },
-            "barcode": "05099997856559",
-            "release-events": [
-                {
-                    "area": {
-                        "type": null,
-                        "name": "[Worldwide]",
-                        "disambiguation": "",
-                        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
-                        "iso-3166-1-codes": [
-                            "XW"
-                        ],
-                        "sort-name": "[Worldwide]",
-                        "type-id": null
-                    },
-                    "date": "2012-11-30"
-                }
-            ]
-        },
-        {
-            "packaging": "Gatefold Cover",
-            "media": [
-                {
-                    "track-count": 14,
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "position": 1,
-                    "id": "68ff813b-9f56-42b4-8c8a-f456934b1ece",
-                    "format": "CD"
-                },
-                {
-                    "format": "CD",
-                    "position": 2,
-                    "id": "667ceae9-c347-4589-9b4d-bf7f6ba5f344",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight",
-                    "track-count": 14
-                },
-                {
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Live Infinite Sadness Tour (U.S. 1996)",
-                    "format": "CD",
-                    "position": 3,
-                    "id": "9e54a546-089b-4b32-b3f5-a6e51ac0408f",
-                    "track-count": 8
-                },
-                {
-                    "position": 4,
-                    "id": "b740bf75-b000-45c1-8b5e-c1643263cae0",
-                    "format": "CD",
-                    "title": "Live Infinite Sadness Tour (U.S. 1996)",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 6
-                }
-            ],
+            "country": "AU",
             "quality": "normal",
-            "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
-            "disambiguation": "30th anniversary edition, remastered",
-            "asin": "B0FTG8DF8P",
-            "country": "US",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
-            "barcode": "602478664113",
-            "release-events": [
-                {
-                    "date": "2025-11-21",
-                    "area": {
-                        "name": "United States",
-                        "type": null,
-                        "id": "489ce91b-6658-3307-9877-795b68554c98",
-                        "disambiguation": "",
-                        "iso-3166-1-codes": [
-                            "US"
-                        ],
-                        "sort-name": "United States",
-                        "type-id": null
-                    }
-                }
-            ],
-            "cover-art-archive": {
-                "back": false,
-                "artwork": true,
-                "front": true,
-                "count": 1,
-                "darkened": false
-            },
-            "date": "2025-11-21",
-            "label-info": [
-                {
-                    "label": {
-                        "name": "Capitol Records",
-                        "type": "Imprint",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Capitol Records",
-                        "label-code": 148,
-                        "disambiguation": "imprint of Capitol Records, Inc.",
-                        "id": "abea2d3e-eabf-4480-ab24-9382dd642c73"
-                    },
-                    "catalog-number": "602478664113"
-                }
-            ],
-            "id": "7b185a14-de8c-4b60-bb15-e287c6c110e9",
-            "status": "Official",
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe"
         },
         {
-            "date": "2012-12-04",
-            "cover-art-archive": {
-                "darkened": false,
-                "artwork": true,
-                "front": false,
-                "count": 1,
-                "back": false
-            },
-            "barcode": "5099997855316",
-            "release-events": [
+            "relations": [
                 {
-                    "date": "2012-12-04",
-                    "area": {
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
-                        "disambiguation": "",
-                        "iso-3166-1-codes": [
-                            "XE"
-                        ],
-                        "type-id": null,
-                        "sort-name": "Europe",
-                        "type": null,
-                        "name": "Europe"
-                    }
-                }
-            ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "status": "Official",
-            "id": "7f422ec9-5a07-4218-bc86-e09ed9edb236",
-            "label-info": [
-                {
-                    "catalog-number": "5099997855316",
-                    "label": {
-                        "type": "Imprint",
-                        "name": "Virgin",
-                        "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "label-code": 3098
-                    }
-                }
-            ],
-            "quality": "normal",
-            "media": [
-                {
-                    "format": "12\" Vinyl",
-                    "position": 1,
-                    "id": "0a540530-13b7-34b3-b9fd-5d04e9808a1a",
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "title": "Dawn",
-                    "track-count": 7
+                    "source-credit": "",
+                    "type": "purchase for download",
+                    "target-type": "url",
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "attribute-values": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://music.apple.com/us/album/721224313",
+                        "id": "94a26a3a-ef24-4172-9a4c-b04b7150a13c"
+                    },
+                    "direction": "forward"
                 },
                 {
-                    "track-count": 7,
-                    "format": "12\" Vinyl",
-                    "position": 2,
-                    "id": "262baf0b-a560-34ff-b588-ce47153b8d6d",
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "title": "Dusk"
-                },
-                {
-                    "position": 3,
-                    "id": "34f6bbd5-218e-3803-9083-9132e2e890b2",
-                    "format": "12\" Vinyl",
-                    "title": "Twilight",
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "track-count": 7
-                },
-                {
-                    "track-count": 7,
-                    "title": "Starlight",
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "id": "b0797230-0a08-3c57-a0cf-d7b494c30c27",
-                    "position": 4,
-                    "format": "12\" Vinyl"
+                    "type": "streaming",
+                    "source-credit": "",
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://music.apple.com/us/album/721224313",
+                        "id": "94a26a3a-ef24-4172-9a4c-b04b7150a13c"
+                    },
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-values": {},
+                    "target-type": "url"
                 }
             ],
-            "packaging": "Cardboard/Paper Sleeve",
             "text-representation": {
                 "script": "Latn",
                 "language": "eng"
             },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "country": "XE",
-            "asin": "B008Z9L94O",
-            "packaging-id": "f7101ce3-0384-39ce-9fde-fbbd0044d35f",
-            "disambiguation": ""
-        },
-        {
-            "release-events": [
-                {
-                    "area": {
-                        "name": "Europe",
-                        "type": null,
-                        "iso-3166-1-codes": [
-                            "XE"
-                        ],
-                        "disambiguation": "",
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
-                        "type-id": null,
-                        "sort-name": "Europe"
-                    },
-                    "date": ""
-                }
-            ],
-            "barcode": "724384086428",
-            "date": "",
-            "cover-art-archive": {
-                "darkened": false,
-                "back": false,
-                "front": false,
-                "artwork": false,
-                "count": 0
-            },
-            "label-info": [
-                {
-                    "catalog-number": "7243 8 40864 2 8",
-                    "label": {
-                        "label-code": 3098,
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Virgin",
-                        "type": "Imprint",
-                        "name": "Virgin"
-                    }
-                },
-                {
-                    "catalog-number": "CDHUTD 30",
-                    "label": {
-                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "sort-name": "Hut Recordings",
-                        "label-code": 3098,
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
-                        "disambiguation": "",
-                        "type": "Original Production",
-                        "name": "Hut Recordings"
-                    }
-                }
-            ],
-            "status": "Official",
-            "id": "96d5e53f-ff18-49ce-aa73-8204cb489229",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "packaging": "Jewel Case",
             "media": [
                 {
-                    "track-count": 14,
-                    "format": "CD",
-                    "id": "cdf6d701-2512-3198-b299-2a4d2f7ec05c",
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
                     "position": 1,
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Dawn to Dusk"
+                    "track-count": 14,
+                    "format": "Digital Media",
+                    "title": "",
+                    "id": "140118ac-ea33-3153-94b4-ea4d466f3d3a"
                 },
                 {
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
+                    "title": "",
+                    "id": "81235fa4-cc47-3cc2-9a9c-1e482552447e",
+                    "format": "Digital Media",
                     "track-count": 14,
-                    "format": "CD",
-                    "id": "53586eea-8aaa-346c-b4d8-f86d4ea55612",
-                    "position": 2,
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight"
+                    "position": 2
                 }
             ],
-            "quality": "normal",
-            "disambiguation": "www.takt.eu",
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
             "asin": null,
-            "country": "XE",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            }
-        },
-        {
-            "disambiguation": "",
-            "packaging-id": "f7101ce3-0384-39ce-9fde-fbbd0044d35f",
-            "asin": "B0000500WP",
-            "country": "XE",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "packaging": "Cardboard/Paper Sleeve",
-            "media": [
+            "barcode": "05099997856559",
+            "release-events": [
                 {
-                    "title": "Dawn / Tea Time",
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "id": "2367a458-5bfc-3bbe-83ed-1200f23869cd",
-                    "position": 1,
-                    "format": "12\" Vinyl",
-                    "track-count": 10
-                },
-                {
-                    "track-count": 10,
-                    "id": "2ea226db-9638-3b01-a7dd-4d84ca36a8a1",
-                    "position": 2,
-                    "format": "12\" Vinyl",
-                    "title": "Dusk / Twilight",
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
-                },
-                {
-                    "track-count": 10,
-                    "format": "12\" Vinyl",
-                    "id": "f0e62a0a-6f20-3253-af04-5ec80631c97e",
-                    "position": 3,
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "title": "Midnight / Starlight"
-                }
-            ],
-            "quality": "normal",
-            "label-info": [
-                {
-                    "catalog-number": "7243 8 41655 1 2",
-                    "label": {
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "label-code": 3098,
-                        "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "name": "Virgin",
-                        "type": "Imprint"
+                    "date": "2012-11-30",
+                    "area": {
+                        "disambiguation": "",
+                        "type": null,
+                        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                        "sort-name": "[Worldwide]",
+                        "name": "[Worldwide]",
+                        "iso-3166-1-codes": [
+                            "XW"
+                        ],
+                        "type-id": null
                     }
                 }
             ],
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "date": "2012-11-30",
+            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
             "status": "Official",
-            "id": "9f4038f8-0a09-47d1-a724-7bb214259f40",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "release-events": [
-                {
-                    "area": {
-                        "type-id": null,
-                        "sort-name": "Europe",
-                        "disambiguation": "",
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
-                        "iso-3166-1-codes": [
-                            "XE"
-                        ],
-                        "name": "Europe",
-                        "type": null
-                    },
-                    "date": "1996-04-29"
-                }
-            ],
-            "barcode": "724384165512",
-            "cover-art-archive": {
-                "artwork": false,
-                "front": false,
-                "count": 0,
-                "back": false,
-                "darkened": false
-            },
-            "date": "1996-04-29"
-        },
-        {
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "id": "61a93f13-72ff-4aea-97e6-9b0954cb36b0",
+            "packaging": "None",
             "label-info": [
                 {
                     "label": {
-                        "type": "Imprint",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
                         "name": "Virgin",
                         "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
                         "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "label-code": 3098
+                        "label-code": 3098,
+                        "type": "Imprint"
                     },
                     "catalog-number": null
                 }
             ],
-            "id": "a5ab3120-e5db-4ed9-a966-80bc9698528d",
-            "status": "Official",
-            "barcode": "00602577577536",
-            "release-events": [
-                {
-                    "date": "2020",
-                    "area": {
-                        "type": null,
-                        "name": "[Worldwide]",
-                        "type-id": null,
-                        "sort-name": "[Worldwide]",
-                        "disambiguation": "",
-                        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
-                        "iso-3166-1-codes": [
-                            "XW"
-                        ]
-                    }
-                }
-            ],
-            "date": "2020",
             "cover-art-archive": {
-                "darkened": false,
-                "front": true,
                 "artwork": true,
-                "count": 1,
-                "back": false
-            },
-            "country": "XW",
-            "asin": null,
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
-            "disambiguation": "deluxe edition",
-            "media": [
-                {
-                    "format": "Digital Media",
-                    "position": 1,
-                    "id": "8c154111-c6c0-43d3-a5c8-5d51173e1068",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "title": "",
-                    "track-count": 14
-                },
-                {
-                    "position": 2,
-                    "id": "5643184a-0f4e-4dca-a3df-17d34970ad88",
-                    "format": "Digital Media",
-                    "title": "",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "track-count": 14
-                },
-                {
-                    "id": "9c2f3e3c-6918-475e-a06f-feff08f8fb47",
-                    "position": 3,
-                    "format": "Digital Media",
-                    "title": "",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "track-count": 21
-                },
-                {
-                    "format": "Digital Media",
-                    "id": "ad8cf7ff-27fa-4c03-8b79-01245382b849",
-                    "position": 4,
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "title": "",
-                    "track-count": 20
-                },
-                {
-                    "track-count": 23,
-                    "title": "",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "id": "9403bf4a-a52d-44bc-908d-265d56679f56",
-                    "position": 5,
-                    "format": "Digital Media"
-                }
-            ],
-            "quality": "normal",
-            "packaging": "None"
-        },
-        {
-            "id": "abd65bff-4396-47f4-b6e6-65b2f2cf8cde",
-            "status": "Official",
-            "label-info": [
-                {
-                    "label": {
-                        "name": "Virgin",
-                        "type": "Imprint",
-                        "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "label-code": 3098,
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries"
-                    },
-                    "catalog-number": "5099997855323"
-                }
-            ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "date": "2012",
-            "cover-art-archive": {
                 "back": false,
-                "count": 0,
-                "front": false,
-                "artwork": false,
+                "front": true,
+                "count": 1,
                 "darkened": false
             },
-            "barcode": "5099997855323",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "XW"
+        },
+        {
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "relations": [
+                {
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "url": {
+                        "resource": "https://www.amazon.com/gp/product/B0FTG8DF8P",
+                        "id": "69f100e5-10cf-467f-a01c-819dbb1f53fa"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "type": "amazon asin",
+                    "source-credit": ""
+                },
+                {
+                    "type": "discogs",
+                    "source-credit": "",
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://www.discogs.com/release/35780833",
+                        "id": "d1272f46-0c72-4db5-a74a-8ac08ebaf5bd"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {}
+                }
+            ],
+            "barcode": "602478664113",
             "release-events": [
                 {
                     "area": {
-                        "name": "United States",
-                        "type": null,
                         "sort-name": "United States",
                         "type-id": null,
+                        "name": "United States",
                         "iso-3166-1-codes": [
                             "US"
                         ],
                         "id": "489ce91b-6658-3307-9877-795b68554c98",
+                        "type": null,
                         "disambiguation": ""
                     },
-                    "date": "2012"
+                    "date": "2025-11-21"
                 }
             ],
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": "",
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
+            "disambiguation": "30th anniversary edition, remastered",
             "title": "Mellon Collie and the Infinite Sadness",
-            "asin": null,
-            "country": "US",
-            "packaging": "Jewel Case",
-            "quality": "normal",
             "media": [
                 {
-                    "track-count": 14,
-                    "format": "CD",
-                    "position": 1,
-                    "id": "f10fb35f-cd1e-41c6-8058-b5513e4f40fb",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Dawn to Dusk"
-                },
-                {
-                    "position": 2,
-                    "id": "9e761371-8a4e-46de-8011-cbce02d4cca5",
-                    "format": "CD",
-                    "title": "Twilight to Starlight",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 14
-                }
-            ]
-        },
-        {
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": "price code PM503",
-            "asin": null,
-            "country": "XE",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
-            "packaging": "Jewel Case",
-            "media": [
-                {
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "id": "68ff813b-9f56-42b4-8c8a-f456934b1ece",
                     "title": "Dawn to Dusk",
-                    "format": "CD",
                     "position": 1,
-                    "id": "276e3324-7372-3320-a176-77df35918b6a",
-                    "track-count": 14
+                    "track-count": 14,
+                    "format": "CD",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 },
                 {
                     "track-count": 14,
                     "format": "CD",
-                    "id": "a2db2978-4d8f-3b66-b73f-460b4d858ea9",
                     "position": 2,
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight"
+                    "id": "667ceae9-c347-4589-9b4d-bf7f6ba5f344",
+                    "title": "Twilight to Starlight",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "title": "Live Infinite Sadness Tour (U.S. 1996)",
+                    "id": "9e54a546-089b-4b32-b3f5-a6e51ac0408f",
+                    "track-count": 8,
+                    "format": "CD",
+                    "position": 3,
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "id": "b740bf75-b000-45c1-8b5e-c1643263cae0",
+                    "title": "Live Infinite Sadness Tour (U.S. 1996)",
+                    "position": 4,
+                    "track-count": 6,
+                    "format": "CD",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 }
             ],
-            "quality": "normal",
+            "asin": "B0FTG8DF8P",
+            "id": "7b185a14-de8c-4b60-bb15-e287c6c110e9",
             "label-info": [
                 {
-                    "catalog-number": "7243 8 40864 2 8",
                     "label": {
+                        "id": "abea2d3e-eabf-4480-ab24-9382dd642c73",
                         "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Virgin",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "label-code": 3098,
-                        "type": "Imprint",
-                        "name": "Virgin"
-                    }
-                },
-                {
-                    "catalog-number": "CDHUTD 30",
-                    "label": {
-                        "sort-name": "Hut Recordings",
-                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "label-code": 3098,
-                        "disambiguation": "",
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
-                        "name": "Hut Recordings",
-                        "type": "Original Production"
-                    }
+                        "name": "Capitol Records",
+                        "sort-name": "Capitol Records",
+                        "disambiguation": "imprint of Capitol Records, Inc.",
+                        "label-code": 148,
+                        "type": "Imprint"
+                    },
+                    "catalog-number": "602478664113"
                 }
             ],
+            "packaging": "Gatefold Cover",
+            "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
+            "date": "2025-11-21",
             "status": "Official",
-            "id": "b93e5ede-a81f-4d1c-953d-42d64d99f197",
+            "quality": "normal",
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "barcode": "724384086428",
-            "release-events": [
-                {
-                    "date": "1995",
-                    "area": {
-                        "type": null,
-                        "name": "Europe",
-                        "sort-name": "Europe",
-                        "type-id": null,
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
-                        "disambiguation": "",
-                        "iso-3166-1-codes": [
-                            "XE"
-                        ]
-                    }
-                }
-            ],
+            "country": "US",
             "cover-art-archive": {
                 "darkened": false,
-                "back": true,
-                "count": 2,
+                "count": 1,
+                "back": false,
                 "front": true,
                 "artwork": true
-            },
-            "date": "1995"
+            }
         },
         {
-            "barcode": "724384165512",
             "release-events": [
                 {
-                    "date": "1996-04-29",
                     "area": {
-                        "sort-name": "United Kingdom",
+                        "type": null,
+                        "disambiguation": "",
+                        "sort-name": "Europe",
                         "type-id": null,
-                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
-                        "disambiguation": "",
+                        "name": "Europe",
                         "iso-3166-1-codes": [
-                            "GB"
+                            "XE"
                         ],
-                        "name": "United Kingdom",
-                        "type": null
-                    }
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a"
+                    },
+                    "date": "2012-12-04"
                 }
             ],
-            "date": "1996-04-29",
-            "cover-art-archive": {
-                "count": 17,
-                "front": true,
-                "artwork": true,
-                "back": true,
-                "darkened": false
-            },
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "label-info": [
-                {
-                    "catalog-number": "HUTTLP30",
-                    "label": {
-                        "disambiguation": "",
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
-                        "label-code": 3098,
-                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "sort-name": "Hut Recordings",
-                        "name": "Hut Recordings",
-                        "type": "Original Production"
-                    }
-                }
-            ],
-            "id": "bc3a5888-39b4-39d4-a10e-cc1b5309ba6a",
-            "status": "Official",
+            "barcode": "5099997855316",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "",
             "media": [
                 {
-                    "track-count": 10,
-                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "title": "Dawn to Tea Time",
+                    "id": "0a540530-13b7-34b3-b9fd-5d04e9808a1a",
+                    "title": "Dawn",
+                    "track-count": 7,
+                    "position": 1,
                     "format": "12\" Vinyl",
-                    "id": "b2b68652-06d8-3a42-93fd-f5e8e310ee51",
-                    "position": 1
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
                 },
                 {
-                    "track-count": 10,
-                    "id": "6ca5dfd2-683d-327c-b331-ffe1ae34c9e9",
                     "position": 2,
+                    "track-count": 7,
                     "format": "12\" Vinyl",
-                    "title": "Dusk to Twilight",
+                    "title": "Dusk",
+                    "id": "262baf0b-a560-34ff-b588-ce47153b8d6d",
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
+                },
+                {
+                    "track-count": 7,
+                    "position": 3,
+                    "format": "12\" Vinyl",
+                    "title": "Twilight",
+                    "id": "34f6bbd5-218e-3803-9083-9132e2e890b2",
                     "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
                 },
                 {
                     "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
-                    "title": "Midnight to Starlight",
-                    "format": "12\" Vinyl",
-                    "position": 3,
-                    "id": "cb7137ac-a2a9-32a6-a8bd-2e7652b6fad3",
-                    "track-count": 10
-                }
-            ],
-            "quality": "normal",
-            "packaging": "Gatefold Cover",
-            "asin": "B0000500WP",
-            "country": "GB",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
-            "disambiguation": ""
-        },
-        {
-            "media": [
-                {
-                    "position": 1,
-                    "id": "a695bc93-833b-31fe-81d2-a188a0e55cd7",
-                    "format": "CD",
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 14
-                },
-                {
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight",
-                    "format": "CD",
-                    "id": "43a9b672-defb-3806-8dd0-89e29f2034ad",
-                    "position": 2,
-                    "track-count": 14
-                },
-                {
-                    "title": "Morning Tea",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "position": 3,
-                    "id": "d4e16373-0c4d-3977-ad67-8a1e894e97a7",
-                    "format": "CD",
-                    "track-count": 21
-                },
-                {
-                    "track-count": 20,
-                    "format": "CD",
+                    "track-count": 7,
                     "position": 4,
-                    "id": "6f9f7d18-5ae1-3bf8-b32e-5416c5a481b6",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "High Tea"
-                },
-                {
-                    "track-count": 23,
-                    "title": "Special Tea",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "position": 5,
-                    "id": "b2b2e7be-444c-377e-b2cd-7ad5ec77fa4f",
-                    "format": "CD"
-                },
-                {
-                    "position": 6,
-                    "id": "7780e142-22f6-3406-a800-8e29ad9e6d1a",
-                    "format": "DVD-Video",
-                    "title": "",
-                    "format-id": "bb71fd58-ff93-32b4-a201-4ad1b2a80e5f",
-                    "track-count": 15
+                    "format": "12\" Vinyl",
+                    "title": "Starlight",
+                    "id": "b0797230-0a08-3c57-a0cf-d7b494c30c27"
                 }
             ],
-            "quality": "normal",
-            "packaging": "Other",
-            "asin": "B008Z9L8QI",
-            "country": "US",
+            "asin": "B008Z9L94O",
             "text-representation": {
                 "language": "eng",
                 "script": "Latn"
             },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "packaging-id": "815b7785-8284-3926-8f04-e48bc6c4d102",
-            "disambiguation": "",
-            "barcode": "5099997852421",
-            "release-events": [
+            "relations": [
                 {
-                    "date": "2012-12-04",
-                    "area": {
-                        "type": null,
-                        "name": "United States",
-                        "iso-3166-1-codes": [
-                            "US"
-                        ],
-                        "disambiguation": "",
-                        "id": "489ce91b-6658-3307-9877-795b68554c98",
-                        "type-id": null,
-                        "sort-name": "United States"
-                    }
-                }
-            ],
-            "cover-art-archive": {
-                "darkened": false,
-                "back": false,
-                "count": 1,
-                "front": true,
-                "artwork": true
-            },
-            "date": "2012-12-04",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "label-info": [
-                {
-                    "catalog-number": "5099997852421",
-                    "label": {
-                        "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "label-code": 3098,
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "name": "Virgin",
-                        "type": "Imprint"
-                    }
-                }
-            ],
-            "status": "Official",
-            "id": "c9e8e259-08de-4e11-bf09-f2470d93c76a"
-        },
-        {
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": "EMI Swindon/EMI Italy pressing",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
-            "asin": null,
-            "country": "GB",
-            "packaging": "Jewel Case",
-            "quality": "normal",
-            "media": [
-                {
-                    "track-count": 14,
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Dawn to Dusk",
-                    "format": "CD",
-                    "position": 1,
-                    "id": "f05c0744-bfaa-33f5-8fe2-1a4c46f52241"
+                    "source-credit": "",
+                    "type": "amazon asin",
+                    "attribute-values": {},
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "target-type": "url",
+                    "url": {
+                        "resource": "https://www.amazon.co.uk/gp/product/B008Z9L94O",
+                        "id": "1a5fb8fa-3832-447b-b1a5-bf252d795ad9"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false
                 },
                 {
-                    "track-count": 14,
-                    "position": 2,
-                    "id": "91951eea-0dfe-39bb-a4ee-e3cc4067a4e8",
-                    "format": "CD",
-                    "title": "Twilight to Starlight",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://www.discogs.com/release/4091614",
+                        "id": "c3ab69b2-03c8-48f1-b0d5-02aa7a9c1e99"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {},
+                    "type": "discogs",
+                    "source-credit": ""
                 }
             ],
-            "status": "Official",
-            "id": "cb230074-a468-4012-9900-59268364f649",
+            "country": "XE",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "cover-art-archive": {
+                "back": false,
+                "artwork": true,
+                "front": false,
+                "count": 1,
+                "darkened": false
+            },
+            "packaging": "Cardboard/Paper Sleeve",
             "label-info": [
                 {
                     "label": {
-                        "name": "Virgin",
                         "type": "Imprint",
                         "label-code": 3098,
                         "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "sort-name": "Virgin",
+                        "name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+                    },
+                    "catalog-number": "5099997855316"
+                }
+            ],
+            "id": "7f422ec9-5a07-4218-bc86-e09ed9edb236",
+            "packaging-id": "f7101ce3-0384-39ce-9fde-fbbd0044d35f",
+            "date": "2012-12-04",
+            "status": "Official"
+        },
+        {
+            "cover-art-archive": {
+                "back": false,
+                "front": false,
+                "artwork": false,
+                "darkened": false,
+                "count": 0
+            },
+            "country": "XE",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "date": "",
+            "status": "Official",
+            "packaging": "Jewel Case",
+            "label-info": [
+                {
+                    "label": {
                         "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
                         "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded"
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "name": "Virgin",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "label-code": 3098,
+                        "type": "Imprint"
                     },
                     "catalog-number": "7243 8 40864 2 8"
                 },
@@ -1623,621 +1417,1872 @@
                     "label": {
                         "sort-name": "Hut Recordings",
                         "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "disambiguation": "",
+                        "name": "Hut Recordings",
                         "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
                         "label-code": 3098,
                         "type": "Original Production",
-                        "name": "Hut Recordings"
+                        "disambiguation": ""
                     }
                 }
             ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "date": "1995-10-23",
-            "cover-art-archive": {
-                "darkened": false,
-                "front": true,
-                "count": 6,
-                "artwork": true,
-                "back": true
-            },
-            "barcode": "724384086428",
-            "release-events": [
-                {
-                    "area": {
-                        "sort-name": "United Kingdom",
-                        "type-id": null,
-                        "iso-3166-1-codes": [
-                            "GB"
-                        ],
-                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
-                        "disambiguation": "",
-                        "name": "United Kingdom",
-                        "type": null
-                    },
-                    "date": "1995-10-23"
-                }
-            ]
-        },
-        {
-            "packaging": "Jewel Case",
+            "id": "96d5e53f-ff18-49ce-aa73-8204cb489229",
             "media": [
                 {
-                    "id": "defe1ef8-2175-3999-a728-03b76920a495",
+                    "title": "Dawn to Dusk",
+                    "id": "cdf6d701-2512-3198-b299-2a4d2f7ec05c",
+                    "track-count": 14,
                     "position": 1,
                     "format": "CD",
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 14
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 },
                 {
-                    "position": 2,
-                    "id": "8ae5a9c4-15fc-3bad-b069-1a49ebc95e77",
-                    "format": "CD",
-                    "title": "Twilight to Starlight",
                     "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "track-count": 14
+                    "id": "53586eea-8aaa-346c-b4d8-f86d4ea55612",
+                    "title": "Twilight to Starlight",
+                    "track-count": 14,
+                    "format": "CD",
+                    "position": 2
                 }
             ],
-            "quality": "normal",
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": "",
-            "country": "CA",
             "asin": null,
-            "text-representation": {
-                "script": "Latn",
-                "language": "eng"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "barcode": "724384086121",
-            "release-events": [
-                {
-                    "date": "1995-10-24",
-                    "area": {
-                        "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b",
-                        "disambiguation": "",
-                        "iso-3166-1-codes": [
-                            "CA"
-                        ],
-                        "type-id": null,
-                        "sort-name": "Canada",
-                        "name": "Canada",
-                        "type": null
-                    }
-                }
-            ],
-            "date": "1995-10-24",
-            "cover-art-archive": {
-                "darkened": false,
-                "back": true,
-                "front": true,
-                "count": 31,
-                "artwork": true
-            },
-            "label-info": [
-                {
-                    "catalog-number": "7243 8 40861 2 1",
-                    "label": {
-                        "label-code": null,
-                        "disambiguation": "",
-                        "id": "b34fd541-663c-4a26-aa81-1472392d0212",
-                        "type-id": "53ab8dcc-9946-3b62-966e-7634d78e5034",
-                        "sort-name": "Virgin Music Canada",
-                        "type": "Distributor",
-                        "name": "Virgin Music Canada"
-                    }
-                }
-            ],
-            "status": "Official",
-            "id": "cc8a0f30-286b-4987-9ea0-a247b54d26ce",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe"
-        },
-        {
-            "barcode": "5099997855323",
             "release-events": [
                 {
                     "date": "",
                     "area": {
-                        "iso-3166-1-codes": [
-                            "US"
-                        ],
-                        "disambiguation": "",
-                        "id": "489ce91b-6658-3307-9877-795b68554c98",
-                        "sort-name": "United States",
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                        "sort-name": "Europe",
                         "type-id": null,
-                        "name": "United States",
+                        "iso-3166-1-codes": [
+                            "XE"
+                        ],
+                        "name": "Europe",
+                        "disambiguation": "",
                         "type": null
                     }
                 }
             ],
-            "cover-art-archive": {
-                "darkened": false,
-                "back": false,
-                "artwork": false,
-                "front": false,
-                "count": 0
-            },
-            "date": "",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "label-info": [
+            "barcode": "724384086428",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "www.takt.eu",
+            "relations": [
                 {
-                    "catalog-number": "5099997855323",
-                    "label": {
-                        "label-code": 3098,
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "sort-name": "Virgin",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "name": "Virgin",
-                        "type": "Imprint"
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null,
+                    "url": {
+                        "resource": "https://www.discogs.com/release/8181862",
+                        "id": "32c5d87d-3b73-4cdb-a243-b0a60ed38c57"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "source-credit": "",
+                    "type": "discogs"
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            }
+        },
+        {
+            "relations": [
+                {
+                    "target-type": "url",
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "attribute-values": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.amazon.co.uk/gp/product/B0000500WP",
+                        "id": "1b262797-0b1b-4739-899b-0f6a91001458"
+                    },
+                    "source-credit": "",
+                    "type": "amazon asin"
+                },
+                {
+                    "source-credit": "",
+                    "type": "discogs",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "url": {
+                        "resource": "https://www.discogs.com/release/788491",
+                        "id": "93391ee8-8ed3-45c6-9815-b7aa2a8377e9"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": []
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "asin": "B0000500WP",
+            "media": [
+                {
+                    "title": "Dawn / Tea Time",
+                    "id": "2367a458-5bfc-3bbe-83ed-1200f23869cd",
+                    "track-count": 10,
+                    "format": "12\" Vinyl",
+                    "position": 1,
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
+                },
+                {
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
+                    "track-count": 10,
+                    "format": "12\" Vinyl",
+                    "position": 2,
+                    "id": "2ea226db-9638-3b01-a7dd-4d84ca36a8a1",
+                    "title": "Dusk / Twilight"
+                },
+                {
+                    "format": "12\" Vinyl",
+                    "track-count": 10,
+                    "position": 3,
+                    "title": "Midnight / Starlight",
+                    "id": "f0e62a0a-6f20-3253-af04-5ec80631c97e",
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
+                }
+            ],
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "barcode": "724384165512",
+            "release-events": [
+                {
+                    "date": "1996-04-29",
+                    "area": {
+                        "disambiguation": "",
+                        "type": null,
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                        "type-id": null,
+                        "name": "Europe",
+                        "iso-3166-1-codes": [
+                            "XE"
+                        ],
+                        "sort-name": "Europe"
                     }
                 }
             ],
-            "id": "d0b09f4c-1745-4ec9-a6ed-d40ba7f481c5",
             "status": "Official",
-            "media": [
+            "packaging-id": "f7101ce3-0384-39ce-9fde-fbbd0044d35f",
+            "date": "1996-04-29",
+            "id": "9f4038f8-0a09-47d1-a724-7bb214259f40",
+            "packaging": "Cardboard/Paper Sleeve",
+            "label-info": [
                 {
-                    "track-count": 14,
-                    "id": "a7222130-d78e-438d-be9a-b458eae943d7",
-                    "position": 1,
-                    "format": "CD",
-                    "title": "Dawn to Dusk",
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
-                },
-                {
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "title": "Twilight to Starlight",
-                    "format": "CD",
-                    "position": 2,
-                    "id": "dfc6b2dc-8ad5-46ff-9787-316299794efe",
-                    "track-count": 14
+                    "catalog-number": "7243 8 41655 1 2",
+                    "label": {
+                        "sort-name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "name": "Virgin",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "label-code": 3098,
+                        "type": "Imprint",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries"
+                    }
                 }
             ],
-            "quality": "normal",
-            "packaging": "Jewel Case",
-            "asin": null,
-            "country": "US",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
+            "cover-art-archive": {
+                "darkened": false,
+                "count": 0,
+                "front": false,
+                "back": false,
+                "artwork": false
             },
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
-            "disambiguation": ""
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "quality": "normal",
+            "country": "XE"
         },
         {
-            "id": "dd8212d1-7ab9-4982-87b5-c7f341e5481c",
+            "cover-art-archive": {
+                "darkened": false,
+                "count": 1,
+                "artwork": true,
+                "back": false,
+                "front": true
+            },
+            "country": "XW",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "quality": "normal",
             "status": "Official",
+            "date": "2020",
+            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
             "label-info": [
                 {
                     "label": {
                         "label-code": 3098,
+                        "type": "Imprint",
                         "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
                         "sort-name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
                         "name": "Virgin",
-                        "type": "Imprint"
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
                     },
                     "catalog-number": null
                 }
             ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "date": "2012-11-30",
-            "cover-art-archive": {
-                "back": false,
-                "artwork": true,
-                "front": true,
-                "count": 1,
-                "darkened": false
-            },
-            "barcode": "05099997855354",
+            "packaging": "None",
+            "id": "a5ab3120-e5db-4ed9-a966-80bc9698528d",
+            "asin": null,
+            "media": [
+                {
+                    "id": "8c154111-c6c0-43d3-a5c8-5d51173e1068",
+                    "title": "",
+                    "format": "Digital Media",
+                    "track-count": 14,
+                    "position": 1,
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+                },
+                {
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
+                    "track-count": 14,
+                    "format": "Digital Media",
+                    "position": 2,
+                    "title": "",
+                    "id": "5643184a-0f4e-4dca-a3df-17d34970ad88"
+                },
+                {
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
+                    "title": "",
+                    "id": "9c2f3e3c-6918-475e-a06f-feff08f8fb47",
+                    "position": 3,
+                    "track-count": 21,
+                    "format": "Digital Media"
+                },
+                {
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
+                    "track-count": 20,
+                    "format": "Digital Media",
+                    "position": 4,
+                    "id": "ad8cf7ff-27fa-4c03-8b79-01245382b849",
+                    "title": ""
+                },
+                {
+                    "track-count": 23,
+                    "format": "Digital Media",
+                    "position": 5,
+                    "title": "",
+                    "id": "9403bf4a-a52d-44bc-908d-265d56679f56",
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+                }
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "deluxe edition",
             "release-events": [
                 {
                     "area": {
-                        "sort-name": "[Worldwide]",
-                        "type-id": null,
+                        "name": "[Worldwide]",
                         "iso-3166-1-codes": [
                             "XW"
                         ],
+                        "type-id": null,
+                        "sort-name": "[Worldwide]",
                         "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
-                        "disambiguation": "",
                         "type": null,
-                        "name": "[Worldwide]"
+                        "disambiguation": ""
                     },
-                    "date": "2012-11-30"
+                    "date": "2020"
                 }
             ],
-            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+            "barcode": "00602577577536",
+            "relations": [
+                {
+                    "target-type": "url",
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "attribute-values": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "6d79f5ba-7d4a-47a9-a009-e63745aed6ff",
+                        "resource": "https://music.apple.com/us/album/1455510683"
+                    },
+                    "source-credit": "",
+                    "type": "purchase for download"
+                },
+                {
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-values": {},
+                    "target-type": "url",
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://music.apple.com/us/album/1455510683",
+                        "id": "6d79f5ba-7d4a-47a9-a009-e63745aed6ff"
+                    },
+                    "direction": "forward",
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "source-credit": "",
+                    "type": "streaming"
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            }
+        },
+        {
+            "cover-art-archive": {
+                "count": 0,
+                "darkened": false,
+                "back": false,
+                "front": false,
+                "artwork": false
+            },
+            "country": "US",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "status": "Official",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "date": "2012",
+            "label-info": [
+                {
+                    "label": {
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "sort-name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "name": "Virgin",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "label-code": 3098,
+                        "type": "Imprint"
+                    },
+                    "catalog-number": "5099997855323"
+                }
+            ],
+            "packaging": "Jewel Case",
+            "id": "abd65bff-4396-47f4-b6e6-65b2f2cf8cde",
+            "asin": null,
+            "media": [
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "id": "f10fb35f-cd1e-41c6-8058-b5513e4f40fb",
+                    "title": "Dawn to Dusk",
+                    "position": 1,
+                    "track-count": 14,
+                    "format": "CD"
+                },
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "title": "Twilight to Starlight",
+                    "id": "9e761371-8a4e-46de-8011-cbce02d4cca5",
+                    "track-count": 14,
+                    "format": "CD",
+                    "position": 2
+                }
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
             "disambiguation": "",
+            "release-events": [
+                {
+                    "area": {
+                        "type": null,
+                        "disambiguation": "",
+                        "iso-3166-1-codes": [
+                            "US"
+                        ],
+                        "name": "United States",
+                        "type-id": null,
+                        "sort-name": "United States",
+                        "id": "489ce91b-6658-3307-9877-795b68554c98"
+                    },
+                    "date": "2012"
+                }
+            ],
+            "barcode": "5099997855323",
+            "relations": [
+                {
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "target-type": "url",
+                    "direction": "forward",
+                    "url": {
+                        "id": "acbd097d-5fee-4bfb-bff0-966f24761c02",
+                        "resource": "https://www.discogs.com/release/9040575"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "source-credit": "",
+                    "type": "discogs"
+                }
+            ],
             "text-representation": {
                 "language": "eng",
                 "script": "Latn"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
+            }
+        },
+        {
             "asin": null,
-            "country": "XW",
-            "packaging": "None",
-            "quality": "normal",
             "media": [
                 {
-                    "id": "dd0b67d1-1c59-3dd9-90e3-7324cee0f872",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "track-count": 14,
                     "position": 1,
-                    "format": "Digital Media",
+                    "format": "CD",
                     "title": "Dawn to Dusk",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "track-count": 14
+                    "id": "276e3324-7372-3320-a176-77df35918b6a"
                 },
                 {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
                     "track-count": 14,
-                    "title": "Twilight to Starlight",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "id": "9c0d8baf-a3bc-385e-9a1c-bca123d29da5",
                     "position": 2,
-                    "format": "Digital Media"
+                    "format": "CD",
+                    "id": "a2db2978-4d8f-3b66-b73f-460b4d858ea9",
+                    "title": "Twilight to Starlight"
                 }
-            ]
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "price code PM503",
+            "release-events": [
+                {
+                    "date": "1995",
+                    "area": {
+                        "disambiguation": "",
+                        "type": null,
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                        "name": "Europe",
+                        "iso-3166-1-codes": [
+                            "XE"
+                        ],
+                        "type-id": null,
+                        "sort-name": "Europe"
+                    }
+                }
+            ],
+            "barcode": "724384086428",
+            "relations": [
+                {
+                    "type": "discogs",
+                    "source-credit": "",
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.discogs.com/release/15838442",
+                        "id": "900a0d17-2cf2-44ce-83d3-41ea1858fbd1"
+                    },
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {}
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "cover-art-archive": {
+                "count": 2,
+                "darkened": false,
+                "front": true,
+                "back": true,
+                "artwork": true
+            },
+            "country": "XE",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "status": "Official",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "date": "1995",
+            "packaging": "Jewel Case",
+            "label-info": [
+                {
+                    "label": {
+                        "label-code": 3098,
+                        "type": "Imprint",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "sort-name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "name": "Virgin",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+                    },
+                    "catalog-number": "7243 8 40864 2 8"
+                },
+                {
+                    "catalog-number": "CDHUTD 30",
+                    "label": {
+                        "disambiguation": "",
+                        "type": "Original Production",
+                        "label-code": 3098,
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
+                        "name": "Hut Recordings",
+                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+                        "sort-name": "Hut Recordings"
+                    }
+                }
+            ],
+            "id": "b93e5ede-a81f-4d1c-953d-42d64d99f197"
+        },
+        {
+            "barcode": "724384165512",
+            "release-events": [
+                {
+                    "date": "1996-04-29",
+                    "area": {
+                        "disambiguation": "",
+                        "type": null,
+                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed",
+                        "type-id": null,
+                        "name": "United Kingdom",
+                        "iso-3166-1-codes": [
+                            "GB"
+                        ],
+                        "sort-name": "United Kingdom"
+                    }
+                }
+            ],
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "media": [
+                {
+                    "format": "12\" Vinyl",
+                    "track-count": 10,
+                    "position": 1,
+                    "id": "b2b68652-06d8-3a42-93fd-f5e8e310ee51",
+                    "title": "Dawn to Tea Time",
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64"
+                },
+                {
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
+                    "id": "6ca5dfd2-683d-327c-b331-ffe1ae34c9e9",
+                    "title": "Dusk to Twilight",
+                    "format": "12\" Vinyl",
+                    "track-count": 10,
+                    "position": 2
+                },
+                {
+                    "format-id": "3e9080b0-5e6c-34ab-bd15-f526b6306a64",
+                    "position": 3,
+                    "track-count": 10,
+                    "format": "12\" Vinyl",
+                    "title": "Midnight to Starlight",
+                    "id": "cb7137ac-a2a9-32a6-a8bd-2e7652b6fad3"
+                }
+            ],
+            "asin": "B0000500WP",
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "relations": [
+                {
+                    "source-credit": "",
+                    "type": "amazon asin",
+                    "target-type": "url",
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "attribute-values": {},
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "1b262797-0b1b-4739-899b-0f6a91001458",
+                        "resource": "https://www.amazon.co.uk/gp/product/B0000500WP"
+                    }
+                },
+                {
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "direction": "forward",
+                    "url": {
+                        "id": "93391ee8-8ed3-45c6-9815-b7aa2a8377e9",
+                        "resource": "https://www.discogs.com/release/788491"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "type": "discogs",
+                    "source-credit": ""
+                }
+            ],
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "GB",
+            "cover-art-archive": {
+                "back": true,
+                "front": true,
+                "artwork": true,
+                "darkened": false,
+                "count": 17
+            },
+            "id": "bc3a5888-39b4-39d4-a10e-cc1b5309ba6a",
+            "packaging": "Gatefold Cover",
+            "label-info": [
+                {
+                    "label": {
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
+                        "name": "Hut Recordings",
+                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+                        "sort-name": "Hut Recordings",
+                        "disambiguation": "",
+                        "type": "Original Production",
+                        "label-code": 3098
+                    },
+                    "catalog-number": "HUTTLP30"
+                }
+            ],
+            "packaging-id": "e724a489-a7e8-30a1-a17c-30dfd6831202",
+            "date": "1996-04-29",
+            "status": "Official"
         },
         {
             "cover-art-archive": {
                 "back": false,
                 "artwork": true,
                 "front": true,
-                "count": 1,
-                "darkened": false
+                "darkened": false,
+                "count": 1
             },
-            "date": "2021-10-26",
-            "release-events": [
-                {
-                    "area": null,
-                    "date": "2021-10-26"
-                }
-            ],
-            "barcode": "00602537554430",
+            "quality": "normal",
             "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "id": "e28c0cb3-d18c-47b6-947d-23822281810a",
+            "country": "US",
+            "packaging-id": "815b7785-8284-3926-8f04-e48bc6c4d102",
+            "date": "2012-12-04",
             "status": "Official",
+            "id": "c9e8e259-08de-4e11-bf09-f2470d93c76a",
             "label-info": [
                 {
-                    "catalog-number": null,
+                    "catalog-number": "5099997852421",
                     "label": {
                         "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
                         "label-code": 3098,
+                        "type": "Imprint",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
                         "sort-name": "Virgin",
                         "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "type": "Imprint",
                         "name": "Virgin"
                     }
                 }
             ],
-            "quality": "normal",
+            "packaging": "Other",
             "media": [
                 {
-                    "id": "82bc4363-272c-3285-a6c5-71ae9e6bfeed",
-                    "position": 1,
-                    "format": "Digital Media",
-                    "title": "Dawn to Dusk",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "track-count": 14
-                },
-                {
-                    "title": "Twilight to Starlight",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
-                    "id": "a8cd6a1e-7bcd-3e23-a5b7-85775f6966c9",
-                    "position": 2,
-                    "format": "Digital Media",
-                    "track-count": 14
-                }
-            ],
-            "packaging": "None",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "asin": null,
-            "country": null,
-            "disambiguation": "",
-            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b"
-        },
-        {
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "label-info": [
-                {
-                    "label": {
-                        "type": "Imprint",
-                        "name": "Virgin",
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "label-code": 3098,
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Virgin"
-                    },
-                    "catalog-number": "7243 8 40861 2 1"
-                }
-            ],
-            "status": "Official",
-            "id": "e4c0a2dc-49cb-382b-9bb3-a40d09669583",
-            "barcode": "724384086121",
-            "release-events": [
-                {
-                    "area": {
-                        "name": "United States",
-                        "type": null,
-                        "type-id": null,
-                        "sort-name": "United States",
-                        "disambiguation": "",
-                        "id": "489ce91b-6658-3307-9877-795b68554c98",
-                        "iso-3166-1-codes": [
-                            "US"
-                        ]
-                    },
-                    "date": "1995-10-24"
-                }
-            ],
-            "cover-art-archive": {
-                "artwork": true,
-                "front": true,
-                "count": 30,
-                "back": true,
-                "darkened": false
-            },
-            "date": "1995-10-24",
-            "asin": "B000000WA4",
-            "country": "US",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "title": "Mellon Collie and the Infinite Sadness",
-            "packaging-id": "57429523-ffe6-3336-9381-32565c142c18",
-            "disambiguation": "EMI Pressing",
-            "media": [
-                {
-                    "track-count": 14,
-                    "format": "CD",
-                    "position": 1,
-                    "id": "f5767a75-45ac-3601-98dc-26dfa1972a82",
                     "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "track-count": 14,
+                    "position": 1,
+                    "format": "CD",
+                    "id": "a695bc93-833b-31fe-81d2-a188a0e55cd7",
                     "title": "Dawn to Dusk"
                 },
                 {
-                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "id": "43a9b672-defb-3806-8dd0-89e29f2034ad",
                     "title": "Twilight to Starlight",
                     "format": "CD",
-                    "position": 2,
-                    "id": "70f66798-07b8-3aeb-9d11-241dd9713487",
-                    "track-count": 14
-                }
-            ],
-            "quality": "normal",
-            "packaging": "Fatbox"
-        },
-        {
-            "id": "e839e053-3b63-4bc9-925d-622574545578",
-            "status": "Official",
-            "label-info": [
-                {
-                    "label": {
-                        "name": "Smashing Pumpkins - Deal #2 Physical",
-                        "type": null,
-                        "disambiguation": "",
-                        "id": "0735b34d-51a4-4b67-a105-3c6a13b6669b",
-                        "label-code": null,
-                        "type-id": null,
-                        "sort-name": "Smashing Pumpkins - Deal #2 Physical"
-                    },
-                    "catalog-number": "00602478787546"
-                }
-            ],
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "date": "2025-11-21",
-            "cover-art-archive": {
-                "back": false,
-                "artwork": true,
-                "front": true,
-                "count": 1,
-                "darkened": false
-            },
-            "barcode": "00602478787546",
-            "release-events": [
-                {
-                    "date": "2025-11-21",
-                    "area": {
-                        "name": "[Worldwide]",
-                        "type": null,
-                        "sort-name": "[Worldwide]",
-                        "type-id": null,
-                        "disambiguation": "",
-                        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
-                        "iso-3166-1-codes": [
-                            "XW"
-                        ]
-                    }
-                }
-            ],
-            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
-            "disambiguation": "30th anniversary edition",
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "asin": null,
-            "country": "XW",
-            "packaging": "None",
-            "quality": "normal",
-            "media": [
-                {
-                    "track-count": 42,
-                    "id": "8d588605-0f4d-49df-bd9d-5f0e5d3367f6",
-                    "position": 1,
-                    "format": "Digital Media",
-                    "title": "",
-                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
-                }
-            ]
-        },
-        {
-            "media": [
-                {
                     "track-count": 14,
-                    "id": "8b4ed82c-3c8b-3129-b080-6678c775e208",
-                    "position": 1,
-                    "format": "CD",
-                    "title": "Dawn to Dusk",
+                    "position": 2,
                     "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
                 },
                 {
-                    "track-count": 14,
-                    "title": "Twilight to Starlight",
+                    "track-count": 21,
+                    "format": "CD",
+                    "position": 3,
+                    "title": "Morning Tea",
+                    "id": "d4e16373-0c4d-3977-ad67-8a1e894e97a7",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
                     "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
-                    "id": "4f754a0b-742e-3935-ae1a-0a6247242d0b",
-                    "position": 2,
-                    "format": "CD"
+                    "title": "High Tea",
+                    "id": "6f9f7d18-5ae1-3bf8-b32e-5416c5a481b6",
+                    "track-count": 20,
+                    "format": "CD",
+                    "position": 4
+                },
+                {
+                    "id": "b2b2e7be-444c-377e-b2cd-7ad5ec77fa4f",
+                    "title": "Special Tea",
+                    "track-count": 23,
+                    "format": "CD",
+                    "position": 5,
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "format-id": "bb71fd58-ff93-32b4-a201-4ad1b2a80e5f",
+                    "title": "",
+                    "id": "7780e142-22f6-3406-a800-8e29ad9e6d1a",
+                    "track-count": 15,
+                    "position": 6,
+                    "format": "DVD-Video"
                 }
             ],
-            "quality": "normal",
-            "packaging": "Jewel Case",
-            "asin": null,
-            "country": null,
-            "title": "Mellon Collie and the Infinite Sadness",
-            "text-representation": {
-                "language": "eng",
-                "script": "Latn"
-            },
-            "disambiguation": "EMI Swindon, made in UK, printed in the UK",
-            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "asin": "B008Z9L8QI",
+            "barcode": "5099997852421",
             "release-events": [
                 {
-                    "date": "1995-10-23",
-                    "area": null
+                    "date": "2012-12-04",
+                    "area": {
+                        "type": null,
+                        "disambiguation": "",
+                        "sort-name": "United States",
+                        "iso-3166-1-codes": [
+                            "US"
+                        ],
+                        "name": "United States",
+                        "type-id": null,
+                        "id": "489ce91b-6658-3307-9877-795b68554c98"
+                    }
                 }
             ],
-            "barcode": "724384086428",
-            "date": "1995-10-23",
-            "cover-art-archive": {
-                "darkened": false,
-                "artwork": true,
-                "front": true,
-                "count": 7,
-                "back": true
-            },
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "relations": [
+                {
+                    "source-credit": "",
+                    "type": "amazon asin",
+                    "target-type": "url",
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "attribute-values": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.amazon.com/gp/product/B008Z9L8QI",
+                        "id": "8966d4e2-7bdc-4e6c-88d9-32ce80ba2907"
+                    }
+                },
+                {
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "id": "ee7dc89b-29eb-4c82-9628-8595948dc2f6",
+                        "resource": "https://www.discogs.com/release/4948184"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {},
+                    "type": "discogs",
+                    "source-credit": ""
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            }
+        },
+        {
+            "id": "cb230074-a468-4012-9900-59268364f649",
+            "packaging": "Jewel Case",
             "label-info": [
                 {
                     "catalog-number": "7243 8 40864 2 8",
                     "label": {
-                        "type": "Imprint",
-                        "name": "Virgin",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
                         "sort-name": "Virgin",
                         "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "label-code": 3098,
+                        "name": "Virgin",
                         "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+                        "label-code": 3098,
+                        "type": "Imprint"
                     }
                 },
                 {
                     "catalog-number": "CDHUTD 30",
                     "label": {
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
                         "sort-name": "Hut Recordings",
                         "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "label-code": 3098,
-                        "disambiguation": "",
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
                         "name": "Hut Recordings",
+                        "disambiguation": "",
+                        "label-code": 3098,
                         "type": "Original Production"
                     }
                 }
             ],
             "status": "Official",
-            "id": "f9ec6b8d-8677-4f50-a458-0fdf6ac615e7"
-        },
-        {
-            "label-info": [
-                {
-                    "label": {
-                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
-                        "sort-name": "Virgin",
-                        "label-code": 3098,
-                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
-                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
-                        "name": "Virgin",
-                        "type": "Imprint"
-                    },
-                    "catalog-number": "7243 8 40864 80"
-                },
-                {
-                    "label": {
-                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
-                        "sort-name": "Hut Recordings",
-                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
-                        "disambiguation": "",
-                        "label-code": 3098,
-                        "name": "Hut Recordings",
-                        "type": "Original Production"
-                    },
-                    "catalog-number": "MDHUTD 30"
-                }
-            ],
-            "status": "Official",
-            "id": "fbe7dbe9-4f0c-4f1a-8823-7c192af0c9b5",
-            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
-            "barcode": "01001763880102",
-            "release-events": [
-                {
-                    "area": {
-                        "type": null,
-                        "name": "Europe",
-                        "iso-3166-1-codes": [
-                            "XE"
-                        ],
-                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
-                        "disambiguation": "",
-                        "type-id": null,
-                        "sort-name": "Europe"
-                    },
-                    "date": "1995-10-23"
-                }
-            ],
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
             "date": "1995-10-23",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "GB",
             "cover-art-archive": {
                 "back": true,
                 "artwork": true,
                 "front": true,
-                "count": 6,
-                "darkened": false
+                "darkened": false,
+                "count": 6
             },
-            "packaging-id": null,
-            "disambiguation": "",
-            "asin": null,
-            "country": "XE",
             "text-representation": {
                 "language": "eng",
                 "script": "Latn"
             },
-            "title": "Mellon Collie And The Infinite Sadness",
-            "packaging": null,
+            "relations": [
+                {
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "url": {
+                        "resource": "https://www.discogs.com/release/2039733",
+                        "id": "a4e9a2a8-a47c-41b0-9fe6-884ce6c975bb"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "source-credit": "",
+                    "type": "discogs"
+                }
+            ],
+            "disambiguation": "EMI Swindon/EMI Italy pressing",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "barcode": "724384086428",
+            "release-events": [
+                {
+                    "date": "1995-10-23",
+                    "area": {
+                        "type": null,
+                        "disambiguation": "",
+                        "sort-name": "United Kingdom",
+                        "name": "United Kingdom",
+                        "iso-3166-1-codes": [
+                            "GB"
+                        ],
+                        "type-id": null,
+                        "id": "8a754a16-0027-3a29-b6d7-2b40ea0481ed"
+                    }
+                }
+            ],
+            "asin": null,
             "media": [
                 {
+                    "position": 1,
                     "track-count": 14,
+                    "format": "CD",
+                    "title": "Dawn to Dusk",
+                    "id": "f05c0744-bfaa-33f5-8fe2-1a4c46f52241",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "track-count": 14,
+                    "format": "CD",
+                    "position": 2,
+                    "title": "Twilight to Starlight",
+                    "id": "91951eea-0dfe-39bb-a4ee-e3cc4067a4e8",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                }
+            ]
+        },
+        {
+            "relations": [
+                {
+                    "type": "discogs",
+                    "source-credit": "",
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.discogs.com/release/1813283",
+                        "id": "75b83047-d61d-4242-b6fa-68cdf43d4e24"
+                    },
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {}
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "asin": null,
+            "media": [
+                {
+                    "title": "Dawn to Dusk",
+                    "id": "defe1ef8-2175-3999-a728-03b76920a495",
+                    "track-count": 14,
+                    "format": "CD",
+                    "position": 1,
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "position": 2,
+                    "track-count": 14,
+                    "format": "CD",
+                    "id": "8ae5a9c4-15fc-3bad-b069-1a49ebc95e77",
+                    "title": "Twilight to Starlight",
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                }
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "",
+            "release-events": [
+                {
+                    "date": "1995-10-24",
+                    "area": {
+                        "type": null,
+                        "disambiguation": "",
+                        "type-id": null,
+                        "name": "Canada",
+                        "iso-3166-1-codes": [
+                            "CA"
+                        ],
+                        "sort-name": "Canada",
+                        "id": "71bbafaa-e825-3e15-8ca9-017dcad1748b"
+                    }
+                }
+            ],
+            "barcode": "724384086121",
+            "status": "Official",
+            "date": "1995-10-24",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "label-info": [
+                {
+                    "catalog-number": "7243 8 40861 2 1",
+                    "label": {
+                        "id": "b34fd541-663c-4a26-aa81-1472392d0212",
+                        "name": "Virgin Music Canada",
+                        "type-id": "53ab8dcc-9946-3b62-966e-7634d78e5034",
+                        "sort-name": "Virgin Music Canada",
+                        "disambiguation": "",
+                        "type": "Distributor",
+                        "label-code": null
+                    }
+                }
+            ],
+            "packaging": "Jewel Case",
+            "id": "cc8a0f30-286b-4987-9ea0-a247b54d26ce",
+            "cover-art-archive": {
+                "back": true,
+                "front": true,
+                "artwork": true,
+                "darkened": false,
+                "count": 31
+            },
+            "country": "CA",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe"
+        },
+        {
+            "cover-art-archive": {
+                "count": 0,
+                "darkened": false,
+                "back": false,
+                "front": false,
+                "artwork": false
+            },
+            "country": "US",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "status": "Official",
+            "date": "",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "packaging": "Jewel Case",
+            "label-info": [
+                {
+                    "catalog-number": "5099997855323",
+                    "label": {
+                        "label-code": 3098,
+                        "type": "Imprint",
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "name": "Virgin",
+                        "sort-name": "Virgin",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+                    }
+                }
+            ],
+            "id": "d0b09f4c-1745-4ec9-a6ed-d40ba7f481c5",
+            "asin": null,
+            "media": [
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "id": "a7222130-d78e-438d-be9a-b458eae943d7",
+                    "title": "Dawn to Dusk",
+                    "position": 1,
+                    "track-count": 14,
+                    "format": "CD"
+                },
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "title": "Twilight to Starlight",
+                    "id": "dfc6b2dc-8ad5-46ff-9787-316299794efe",
+                    "track-count": 14,
+                    "position": 2,
+                    "format": "CD"
+                }
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "",
+            "release-events": [
+                {
+                    "date": "",
+                    "area": {
+                        "id": "489ce91b-6658-3307-9877-795b68554c98",
+                        "name": "United States",
+                        "iso-3166-1-codes": [
+                            "US"
+                        ],
+                        "type-id": null,
+                        "sort-name": "United States",
+                        "disambiguation": "",
+                        "type": null
+                    }
+                }
+            ],
+            "barcode": "5099997855323",
+            "relations": [
+                {
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "url": {
+                        "id": "6311c8ad-6bef-40cd-a39a-adeb6e0a602f",
+                        "resource": "https://www.discogs.com/release/38057919"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "source-credit": "",
+                    "type": "discogs"
+                }
+            ],
+            "text-representation": {
+                "language": "eng",
+                "script": "Latn"
+            }
+        },
+        {
+            "barcode": "05099997855354",
+            "release-events": [
+                {
+                    "area": {
+                        "disambiguation": "",
+                        "type": null,
+                        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                        "sort-name": "[Worldwide]",
+                        "type-id": null,
+                        "iso-3166-1-codes": [
+                            "XW"
+                        ],
+                        "name": "[Worldwide]"
+                    },
+                    "date": "2012-11-30"
+                }
+            ],
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "media": [
+                {
+                    "format": "Digital Media",
+                    "track-count": 14,
+                    "position": 1,
+                    "id": "dd0b67d1-1c59-3dd9-90e3-7324cee0f872",
+                    "title": "Dawn to Dusk",
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+                },
+                {
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
+                    "format": "Digital Media",
+                    "track-count": 14,
+                    "position": 2,
+                    "id": "9c0d8baf-a3bc-385e-9a1c-bca123d29da5",
+                    "title": "Twilight to Starlight"
+                }
+            ],
+            "asin": null,
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "relations": [
+                {
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://open.spotify.com/album/4bPT6Q8ppaSNppk1kbEbLl",
+                        "id": "729289de-3afa-4dbe-af7a-9d278ab2bf37"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-values": {},
+                    "type-id": "08445ccf-7b99-4438-9f9a-fb9ac18099ee",
+                    "target-type": "url",
+                    "type": "free streaming",
+                    "source-credit": ""
+                },
+                {
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.deezer.com/album/6158273",
+                        "id": "e8d2da3b-c864-4eaa-a9c7-986997a180d9"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-values": {},
+                    "type-id": "08445ccf-7b99-4438-9f9a-fb9ac18099ee",
+                    "target-type": "url",
+                    "type": "free streaming",
+                    "source-credit": ""
+                },
+                {
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://tidal.com/album/18306486",
+                        "id": "e64ec6ad-bd5f-407c-bc65-419ff0f6cbd2"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "type": "streaming",
+                    "source-credit": ""
+                }
+            ],
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "XW",
+            "cover-art-archive": {
+                "count": 1,
+                "darkened": false,
+                "front": true,
+                "back": false,
+                "artwork": true
+            },
+            "id": "dd8212d1-7ab9-4982-87b5-c7f341e5481c",
+            "label-info": [
+                {
+                    "catalog-number": null,
+                    "label": {
+                        "type": "Imprint",
+                        "label-code": 3098,
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "sort-name": "Virgin",
+                        "name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+                    }
+                }
+            ],
+            "packaging": "None",
+            "date": "2012-11-30",
+            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+            "status": "Official"
+        },
+        {
+            "date": "2021-10-26",
+            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+            "status": "Official",
+            "id": "e28c0cb3-d18c-47b6-947d-23822281810a",
+            "label-info": [
+                {
+                    "catalog-number": null,
+                    "label": {
+                        "name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "sort-name": "Virgin",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "type": "Imprint",
+                        "label-code": 3098,
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries"
+                    }
+                }
+            ],
+            "packaging": "None",
+            "cover-art-archive": {
+                "count": 1,
+                "darkened": false,
+                "front": true,
+                "back": false,
+                "artwork": true
+            },
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "quality": "normal",
+            "country": null,
+            "relations": [
+                {
+                    "type": "discogs",
+                    "source-credit": "",
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "id": "32d6a77e-b2fa-42b7-a2d5-3fbd57b81293",
+                        "resource": "https://www.discogs.com/release/4897852"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-values": {}
+                },
+                {
+                    "source-credit": "",
+                    "type": "purchase for download",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.hdtracks.com/#/album/5dfc6a6985fa3ffce57235e6",
+                        "id": "88ed2b0a-d11e-4e33-896e-6b892bfcb059"
+                    },
+                    "attributes": [],
+                    "end": null
+                },
+                {
+                    "source-credit": "",
+                    "type": "purchase for download",
+                    "target-type": "url",
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "attribute-values": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://www.qobuz.com/album/mellon-collie-and-the-infinite-sadness-the-smashing-pumpkins/0060253755443",
+                        "id": "1900a24b-3da8-411a-ae6a-acc236702f0b"
+                    },
+                    "direction": "forward"
+                },
+                {
+                    "type": "streaming",
+                    "source-credit": "",
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "42c4b321-7488-4d3b-a09e-958981fda1a9",
+                        "resource": "https://open.qobuz.com/album/0060253755443"
+                    },
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null,
+                    "attribute-ids": {},
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-values": {},
+                    "target-type": "url"
+                },
+                {
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "id": "d97d2179-ac17-43fb-b67a-b9f41675e5b8",
+                        "resource": "https://tidal.com/album/79279089"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-values": {},
+                    "type": "streaming",
+                    "source-credit": ""
+                }
+            ],
+            "text-representation": {
+                "language": "eng",
+                "script": "Latn"
+            },
+            "media": [
+                {
+                    "position": 1,
+                    "track-count": 14,
+                    "format": "Digital Media",
+                    "title": "Dawn to Dusk",
+                    "id": "82bc4363-272c-3285-a6c5-71ae9e6bfeed",
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+                },
+                {
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794",
+                    "title": "Twilight to Starlight",
+                    "id": "a8cd6a1e-7bcd-3e23-a5b7-85775f6966c9",
+                    "track-count": 14,
+                    "format": "Digital Media",
+                    "position": 2
+                }
+            ],
+            "asin": null,
+            "barcode": "00602537554430",
+            "release-events": [
+                {
+                    "date": "2021-10-26",
+                    "area": null
+                }
+            ],
+            "disambiguation": "",
+            "title": "Mellon Collie and the Infinite Sadness"
+        },
+        {
+            "status": "Official",
+            "packaging-id": "57429523-ffe6-3336-9381-32565c142c18",
+            "date": "1995-10-24",
+            "packaging": "Fatbox",
+            "label-info": [
+                {
+                    "label": {
+                        "sort-name": "Virgin",
+                        "name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "type": "Imprint",
+                        "label-code": 3098,
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries"
+                    },
+                    "catalog-number": "7243 8 40861 2 1"
+                }
+            ],
+            "id": "e4c0a2dc-49cb-382b-9bb3-a40d09669583",
+            "cover-art-archive": {
+                "back": true,
+                "front": true,
+                "artwork": true,
+                "darkened": false,
+                "count": 30
+            },
+            "country": "US",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "relations": [
+                {
+                    "source-credit": "",
+                    "type": "allmusic",
+                    "type-id": "90ff18ad-3e9d-4472-a3d1-71d4df7e8484",
+                    "attribute-values": {},
+                    "target-type": "url",
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "f2c4f1ba-cd7c-4b3c-82bd-b6f21e0e6d5d",
+                        "resource": "https://www.allmusic.com/album/release/mr0000354797"
+                    },
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-ids": {}
+                },
+                {
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4f2e710d-166c-480c-a293-2e2c8d658d87",
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.amazon.com/gp/product/B000000WA4",
+                        "id": "d9377186-ea95-44ce-9536-f0e358200cf9"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "source-credit": "",
+                    "type": "amazon asin"
+                },
+                {
+                    "source-credit": "",
+                    "type": "discogs",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "target-type": "url",
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.discogs.com/release/367739",
+                        "id": "2bce7134-503d-41bb-85ee-90e00b169efe"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null
+                },
+                {
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://rateyourmusic.com/release/album/the-smashing-pumpkins/mellon-collie-and-the-infinite-sadness-3/",
+                        "id": "56dfb0c2-f6c2-4085-87ef-09f31fb3ecca"
+                    },
+                    "direction": "forward",
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-ids": {},
+                    "type-id": "c74dee45-3c85-41e9-a804-92ab1c654446",
+                    "attribute-values": {},
+                    "target-type": "url",
+                    "type": "other databases",
+                    "source-credit": ""
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "asin": "B000000WA4",
+            "media": [
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "id": "f5767a75-45ac-3601-98dc-26dfa1972a82",
+                    "title": "Dawn to Dusk",
+                    "track-count": 14,
+                    "position": 1,
+                    "format": "CD"
+                },
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "title": "Twilight to Starlight",
+                    "id": "70f66798-07b8-3aeb-9d11-241dd9713487",
+                    "track-count": 14,
+                    "format": "CD",
+                    "position": 2
+                }
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "EMI Pressing",
+            "release-events": [
+                {
+                    "area": {
+                        "disambiguation": "",
+                        "type": null,
+                        "id": "489ce91b-6658-3307-9877-795b68554c98",
+                        "iso-3166-1-codes": [
+                            "US"
+                        ],
+                        "name": "United States",
+                        "type-id": null,
+                        "sort-name": "United States"
+                    },
+                    "date": "1995-10-24"
+                }
+            ],
+            "barcode": "724384086121"
+        },
+        {
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "country": "XW",
+            "cover-art-archive": {
+                "darkened": false,
+                "count": 1,
+                "artwork": true,
+                "back": false,
+                "front": true
+            },
+            "id": "e839e053-3b63-4bc9-925d-622574545578",
+            "label-info": [
+                {
+                    "catalog-number": "00602478787546",
+                    "label": {
+                        "label-code": null,
+                        "type": null,
+                        "disambiguation": "",
+                        "sort-name": "Smashing Pumpkins - Deal #2 Physical",
+                        "type-id": null,
+                        "name": "Smashing Pumpkins - Deal #2 Physical",
+                        "id": "0735b34d-51a4-4b67-a105-3c6a13b6669b"
+                    }
+                }
+            ],
+            "packaging": "None",
+            "date": "2025-11-21",
+            "packaging-id": "119eba76-b343-3e02-a292-f0f00644bb9b",
+            "status": "Official",
+            "barcode": "00602478787546",
+            "release-events": [
+                {
+                    "area": {
+                        "id": "525d4e18-3d00-31b9-a58b-a146a916de8f",
+                        "type-id": null,
+                        "iso-3166-1-codes": [
+                            "XW"
+                        ],
+                        "name": "[Worldwide]",
+                        "sort-name": "[Worldwide]",
+                        "disambiguation": "",
+                        "type": null
+                    },
+                    "date": "2025-11-21"
+                }
+            ],
+            "disambiguation": "30th anniversary edition",
+            "title": "Mellon Collie and the Infinite Sadness",
+            "media": [
+                {
+                    "id": "8d588605-0f4d-49df-bd9d-5f0e5d3367f6",
+                    "title": "",
+                    "format": "Digital Media",
+                    "track-count": 42,
+                    "position": 1,
+                    "format-id": "907a28d9-b3b2-3ef6-89a8-7b18d91d4794"
+                }
+            ],
+            "asin": null,
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "relations": [
+                {
+                    "type-id": "08445ccf-7b99-4438-9f9a-fb9ac18099ee",
+                    "attribute-values": {},
+                    "target-type": "url",
+                    "attributes": [],
+                    "end": null,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.deezer.com/album/856191152",
+                        "id": "c82c2646-4526-4ad2-83bc-f01a3aa1ce7b"
+                    },
+                    "target-credit": "",
+                    "ended": false,
+                    "begin": null,
+                    "attribute-ids": {},
+                    "source-credit": "",
+                    "type": "free streaming"
+                },
+                {
+                    "attribute-ids": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "direction": "forward",
+                    "url": {
+                        "resource": "https://www.beatport.com/release/mellon-collie-and-the-infinite-sadness-30th-anniversary-edition/6372304",
+                        "id": "f7f344e4-4c72-4932-810d-5f0f9a626dde"
+                    },
+                    "attributes": [],
+                    "end": null,
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "type": "purchase for download",
+                    "source-credit": ""
+                },
+                {
+                    "source-credit": "",
+                    "type": "purchase for download",
+                    "target-type": "url",
+                    "type-id": "98e08c20-8402-4163-8970-53504bb6a1e4",
+                    "attribute-values": {},
+                    "target-credit": "",
+                    "begin": null,
+                    "ended": false,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "resource": "https://www.qobuz.com/us-en/album/mellon-collie-and-the-infinite-sadness-the-smashing-pumpkins/bsy50031hdlcc",
+                        "id": "f288cb23-9245-417c-8fb5-dfa9e7a51a66"
+                    },
+                    "direction": "forward"
+                },
+                {
+                    "type": "streaming",
+                    "source-credit": "",
+                    "url": {
+                        "id": "ee570001-2fe6-41c1-a119-7d260f803edb",
+                        "resource": "https://tidal.com/album/473823845"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "attribute-ids": {},
+                    "begin": null,
+                    "target-credit": "",
+                    "ended": false,
+                    "attribute-values": {},
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "target-type": "url"
+                },
+                {
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "attribute-ids": {},
+                    "end": null,
+                    "attributes": [],
+                    "url": {
+                        "id": "f288cb23-9245-417c-8fb5-dfa9e7a51a66",
+                        "resource": "https://www.qobuz.com/us-en/album/mellon-collie-and-the-infinite-sadness-the-smashing-pumpkins/bsy50031hdlcc"
+                    },
+                    "direction": "forward",
+                    "target-type": "url",
+                    "type-id": "320adf26-96fa-4183-9045-1f5f32f833cb",
+                    "attribute-values": {},
+                    "type": "streaming",
+                    "source-credit": ""
+                }
+            ]
+        },
+        {
+            "relations": [
+                {
+                    "type": "discogs",
+                    "source-credit": "",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "url": {
+                        "id": "58ac1b21-3856-4b00-b933-17bf4fa03b2b",
+                        "resource": "https://www.discogs.com/release/2353675"
+                    },
+                    "direction": "forward",
+                    "end": null,
+                    "attributes": [],
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc"
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "asin": null,
+            "media": [
+                {
+                    "id": "8b4ed82c-3c8b-3129-b080-6678c775e208",
+                    "title": "Dawn to Dusk",
+                    "format": "CD",
+                    "track-count": 14,
+                    "position": 1,
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+                },
+                {
+                    "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31",
+                    "title": "Twilight to Starlight",
+                    "id": "4f754a0b-742e-3935-ae1a-0a6247242d0b",
+                    "position": 2,
+                    "track-count": 14,
+                    "format": "CD"
+                }
+            ],
+            "title": "Mellon Collie and the Infinite Sadness",
+            "disambiguation": "EMI Swindon, made in UK, printed in the UK",
+            "release-events": [
+                {
+                    "area": null,
+                    "date": "1995-10-23"
+                }
+            ],
+            "barcode": "724384086428",
+            "status": "Official",
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+            "date": "1995-10-23",
+            "label-info": [
+                {
+                    "catalog-number": "7243 8 40864 2 8",
+                    "label": {
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "type": "Imprint",
+                        "label-code": 3098,
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+                        "name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "sort-name": "Virgin"
+                    }
+                },
+                {
+                    "catalog-number": "CDHUTD 30",
+                    "label": {
+                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+                        "name": "Hut Recordings",
+                        "sort-name": "Hut Recordings",
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
+                        "label-code": 3098,
+                        "type": "Original Production",
+                        "disambiguation": ""
+                    }
+                }
+            ],
+            "packaging": "Jewel Case",
+            "id": "f9ec6b8d-8677-4f50-a458-0fdf6ac615e7",
+            "cover-art-archive": {
+                "darkened": false,
+                "count": 7,
+                "back": true,
+                "artwork": true,
+                "front": true
+            },
+            "country": null,
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe"
+        },
+        {
+            "status": "Official",
+            "packaging-id": null,
+            "date": "1995-10-23",
+            "packaging": null,
+            "label-info": [
+                {
+                    "label": {
+                        "type": "Imprint",
+                        "label-code": 3098,
+                        "disambiguation": "worldwide imprint of Virgin Records Ltd. and all its subsidiaries",
+                        "sort-name": "Virgin",
+                        "name": "Virgin",
+                        "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+                        "id": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+                    },
+                    "catalog-number": "7243 8 40864 80"
+                },
+                {
+                    "catalog-number": "MDHUTD 30",
+                    "label": {
+                        "id": "3dc55be1-e308-4b62-b0ac-7ddcf2845b91",
+                        "sort-name": "Hut Recordings",
+                        "type-id": "7aaa37fe-2def-3476-b359-80245850062d",
+                        "name": "Hut Recordings",
+                        "disambiguation": "",
+                        "label-code": 3098,
+                        "type": "Original Production"
+                    }
+                }
+            ],
+            "id": "fbe7dbe9-4f0c-4f1a-8823-7c192af0c9b5",
+            "cover-art-archive": {
+                "darkened": false,
+                "count": 6,
+                "back": true,
+                "artwork": true,
+                "front": true
+            },
+            "country": "XE",
+            "quality": "normal",
+            "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+            "relations": [
+                {
+                    "source-credit": "",
+                    "type": "discogs",
+                    "target-type": "url",
+                    "attribute-values": {},
+                    "type-id": "4a78823c-1c53-4176-a5f3-58026c76f2bc",
+                    "attribute-ids": {},
+                    "ended": false,
+                    "target-credit": "",
+                    "begin": null,
+                    "direction": "forward",
+                    "url": {
+                        "id": "2330a7a6-09be-4a08-9816-2dd56f935fa8",
+                        "resource": "https://www.discogs.com/release/2291451"
+                    },
+                    "attributes": [],
+                    "end": null
+                }
+            ],
+            "text-representation": {
+                "script": "Latn",
+                "language": "eng"
+            },
+            "asin": null,
+            "media": [
+                {
+                    "title": "Dawn to Dusk",
                     "id": "7fe77ef8-2ab5-4e6f-a84b-31dd12349442",
                     "position": 1,
+                    "track-count": 14,
                     "format": "MiniDisc",
-                    "title": "Dawn to Dusk",
                     "format-id": "671c5ed4-20e3-3a62-b6ea-f155cde04258"
                 },
                 {
-                    "title": "Twilight to Starlight",
                     "format-id": "671c5ed4-20e3-3a62-b6ea-f155cde04258",
-                    "position": 2,
+                    "title": "Twilight to Starlight",
                     "id": "8688ebec-afa9-45d0-8ab0-228be2d81c9e",
+                    "track-count": 14,
                     "format": "MiniDisc",
-                    "track-count": 14
+                    "position": 2
                 }
             ],
-            "quality": "normal"
+            "title": "Mellon Collie And The Infinite Sadness",
+            "disambiguation": "",
+            "release-events": [
+                {
+                    "area": {
+                        "iso-3166-1-codes": [
+                            "XE"
+                        ],
+                        "name": "Europe",
+                        "type-id": null,
+                        "sort-name": "Europe",
+                        "id": "89a675c2-3e37-3518-b83c-418bad59a85a",
+                        "type": null,
+                        "disambiguation": ""
+                    },
+                    "date": "1995-10-23"
+                }
+            ],
+            "barcode": "01001763880102"
         }
     ],
-    "release-count": 28
+    "release-count": 28,
+    "release-offset": 0
 }

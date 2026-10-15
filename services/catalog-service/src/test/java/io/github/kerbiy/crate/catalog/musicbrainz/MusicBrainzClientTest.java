@@ -11,6 +11,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static com.github.tomakehurst.wiremock.stubbing.Scenario.STARTED;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.tuple;
 
@@ -312,9 +313,32 @@ class MusicBrainzClientTest {
                 .withHeader("User-Agent", equalTo(USER_AGENT))
                 .withQueryParam("release-group", equalTo(OK_COMPUTER.toString()))
                 .withQueryParam("status", equalTo("official"))
-                .withQueryParam("inc", equalTo("labels media"))
+                .withQueryParam("inc", equalTo("labels media url-rels"))
                 .withQueryParam("limit", equalTo("100"))
                 .withQueryParam("fmt", equalTo("json")));
+    }
+
+    @Test
+    void releasesCarryTheirCurrentListeningLinks() {
+        musicBrainz.stubFor(get(urlPathEqualTo(RELEASES)).willReturn(fixture("browse-releases-ok-computer.json")));
+
+        ReleaseSummary digital = client.releases(OK_COMPUTER).stream()
+                .filter(release -> release.id().equals(UUID.fromString("30702389-5c67-4438-9ea0-2351c8de0f1d")))
+                .findFirst().orElseThrow();
+
+        // The ended Spotify link (7dxK…) is left out; Apple's two link types count once; the
+        // youtube.com album playlist is the music.youtube.com one, already linked.
+        assertThat(digital.links()).containsExactly(
+                new ListenLink(ListenPlatform.SPOTIFY, "https://open.spotify.com/album/6dVIqQ8qmQ5GBnJ9shOYGE"),
+                new ListenLink(ListenPlatform.APPLE_MUSIC, "https://music.apple.com/gb/album/1097861387"),
+                new ListenLink(ListenPlatform.YOUTUBE_MUSIC,
+                        "https://music.youtube.com/playlist?list=OLAK5uy_nc6afxSnmK8OFML8dF9q_0D1MBMXsGnL4"),
+                new ListenLink(ListenPlatform.DEEZER, "https://www.deezer.com/album/14879699"),
+                new ListenLink(ListenPlatform.TIDAL, "https://tidal.com/album/58990510"),
+                new ListenLink(ListenPlatform.BANDCAMP, "https://radiohead.bandcamp.com/album/ok-computer"));
+        // The CD has only shop and database links.
+        assertThat(client.releases(OK_COMPUTER)).filteredOn(release -> release.id().equals(OK_COMPUTER_EUROPE))
+                .singleElement().extracting(ReleaseSummary::links).asInstanceOf(LIST).isEmpty();
     }
 
     @Test
@@ -387,6 +411,43 @@ class MusicBrainzClientTest {
         musicBrainz.stubFor(get(urlPathMatching(RELEASES + "/.+")).willReturn(notFound()));
 
         assertThat(client.release(UUID.randomUUID())).isEmpty();
+    }
+
+    // --- Wikipedia links (ADR 014) ---
+
+    @Test
+    void wikiLinksReadTheWikidataItemFromTheRecordedRelations() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH + "/" + OK_COMPUTER))
+                .withQueryParam("inc", equalTo("url-rels"))
+                .willReturn(fixture("url-rels-ok-computer.json")));
+
+        assertThat(client.wikiLinks(OK_COMPUTER)).contains(new WikiLinks("Q202996", null));
+        musicBrainz.verify(getRequestedFor(urlPathEqualTo(SEARCH + "/" + OK_COMPUTER))
+                .withHeader("User-Agent", equalTo(USER_AGENT)));
+        assertThat(permits).hasValue(1);
+    }
+
+    @Test
+    void wikiLinksKeepOnlyCurrentEnglishWikipediaLinks() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH + "/" + OK_COMPUTER)).willReturn(aResponse().withStatus(200)
+                .withHeader("Content-Type", "application/json").withBody("""
+                        {"relations": [
+                          {"type": "wikipedia", "ended": true, "url": {"resource": "https://en.wikipedia.org/wiki/Old_title"}},
+                          {"type": "wikipedia", "ended": false, "url": {"resource": "https://fr.wikipedia.org/wiki/OK_Computer"}},
+                          {"type": "wikipedia", "ended": false, "url": {"resource": "https://en.wikipedia.org/wiki/Live%2FDead_(album)"}},
+                          {"type": "wikidata", "ended": true, "url": {"resource": "https://www.wikidata.org/wiki/Q1"}},
+                          {"type": "discogs", "ended": false, "url": {"resource": "https://www.discogs.com/master/21491"}}
+                        ]}
+                        """)));
+
+        assertThat(client.wikiLinks(OK_COMPUTER)).contains(new WikiLinks(null, "Live/Dead (album)"));
+    }
+
+    @Test
+    void wikiLinksOfAGroupMusicBrainzDoesNotKnowAreEmpty() {
+        musicBrainz.stubFor(get(urlPathEqualTo(SEARCH + "/" + OK_COMPUTER)).willReturn(notFound()));
+
+        assertThat(client.wikiLinks(OK_COMPUTER)).isEmpty();
     }
 
     // --- other failures ---

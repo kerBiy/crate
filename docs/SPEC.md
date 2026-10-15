@@ -82,6 +82,7 @@ flowchart LR
   R -->|validate album| CAT
   R -->|following ids| U
   CAT -->|rate-limited HTTP| MB[("MusicBrainz API")]
+  CAT -->|rate-limited HTTP| WP[("Wikidata + Wikipedia")]
   U --- PU[("users_db")]
   CAT --- PC[("catalog_db")]
   R --- PR[("reviews_db")]
@@ -297,6 +298,22 @@ create table album_tracks (
   length_ms integer,
   primary key (album_id, disc, position)
 );
+-- Where to listen (ADR-015): one link per platform, from the releases' url-rels, stored with the tracklist.
+create table album_listen_links (
+  album_id uuid        not null references album_releases on delete cascade,
+  platform varchar(20) not null,         -- SPOTIFY | APPLE_MUSIC | YOUTUBE_MUSIC | DEEZER | TIDAL | BANDCAMP | SOUNDCLOUD
+  url      text        not null,
+  primary key (album_id, platform)
+);
+
+-- The album page's description: its English Wikipedia intro (ADR-014), fetched lazily.
+create table album_descriptions (
+  album_id      uuid primary key references albums on delete cascade,
+  text          text,                  -- first paragraph, plain text; null: no English article
+  article_url   text,                  -- credited as "From Wikipedia" (CC BY-SA)
+  article_title text,
+  fetched_at    timestamptz not null   -- fetched again after 30 days, "no article" too
+);
 
 -- No FK to albums on purpose: events may arrive before the album row exists.
 create table album_stats (
@@ -351,6 +368,14 @@ create table processed_events (
 - **400 ms timeout, no retry.** On a timeout, an error status (429 included), a network error or a full rate-limit queue, search ranks with no listener counts at all, which is exactly the ranking from before ADR-012. A search never fails or waits longer because of ListenBrainz.
 - License: the ListenBrainz data dumps are CC0, and commercial use is allowed but MetaBrainz asks companies to pay as supporters. ADR-012 lists what is and isn't confirmed for the API.
 
+**Wikipedia integration rules (ADR-014)**
+
+- Finding the article: the release group's url-rels on MusicBrainz (`inc=url-rels`, one request through the MusicBrainz rate limiter). A current direct `en.wikipedia.org` link wins; otherwise the Wikidata item's `enwiki` sitelink (`wbgetentities`, `props=sitelinks`, `sitefilter=enwiki`). Ended links and other languages are ignored.
+- The text: `GET https://en.wikipedia.org/api/rest_v1/page/summary/{title}`, the plain-text `extract` (never `extract_html`) and `content_urls.desktop.page`. Only `type: standard`: a disambiguation page isn't about this album.
+- **User-Agent** per Wikimedia's policy: the MusicBrainz one plus the library, `Crate/0.1 ( contact ) Java-http-client/25`.
+- **Rate limit: 1 request per second** for Wikidata and Wikipedia together, their own token bucket (Wikimedia allows 200/minute to an identified client and asks for requests in series). 3 s timeout, no retry: nobody waits on it.
+- **License:** CC BY-SA 4.0. The page shows the text unchanged with "From Wikipedia" linked to the article and "CC BY-SA 4.0" linked to the license. Editing the text (shortening, translating) would need a "changed" note and the edit stays CC BY-SA.
+
 **Search algorithm (read-through cache of MusicBrainz's ranking, ADR-010)**
 
 1. Normalize the query: lowercase, strip diacritics (`java.text.Normalizer`), collapse whitespace.
@@ -366,7 +391,9 @@ Search quality is measured with `services/catalog-service/search-eval`: the main
 
 **Album details:** works for every album, with or without a cover (the frontend shows the missing-cover sleeve). Local hit → return it. Miss → look it up on MusicBrainz, upsert, return. 404 if MusicBrainz doesn't know it (or it isn't an Album/EP); **503** if MusicBrainz can't be reached, because then we can't tell whether it exists. (Phase 2: refresh in the background when `fetched_at` is older than 30 days.) It also carries ListenBrainz's numbers (see above; null when unknown or 0 listeners) and, once the tracklist was fetched, the chosen release's `label`, `trackCount`, `lengthMs` and the group's `genres`.
 
-**Tracklist (ADR-013):** `GET /albums/{id}/tracks`, fetched by the album page on its own, so the page never waits for it. Resolve the album as above (404/503 the same), then serve `album_releases` + `album_tracks` if stored. Otherwise, outside any transaction, two rate-limited MusicBrainz requests: browse the group's releases (`status=official`, `inc=labels+media`, 100, one page; all statuses if none is official), pick one with `ReleaseChoice` (most common track count, then most common label, then earliest date, then MBID), look it up (`inc=recordings+labels+release-groups+genres`). Store the release and its tracks in one transaction (upsert + replace, so concurrent first requests are safe). No release with tracks → stored as empty, asked again after 30 days (`crate.catalog.album.recheck-empty-tracks-after`). MusicBrainz failing → **503** `tracks-unavailable` for this endpoint only, nothing stored.
+**Tracklist (ADR-013):** `GET /albums/{id}/tracks`, fetched by the album page on its own, so the page never waits for it. Resolve the album as above (404/503 the same), then serve `album_releases` + `album_tracks` if stored. Otherwise, outside any transaction, two rate-limited MusicBrainz requests: browse the group's releases (`status=official`, `inc=labels+media+url-rels`, 100, one page; all statuses if none is official), pick one with `ReleaseChoice` (most common track count, then most common label, then earliest date, then MBID), look it up (`inc=recordings+labels+release-groups+genres`). The same browse gives the **listening links** (ADR-015) at no extra request: MusicBrainz keeps streaming links on releases, never on the release group. `ListenPlatform` recognizes album links on Spotify, Apple Music, YouTube Music (a youtube.com `OLAK5uy_` album playlist counts, rewritten to music.youtube.com), Deezer, Tidal, Bandcamp and SoundCloud; ended links are dropped. `ListenLinkChoice` keeps one per platform: the chosen release's own, else one from a release with the same track count, else any release, each time earliest first, then MBID. Store the release, its tracks and its links in one transaction (upsert + replace, so concurrent first requests are safe). No release with tracks → stored as empty, asked again after 30 days (`crate.catalog.album.recheck-empty-tracks-after`). MusicBrainz failing → **503** `tracks-unavailable` for this endpoint only, nothing stored.
+
+**Description (ADR-014):** `GET /albums/{id}/description`, fetched by the album page on its own, like the tracklist. Resolve the album as above (404/503 the same), then serve `album_descriptions` if fetched in the last 30 days (`crate.catalog.album.description-refresh-after`), a "no article" answer included. Otherwise, outside any transaction, find the article and its summary (see *Wikipedia integration rules*; at most three requests) and upsert the answer. Any failure (MusicBrainz or Wikimedia: timeout, 429, 5xx) → **503** `description-unavailable` for this endpoint only, nothing stored; the page then simply shows no description.
 
 **Endpoints**
 
@@ -374,7 +401,8 @@ Search quality is measured with `services/catalog-service/search-eval`: the main
 |---|---|
 | `GET /albums/search?q=&limit=20` | `{items: [{id, title, artistCredit, year, coverUrl, avgRating, ratingCount}], partial}`; `q` 1–100 chars, `limit` 1–50 |
 | `GET /albums/{id}` | album details + stats: `avgRating` (stars, one decimal, null without ratings), `ratingCount`, `ratingDistribution` (10 counts, ½★ first); `listenBrainz: {listeners, listens}` or null, `listenBrainzRefreshing`; `release: {label, trackCount, lengthMs}` or null, `genres` |
-| `GET /albums/{id}/tracks` | `{releaseId, label, trackCount, lengthMs, genres, discs: [{position, tracks: [{position, number, title, lengthMs}]}]}`; `discs` empty when MusicBrainz has no release; 503 `tracks-unavailable` |
+| `GET /albums/{id}/tracks` | `{releaseId, label, trackCount, lengthMs, genres, discs: [{position, tracks: [{position, number, title, lengthMs}]}], listenLinks: [{platform, url}]}`; `discs` empty when MusicBrainz has no release; `listenLinks` in platform order, empty when MusicBrainz has none; 503 `tracks-unavailable` |
+| `GET /albums/{id}/description` | `{text, articleUrl, articleTitle}`, all null when there is no English article; 503 `description-unavailable` |
 | `GET /albums?ids=a,b,c` | `{items: [...]}`, max 100, stored albums only, request order (used to render feeds) |
 | `GET /albums/top?limit=50` | ranked by Bayesian average (nice-to-have) |
 
@@ -858,6 +886,8 @@ Date: YYYY-MM-DD · Status: accepted | superseded by ADR-XXX
 | 011 | Deezer evaluated as album source and rejected; MusicBrainz stays the only source. |
 | 012 | ListenBrainz listener counts in the search ranking; listeners and listens on the album page, refreshed in the background. |
 | 013 | One release per album for length, label and tracklist: standard edition, usual label, earliest. Tested on 10 albums. |
+| 014 | The album's English Wikipedia intro as its description, found through MusicBrainz → Wikidata; CC BY-SA credit on the page. |
+| 015 | Where to listen: exact links from the releases' MusicBrainz url-rels (on the tracklist's browse, no extra request), search links where there is none; Odesli rejected. Spotify, Apple Music and YouTube Music shown as their app icons. |
 
 ---
 

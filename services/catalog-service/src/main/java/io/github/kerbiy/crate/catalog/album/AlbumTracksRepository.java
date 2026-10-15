@@ -1,10 +1,13 @@
 package io.github.kerbiy.crate.catalog.album;
 
+import io.github.kerbiy.crate.catalog.musicbrainz.ListenLink;
+import io.github.kerbiy.crate.catalog.musicbrainz.ListenPlatform;
 import io.github.kerbiy.crate.catalog.musicbrainz.Release;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +17,10 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/** The chosen release of each album and its tracks (album_releases, album_tracks), in plain SQL. */
+/**
+ * The chosen release of each album, its tracks and its listening links (album_releases, album_tracks,
+ * album_listen_links), in plain SQL.
+ */
 @Repository
 class AlbumTracksRepository {
 
@@ -49,10 +55,22 @@ class AlbumTracksRepository {
         Stored row = stored.get();
         if (row.releaseId() == null) {
             boolean stale = row.fetchedAt().toInstant().isBefore(Instant.now().minus(recheckEmptyAfter));
-            return stale ? Optional.empty() : Optional.of(new AlbumTracks(null, null, null, null, List.of(), List.of()));
+            return stale ? Optional.empty()
+                    : Optional.of(new AlbumTracks(null, null, null, null, List.of(), List.of(), links(albumId)));
         }
         return Optional.of(new AlbumTracks(row.releaseId(), row.label(), row.trackCount(), row.lengthMs(),
-                row.genres(), discs(albumId)));
+                row.genres(), discs(albumId), links(albumId)));
+    }
+
+    /** In ListenPlatform order, whatever order they were stored in. */
+    private List<ListenLink> links(UUID albumId) {
+        return jdbc.sql("select platform, url from album_listen_links where album_id = :id")
+                .param("id", albumId)
+                .query((rs, rowNum) -> new ListenLink(ListenPlatform.valueOf(rs.getString("platform")), rs.getString("url")))
+                .list()
+                .stream()
+                .sorted(Comparator.comparing(ListenLink::platform))
+                .toList();
     }
 
     private List<AlbumTracks.Disc> discs(UUID albumId) {
@@ -73,15 +91,15 @@ class AlbumTracksRepository {
     }
 
     /**
-     * Replaces the album's release and tracks in one transaction; {@code release} null records that
-     * MusicBrainz has none.
+     * Replaces the album's release, tracks and listening links in one transaction; {@code release} null
+     * records that MusicBrainz has none (an album can still have links then).
      *
      * <p>Two requests storing the same album at once are safe: the upsert locks the album_releases row,
      * so the second transaction waits, then deletes the first one's tracks and writes its own (the same
      * ones). Nobody ever reads a half-written tracklist.
      */
     @Transactional
-    public void store(UUID albumId, Release release) {
+    public void store(UUID albumId, Release release, List<ListenLink> links) {
         jdbc.sql("""
                         insert into album_releases (album_id, release_id, label, track_count, length_ms, genres, fetched_at)
                         values (:id, :releaseId, :label, :trackCount, :lengthMs, :genres, now())
@@ -101,6 +119,14 @@ class AlbumTracksRepository {
                 .param("genres", release == null ? new String[0] : release.genres().toArray(String[]::new))
                 .update();
         jdbc.sql("delete from album_tracks where album_id = :id").param("id", albumId).update();
+        jdbc.sql("delete from album_listen_links where album_id = :id").param("id", albumId).update();
+        for (ListenLink link : links) {
+            jdbc.sql("insert into album_listen_links (album_id, platform, url) values (:id, :platform, :url)")
+                    .param("id", albumId)
+                    .param("platform", link.platform().name())
+                    .param("url", link.url())
+                    .update();
+        }
         if (release == null) {
             return;
         }

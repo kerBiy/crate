@@ -5,6 +5,7 @@ import { trackLength } from '../../format.ts'
 import { Button } from '../ui/Button.tsx'
 import { Skeleton } from '../ui/Skeleton.tsx'
 import { EmptyState, ErrorState } from '../ui/States.tsx'
+import { keepOnScreen } from './keepOnScreen.ts'
 import type { DataState } from './Reviews.tsx'
 
 /** Shown before "Show all"; albums with up to {@link showAllUpTo} tracks show them all, no button. */
@@ -89,22 +90,6 @@ export function Tracklist({ discs, state, onRetry, retrying = false, expectedCou
       )}
     </div>
   )
-}
-
-/**
- * Holds the element at its current place on the screen while the page settles: the list re-renders,
- * then the left column may switch between pinned and scrolling a frame later (its height is measured
- * by a ResizeObserver), so it corrects over a few frames.
- */
-function keepOnScreen(element: HTMLElement) {
-  const top = element.getBoundingClientRect().top
-  let frames = 0
-  const settle = () => {
-    const moved = element.getBoundingClientRect().top - top
-    if (moved !== 0) window.scrollBy(0, moved)
-    if (++frames < 4) requestAnimationFrame(settle)
-  }
-  requestAnimationFrame(settle)
 }
 
 /** The first {@code count} tracks across discs, keeping only the discs they're on. */

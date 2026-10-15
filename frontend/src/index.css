@@ -599,6 +599,44 @@
 .tap-area:active::before {
   background: var(--pressed);
 }
+/*
+ * Tooltip (components/ui/Tooltip.tsx): names an icon-only control. Under it, aligned to its start so it
+ * never runs off the page's left edge, clear of the 44 px tap area. Hover only where there is a pointer
+ * that hovers; keyboard focus always. Opacity only, so reduced motion needs nothing more.
+ */
+.tooltip-host {
+  position: relative;
+  display: inline-flex;
+}
+.tooltip {
+  position: absolute;
+  inset-block-start: calc(100% + (var(--spacing-tap) - 100%) / 2 + var(--spacing-1));
+  inset-inline-start: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    visibility 0s linear var(--duration-fast);
+}
+@media (hover: hover) {
+  .tooltip-host:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+}
+.tooltip-host:has(:focus-visible) .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.tooltip-host[data-dismissed] .tooltip {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .row-press:has(.row-link:active) {
   background: var(--pressed);
 }

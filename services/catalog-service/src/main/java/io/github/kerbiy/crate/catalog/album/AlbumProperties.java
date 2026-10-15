@@ -8,7 +8,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * @param recheckEmptyTracksAfter an album MusicBrainz had no release for is asked again after this long:
  *                                people add releases later
+ * @param descriptionRefreshAfter  an album's Wikipedia intro (or its lack of one) is fetched again after this
+ *                                long: articles get edited, and written
  */
 @ConfigurationProperties("crate.catalog.album")
-record AlbumProperties(Duration recheckEmptyTracksAfter) {
+record AlbumProperties(Duration recheckEmptyTracksAfter, Duration descriptionRefreshAfter) {
 }

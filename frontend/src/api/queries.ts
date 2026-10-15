@@ -3,6 +3,7 @@ import { keepPreviousData, useInfiniteQuery, useMutation, useQuery, useQueryClie
 import { setSession } from '../auth/session.ts'
 import { api, ApiError } from './client.ts'
 import type {
+  AlbumDescription,
   AlbumDetails,
   AlbumTracks,
   AlbumSummary,
@@ -74,6 +75,19 @@ export function useAlbumTracks(id: string) {
   return useQuery({
     queryKey: [...albumKey(id), 'tracks'],
     queryFn: ({ signal }) => api<AlbumTracks>(`/albums/${encodeURIComponent(id)}/tracks`, { signal }),
+    staleTime: Infinity,
+    retry: 1,
+  })
+}
+
+/**
+ * The album's Wikipedia intro, loaded on its own like the tracklist: the first time, catalog asks
+ * MusicBrainz, Wikidata and Wikipedia (a few seconds). Optional, so a failure just means no description.
+ */
+export function useAlbumDescription(id: string) {
+  return useQuery({
+    queryKey: [...albumKey(id), 'description'],
+    queryFn: ({ signal }) => api<AlbumDescription>(`/albums/${encodeURIComponent(id)}/description`, { signal }),
     staleTime: Infinity,
     retry: 1,
   })

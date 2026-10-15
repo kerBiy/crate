@@ -8,6 +8,11 @@ type ButtonProps = ComponentProps<'button'> & {
   icon?: ReactNode
   /** Shows a spinner in place of the icon and blocks clicks; the label stays so the width holds. */
   loading?: boolean
+  /**
+   * 8 px side padding instead of 16, pulled back by as much, so the label lines up with the text around
+   * it: a text-like action (More) right under a paragraph. Still a full tap target. Ghost only.
+   */
+  tight?: boolean
 }
 
 // Pressed shows on pointer-down, with no transition (DESIGN.md section 7).
@@ -22,14 +27,16 @@ const disabledLook =
   'inline-flex h-tap cursor-not-allowed items-center justify-center gap-2 rounded-control border border-border px-4 text-body font-medium text-muted'
 
 /** Button look for things that aren't buttons, such as a link that acts as the main action. */
-export function buttonStyles(variant: ButtonVariant = 'secondary') {
-  return `inline-flex h-tap items-center justify-center gap-2 rounded-control px-4 text-body font-medium ${looks[variant]}`
+export function buttonStyles(variant: ButtonVariant = 'secondary', tight = false) {
+  const padding = tight ? '-mx-2 px-2' : 'px-4'
+  return `inline-flex h-tap items-center justify-center gap-2 rounded-control ${padding} text-body font-medium ${looks[variant]}`
 }
 
 export function Button({
   variant = 'secondary',
   icon,
   loading = false,
+  tight = false,
   disabled,
   children,
   className = '',
@@ -40,7 +47,7 @@ export function Button({
       type="button"
       disabled={disabled || loading}
       aria-busy={loading || undefined}
-      className={`${disabled && !loading ? disabledLook : buttonStyles(variant)} ${className}`}
+      className={`${disabled && !loading ? disabledLook : buttonStyles(variant, tight)} ${className}`}
       {...rest}
     >
       {loading ? <CircleNotch size="1.25em" className="spinner" aria-hidden="true" /> : icon}

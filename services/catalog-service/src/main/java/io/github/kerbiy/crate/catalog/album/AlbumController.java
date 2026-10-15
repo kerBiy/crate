@@ -16,11 +16,14 @@ class AlbumController {
 
     private final AlbumService albums;
     private final AlbumTracksService tracks;
+    private final AlbumDescriptionService descriptions;
     private final ListenBrainzRefresher listenBrainz;
 
-    AlbumController(AlbumService albums, AlbumTracksService tracks, ListenBrainzRefresher listenBrainz) {
+    AlbumController(AlbumService albums, AlbumTracksService tracks, AlbumDescriptionService descriptions,
+            ListenBrainzRefresher listenBrainz) {
         this.albums = albums;
         this.tracks = tracks;
+        this.descriptions = descriptions;
         this.listenBrainz = listenBrainz;
     }
 
@@ -35,6 +38,12 @@ class AlbumController {
     @GetMapping("/{id}/tracks")
     AlbumTracks tracks(@PathVariable UUID id) {
         return tracks.get(id);
+    }
+
+    /** Fetched lazily by the album page; the first time, up to three requests (MusicBrainz, Wikidata, Wikipedia). */
+    @GetMapping("/{id}/description")
+    AlbumDescription description(@PathVariable UUID id) {
+        return descriptions.get(id);
     }
 
     /** {@code GET /albums?ids=a,b,c}: used to render feeds. Spring splits the comma-separated list. */

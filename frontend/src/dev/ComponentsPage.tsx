@@ -6,6 +6,8 @@ import { Avatar, AvatarStack } from '../components/ui/Avatar.tsx'
 import { Button, type ButtonVariant } from '../components/ui/Button.tsx'
 import { Sleeve } from '../components/album/Sleeve.tsx'
 import { Tracklist } from '../components/album/Tracklist.tsx'
+import { ListenIcons } from '../components/album/ListenLinks.tsx'
+import { Description, DescriptionSkeleton } from '../components/album/AlbumDescription.tsx'
 import { AlbumFacts } from '../components/album/AlbumFooter.tsx'
 import { TagList, TagListSkeleton } from '../components/ui/Tag.tsx'
 import { Cover } from '../components/ui/Cover.tsx'
@@ -278,6 +280,40 @@ export function ComponentsPage() {
           </Cell>
         </Block>
 
+        <Block
+          name="ListenLinks"
+          use="Where to listen, under the album page cover: Spotify, Apple Music, YouTube Music, always all three. An exact link opens the album; otherwise the platform's search. The name shows as a tooltip on hover and focus."
+        >
+          <Cell label="Exact links on every platform">
+            <ListenIcons
+              links={[
+                { platform: 'SPOTIFY', url: 'https://open.spotify.com/album/6dVIqQ8qmQ5GBnJ9shOYGE' },
+                { platform: 'APPLE_MUSIC', url: 'https://music.apple.com/gb/album/1097861387' },
+                { platform: 'YOUTUBE_MUSIC', url: 'https://music.youtube.com/playlist?list=OLAK5uy_nc6afxSnmK8OFML8dF9q_0D1MBMXsGnL4' },
+              ]}
+              title="OK Computer"
+              artist="Radiohead"
+            />
+          </Cell>
+          <Cell label="Mixed: YouTube Music searches">
+            <ListenIcons
+              links={[
+                { platform: 'SPOTIFY', url: 'https://open.spotify.com/album/1weenld61qoidwYuZ1GESA' },
+                { platform: 'APPLE_MUSIC', url: 'https://music.apple.com/us/album/268443092' },
+                { platform: 'DEEZER', url: 'https://www.deezer.com/album/1441464' },
+              ]}
+              title="Kind of Blue"
+              artist="Miles Davis"
+            />
+          </Cell>
+          <Cell label="No links (or the tracklist failed): all search">
+            <ListenIcons links={[]} title="Money Jungle" artist="Duke Ellington" />
+          </Cell>
+          <Cell label="Loading">
+            <ListenIcons links="loading" title="OK Computer" artist="Radiohead" />
+          </Cell>
+        </Block>
+
         <Block name="Tracklist" use="The album page's tracks, loaded on their own. Disc headings only for more than one disc.">
           <Cell label="Twelve tracks: five, then Show all">
             <div className="w-full">
@@ -316,6 +352,30 @@ export function ComponentsPage() {
           </Cell>
           <Cell label="Error">
             <Tracklist discs={[]} state="error" onRetry={() => {}} />
+          </Cell>
+        </Block>
+
+        <Block
+          name="Description"
+          use="The album's Wikipedia intro under its meta line: three lines, More to read on in place, then its credit. Nothing when there is no article."
+        >
+          <Cell label="Longer than three lines">
+            <div className="w-full">
+              <Description text={wikipediaIntro} articleUrl="https://en.wikipedia.org/wiki/OK_Computer" />
+            </div>
+          </Cell>
+          <Cell label="Short: no More">
+            <div className="w-full">
+              <Description text={wikipediaIntro.split('. ')[0] + '.'} articleUrl="https://en.wikipedia.org/wiki/OK_Computer" />
+            </div>
+          </Cell>
+          <Cell label="Loading">
+            <div className="w-full">
+              <DescriptionSkeleton />
+            </div>
+          </Cell>
+          <Cell label="No article: nothing">
+            <p className="text-meta text-muted">(renders nothing)</p>
           </Cell>
         </Block>
 
@@ -584,3 +644,6 @@ function HistogramFrame({ counts }: { counts: number[] }) {
 function sentence(word: string) {
   return word[0].toUpperCase() + word.slice(1)
 }
+
+const wikipediaIntro =
+  "OK Computer is the third studio album by the English rock band Radiohead, released on 21 May 1997. With their producer, Nigel Godrich, Radiohead recorded most of OK Computer in their rehearsal space in Oxfordshire and the historic mansion of St Catherine's Court in Bath in 1996 and early 1997. They distanced themselves from the guitar-centred and lyrically introspective style of their previous album, The Bends. OK Computer's abstract lyrics, densely layered sound and eclectic influences laid the groundwork for Radiohead's later, more experimental work."

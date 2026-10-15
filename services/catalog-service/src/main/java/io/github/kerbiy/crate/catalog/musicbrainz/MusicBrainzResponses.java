@@ -40,8 +40,8 @@ final class MusicBrainzResponses {
     }
 
     /**
-     * One release. A browse with {@code inc=labels+media} fills {@code labelInfo} and {@code media} (track
-     * counts only); a lookup with {@code inc=recordings+labels+release-groups+genres} also fills the
+     * One release. A browse with {@code inc=labels+media+url-rels} fills {@code labelInfo}, {@code media}
+     * (track counts only) and {@code relations} (its links to other sites); a lookup with {@code inc=recordings+labels+release-groups+genres} also fills the
      * tracks and the release group with its genres.
      */
     record ReleaseJson(
@@ -50,7 +50,8 @@ final class MusicBrainzResponses {
             String country,
             @JsonProperty("label-info") List<LabelInfoJson> labelInfo,
             List<MediumJson> media,
-            @JsonProperty("release-group") ReleaseGroupGenresJson releaseGroup) {
+            @JsonProperty("release-group") ReleaseGroupGenresJson releaseGroup,
+            List<RelationJson> relations) {
     }
 
     record LabelInfoJson(LabelJson label) {
@@ -71,5 +72,16 @@ final class MusicBrainzResponses {
 
     /** {@code count}: how many MusicBrainz users voted for this genre. */
     record GenreJson(String name, Integer count) {
+    }
+
+    /** A release group looked up with {@code inc=url-rels}: its links to other sites. */
+    record UrlRelsJson(List<RelationJson> relations) {
+    }
+
+    /** {@code type}: "wikidata", "wikipedia", "free streaming", "streaming"…; {@code ended}: the link is marked as no longer valid. */
+    record RelationJson(String type, Boolean ended, UrlJson url) {
+    }
+
+    record UrlJson(String resource) {
     }
 }

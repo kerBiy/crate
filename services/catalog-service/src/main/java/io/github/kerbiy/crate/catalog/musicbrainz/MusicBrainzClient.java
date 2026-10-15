@@ -8,13 +8,18 @@ import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.MediumJso
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseBrowseJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseGroupJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.ReleaseJson;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.RelationJson;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.SearchResponse;
+import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzResponses.UrlRelsJson;
 import io.github.kerbiy.crate.catalog.search.SearchText;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.net.http.HttpClient;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,6 +27,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.DoubleSupplier;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -46,6 +53,8 @@ public class MusicBrainzClient {
     private static final String NO_LABEL = "[no label]";
     /** One browse page, MusicBrainz's maximum. Groups with more releases are judged on their first 100 (ADR 013). */
     static final int RELEASE_BROWSE_LIMIT = 100;
+    private static final Pattern WIKIDATA_ITEM = Pattern.compile("https?://(?:www\\.)?wikidata\\.org/wiki/(Q\\d+)");
+    private static final Pattern ENGLISH_WIKIPEDIA = Pattern.compile("https?://en\\.(?:m\\.)?wikipedia\\.org/wiki/(.+)");
 
     private final RestClient restClient;
     private final RateLimiter rateLimiter;
@@ -137,7 +146,7 @@ public class MusicBrainzClient {
 
     /**
      * The release group's official releases (at most {@link #RELEASE_BROWSE_LIMIT}, one page, in no
-     * useful order), with their labels and track counts. A group with no official release (only
+     * useful order), with their labels, track counts and links to listening platforms (ADR 015). A group with no official release (only
      * bootlegs or promos) gets one more request for all of them. Empty when MusicBrainz knows none.
      */
     public List<ReleaseSummary> releases(UUID releaseGroupId) {
@@ -149,7 +158,7 @@ public class MusicBrainzClient {
         ReleaseBrowseJson browse = get(uri -> {
                     uri.path("/release")
                             .queryParam("release-group", releaseGroupId)
-                            .queryParam("inc", "labels+media")
+                            .queryParam("inc", "labels+media+url-rels")
                             .queryParam("limit", RELEASE_BROWSE_LIMIT)
                             .queryParam("fmt", "json");
                     if (officialOnly) {
@@ -165,7 +174,7 @@ public class MusicBrainzClient {
         return browse.releases().stream()
                 .map(json -> new ReleaseSummary(json.id(), blankToNull(json.date()), blankToNull(json.country()),
                         media(json).stream().mapToInt(m -> m.trackCount() == null ? 0 : m.trackCount()).sum(),
-                        labels(json)))
+                        labels(json), listenLinks(json)))
                 .toList();
     }
 
@@ -177,6 +186,20 @@ public class MusicBrainzClient {
                         .build(releaseId),
                 ReleaseJson.class)
                 .map(MusicBrainzClient::toRelease);
+    }
+
+    /**
+     * Where the release group's Wikipedia article can be found (ADR 014): its Wikidata item and a direct
+     * English Wikipedia link, each null when MusicBrainz has none. Links marked as ended are left out, and
+     * Wikipedias in other languages too. Empty when MusicBrainz doesn't know the group.
+     */
+    public Optional<WikiLinks> wikiLinks(UUID releaseGroupId) {
+        return get(uri -> uri.path("/release-group/{id}")
+                        .queryParam("inc", "url-rels")
+                        .queryParam("fmt", "json")
+                        .build(releaseGroupId),
+                UrlRelsJson.class)
+                .map(MusicBrainzClient::toWikiLinks);
     }
 
     /**
@@ -284,6 +307,45 @@ public class MusicBrainzClient {
                 .limit(Release.MAX_GENRES)
                 .toList();
         return new Release(json.id(), labels.isEmpty() ? null : labels.getFirst(), discs, topGenres);
+    }
+
+    private static WikiLinks toWikiLinks(UrlRelsJson json) {
+        List<RelationJson> current = json.relations() == null ? List.of() : json.relations().stream()
+                .filter(relation -> !Boolean.TRUE.equals(relation.ended()))
+                .filter(relation -> relation.url() != null && relation.url().resource() != null)
+                .toList();
+        String wikidataId = firstMatch(current, "wikidata", WIKIDATA_ITEM);
+        String title = firstMatch(current, "wikipedia", ENGLISH_WIKIPEDIA);
+        // The link's path is the title, percent-encoded and with underscores for spaces.
+        String englishTitle = title == null ? null
+                : URLDecoder.decode(title.replace("+", "%2B"), StandardCharsets.UTF_8).replace('_', ' ');
+        return new WikiLinks(wikidataId, englishTitle);
+    }
+
+    private static String firstMatch(List<RelationJson> relations, String type, Pattern pattern) {
+        return relations.stream()
+                .filter(relation -> type.equals(relation.type()))
+                .map(relation -> pattern.matcher(relation.url().resource()))
+                .filter(Matcher::matches)
+                .map(matcher -> matcher.group(1))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /** The release's current links to listening platforms, the first one per platform. Ended links are left out. */
+    private static List<ListenLink> listenLinks(ReleaseJson json) {
+        if (json.relations() == null) {
+            return List.of();
+        }
+        return json.relations().stream()
+                .filter(relation -> !Boolean.TRUE.equals(relation.ended()))
+                .filter(relation -> relation.url() != null && relation.url().resource() != null)
+                .map(relation -> ListenPlatform.recognize(relation.url().resource()))
+                .flatMap(Optional::stream)
+                .collect(Collectors.toMap(ListenLink::platform, link -> link, (first, second) -> first,
+                        () -> new EnumMap<>(ListenPlatform.class)))
+                .values().stream()
+                .toList();
     }
 
     private static List<MediumJson> media(ReleaseJson json) {

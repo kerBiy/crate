@@ -1,10 +1,14 @@
 package io.github.kerbiy.crate.catalog.album;
 
+import io.github.kerbiy.crate.catalog.musicbrainz.ListenLink;
+import io.github.kerbiy.crate.catalog.musicbrainz.ListenLinkChoice;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzClient;
 import io.github.kerbiy.crate.catalog.musicbrainz.MusicBrainzException;
 import io.github.kerbiy.crate.catalog.musicbrainz.Release;
 import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseChoice;
+import io.github.kerbiy.crate.catalog.musicbrainz.ReleaseSummary;
 import io.github.kerbiy.crate.catalog.web.Problems;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.slf4j.Logger;
@@ -14,7 +18,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * The tracklist, as a read-through cache: fetched from MusicBrainz the first time someone opens it
- * (two requests: the group's releases, then the chosen one, ADR 013), then served from our DB.
+ * (two requests: the group's releases, then the chosen one, ADR 013), then served from our DB. The
+ * listening links (ADR 015) come from the same browse of the group's releases, at no extra request.
  * Like {@link AlbumService}, no {@code @Transactional}: MusicBrainz is never called inside a transaction.
  */
 @Service
@@ -45,16 +50,19 @@ class AlbumTracksService {
 
     private AlbumTracks fetchAndStore(UUID albumId) {
         Optional<Release> release;
+        List<ListenLink> links;
         try {
-            release = ReleaseChoice.choose(musicBrainz.releases(albumId))
-                    .flatMap(choice -> musicBrainz.release(choice.id()));
+            List<ReleaseSummary> releases = musicBrainz.releases(albumId);
+            Optional<ReleaseSummary> choice = ReleaseChoice.choose(releases);
+            links = ListenLinkChoice.choose(releases, choice.orElse(null));
+            release = choice.flatMap(chosen -> musicBrainz.release(chosen.id()));
         } catch (MusicBrainzException e) {
             // Nothing stored, so the next request tries again. The rest of the album page is unaffected.
             log.warn("MusicBrainz tracklist of {} failed: {}", albumId, e.getMessage());
             throw Problems.exception(HttpStatus.SERVICE_UNAVAILABLE, "tracks-unavailable",
                     "Tracklist unavailable", "Couldn't load the tracklist from MusicBrainz. Try again later.");
         }
-        tracks.store(albumId, release.orElse(null));
+        tracks.store(albumId, release.orElse(null), links);
         return tracks.find(albumId, properties.recheckEmptyTracksAfter()).orElseThrow();
     }
 }

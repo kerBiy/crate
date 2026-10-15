@@ -1,0 +1,49 @@
+{
+    "type": "standard",
+    "title": "OK Computer",
+    "displaytitle": "<i>OK Computer</i>",
+    "namespace": {
+        "id": 0,
+        "text": ""
+    },
+    "wikibase_item": "Q202996",
+    "titles": {
+        "canonical": "OK_Computer",
+        "normalized": "OK Computer",
+        "display": "<i>OK Computer</i>"
+    },
+    "pageid": 84636,
+    "thumbnail": {
+        "source": "https://upload.wikimedia.org/wikipedia/en/b/ba/Radioheadokcomputer.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        "width": 316,
+        "height": 316
+    },
+    "originalimage": {
+        "source": "https://upload.wikimedia.org/wikipedia/en/b/ba/Radioheadokcomputer.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+        "width": 316,
+        "height": 316
+    },
+    "lang": "en",
+    "dir": "ltr",
+    "revision": "1378826414",
+    "tid": "ebaeee94-c16a-11f1-9263-40e1fba4d5e6",
+    "timestamp": "2026-10-06T09:47:19Z",
+    "description": "1997 studio album by Radiohead",
+    "description_source": "local",
+    "content_urls": {
+        "desktop": {
+            "page": "https://en.wikipedia.org/wiki/OK_Computer",
+            "revisions": "https://en.wikipedia.org/wiki/OK_Computer?action=history",
+            "edit": "https://en.wikipedia.org/wiki/OK_Computer?action=edit",
+            "talk": "https://en.wikipedia.org/wiki/Talk:OK_Computer"
+        },
+        "mobile": {
+            "page": "https://en.wikipedia.org/wiki/OK_Computer",
+            "revisions": "https://en.wikipedia.org/wiki/Special:History/OK_Computer",
+            "edit": "https://en.wikipedia.org/wiki/OK_Computer?action=edit",
+            "talk": "https://en.wikipedia.org/wiki/Talk:OK_Computer"
+        }
+    },
+    "extract": "OK Computer is the third studio album by the English rock band Radiohead, released on 21 May 1997. With their producer, Nigel Godrich, Radiohead recorded most of OK Computer in their rehearsal space in Oxfordshire and the historic mansion of St Catherine's Court in Bath in 1996 and early 1997. They distanced themselves from the guitar-centred and lyrically introspective style of their previous album, The Bends. OK Computer's abstract lyrics, densely layered sound and eclectic influences laid the groundwork for Radiohead's later, more experimental work.",
+    "extract_html": "<p><i><b>OK Computer</b></i> is the third studio album by the English rock band Radiohead, released on 21 May 1997. With their producer, Nigel Godrich, Radiohead recorded most of <i>OK Computer</i> in their rehearsal space in Oxfordshire and the historic mansion of St Catherine's Court in Bath in 1996 and early 1997. They distanced themselves from the guitar-centred and lyrically introspective style of their previous album, <i>The Bends</i>. <i>OK Computer</i><span class=\"nowrap\">'</span>s abstract lyrics, densely layered sound and eclectic influences laid the groundwork for Radiohead's later, more experimental work.</p>"
+}

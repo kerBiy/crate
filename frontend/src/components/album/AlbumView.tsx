@@ -7,8 +7,10 @@ import { SectionHeading } from '../ui/SectionHeading.tsx'
 import { EmptyState } from '../ui/States.tsx'
 import { TagList, TagListSkeleton } from '../ui/Tag.tsx'
 import { ToastRegion, useToast } from '../ui/Toast.tsx'
+import { AlbumDescription } from './AlbumDescription.tsx'
 import { AlbumFooter } from './AlbumFooter.tsx'
 import { AlbumReviews } from './AlbumReviews.tsx'
+import { ListenLinks } from './ListenLinks.tsx'
 import { MyRating } from './MyRating.tsx'
 import { Sleeve } from './Sleeve.tsx'
 import { sentence } from './text.ts'
@@ -22,7 +24,7 @@ const pinBottom = 32
 
 /**
  * Album page, filled from GET /api/albums/{id} (DESIGN.md section 8), laid out like Apple Music's album
- * view: on desktop the left column is about the album (sleeve, genres, tracks, the facts under them),
+ * view: on desktop the left column is about the album (sleeve, where to listen, genres, tracks, the facts under them),
  * the right column is what people think (title, artist, Your rating, Ratings, Reviews). On mobile it is
  * one column, with the album part after Your rating. The album part is mounted once, wherever the
  * breakpoint puts it, so the reading and Tab order always match what you see.
@@ -61,6 +63,9 @@ export function AlbumView({ album }: { album: Album }) {
       <main className="mx-auto flex max-w-content flex-col gap-8 px-4 pt-6 pb-16 lg:flex-row lg:items-start lg:gap-16 lg:px-6 lg:pt-12">
         <aside ref={asideRef} aria-label="About the album" className="album-aside shrink-0" data-pinned={pinned || undefined}>
           <Sleeve title={album.title} artist={album.artistCredit} src={album.coverUrl} motion={{ spin, send: idle, nudge: idle }} />
+          <div className="mt-6">
+            <ListenLinks albumId={album.id} title={album.title} artist={album.artistCredit} />
+          </div>
           {desktop && about}
         </aside>
         <div className="flex min-w-0 flex-1 flex-col">
@@ -69,8 +74,11 @@ export function AlbumView({ album }: { album: Album }) {
               {album.title}
             </h1>
             <p className="mt-3 font-display text-h4 font-medium text-text lg:mt-4 lg:text-h3">{album.artistCredit}</p>
-            {/* The only middle dot in the app (DESIGN.md section 12). A short description goes under it later. */}
+            {/* The only middle dot in the app (DESIGN.md section 12). */}
             {meta && <p className="mt-1 text-body text-muted">{meta}</p>}
+            <div className="mt-6 empty:hidden">
+              <AlbumDescription albumId={album.id} />
+            </div>
           </header>
 
           <section aria-label="Your rating" className="mt-8 border-t border-border pt-6 lg:mt-12">

@@ -73,9 +73,10 @@ Warm neutrals plus one accent: a **soft, warm, low-saturation orange** (apricot,
 | `muted` | `#A39A8F` | `#6B635A` | Secondary text, meta |
 | `accent` | `#E5935A` | `#C9733A` | Stars, primary buttons, icons |
 | `accent-pressed` | `#D1814A` | `#D68C57` | Primary button while pressed: one step toward the background |
-| `accent-text` | `#E5935A` | `#A85A26` | Accent used *as text* (needs AA contrast) |
+| `accent-text` | `#E5935A` | `#9A5223` | Accent used *as text* (needs AA contrast): links, the artist, genre tags |
+| `accent-soft` | `#35271C` | `#F0E6DF` | Background of an identity tint (genre tags): the accent at 14% over `bg` in dark, 10% in light. Never behind anything larger than a tag |
 | `on-accent` | `#1A1410` | `#1C1915` | Text on accent backgrounds |
-| `focus` | `#E5935A` | `#A85A26` | Focus ring (`accent` in dark, `accent-text` in light) |
+| `focus` | `#E5935A` | `#9A5223` | Focus ring (`accent` in dark, `accent-text` in light) |
 | `pressed` | `#2C2722` | `#EBE8E4` | Secondary and ghost controls, tabs, while pressed |
 | `danger` | `#D45D4C` | `#B8432F` | Errors, destructive actions |
 | `skeleton` | `#221E1A` | `#EBE8E4` | Loading placeholders, dim end of the pulse |
@@ -84,11 +85,25 @@ Warm neutrals plus one accent: a **soft, warm, low-saturation orange** (apricot,
 
 Rules:
 - **One accent only.** No secondary brand color.
+- **The accent has two jobs, and only two:**
+    - **Action:** primary buttons, stars, links, the focus ring, the histogram bar being read.
+    - **Identity, on the album page only:** the artist's name (`accent-text`) and the genre tags (`accent-text` on `accent-soft`). They are the album's name tag, so the page reads as Crate's at a glance even before the cover color wash exists.
+- **Where the accent never goes:** album and page titles, section headings, body and reading text, meta lines, counts and dates, track rows, ListenBrainz's numbers, the cover-grid captions and feed rows (artist names there stay `muted`), dividers and control edges, backgrounds larger than a tag, icons at rest other than stars. If a new use isn't an action or one of the two identity elements above, it isn't accent.
 - Never put text directly on raw cover colors.
 - Every text/background pair must pass **WCAG AA** (4.5:1). Verify the values above and adjust them if they don't.
 - Things you need to see to use the UI need **3:1** against what's around them: control edges (`border-strong`), the focus ring, chart bars. `border` is too faint for that (about 1.4:1) and is only for dividers, and for disabled controls, which should look out of reach.
 - The light background must stay neutral, **not cream**.
 - The skeleton pair is its own token in light mode: `surface` and `surface-raised` are both white there and would vanish on `bg`.
+- Light `accent-text` is `#9A5223`, a step darker than it was (`#A85A26`): the old value was only 4.0:1 on any tint you could actually see. It stays apricot, darkened, not clay.
+
+Contrast of the accent pairs (WCAG ratios, re-check after any change):
+
+| Pair | Dark | Light | Needs |
+|---|---|---|---|
+| Artist: `accent-text` on `bg` | 7.49 | 5.25 | 4.5 |
+| Genre tag: `accent-text` on `accent-soft` | 5.93 | 4.74 | 4.5 |
+| Links: `accent-text` on `surface` | 6.82 | 5.82 | 4.5 |
+| `focus` on `bg` / `surface` | 7.49 / 6.82 | 5.25 / 5.82 | 3 |
 
 ### 4.3 Typography: modern-technical, with character
 
@@ -143,6 +158,21 @@ Type scale (px): `13 · 15 · 17 · 20 · 24 · 32 · 44 · 64`
 - **Covers have their own edge:** once the image is in, a `1px` `cover-edge` hairline sits just inside it. An edge, not a shadow: it doesn't lift the cover, it only says where the art ends.
 - Max content width ~1200 px. Content is left-aligned.
 
+### 4.4.1 Layers
+
+The page scrolls under its chrome. Only these layers exist; components use them by name (`z-header`, `z-raised`…), never a bare number (ESLint rejects `z-10`).
+
+| Token | Value | Use |
+|---|---|---|
+| `raised` | 10 | A target inside an isolated component that sits above the component's own layers: a feed row's avatar and name, above the row's stretched link |
+| `menu` | 20 | Menus, popovers, tooltips over content. Below the chrome: a menu scrolled under the header hides like the rest of the page |
+| `header` | 30 | The top bar |
+| `tabbar` | 30 | The mobile tab bar |
+| `toast` | 40 | Toasts, above everything, the tab bar they sit on included |
+
+- **A component whose children need layers of their own isolates itself** (`isolation: isolate`): rows lists (`.rows`), the sleeve, grid tiles, Where to listen. Whatever its children use inside (`raised`, or the local 0 / 1 / −1 of a record behind its cover), nothing in it can rise above the chrome or a menu.
+- The header and the tab bar share a value: they never overlap.
+
 ### 4.5 Icons
 
 One set only, **Phosphor**: regular weight at rest, fill weight for the active state (for example the active tab). No emoji anywhere in the UI.
@@ -157,7 +187,7 @@ This is *the* memorable element. Nothing else competes with it.
 
 - A stylized **SVG record**: dark disc, a few subtle grooves, a center label tinted with the album's color.
 - **Desktop (pointer: fine):** on hover or keyboard focus over a cover in a grid, the sleeve **slides ~30% to the left while the record emerges on the right** (≈480 ms, `vinyl` token, `standard` ease-out) and both slide back on leave. Everything is clipped to the cover's own square: the record never overlaps neighbouring covers or the title text.
-- **Album page:** the record rests **~⅓ out** of the sleeve (`cover-lg` 360 px on desktop, up to 280 px on mobile), clearly visible as an object. On desktop the left column (sleeve, genres, tracks) stays pinned while the right column scrolls past it, like a record hung on the shop wall, as long as the whole column fits the window; otherwise it scrolls with the page (section 8).
+- **Album page:** the record rests **~⅓ out** of the sleeve (`cover-lg` 360 px on desktop, up to 280 px on mobile), clearly visible as an object. On desktop the left column (sleeve, Where to listen, genres) stays pinned under the header while everything else scrolls past it, like a record hung on the shop wall. It only pins while it fits the window; otherwise it scrolls with the page (section 8).
 - **Mobile (no hover):** no hover effect in grids. On the album page, the record slides out **once** when the page opens.
 - Only on covers ≥ ~96 px. Never on small thumbnails (feed rows, lists).
 - `prefers-reduced-motion`: no sliding. The record is not shown in grids, and on the album page it is static at its resting position.
@@ -186,6 +216,8 @@ At rest: nothing moves. **No fade-in on every section, and no hover effects on e
 **Pressed is feedback, not decoration.** Everything you can press reacts on pointer-down, before the click lands: buttons, tabs and segmented controls take `pressed` (primary buttons `accent-pressed`), with no transition. Cover tiles shrink slightly while held (`scale .98`, `fast`, `standard`), since on touch they have no hover to show they're alive. This is not a hover effect and doesn't break "calm at rest".
 
 **Previewing a value is feedback too.** The rating stars follow the pointer: hovering shows what that rating would look like, and pressing and dragging across the stars scrubs through half-steps under the finger. Nothing is saved until release (or Enter on the keyboard). Moving away puts the saved value back.
+
+**Pinning is not motion.** The album page's left column just stays where it is while the page scrolls. Nothing animates when it pins or unpins, and the record doesn't react to scrolling.
 
 **Toasts enter and leave along the same path:** up `8px` and in over `base` / `standard`, then back down and out the same way. Reduced motion: fade only. A toast is a reaction to your action, so it isn't motion at rest.
 
@@ -225,55 +257,68 @@ All of these respect `prefers-reduced-motion` (instant state change, no movement
 - Caption under the cover, one line each, truncated: the **title** (`body`, medium, `text`) and **"Artist, 1997"** (`meta`, `muted`). The year tells reissues and namesakes apart.
 
 ### Lists
+- Rows lists are isolated (section 4.4.1): nothing in a row ever scrolls above the header or the tab bar.
 - Rows (feed, people, reviews) are separated by **inset hairlines**: the `border` line starts where the text starts (after the avatar or thumbnail) and there is none after the last row. Full-width rules cut the page; inset ones only separate the items.
 - **A feed row is two targets, side by side, never nested:** the avatar (32 px, with a 44 px `tap` target around it) opens the person, and the rest of the row opens the album. Order left to right, and for the keyboard: avatar, then the row. The name stays an inline link on desktop for the pointer, but isn't a Tab stop (the avatar already is); on touch a tap on the name opens the album like the rest of the row. The small cover sits at the end of the row. Pressing the row takes `pressed`; its focus ring goes around the whole row.
 
 ### Album page (desktop)
 
-Like Apple Music's album view: the left column is **about the album**, the right column is **what people think of it**.
+Like Apple Music's album view, with the record hung on the wall: the left column is **the object**, the right column is **everything you read**. The left column only holds the sleeve, Where to listen and the genres, so it is short enough to stay pinned for the whole page.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
 │  [ cover-color wash fading into the background ]                     │
 │  ┌──────────────┐◐       In Rainbows                  (display, 64)    │
-│  │    cover     │ record Radiohead                    (h3)             │
+│  │    cover     │ record Radiohead                    (h3, accent)     │
 │  │    360px     │        Album · 2007                 (body, muted)    │
-│  └──────────────┘        OK Computer is the third studio album… (3 l.) │
+│  └──────────────┘        In Rainbows is the seventh studio album… (3 l.)│
 │  (S) (A) (Y)  app icons  More                                          │
 │                          From Wikipedia, CC BY-SA 4.0  (meta, muted)   │
-│  (Alternative rock) (Art rock)  tags  ──────────────────────────────    │
-│                          Your rating                                   │
-│  Tracks          (h3)    ★ ★ ★ ★ ½   Edit review  Remove rating        │
-│   1  15 Step       3:58                                                │
-│      ────────────────    Ratings                                       │
-│   2  Bodysnatchers 4:02  4.3        ▁▂▃▅▇█▅▂  (tall histogram)          │
-│   …  (5 rows)            ★★★★½      ½★              ★★★★★               │
-│  [ Show all 10 tracks ]  128 ratings                                   │
+│  (Alternative rock)      ──────────────────────────────────────────    │
+│  (Art rock) (Rock)       Your rating                                   │
+│   tags, accent tint      ★ ★ ★ ★ ½   Edit review  Remove rating        │
 │                                                                        │
-│  10 October 2007         Reviews                                       │
-│  10 songs, 42 minutes    (o) Ana                          8 Oct 2026   │
-│  XL Recordings               ★★★★★                                      │
-│  18.2k listeners and 1.4m    The best one, no debate.  (lead)          │
-│  listens on ListenBrainz                                               │
+│  ▲ pinned under the      Ratings                                       │
+│    header while the      4.3        ▁▂▃▅▇█▅▂  (tall histogram)          │
+│    right column scrolls  ★★★★½      ½★              ★★★★★               │
+│                          128 ratings                                   │
+│                                                                        │
+│                          Tracks                                        │
+│                           1  15 Step                          3:58     │
+│                           …  (5 rows)                                  │
+│                          [ Show all 10 tracks ]                        │
+│                          10 October 2007                               │
+│                          10 songs, 42 minutes                          │
+│                          XL Recordings                                 │
+│                          18.2k listeners and 1.4m listens on ListenBrainz│
+│                                                                        │
+│                          Reviews                                       │
+│                          (o) Ana                          8 Oct 2026   │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-- **Left column, about the album:** the sleeve; Where to listen, `24` below it; the genres as tags; Tracks; and a quiet footer under the tracklist, `24` below it, in `meta` `muted`, one fact per line, Apple Music style:
+- **Left column, the object:** the sleeve; Where to listen, `24` below it; the genres as tags (accent-tinted, section 4.2), `24` below the icons. Nothing else lives here.
+- **Right column, in this order:** title (`display`); artist (`h3`, in `accent-text`: the album's name tag, section 4.2); one meta line, "Album · 2007" (type and year, `body` `muted`; with one of them unknown, just the other); the description; Your rating; Ratings; Tracks with its footer; Reviews.
+- **Tracks' footer:** a quiet footer under the tracklist, `24` below it, in `meta` `muted`, one fact per line, Apple Music style:
     - the full release date ("10 October 2007")
     - "10 songs, 42 minutes" ("songs" only here, as Apple Music writes it; the section and its button say tracks)
     - the label ("XL Recordings")
-    - "18.2k listeners and 1.4m listens on ListenBrainz", tabular figures, "ListenBrainz" linked to the album there. ListenBrainz's numbers, never Crate's: they live with the album's facts, never near the ratings, and always say whose they are. While they're on their way (background refresh) the line keeps its space and fades in; with no numbers there is no line.
+    - "18.2k listeners and 1.4m listens on ListenBrainz", tabular figures, "ListenBrainz" linked to the album there. ListenBrainz's numbers, never Crate's: they live with the album's facts, after the tracklist and well away from Crate's ratings above it, and always say whose they are. While they're on their way (background refresh) the line keeps its space and fades in; with no numbers there is no line.
 
   A fact that isn't known is left out, never shown as "—". Length, songs and label come from the release the tracklist is read from (ADR-013): until it has loaded once, their lines hold their place with skeleton lines.
 - **Where to listen:** three icon links directly under the cover: Spotify, Apple Music, YouTube Music, always all three, always in that order. Each is the brand's app icon (section 4.5), all the same `avatar` size (32), `16` apart, in a `tap` target (44) whose pressed state shows behind the icon; they line up with the cover's left edge. No text on screen. The name is the link's accessible name and shows as a tooltip on hover and keyboard focus: "Open on Spotify" when MusicBrainz links the album there, otherwise the link is that platform's search for "artist title" and says "Search on Spotify". They open in a new tab. While the tracklist loads (the links come with it), three circles of the same size pulse in their place; if it fails, all three search. Other platforms MusicBrainz knows (Deezer, Tidal, Bandcamp…) are stored, not shown (ADR-015).
-- **Right column, what people think:** title (`display`) and artist (`h3`); one meta line, "Album · 2007" (type and year, `body` `muted`; with one of them unknown, just the other); then Your rating, Ratings and Reviews.
 - **The description:** under the meta line, `24` below it, the first paragraph of the album's English Wikipedia article (ADR-014): `body` in `text`, `max-w-prose`, clamped to 3 lines. "More" (a tight ghost button whose label lines up with the text, `aria-expanded`) shows only when the text is longer than that and expands it in place; "Less" folds it again and stays under the finger. Under it, in `meta` `muted`: "From Wikipedia, CC BY-SA 4.0", "Wikipedia" linked to the article and the license to its text, as the license asks. Three skeleton lines and a credit line while it loads; with no article, or when it can't be loaded, nothing at all: no gap, no error.
-- **The pin:** the left column is pinned under the header as a whole, **only while all of it fits the window**; otherwise it scrolls with the page like the rest. With the cover, Where to listen, five tracks and the footer it is about 1050 px tall, so it pins on tall windows (from about 1180 px) and scrolls on a 900 px laptop. Pressing "Show all" or "Show fewer" never makes the column jump, even when it switches it from pinned to scrolling: "Show all" keeps the list where it is on the screen and grows it downward from the fifth track; "Show fewer" keeps the button under your finger while the rows above it go.
+- **The pin:** the left column is pinned under the header (`32` below it) as a whole, for the whole page. It is about 470 px tall with one row of tags (360 cover, 24, 44 icons, 24, tags), about 505 with two, so it pins on any window from about 600–640 px tall: every laptop.
+    - **When it doesn't fit** (a very short window, or an album with many genres), it isn't pinned and scrolls with the page like the rest. A sticky column taller than the window would hide its own bottom (the genres) until the very end of the page, with no way to scroll to it. Shrinking the cover to fit isn't an option either: sizes are tokens, and the record is the signature.
+    - The fit is measured live, so resizing the window or tags arriving late just pin or unpin it, with no transition (section 7).
 - "Your rating" is the main action: its own strip under a hairline, `h2` stars.
 - Ratings: the average in `h1` with tabular figures, its stars and the count under it; the histogram next to it, taller (`80`), with the scale's ends (½ star, 5 stars) under the bars.
-- Tracks show the first 5, then "Show all 12 tracks", which expands in place and becomes "Show fewer". Albums with 7 tracks or fewer show all of them, no button. Tracks count across discs. Each row: the track's position (1 to n per disc, never the sleeve's printed "A1" or "ONE 1") in its own right-aligned column (`muted`, tabular), the title (`body`, truncated), the length at the end (`muted`, tabular); the inset rule starts at the title. "Disc 1", "Disc 2" headings only when there is more than one disc.
+- Tracks show the first 5, then "Show all 12 tracks", which expands in place and becomes "Show fewer". "Show all" grows the list downward from the fifth track; "Show fewer" keeps the button under your finger while the rows above it go. Albums with 7 tracks or fewer show all of them, no button. Tracks count across discs. Each row: the track's position (1 to n per disc, never the sleeve's printed "A1" or "ONE 1") in its own right-aligned column (`muted`, tabular), the title (`body`, truncated), the length at the end (`muted`, tabular); the inset rule starts at the title. "Disc 1", "Disc 2" headings only when there is more than one disc.
 
-On mobile everything stacks in one column, in this order: cover (record ⅓ out, up to 280 px), Where to listen, title (`h1`), artist (`h4`), the meta line, Your rating, genres, Tracks with its footer, Ratings, Reviews.
+On mobile everything stacks in one column: cover (record ⅓ out, up to 280 px), Where to listen right under it, title (`h1`), artist (`h4`, accent), the meta line, the description, **the genres**, Your rating, Ratings, Tracks with its footer, Reviews. The genres follow the description, as facts about the album, instead of pushing the title down.
+
+- **Layout, not duplication.** The genres are rendered once, in the left column, so the pinned column stays whole on desktop. On mobile both columns step aside (`display: contents`) and the page is a one-column grid with named areas (sleeve, listen, header, genres, reading) that puts them under the description.
+- **Reading order:** the genres are the one piece whose place on screen differs from the DOM. They aren't focusable, so the Tab order still matches the screen exactly; a screen reader meets them just before the title, inside "About the album", with the cover and the listen links.
 
 ---
 
@@ -372,16 +417,16 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **RatingStars**: showing a rating someone gave. Takes its size from the surrounding text.
 - **RatingInput**: giving a rating. `size="lg"` on the album page, where it is the main action (`h2` stars, same 44 px cells). Hover previews, press-and-drag scrubs, release commits; half-star steps with the arrow keys, Enter confirms. On the album page it sits under a label that says what it is ("Rate this album", then "Your rating"), with its review and remove actions right below it.
 - **Cover**: album art at any size, in a square that never changes size. Pulses until its image loads, then fades in with its `cover-edge` hairline; falls back to a neutral sleeve with initials when the image is missing. `eager` for covers visible on arrival. `size`: `sm` in rows, `md` in grids, `lg` on the album page (`cover-lg` corners, bigger initials).
-- **Sleeve**: the album page cover with its record. It doesn't pin itself: on desktop the album page pins the whole left column, while it fits the window (section 8).
+- **Sleeve**: the album page cover with its record. It doesn't pin itself: on desktop the album page pins the whole left column (sleeve, Where to listen, genres), while it fits the window (section 8).
 - **Vinyl**: the record, label tinted with the album color. Only with covers of 96 px or more.
 - **AlbumTile**: one album in a cover grid; the record slides out on hover or focus, once the cover is in. Caption: title, then "Artist, year". **AlbumTileSkeleton**: the same tile while the list loads.
 - **Histogram**: ratings spread on the album page. One Tab stop; hover, tap, focus or arrow keys show the count for each bar. Bars in `muted`, the most common rating in `text`, the one being read in `accent`. `size="lg"`: taller bars with the scale's ends under them.
-- **Tracklist**: the album page's tracks, in rows like Apple Music's album view (number column, title, length at the end, inset rules). The first 5, then "Show all N tracks" / "Show fewer" (`aria-expanded`), which never makes the list jump (Show all grows it downward in place; Show fewer keeps the button where it was); all of them when there are 7 or fewer. Disc headings only for more than one disc. Its own loading (skeleton rows of the same height, in the collapsed shape), empty ("No tracklist on MusicBrainz yet.") and error ("Couldn't load the tracklist." + Try again) states.
+- **Tracklist**: the album page's tracks, in rows like Apple Music's album view (number column, title, length at the end, inset rules). The first 5, then "Show all N tracks" / "Show fewer" (`aria-expanded`), which never makes the page jump (Show all grows it downward in place; Show fewer keeps the button where it was); all of them when there are 7 or fewer. Disc headings only for more than one disc. Its own loading (skeleton rows of the same height, in the collapsed shape), empty ("No tracklist on MusicBrainz yet.") and error ("Couldn't load the tracklist." + Try again) states.
 - **Description**: the album page's Wikipedia intro (section 8): the text clamped to 3 lines, More / Less in place, its credit and license under it. `DescriptionSkeleton` while it loads; nothing when there is none.
 - **ListenLinks**: Where to listen under the album page cover (section 8): Spotify, Apple Music, YouTube Music app icons, always all three, each opening the album or, without an exact link, that platform's search. Name and tooltip "Open on …" / "Search on …", 32 px icons in 44 px targets, new tab. Three pulsing circles while the tracklist loads; all search when it fails. `ListenIcons` is the same row without the request (for `/dev/components`).
-- **Tooltip**: names an icon-only control: under it, aligned to its start, `surface-raised` with a `border` edge and the floating shadow, `meta` text. On hover (pointer devices only) and keyboard focus, never on a tap; fades in over `fast`; Escape hides it. Its text is hidden from screen readers: the control carries the same name itself.
+- **Tooltip**: names an icon-only control: under it, aligned to its start, `surface-raised` with a `border` edge and the floating shadow, `meta` text, on the `menu` layer. On hover (pointer devices only) and keyboard focus, never on a tap; fades in over `fast`; Escape hides it. Its text is hidden from screen readers: the control carries the same name itself.
 - **AlbumFooter**: the quiet facts under the tracklist (release date; songs and length; label; ListenBrainz's listeners and listens, linked). Skeleton lines while the tracklist loads; unknown facts left out; the ListenBrainz line keeps its space while its numbers load and fades them in.
-- **Tag**: a fact about something that isn't a control: genres. `meta` in `muted` on `surface`, a `border` hairline, `full` radius. No hover, no pressed state, not focusable: nothing that looks pressable may do nothing. Once tags lead somewhere (a genre page), they become links with the `pressed` state, a focus ring and a `tap`-sized target.
+- **Tag**: a fact about something that isn't a control: genres. `meta` in `accent-text` on `accent-soft` (identity color, section 4.2), `full` radius, no visible edge (a transparent border keeps it the same size as its skeleton). No hover, no pressed state, not focusable: the tint says "this album", not "press me", and nothing that looks pressable may do nothing. Once tags lead somewhere (a genre page), they become links with the `pressed` state, a focus ring and a `tap`-sized target.
 - **Avatar**: a person next to their name. `sm` in dense rows.
 - **AvatarStack**: a group of people in one line, such as friends who listened, with "+N" for the rest.
 - **Skeleton**: loading. Combine lines, blocks and circles into the shape of the real content; `text` sits inside a line of text so the line keeps its height. Pulses in place.
@@ -389,10 +434,10 @@ Base components live in `frontend/src/components/ui/`. Every state of each one i
 - **PageHeader**: the large title of a top-level page, with an optional control at the end of its row.
 - **SectionHeading**: a section inside a page ("Ratings", "Reviews"): `h3`, `24` above its content.
 - **SearchField**: the one field of the Search page. A visible label, a magnifier inside, a clear button once there is text (it puts focus back in the field), Enter searches now.
-- **Rows** (`FeedRow`, `PersonRow`, review rows): put them in a list with the `rows` class to get inset separators; each row marks its text column with `row-rule`. A row that opens one place from anywhere on it (`FeedRow`) is `row-press`, its main link is `row-link` (stretched over the row), and any other target in it sits above with `z-10`. A target smaller than `tap` (the avatar) takes `tap-area`: its hit area grows to 44 px around it, centred, without moving the layout, and its pressed state shows behind it.
+- **Rows** (`FeedRow`, `PersonRow`, review rows): put them in a list with the `rows` class to get inset separators; each row marks its text column with `row-rule`. A row that opens one place from anywhere on it (`FeedRow`) is `row-press`, its main link is `row-link` (stretched over the row), and any other target in it sits above with `z-raised`. The `rows` list isolates itself, so `raised` only counts among its own rows (section 4.4.1). A target smaller than `tap` (the avatar) takes `tap-area`: its hit area grows to 44 px around it, centred, without moving the layout, and its pressed state shows behind it.
 - **ErrorState**: something failed to load. Plain message and "Try again".
 - **SegmentedControl**: two or three mutually exclusive choices side by side, the chosen one raised: what Search looks for, the theme. Not for navigation (that's the tabs).
-- **Toast**: confirming an action that changed something. One at a time, via `useToast` and a single `ToastRegion` per page. At most **one action** ("Undo"); a toast with an action stays up for `toast-action` and pauses while hovered or focused from the keyboard.
+- **Toast**: confirming an action that changed something, on the `toast` layer, above the tab bar. One at a time, via `useToast` and a single `ToastRegion` per page. At most **one action** ("Undo"); a toast with an action stays up for `toast-action` and pauses while hovered or focused from the keyboard.
 - **AppShell**: the frame of every page: top bar on desktop, bottom tabs on mobile.
 
 Inline `style` is only for data: a bar's height, the album's color, a star's stagger index. ESLint rejects arbitrary Tailwind values, `dark:` variants and raw hex in components.

@@ -78,7 +78,7 @@ export function AppShellLayout() {
 function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current?: Section; userName?: string }) {
   return (
     <>
-      <header className="app-header sticky top-0 z-10 border-b border-border bg-bg">
+      <header className="app-header sticky top-0 z-header border-b border-border bg-bg">
         <div className="mx-auto flex h-12 max-w-content items-center gap-8 px-4 lg:h-16 lg:px-6">
           <Link to={links.feed} className="flex h-tap items-center rounded-control font-display text-h3 font-bold text-text">
             crate
@@ -106,7 +106,7 @@ function AppNav({ links, current, userName = 'You' }: { links: NavLinks; current
         </div>
       </header>
 
-      <nav aria-label="Main" className="tabbar fixed inset-x-0 bottom-0 z-10 border-t border-border bg-bg lg:hidden">
+      <nav aria-label="Main" className="tabbar fixed inset-x-0 bottom-0 z-tabbar border-t border-border bg-bg lg:hidden">
         <ul className="grid h-tabbar grid-cols-3">
           {mobileOrder.map((tab) => {
             const active = tab.id === current

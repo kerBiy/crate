@@ -33,7 +33,7 @@ export function FeedRow({ name, username, albumId, title, artist, coverUrl, rati
     <article className="row-press relative flex pt-4">
       {profile ? (
         // The avatar's own circle, its tap target grown to 44px around it (.tap-area).
-        <Link to={profile} aria-label={name} className="tap-area z-10 mt-2 flex shrink-0 self-start rounded-full">
+        <Link to={profile} aria-label={name} className="tap-area z-raised mt-2 flex shrink-0 self-start rounded-full">
           <Avatar name={name.toUpperCase()} />
         </Link>
       ) : (
@@ -45,7 +45,7 @@ export function FeedRow({ name, username, albumId, title, artist, coverUrl, rati
             {profile ? (
               <>
                 {/* Desktop: the name links to the person. Touch: a tap on it opens the album, like the rest of the row. */}
-                <Link to={profile} tabIndex={-1} className="relative z-10 hidden font-medium lg:inline">
+                <Link to={profile} tabIndex={-1} className="relative z-raised hidden font-medium lg:inline">
                   {name}
                 </Link>
                 <span className="font-medium lg:hidden">{name}</span>

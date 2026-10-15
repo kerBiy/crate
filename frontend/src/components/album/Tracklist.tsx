@@ -47,9 +47,9 @@ export function Tracklist({ discs, state, onRetry, retrying = false, expectedCou
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   /**
-   * Nothing jumps when the list changes length, even when that pins or unpins the album page's left
-   * column (DESIGN.md section 8): Show all keeps the list where it is (the new rows grow downward from
-   * the fifth track); Show fewer keeps the button under the finger while the rows above it go.
+   * Nothing jumps when the list changes length (DESIGN.md section 8): Show all keeps the list where it
+   * is (the new rows grow downward from the fifth track); Show fewer keeps the button under the finger
+   * while the rows above it go.
    */
   function toggle() {
     const anchor = expanded ? buttonRef.current : listRef.current

@@ -31,7 +31,7 @@ export function DevPanel() {
     <div
       ref={root}
       onKeyDown={(event) => event.key === 'Escape' && setOpen(false)}
-      className="fixed right-4 bottom-tabbar-safe z-30 flex flex-col items-end gap-2 pb-4 lg:right-6 lg:bottom-0 lg:pb-6"
+      className="fixed right-4 bottom-tabbar-safe z-toast flex flex-col items-end gap-2 pb-4 lg:right-6 lg:bottom-0 lg:pb-6"
     >
       {open && (
         <section

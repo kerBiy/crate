@@ -74,7 +74,7 @@ export function SendButton({ page, friends, className = '' }: SendButtonProps) {
         <div
           role="menu"
           aria-label="Send to"
-          className="absolute right-0 z-20 mt-2 flex w-full min-w-max flex-col rounded-control border border-border bg-surface-raised p-1 shadow-float sm:left-0 sm:right-auto"
+          className="absolute right-0 z-menu mt-2 flex w-full min-w-max flex-col rounded-control border border-border bg-surface-raised p-1 shadow-float sm:left-0 sm:right-auto"
         >
           {friends.map((name) => (
             <button

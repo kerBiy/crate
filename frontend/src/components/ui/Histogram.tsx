@@ -106,7 +106,7 @@ function Readout({ index, text }: { index: number; text: string }) {
     <p
       aria-hidden="true"
       style={left}
-      className={`pointer-events-none absolute bottom-full z-20 mb-2 rounded-control border border-border bg-surface-raised px-3 py-2 text-meta whitespace-nowrap text-text shadow-float ${edge}`}
+      className={`pointer-events-none absolute bottom-full z-menu mb-2 rounded-control border border-border bg-surface-raised px-3 py-2 text-meta whitespace-nowrap text-text shadow-float ${edge}`}
     >
       {text}
     </p>

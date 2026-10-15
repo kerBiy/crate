@@ -17,6 +17,8 @@
   --muted: #a39a8f;
   --accent: #e5935a;
   --accent-text: #e5935a;
+  /* Identity tint behind accent text (genre tags): the accent at 14% over bg, 5.9:1 with accent-text. */
+  --accent-soft: #35271c;
   --on-accent: #1a1410;
   /* Pressed: the primary button steps toward the background; other controls take --pressed. */
   --accent-pressed: #d1814a;
@@ -53,14 +55,17 @@
   --text: #1c1915;
   --muted: #6b635a;
   --accent: #c9733a;
-  --accent-text: #a85a26;
+  /* Was #A85A26: only 4.0:1 on a tint you can see. 5.25:1 on bg, 4.7:1 on accent-soft. */
+  --accent-text: #9a5223;
+  /* The accent at 10% over bg. */
+  --accent-soft: #f0e6df;
   /* Was #FFFFFF: white on the light accent is only 3.5:1. */
   --on-accent: #1c1915;
   /* Lighter, not darker: on-accent is dark text here and keeps 6.5:1. */
   --accent-pressed: #d68c57;
   --pressed: #ebe8e4;
-  /* The light accent is only 3.2:1 on bg; accent-text keeps the ring at 4.1:1 or more everywhere. */
-  --focus: #a85a26;
+  /* The light accent is only 3.2:1 on bg; accent-text keeps the ring at 4.7:1 or more everywhere. */
+  --focus: #9a5223;
   --danger: #b8432f;
 
   --vinyl-disc: #1c1915;
@@ -97,6 +102,7 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
   --color-on-accent: var(--on-accent);
   --color-accent-pressed: var(--accent-pressed);
   --color-pressed: var(--pressed);
@@ -178,6 +184,20 @@
   --shadow-*: initial;
   --shadow-float: 0 8px 24px rgb(0 0 0 / 0.28);
 
+  /*
+   * Layers (DESIGN.md section 4.4.1). Only these exist in components (z-raised, z-header…). A component
+   * whose children need layers of their own isolates itself, so nothing inside it can rise above these.
+   */
+  --z-index-*: initial;
+  /* A target above a row's stretched link, inside an isolated component. */
+  --z-index-raised: 10;
+  /* Menus, popovers, tooltips over content; below the chrome, like the rest of the page. */
+  --z-index-menu: 20;
+  --z-index-header: 30;
+  --z-index-tabbar: 30;
+  /* Above everything, the tab bar included. */
+  --z-index-toast: 40;
+
   /* Smooth ease-out with a long, soft landing. */
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   /* Ease-out with a slight overshoot: a hint of pop on actions. */
@@ -254,12 +274,54 @@
 }
 
 /*
- * Album page, desktop: the left column (sleeve, genres, tracks, facts) is as wide as the sleeve with
- * its record, and pinned below the header only while all of it fits the window (data-pinned, set by
- * AlbumView from the measured heights); otherwise it scrolls with the page (DESIGN.md section 8).
+ * Album page (DESIGN.md section 8). Mobile: one column, laid out by grid areas so the genres, which
+ * live in the left column for desktop, land under the description without being rendered twice. Both
+ * columns step aside (display: contents) and their pieces become the grid's rows.
+ */
+.album-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "sleeve" "listen" "header" "genres" "reading";
+}
+.album-aside,
+.album-main {
+  display: contents;
+}
+.album-sleeve {
+  grid-area: sleeve;
+}
+.album-listen {
+  grid-area: listen;
+}
+.album-header {
+  grid-area: header;
+}
+.album-genres {
+  grid-area: genres;
+}
+.album-reading {
+  grid-area: reading;
+}
+
+/*
+ * Album page, desktop: two columns. The left one (sleeve, where to listen, genres) is as wide as the
+ * sleeve with its record, and pinned below the header only while all of it fits the window
+ * (data-pinned, set by AlbumView from the measured height); otherwise it scrolls with the page.
  */
 @media (min-width: 64rem) {
+  .album-page {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-16);
+  }
+  .album-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
   .album-aside {
+    display: block;
     width: calc(var(--spacing-cover-lg) * 1.33);
   }
   .album-aside[data-pinned] {
@@ -550,8 +612,12 @@
 
 /*
  * Lists with inset separators (DESIGN.md section 8): each row marks its text column with
- * .row-rule; the line starts there, and the last row has none.
+ * .row-rule; the line starts there, and the last row has none. Isolated, so a row's raised targets
+ * (z-raised) stack only among themselves and never rise above the header or the tab bar.
  */
+.rows {
+  isolation: isolate;
+}
 .rows > li:not(:last-child) .row-rule {
   border-bottom: 1px solid var(--border);
 }
@@ -559,14 +625,14 @@
 /*
  * A row that opens one place from anywhere on it (FeedRow: the album). Links can't nest, so the
  * row's main link stretches its ::after over the row (positioned with .row-press); other targets
- * in the row sit above it with `relative z-10`. The focus ring and the pressed state belong to
+ * in the row sit above it with `relative z-raised`. The focus ring and the pressed state belong to
  * the whole row, since that is what you're about to open.
  */
 .row-link::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Above the row's own positioned pieces (the cover), below its other targets (z-10). */
+  /* Above the row's own positioned pieces (the cover), below its other targets (z-raised). */
   z-index: 1;
   border-radius: var(--radius-control);
 }
@@ -612,7 +678,7 @@
   position: absolute;
   inset-block-start: calc(100% + (var(--spacing-tap) - 100%) / 2 + var(--spacing-1));
   inset-inline-start: 0;
-  z-index: 20;
+  z-index: var(--z-index-menu);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;

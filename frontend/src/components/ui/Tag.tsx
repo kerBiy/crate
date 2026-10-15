@@ -1,10 +1,12 @@
 /**
- * A fact that isn't a control, such as a genre. Deliberately not pressable: no hover, no pressed state,
- * no focus. When tags lead somewhere, make them links with the pressed state and a tap-sized target.
+ * A fact that isn't a control, such as a genre, tinted with the accent as the album's identity (DESIGN.md
+ * section 4.2). Deliberately not pressable: no hover, no pressed state, no focus. The transparent border
+ * keeps it the size of its skeleton. When tags lead somewhere, make them links with the pressed state and
+ * a tap-sized target.
  */
 export function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-block rounded-full border border-border bg-surface px-3 py-1 text-meta text-muted">
+    <span className="inline-block rounded-full border border-transparent bg-accent-soft px-3 py-1 text-meta text-accent-text">
       {children}
     </span>
   )

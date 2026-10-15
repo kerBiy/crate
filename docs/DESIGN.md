@@ -244,6 +244,7 @@ All of these respect `prefers-reduced-motion` (instant state change, no movement
 - **Desktop:** top bar with the wordmark `crate` (lowercase, display face) on the left; Search, Feed, Profile; avatar on the right.
 - **Mobile:** bottom tab bar with three tabs: Feed, Search, Profile.
 - **The tab says where you came from.** An album page keeps the tab you reached it from (Feed, Search or Profile); Search when opened directly. Someone else's profile shows no tab.
+- **Each tab keeps its place.** Feed, Search and Profile each remember their own scroll position: switching tabs opens the other tab where you left it (at the top the first time), and Search comes back with its last query. Tapping the tab you're on scrolls its page to the top, smoothly (`behavior: smooth`, instant with reduced motion). On a page inside a tab (an album reached from Search, your followers, Settings), the tab first goes back to the tab's own page, at its place; the next tap scrolls it to the top. Every other new page (an album, someone's profile, a followers list) opens at the top, and Back returns to where you were. The same on desktop: the top bar's sections, the wordmark (Feed) and the avatar (Profile).
 - **The header's edge appears only once content scrolls under it.** At the top of a page the header and the page are one surface; the `border` line fades in over the first `8px` of scroll. No blur, no shadow.
 - **Settings** (theme, log out) is reached from your own profile, never from the main navigation: rare things live one level deeper.
 

@@ -24,7 +24,7 @@ const mobileOrder = [desktopOrder[1], desktopOrder[0], desktopOrder[2]]
 
 /**
  * The tab whose own page this path is: /feed, /search, or my profile at /u/:me. Albums, other
- * people, follower lists and Settings are pages inside a tab or outside any, not the tab's own page.
+ * people, follower lists, Settings and Credits are pages inside a tab or outside any, not the tab's own page.
  */
 function tabRootOf(pathname: string, me?: string): Section | undefined {
   if (pathname === appLinks.feed) return 'feed'
@@ -78,7 +78,7 @@ export function AppShellLayout() {
   const profileOf = pathname.match(/^\/u\/([^/]+)/)?.[1]
   const mine = Boolean(profileOf && me.data && decodeURIComponent(profileOf).toLowerCase() === me.data.username)
   const own: Section | undefined =
-    mine || pathname.startsWith('/settings') || pathname.startsWith(appLinks.profile)
+    mine || pathname.startsWith('/settings') || pathname.startsWith('/credits') || pathname.startsWith(appLinks.profile)
       ? 'profile'
       : pathname.startsWith(appLinks.feed)
         ? 'feed'

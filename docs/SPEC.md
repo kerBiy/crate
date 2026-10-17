@@ -374,7 +374,7 @@ create table processed_events (
 - The text: `GET https://en.wikipedia.org/api/rest_v1/page/summary/{title}`, the plain-text `extract` (never `extract_html`) and `content_urls.desktop.page`. Only `type: standard`: a disambiguation page isn't about this album.
 - **User-Agent** per Wikimedia's policy: the MusicBrainz one plus the library, `Crate/0.1 ( contact ) Java-http-client/25`.
 - **Rate limit: 1 request per second** for Wikidata and Wikipedia together, their own token bucket (Wikimedia allows 200/minute to an identified client and asks for requests in series). 3 s timeout, no retry: nobody waits on it.
-- **License:** CC BY-SA 4.0. The page shows the text unchanged with "From Wikipedia" linked to the article and "CC BY-SA 4.0" linked to the license. Editing the text (shortening, translating) would need a "changed" note and the edit stays CC BY-SA.
+- **License:** CC BY-SA 4.0. The page shows the text unchanged with "From Wikipedia" linked to the article; the /credits page (reached from Settings) names CC BY-SA 4.0 and links the license. Editing the text (shortening, translating) would need a "changed" note and the edit stays CC BY-SA.
 
 **Search algorithm (read-through cache of MusicBrainz's ranking, ADR-010)**
 

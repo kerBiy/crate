@@ -357,7 +357,7 @@ export function ComponentsPage() {
 
         <Block
           name="Description"
-          use="The album's Wikipedia intro under its meta line: three lines, More to read on in place, then its credit. Nothing when there is no article."
+          use="The album's Wikipedia intro under its meta line: three lines, More to read on in place, then its credit, “From Wikipedia”. Nothing when there is no article."
         >
           <Cell label="Longer than three lines">
             <div className="w-full">

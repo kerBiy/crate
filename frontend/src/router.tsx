@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate, type RouteObject } from 'react-router'
 import { RedirectIfSignedIn, RequireAuth } from './auth/RequireAuth.tsx'
 import { AppShellLayout } from './components/ui/AppShell.tsx'
 import { AlbumPage } from './pages/AlbumPage.tsx'
+import { CreditsPage } from './pages/CreditsPage.tsx'
 import { LoginPage, RegisterPage } from './pages/AuthPages.tsx'
 import { FeedPage } from './pages/FeedPage.tsx'
 import { FollowListPage } from './pages/FollowListPage.tsx'
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
           { path: 'u/:username/followers', element: <FollowListPage kind="followers" /> },
           { path: 'u/:username/following', element: <FollowListPage kind="following" /> },
           { path: 'settings', element: <SettingsPage /> },
+          { path: 'credits', element: <CreditsPage /> },
           { path: '*', element: <NotFoundPage /> },
         ],
       },

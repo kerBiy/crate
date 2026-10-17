@@ -4,9 +4,6 @@ import { Button } from '../ui/Button.tsx'
 import { Skeleton } from '../ui/Skeleton.tsx'
 import { keepOnScreen } from './keepOnScreen.ts'
 
-/** The license the text comes under; the credit links its text, as the license asks (ADR 014). */
-const license = { name: 'CC BY-SA 4.0', url: 'https://creativecommons.org/licenses/by-sa/4.0/' }
-
 /**
  * The album's introduction under the meta line (DESIGN.md section 8): its English Wikipedia article's
  * first paragraph. Skeleton lines while it loads; nothing at all when there is no article or it failed,
@@ -22,8 +19,8 @@ export function AlbumDescription({ albumId }: { albumId: string }) {
 
 /**
  * The text, clamped to three lines with More to read the rest in place (Less folds it again), then
- * whose it is: "From Wikipedia", linked to the article, and the license, linked to its text. More only
- * shows when the text is longer than three lines at the current width.
+ * whose it is: "From Wikipedia", linked to the article. The license (CC BY-SA 4.0) is named on /credits
+ * (ADR 014). More only shows when the text is longer than three lines at the current width.
  */
 export function Description({ text, articleUrl }: { text: string; articleUrl: string }) {
   const [expanded, setExpanded] = useState(false)
@@ -69,10 +66,6 @@ export function Description({ text, articleUrl }: { text: string; articleUrl: st
         From{' '}
         <a href={articleUrl} target="_blank" rel="noreferrer" className="font-medium text-accent-text underline">
           Wikipedia
-        </a>
-        ,{' '}
-        <a href={license.url} target="_blank" rel="noreferrer license" className="text-accent-text underline">
-          {license.name}
         </a>
       </p>
     </div>

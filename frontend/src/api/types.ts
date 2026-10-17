@@ -69,7 +69,7 @@ export type Track = {
 
 /**
  * catalog-service AlbumDescription: GET /albums/{id}/description. The intro of the album's English
- * Wikipedia article, plain text; all null when there is no article. Shown with its credit (CC BY-SA).
+ * Wikipedia article, plain text; all null when there is no article. Shown with its credit; its license (CC BY-SA) is on /credits.
  */
 export type AlbumDescription = { text: string | null; articleUrl: string | null; articleTitle: string | null }
 

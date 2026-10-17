@@ -67,6 +67,13 @@ in that case: a description is a nice-to-have, never an error.
 license), right under the text. The text is shown unchanged; clamping it to three lines with More is
 presentation, not a modification, so there is no "changed" note to make.
 
+*Changed 2026-10-18:* the license moved off the album page. The credit under the text is now just "From
+Wikipedia" (linked to the article), and a Credits page (`/credits`, reached from Settings) names CC BY-SA
+4.0 with a link to its text, next to the other data sources. CC BY-SA 4.0 §3(a)(2) lets the conditions be
+met "in any reasonable manner based on the medium", including a link to a resource that holds the
+required information. The license line under every description was visual noise for what is a quiet
+credit.
+
 ## Alternatives considered
 
 - **`extract_html`** (keeps the italics of titles). Means rendering third-party HTML: a sanitizer on our
